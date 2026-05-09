@@ -1,0 +1,119 @@
+{
+  "timestamp": "2025-05-09T09:05:23.000000",
+  "scan_date": "2025-05-09",
+  "scan_time": "09:05:23",
+  "count": 8,
+  "filters": {
+    "ema_trend": "EMA(20) > EMA(50) > EMA(200)",
+    "rsi_range": "50 < RSI(14) < 75",
+    "supertrend": "Price > Supertrend(10,3)",
+    "volume": "Volume > 1.5x MA(20)",
+    "price_floor": "Price > 0.85"
+  },
+  "stocks": [
+    {
+      "symbol": "RELIANCE",
+      "price": 2850.50,
+      "ema_20": 2820.45,
+      "ema_50": 2790.10,
+      "ema_200": 2750.80,
+      "rsi": 62.30,
+      "supertrend": 2840.00,
+      "high": 2875.00,
+      "low": 2800.00,
+      "volume": 5200000,
+      "avg_volume": 3200000
+    },
+    {
+      "symbol": "TCS",
+      "price": 3680.25,
+      "ema_20": 3650.80,
+      "ema_50": 3620.40,
+      "ema_200": 3580.60,
+      "rsi": 65.75,
+      "supertrend": 3670.00,
+      "high": 3720.00,
+      "low": 3650.00,
+      "volume": 2800000,
+      "avg_volume": 1800000
+    },
+    {
+      "symbol": "HDFCBANK",
+      "price": 1650.80,
+      "ema_20": 1625.50,
+      "ema_50": 1600.20,
+      "ema_200": 1575.40,
+      "rsi": 58.45,
+      "supertrend": 1640.00,
+      "high": 1680.00,
+      "low": 1620.00,
+      "volume": 3500000,
+      "avg_volume": 2200000
+    },
+    {
+      "symbol": "INFY",
+      "price": 1425.50,
+      "ema_20": 1410.30,
+      "ema_50": 1395.80,
+      "ema_200": 1375.20,
+      "rsi": 61.20,
+      "supertrend": 1415.00,
+      "high": 1455.00,
+      "low": 1410.00,
+      "volume": 4100000,
+      "avg_volume": 2600000
+    },
+    {
+      "symbol": "MARUTI",
+      "price": 10250.75,
+      "ema_20": 10180.45,
+      "ema_50": 10120.20,
+      "ema_200": 10040.80,
+      "rsi": 64.85,
+      "supertrend": 10240.00,
+      "high": 10320.00,
+      "low": 10180.00,
+      "volume": 650000,
+      "avg_volume": 380000
+    },
+    {
+      "symbol": "WIPRO",
+      "price": 489.50,
+      "ema_20": 475.80,
+      "ema_50": 465.40,
+      "ema_200": 450.20,
+      "rsi": 57.30,
+      "supertrend": 485.00,
+      "high": 495.00,
+      "low": 475.00,
+      "volume": 2900000,
+      "avg_volume": 1700000
+    },
+    {
+      "symbol": "TECHM",
+      "price": 1380.25,
+      "ema_20": 1365.40,
+      "ema_50": 1350.80,
+      "ema_200": 1330.60,
+      "rsi": 59.75,
+      "supertrend": 1370.00,
+      "high": 1410.00,
+      "low": 1360.00,
+      "volume": 1800000,
+      "avg_volume": 1100000
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "price": 875.50,
+      "ema_20": 860.30,
+      "ema_50": 845.80,
+      "ema_200": 820.40,
+      "rsi": 63.10,
+      "supertrend": 870.00,
+      "high": 895.00,
+      "low": 850.00,
+      "volume": 3200000,
+      "avg_volume": 2000000
+    }
+  ]
+}

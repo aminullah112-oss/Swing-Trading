@@ -1,0 +1,205 @@
+# EDGE PROTOCOL — Setup Summary
+
+**Everything is built. Here's what to do next.**
+
+---
+
+## 📁 Files Created (9 total)
+
+```
+Swing-Trading/
+├── screener.py                    # ✅ Main screening engine
+├── requirements.txt               # ✅ Python dependencies
+├── index.html                     # ✅ Website homepage
+├── style.css                      # ✅ Website styling
+├── script.js                      # ✅ Results loader
+├── results.json                   # ✅ Sample results
+├── README.md                      # ✅ Full documentation
+├── SETUP_GUIDE.md                 # ✅ This setup walkthrough
+├── .gitignore                     # ✅ Git ignore rules
+└── .github/workflows/
+    └── screen.yml                 # ✅ GitHub Actions automation
+```
+
+---
+
+## 🔄 4-Step Setup (5 minutes)
+
+### 1️⃣ Download & Push to GitHub
+
+```bash
+# Navigate to your repo
+cd ~/path/to/Swing-Trading
+
+# Copy all files created above into this directory
+# (You'll see them in the file list from Claude)
+
+# Stage and commit
+git add .
+git commit -m "🚀 Deploy EDGE PROTOCOL screener"
+git push origin main
+```
+
+✅ **Done:** Code is now on GitHub
+
+---
+
+### 2️⃣ Enable GitHub Pages
+
+**Path:** GitHub → Swing-Trading repo → Settings → Pages
+
+```
+Source: Deploy from a branch
+Branch: main
+Folder: / (root)
+Click: Save
+```
+
+⏳ **Wait 2 minutes** for deployment
+
+✅ **Your site is live at:** `https://aminullah112-oss.github.io/Swing-Trading`
+
+---
+
+### 3️⃣ Enable GitHub Actions
+
+**Path:** GitHub → Swing-Trading repo → Actions
+
+```
+See yellow banner: "Enable workflows..."
+Click: I understand my workflows, go ahead and enable them
+Select: Daily Stock Screen workflow
+```
+
+✅ **Automation active:** Runs every weekday at 9 AM IST
+
+---
+
+### 4️⃣ Test Immediately (Optional)
+
+**Path:** GitHub → Swing-Trading → Actions → Daily Stock Screen
+
+```
+Click: Run workflow
+Click: Run workflow (confirm)
+Wait 2-5 minutes
+Refresh website to see results
+```
+
+✅ **Done!** Screener is working
+
+---
+
+## 🎯 What Happens Automatically
+
+**Every weekday at 9:00 AM IST (Mon-Fri):**
+
+1. GitHub Actions runs Python screener
+2. Scans 50+ NSE stocks for EDGE PROTOCOL signals
+3. Calculates EMA, RSI, Supertrend, Volume indicators
+4. Filters results (all 5 conditions must pass)
+5. Saves matching stocks to `results.json`
+6. Auto-commits to git history
+7. Website updates live (no refresh needed)
+
+---
+
+## 📊 Website Features
+
+- Live stock results table
+- Auto-refresh every 5 minutes
+- All 8 technical indicators displayed
+- Filter rules shown
+- Scan timestamp
+- Mobile responsive
+- Zero JavaScript frameworks
+
+---
+
+## ⚙️ Quick Customizations
+
+### Change scan time:
+Edit `.github/workflows/screen.yml` line 8
+```yaml
+- cron: '30 3 * * 1-5'  # 9 AM IST
+```
+Use [crontab.guru](https://crontab.guru) for your timezone.
+
+### Add/remove stocks:
+Edit `screener.py` line 15
+```python
+NSE_STOCKS = [
+    'RELIANCE.NS', 'TCS.NS',  # Add/remove tickers
+]
+```
+
+### Adjust filters:
+Edit `screener.py` function `apply_filters()` (line ~80)
+```python
+rsi_ok = (50 < ind['rsi'] < 75)  # Change thresholds
+```
+
+---
+
+## ✅ Checklist
+
+- [ ] All 9 files created ✓
+- [ ] Files pushed to GitHub
+- [ ] GitHub Pages enabled
+- [ ] GitHub Actions enabled
+- [ ] Website is live at `https://aminullah112-oss.github.io/Swing-Trading`
+- [ ] (Optional) Manual test run completed
+
+---
+
+## 🚀 Ready?
+
+1. Copy the 9 files into your repo
+2. Push to GitHub: `git push origin main`
+3. Enable Pages (2 min setup)
+4. Enable Actions (1 click)
+5. **Done!** Automation runs tomorrow at 9 AM
+
+---
+
+## 📝 Key Points
+
+- **Zero Cost** — GitHub free tier covers everything
+- **Automated** — Runs daily, no manual work
+- **Preserved** — Full scan history in git
+- **Live Website** — Results instantly visible
+- **Customizable** — Easy to modify filters/stocks/time
+
+---
+
+## 🆘 If Something Goes Wrong
+
+1. **Website blank?** Wait 2 min, hard refresh (Ctrl+Shift+R)
+2. **Actions failing?** Click job → read error log → retry
+3. **No results?** Normal if market doesn't match filters
+4. **Need help?** Check README.md or SETUP_GUIDE.md
+
+---
+
+## 🎓 Resources
+
+- **Docs:** README.md in your repo
+- **Setup:** SETUP_GUIDE.md in your repo
+- **Cron Time:** [crontab.guru](https://crontab.guru)
+- **GitHub Actions:** [docs.github.com/actions](https://docs.github.com/en/actions)
+
+---
+
+## 📞 Next Steps
+
+✅ **You're all set!** 
+
+1. Push files to GitHub
+2. Enable Pages + Actions
+3. Check website tomorrow morning
+
+**Enjoy your automated NSE swing trading screener!** 🚀
+
+---
+
+**Built by Claude** | **Hosted on GitHub** | **Free forever**
