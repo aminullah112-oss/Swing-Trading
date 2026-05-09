@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDGE PROTOCOL v2.0 — NSE Swing Decision System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <header class="header">
+        <h1>📊 EDGE PROTOCOL v2.0</h1>
+        <p class="subtitle">NSE Swing Trading Decision System</p>
+        <p class="description">Score 0-100 | GO / WATCH / NO-GO | StockEdge Cross-Validation</p>
+    </header>
+
+    <!-- Summary Cards -->
+    <div class="summary-bar">
+        <div class="summary-card hc">
+            <div class="card-count" id="count-hc">0</div>
+            <div class="card-label">🟢 HIGH CONVICTION</div>
+        </div>
+        <div class="summary-card go">
+            <div class="card-count" id="count-go">0</div>
+            <div class="card-label">🟩 GO</div>
+        </div>
+        <div class="summary-card wc">
+            <div class="card-count" id="count-wc">0</div>
+            <div class="card-label">🟡 WATCH CLOSELY</div>
+        </div>
+        <div class="summary-card w">
+            <div class="card-count" id="count-w">0</div>
+            <div class="card-label">🟨 WATCH</div>
+        </div>
+        <div class="summary-card meta">
+            <div class="card-count" id="count-scanned">—</div>
+            <div class="card-label">Stocks Scanned</div>
+        </div>
+        <div class="summary-card meta">
+            <div class="card-count" id="scan-time">—</div>
+            <div class="card-label">Last Scan</div>
+        </div>
+    </div>
+
+    <!-- Scoring Legend -->
+    <div class="legend-bar">
+        <span class="legend-title">Scoring:</span>
+        <span class="legend-item">EMA Proximity 30pts</span>
+        <span class="sep">|</span>
+        <span class="legend-item">RSI Quality 20pts</span>
+        <span class="sep">|</span>
+        <span class="legend-item">Volume Surge 25pts</span>
+        <span class="sep">|</span>
+        <span class="legend-item">Trend Slope 25pts</span>
+        <span class="sep">|</span>
+        <span class="legend-item">[SE] = StockEdge confirmed</span>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="tab-bar">
+        <button class="tab active" onclick="filterDecision('ALL')">All</button>
+        <button class="tab tab-hc" onclick="filterDecision('HIGH_CONVICTION')">🟢 High Conviction</button>
+        <button class="tab tab-go" onclick="filterDecision('GO')">🟩 GO</button>
+        <button class="tab tab-wc" onclick="filterDecision('WATCH_CLOSELY')">🟡 Watch Closely</button>
+        <button class="tab tab-w"  onclick="filterDecision('WATCH')">🟨 Watch</button>
+    </div>
+
+    <!-- Results Table -->
+    <div class="table-wrapper">
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Decision</th>
+                    <th>Symbol</th>
+                    <th>Score</th>
+                    <th>SE</th>
+                    <th>Price</th>
+                    <th>RSI</th>
+                    <th>Vol Ratio</th>
+                    <th>EMA Dist%</th>
+                    <th>Stop Loss</th>
+                    <th>Target 1</th>
+                    <th>Target 2</th>
+                    <th>Shares</th>
+                    <th>Risk ₹</th>
+                    <th>Reasoning</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr><td colspan="14" class="loading-cell">
+                    <div class="spinner"></div>Loading...
+                </td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Capital Info -->
+    <div class="capital-note">
+        <strong>Capital Base:</strong> ₹7.5L (midpoint of ₹5L–₹10L range) &nbsp;|&nbsp;
+        <strong>High Conviction Risk:</strong> 2% = ₹15,000/trade &nbsp;|&nbsp;
+        <strong>GO Risk:</strong> 1% = ₹7,500/trade &nbsp;|&nbsp;
+        <strong>Stop:</strong> 3% below entry &nbsp;|&nbsp;
+        <strong>Max Positions:</strong> 5
+    </div>
+
+    <footer class="footer">
+        <p>EDGE PROTOCOL v2.0 | Automated at 9 AM IST Mon–Fri via GitHub Actions</p>
+        <p><a href="https://github.com/aminullah112-oss/Swing-Trading" target="_blank">GitHub Repo</a> &nbsp;|&nbsp; Not financial advice</p>
+    </footer>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
