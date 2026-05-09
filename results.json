@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-05-09T19:08:56.368484",
+  "timestamp": "2026-05-09T19:23:56.740574",
   "scan_date": "2026-05-09",
-  "scan_time": "19:08:56",
-  "capital": 750000.0,
+  "scan_time": "19:23:56",
+  "capital": 750000,
   "total_scanned": 201,
   "total_passed": 0,
   "summary": {
@@ -10,6 +10,14 @@
     "go": 0,
     "watch_closely": 0,
     "watch": 0
+  },
+  "methodology": {
+    "framework": "Stage Analysis (Weinstein) + EMA Pullback",
+    "universe": "201 NSE stocks",
+    "supertrend": "Proper ATR-based Supertrend(10,3)",
+    "volume": "10-day + 5-day avg (works any day)",
+    "stop_method": "1.5x ATR volatility-adjusted stop",
+    "rr_ratio": "2:1 minimum / 3:1 trail"
   },
   "stocks": []
 }
