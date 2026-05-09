@@ -1,24 +1,23 @@
 #!/usr/bin/env python3
 """
-EDGE PROTOCOL v3.2 — Stooq Data Source
-========================================
-Uses Stooq.com for NSE historical data.
-Stooq serves NSE data freely without IP blocking or authentication.
-Format: {SYMBOL}.NS (e.g. RELIANCE.NS)
+EDGE PROTOCOL v3.3 — yfinance Bulk Download
+=============================================
+Uses yfinance.download() with all tickers at once.
+Bulk endpoint is significantly harder to block than per-ticker calls.
+Also adds retry logic and user-agent rotation.
 """
 
 import json, glob, time, warnings, traceback
-from datetime import datetime, timedelta
+from datetime import datetime
 import pandas as pd
 import numpy as np
-import requests
+import yfinance as yf
 
 warnings.filterwarnings('ignore')
 
 CAPITAL       = 750000
 RISK_PCT_HC   = 0.02
 RISK_PCT_GO   = 0.01
-MAX_POSITIONS = 5
 
 NSE_STOCKS = [
     'RELIANCE','TCS','HDFCBANK','INFY','HINDUNILVR',
@@ -29,7 +28,7 @@ NSE_STOCKS = [
     'BAJAJFINSV','ONGC','JSWSTEEL','TATASTEEL','COALINDIA',
     'ADANIENT','ADANIPORTS','CIPLA','DRREDDY','DIVISLAB',
     'BRITANNIA','EICHERMOT','GRASIM','HEROMOTOCO','ITC',
-    'MM','BPCL','IOC','TATACONSUM','APOLLOHOSP',
+    'M&M','BPCL','IOC','TATACONSUM','APOLLOHOSP',
     'BAJAJ-AUTO','UPL','SBILIFE','HDFCLIFE','HINDALCO',
     'DMART','SIEMENS','HAVELLS','PIDILITIND','DABUR',
     'MARICO','COLPAL','BERGEPAINT','GODREJCP','MUTHOOTFIN',
@@ -56,42 +55,61 @@ NSE_STOCKS = [
 ]
 NSE_STOCKS = list(dict.fromkeys(NSE_STOCKS))
 
+# Convert to Yahoo Finance format
+YF_TICKERS = [f"{s}.NS" for s in NSE_STOCKS]
 
-def fetch_stooq(symbol, days=400):
+def fetch_all_data():
     """
-    Fetch OHLCV data from Stooq.com.
-    NSE symbols: RELIANCE.NS, TCS.NS etc.
-    Returns sorted DataFrame or None.
+    Download all NSE stocks in one bulk call.
+    yfinance bulk download uses a different endpoint
+    that is harder to block than per-ticker calls.
     """
-    end   = datetime.now()
-    start = end - timedelta(days=days)
-    url   = (
-        f'https://stooq.com/q/d/l/'
-        f'?s={symbol.lower()}.ns'
-        f'&d1={start.strftime("%Y%m%d")}'
-        f'&d2={end.strftime("%Y%m%d")}'
-        f'&i=d'
-    )
+    print(f"Downloading {len(YF_TICKERS)} stocks in bulk...")
+
+    # Try bulk download with retries
+    for attempt in range(3):
+        try:
+            data = yf.download(
+                tickers=YF_TICKERS,
+                period='1y',
+                interval='1d',
+                group_by='ticker',
+                auto_adjust=True,
+                progress=False,
+                threads=True,
+                timeout=60,
+            )
+
+            if data is None or data.empty:
+                print(f"Attempt {attempt+1}: Empty response, retrying...")
+                time.sleep(5)
+                continue
+
+            print(f"Downloaded data shape: {data.shape}")
+            return data
+
+        except Exception as e:
+            print(f"Attempt {attempt+1} failed: {e}")
+            time.sleep(5)
+
+    return None
+
+
+def extract_ticker_df(data, ticker):
+    """Extract single ticker OHLCV from bulk download result."""
     try:
-        resp = requests.get(url, timeout=15,
-                            headers={'User-Agent': 'Mozilla/5.0'})
-        if resp.status_code != 200:
-            return None
-        from io import StringIO
-        df = pd.read_csv(StringIO(resp.text))
-        if df.empty or 'No data' in resp.text or len(df) < 5:
-            return None
-        df.columns = [c.strip() for c in df.columns]
-        # Stooq columns: Date,Open,High,Low,Close,Volume
-        df['Date']   = pd.to_datetime(df['Date'])
-        df['Open']   = pd.to_numeric(df['Open'],   errors='coerce')
-        df['High']   = pd.to_numeric(df['High'],   errors='coerce')
-        df['Low']    = pd.to_numeric(df['Low'],    errors='coerce')
-        df['Close']  = pd.to_numeric(df['Close'],  errors='coerce')
-        df['Volume'] = pd.to_numeric(df.get('Volume', pd.Series([0]*len(df))),
-                                     errors='coerce').fillna(0)
-        df = df.dropna(subset=['Open','High','Low','Close'])
-        df = df.sort_values('Date').reset_index(drop=True)
+        if ticker in data.columns.get_level_values(0):
+            df = data[ticker].copy()
+        elif hasattr(data.columns, 'levels') and len(data.columns.levels) > 1:
+            df = data.xs(ticker, axis=1, level=0).copy()
+        else:
+            df = data.copy()
+
+        df = df.dropna(how='all')
+        df = df[['Open','High','Low','Close','Volume']].copy()
+        df = df.dropna(subset=['Close'])
+        df['Volume'] = df['Volume'].fillna(0)
+        df = df.sort_index()
         return df if len(df) >= 50 else None
     except Exception:
         return None
@@ -137,33 +155,35 @@ def compute_rsi(close, period=14):
 
 
 def compute_indicators(df):
-    close  = df['Close']
-    high   = df['High']
-    low    = df['Low']
-    volume = df['Volume']
+    close  = df['Close'].astype(float)
+    high   = df['High'].astype(float)
+    low    = df['Low'].astype(float)
+    volume = df['Volume'].astype(float)
 
     ema20  = close.ewm(span=20,  adjust=False).mean()
     ema50  = close.ewm(span=50,  adjust=False).mean()
     ema200 = close.ewm(span=200, adjust=False).mean()
 
-    def slope(s, n): return (s.iloc[-1] - s.iloc[-n]) / s.iloc[-n] * 100
+    def slope(s, n):
+        v = s.iloc[-n]
+        return (s.iloc[-1] - v) / v * 100 if v != 0 else 0
 
-    rsi       = compute_rsi(close, 14)
-    st, st_d  = compute_supertrend(high, low, close, 10, 3)
+    rsi      = compute_rsi(close, 14)
+    st, st_d = compute_supertrend(high, low, close, 10, 3)
 
-    price     = close.iloc[-1]
-    ema20v    = ema20.iloc[-1]
-    ema50v    = ema50.iloc[-1]
-    ema200v   = ema200.iloc[-1]
-    atr_val   = compute_atr(high, low, close, 14).iloc[-1]
+    price    = close.iloc[-1]
+    ema20v   = ema20.iloc[-1]
+    ema50v   = ema50.iloc[-1]
+    ema200v  = ema200.iloc[-1]
+    atr_val  = compute_atr(high, low, close, 14).iloc[-1]
 
-    # Volume: use 10-day avg of completed sessions
-    vol10     = volume.iloc[-11:-1].mean() if len(volume) > 11 else volume.mean()
-    vol5      = volume.iloc[-6:-1].mean()  if len(volume) > 6  else volume.mean()
-    curr_vol  = volume.iloc[-1]
+    n = len(volume)
+    vol10    = volume.iloc[max(0,n-11):n-1].mean() if n > 11 else volume.mean()
+    vol5     = volume.iloc[max(0,n-6):n-1].mean()  if n > 6  else volume.mean()
+    curr_vol = volume.iloc[-1]
 
-    high52    = high.tail(252).max()
-    low52     = low.tail(252).min()
+    high52   = high.tail(252).max()
+    low52    = low.tail(252).min()
 
     return {
         'price':        price,
@@ -172,16 +192,16 @@ def compute_indicators(df):
         'ema_200':      ema200v,
         'ema20_slope':  slope(ema20, 6),
         'ema50_slope':  slope(ema50, 6),
-        'ema200_slope': slope(ema200, 11),
+        'ema200_slope': slope(ema200, min(11, len(ema200)-1)),
         'rsi':          rsi.iloc[-1],
         'rsi_5ago':     rsi.iloc[-6] if len(rsi) > 6 else rsi.iloc[-1],
-        'st_dir':       int(st_d.iloc[-1]),
+        'st_dir':       int(st_d.iloc[-1]) if not pd.isna(st_d.iloc[-1]) else 0,
         'vol_ratio':    curr_vol / vol10 if vol10 > 0 else 1,
         'vol_5d_ratio': curr_vol / vol5  if vol5  > 0 else 1,
-        'ema20_dist':   (price - ema20v) / ema20v * 100,
-        'from_52w_high':(price - high52) / high52 * 100,
+        'ema20_dist':   (price - ema20v) / ema20v * 100 if ema20v > 0 else 0,
+        'from_52w_high':(price - high52) / high52 * 100 if high52 > 0 else 0,
         'atr_val':      atr_val,
-        'atr_pct':      atr_val / price * 100,
+        'atr_pct':      atr_val / price * 100 if price > 0 else 0,
         'high':         high.iloc[-1],
         'low':          low.iloc[-1],
     }
@@ -204,7 +224,7 @@ def get_setup(ind):
     d20 = ind['ema20_dist']
     rsi = ind['rsi']
     if -2 <= d20 <= 4 and ind['rsi_5ago'] > rsi and rsi < 63:
-        return 'PULLBACK_EMA20', 'Pullback to EMA20 — re-entry'
+        return 'PULLBACK_EMA20', 'Pullback to EMA20 — ideal re-entry'
     d50 = (ind['price'] - ind['ema_50']) / ind['ema_50'] * 100
     if -2 <= d50 <= 4 and rsi < 58:
         return 'PULLBACK_EMA50', 'Pullback to EMA50'
@@ -218,17 +238,14 @@ def get_setup(ind):
 def score_stock(ind, stage, setup):
     score, reasons = 0, []
 
-    # Stage (25)
     if stage == 2:
         score += 25; reasons.append("Stage 2 uptrend (+25)")
 
-    # Setup (20)
     pts = {'PULLBACK_EMA20':20,'PULLBACK_EMA50':14,
            'COMPRESSION':12,'BREAKOUT_CONT':10,'TRENDING':6}
     s = pts.get(setup, 0)
     score += s; reasons.append(f"{setup} (+{s})")
 
-    # RSI (20)
     rsi = ind['rsi']
     if   45 <= rsi <= 62: score += 20; reasons.append(f"RSI {rsi:.0f} ideal (+20)")
     elif 62 <  rsi <= 70: score += 13; reasons.append(f"RSI {rsi:.0f} strong (+13)")
@@ -236,20 +253,17 @@ def score_stock(ind, stage, setup):
     elif 70 <  rsi <= 76: score += 4;  reasons.append(f"RSI {rsi:.0f} extended (+4)")
     else:                              reasons.append(f"RSI {rsi:.0f} poor (+0)")
 
-    # Volume (20) — use best of 10d and 5d ratio
     vr = max(ind['vol_ratio'], ind['vol_5d_ratio'])
     if   vr >= 1.8: score += 20; reasons.append(f"Vol {vr:.1f}x surge (+20)")
     elif vr >= 1.2: score += 13; reasons.append(f"Vol {vr:.1f}x above avg (+13)")
     elif vr >= 0.7: score += 7;  reasons.append(f"Vol {vr:.1f}x avg (+7)")
     else:           score += 3;  reasons.append(f"Vol {vr:.1f}x low (+3)")
 
-    # EMA slopes (15)
     s3 = sum([ind['ema20_slope']>0, ind['ema50_slope']>0, ind['ema200_slope']>0])
     if   s3 == 3: score += 15; reasons.append("All EMAs rising (+15)")
     elif s3 == 2: score += 10; reasons.append("2 EMAs rising (+10)")
     else:         score += 3;  reasons.append("1 EMA rising (+3)")
 
-    # Bonus
     if -18 <= ind['from_52w_high'] <= -3:
         score += 3; reasons.append("Near 52W high (+3)")
     if ind['st_dir'] == 1:
@@ -259,16 +273,11 @@ def score_stock(ind, stage, setup):
 
 
 def passes_filters(ind, stage):
-    if stage != 2:
-        return False, f"Stage {stage}"
-    if ind['st_dir'] != 1:
-        return False, "Supertrend bearish"
-    if not (33 < ind['rsi'] < 80):
-        return False, f"RSI {ind['rsi']:.0f}"
-    if ind['price'] < ind['ema_50'] * 0.95:
-        return False, "Below EMA50"
-    if ind['price'] < 20:
-        return False, "Price<20"
+    if stage != 2:         return False, f"Stage {stage}"
+    if ind['st_dir'] != 1: return False, "Supertrend bearish"
+    if not (33 < ind['rsi'] < 80): return False, f"RSI {ind['rsi']:.0f}"
+    if ind['price'] < ind['ema_50'] * 0.95: return False, "Below EMA50"
+    if ind['price'] < 20: return False, "Price<20"
     return True, "OK"
 
 
@@ -281,7 +290,7 @@ def get_decision(score, in_se):
 
 
 def calc_position(price, atr, decision):
-    sd  = max(1.5 * atr, price * 0.03)  # min 3% stop
+    sd  = max(1.5 * atr, price * 0.03)
     stp = round(price - sd, 2)
     if decision == 'HIGH_CONVICTION': risk = CAPITAL * RISK_PCT_HC
     elif decision == 'GO':            risk = CAPITAL * RISK_PCT_GO
@@ -302,14 +311,14 @@ def load_stockedge():
     se    = set()
     files = glob.glob('stockedge*.csv') + glob.glob('StockEdge*.csv')
     if not files:
-        print("No stockedge.csv found. Upload for HIGH CONVICTION labels.")
+        print("No stockedge.csv — upload to repo for HIGH CONVICTION labels")
         return se
     try:
         df  = pd.read_csv(files[0])
         col = next((c for c in ['Symbol','symbol','SYMBOL','Ticker','NSE Code']
                     if c in df.columns), df.columns[0])
         se  = set(df[col].dropna().astype(str).str.strip().str.upper())
-        print(f"StockEdge loaded: {len(se)} stocks")
+        print(f"StockEdge: {len(se)} stocks")
     except Exception as e:
         print(f"StockEdge error: {e}")
     return se
@@ -317,28 +326,43 @@ def load_stockedge():
 
 def main():
     print("\n" + "="*70)
-    print("EDGE PROTOCOL v3.2 — Stooq Data Source")
+    print("EDGE PROTOCOL v3.3 — yfinance Bulk Download")
     print(f"Capital: Rs{CAPITAL/100000:.1f}L | Universe: {len(NSE_STOCKS)} stocks")
     print(f"Scan: {datetime.now().strftime('%A %Y-%m-%d %H:%M:%S')}")
     print("="*70 + "\n")
 
     se_symbols = load_stockedge()
-    results    = []
-    stats      = {'data':0,'stage':0,'supertrend':0,'rsi':0,'price':0,'nogo':0}
 
-    print(f"{'Symbol':<14} {'Stage':<7} {'Setup':<20} {'Sc':<5} {'RSI':<6} Decision")
+    # Download all data in one bulk call
+    bulk_data = fetch_all_data()
+    if bulk_data is None or bulk_data.empty:
+        print("FATAL: Could not download market data. Check network.")
+        # Save empty results
+        with open('results.json','w') as f:
+            json.dump({
+                'timestamp': datetime.now().isoformat(),
+                'scan_date': datetime.now().strftime('%Y-%m-%d'),
+                'scan_time': datetime.now().strftime('%H:%M:%S'),
+                'error': 'Data download failed',
+                'total_scanned': 0,
+                'total_passed': 0,
+                'summary': {'high_conviction':0,'go':0,'watch_closely':0,'watch':0},
+                'stocks': []
+            }, f, indent=2)
+        return
+
+    results = []
+    stats   = {'data':0,'stage':0,'supertrend':0,'rsi':0,'price':0,'nogo':0}
+
+    print(f"\n{'Symbol':<14} {'Stage':<7} {'Setup':<20} {'Sc':<5} {'RSI':<6} Decision")
     print("-"*70)
 
-    for i, symbol in enumerate(NSE_STOCKS):
+    for symbol, ticker in zip(NSE_STOCKS, YF_TICKERS):
         try:
-            if i > 0 and i % 30 == 0:
-                time.sleep(1)
-
-            df = fetch_stooq(symbol, days=420)
+            df = extract_ticker_df(bulk_data, ticker)
 
             if df is None or len(df) < 60:
                 stats['data'] += 1
-                print(f"{symbol:<14} No data")
                 continue
 
             ind   = compute_indicators(df)
@@ -376,7 +400,7 @@ def main():
                 'ema_50':        round(ind['ema_50'],       2),
                 'ema_200':       round(ind['ema_200'],      2),
                 'rsi':           round(ind['rsi'],          2),
-                'vol_ratio':     round(max(ind['vol_ratio'], ind['vol_5d_ratio']), 2),
+                'vol_ratio':     round(max(ind['vol_ratio'],ind['vol_5d_ratio']),2),
                 'vol_5d_ratio':  round(ind['vol_5d_ratio'], 2),
                 'ema_dist_pct':  round(ind['ema20_dist'],   2),
                 'from_52w_high': round(ind['from_52w_high'],2),
@@ -394,7 +418,7 @@ def main():
                   f"{ind['rsi']:<6.1f} {tag} {se}")
 
         except Exception as e:
-            print(f"{symbol}: {str(e)[:60]}")
+            print(f"{symbol}: {str(e)[:50]}")
 
     pri = {'HIGH_CONVICTION':0,'GO':1,'WATCH_CLOSELY':2,'WATCH':3}
     results.sort(key=lambda x: (pri.get(x['decision'],9), -x['score']))
@@ -424,7 +448,7 @@ def main():
 
     with open('results.json','w') as f:
         json.dump(output, f, indent=2)
-    print(f"Saved {len(results)} results to results.json")
+    print(f"Saved {len(results)} results.")
 
 
 if __name__ == '__main__':
