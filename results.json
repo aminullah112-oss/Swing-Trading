@@ -1,25 +1,25 @@
 {
-  "timestamp": "2026-05-09T21:09:07.095186",
+  "timestamp": "2026-05-09T21:18:50.694183",
   "scan_date": "2026-05-09",
-  "scan_time": "21:09:07",
+  "scan_time": "21:18:50",
   "capital": 750000,
   "total_scanned": 160,
-  "total_passed": 37,
+  "total_passed": 38,
   "summary": {
-    "high_conviction": 0,
-    "go": 27,
-    "watch_closely": 0,
-    "watch": 10
+    "high_conviction": 6,
+    "go": 22,
+    "watch_closely": 2,
+    "watch": 8
   },
   "stocks": [
     {
       "symbol": "LUPIN",
-      "decision": "GO",
+      "decision": "HIGH_CONVICTION",
       "score": 100,
       "stage": 2,
       "setup_type": "PULLBACK_EMA50",
       "setup_desc": "Pullback to EMA50",
-      "in_stockedge": false,
+      "in_stockedge": true,
       "price": 2379.5,
       "ema_20": 2345.3,
       "ema_50": 2305.75,
@@ -32,24 +32,218 @@
       "atr_pct": 2.49,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
-        "RSI 56 ideal (+20)",
-        "Vol 2.6x surge (+20)",
+        "RSI 56 (+20)",
+        "Vol 2.6x (+20)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 84,
-        "invested": 199878.0,
+        "shares": 169,
+        "invested": 402135.5,
         "stop_loss": 2290.74,
-        "risk_amount": 7455.6,
+        "risk_amount": 14999.96,
         "target_1": 2557.01,
         "target_2": 2645.77,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.719432"
+      "timestamp": "2026-05-09T21:18:49.306023"
+    },
+    {
+      "symbol": "RADICO",
+      "decision": "HIGH_CONVICTION",
+      "score": 89,
+      "stage": 2,
+      "setup_type": "BREAKOUT_CONT",
+      "setup_desc": "Breakout continuation",
+      "in_stockedge": true,
+      "price": 3477.2,
+      "ema_20": 3244.81,
+      "ema_50": 3050.37,
+      "ema_200": 2918.5,
+      "rsi": 69.77,
+      "vol_ratio": 2.01,
+      "vol_5d_ratio": 2.01,
+      "ema_dist_pct": 7.16,
+      "from_52w_high": -3.19,
+      "atr_pct": 3.33,
+      "st_direction": 1,
+      "reasons": [
+        "Stage 2 (+25)",
+        "BREAKOUT_CONT (+10)",
+        "RSI 70 (+13)",
+        "Vol 2.0x (+20)",
+        "All EMAs rising (+15)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 86,
+        "invested": 299039.2,
+        "stop_loss": 3303.33,
+        "risk_amount": 14952.94,
+        "target_1": 3824.94,
+        "target_2": 3998.81,
+        "rr_ratio": "2:1 / 3:1"
+      },
+      "timestamp": "2026-05-09T21:18:50.134729"
+    },
+    {
+      "symbol": "FORTIS",
+      "decision": "HIGH_CONVICTION",
+      "score": 85,
+      "stage": 2,
+      "setup_type": "TRENDING",
+      "setup_desc": "Stage 2 momentum",
+      "in_stockedge": true,
+      "price": 952.35,
+      "ema_20": 920.23,
+      "ema_50": 896.26,
+      "ema_200": 876.72,
+      "rsi": 64.84,
+      "vol_ratio": 2.91,
+      "vol_5d_ratio": 2.91,
+      "ema_dist_pct": 3.49,
+      "from_52w_high": -13.76,
+      "atr_pct": 2.34,
+      "st_direction": 1,
+      "reasons": [
+        "Stage 2 (+25)",
+        "TRENDING (+6)",
+        "RSI 65 (+13)",
+        "Vol 2.9x (+20)",
+        "All EMAs rising (+15)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 449,
+        "invested": 427605.14,
+        "stop_loss": 918.94,
+        "risk_amount": 14999.81,
+        "target_1": 1019.16,
+        "target_2": 1052.57,
+        "rr_ratio": "2:1 / 3:1"
+      },
+      "timestamp": "2026-05-09T21:18:50.235283"
+    },
+    {
+      "symbol": "TATASTEEL",
+      "decision": "HIGH_CONVICTION",
+      "score": 82,
+      "stage": 2,
+      "setup_type": "COMPRESSION",
+      "setup_desc": "Volatility compression",
+      "in_stockedge": true,
+      "price": 214.49,
+      "ema_20": 210.85,
+      "ema_50": 204.66,
+      "ema_200": 184.68,
+      "rsi": 59.36,
+      "vol_ratio": 1.0,
+      "vol_5d_ratio": 1.0,
+      "ema_dist_pct": 1.73,
+      "from_52w_high": -2.15,
+      "atr_pct": 1.79,
+      "st_direction": 1,
+      "reasons": [
+        "Stage 2 (+25)",
+        "COMPRESSION (+12)",
+        "RSI 59 (+20)",
+        "Vol 1.0x (+7)",
+        "All EMAs rising (+15)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 2331,
+        "invested": 499976.2,
+        "stop_loss": 208.06,
+        "risk_amount": 14999.29,
+        "target_1": 227.36,
+        "target_2": 233.79,
+        "rr_ratio": "2:1 / 3:1"
+      },
+      "timestamp": "2026-05-09T21:18:48.843387"
+    },
+    {
+      "symbol": "BEL",
+      "decision": "HIGH_CONVICTION",
+      "score": 82,
+      "stage": 2,
+      "setup_type": "PULLBACK_EMA50",
+      "setup_desc": "Pullback to EMA50",
+      "in_stockedge": true,
+      "price": 439.7,
+      "ema_20": 438.34,
+      "ema_50": 436.0,
+      "ema_200": 411.39,
+      "rsi": 51.56,
+      "vol_ratio": 1.17,
+      "vol_5d_ratio": 1.17,
+      "ema_dist_pct": 0.31,
+      "from_52w_high": -7.13,
+      "atr_pct": 2.01,
+      "st_direction": 1,
+      "reasons": [
+        "Stage 2 (+25)",
+        "PULLBACK_EMA50 (+14)",
+        "RSI 52 (+20)",
+        "Vol 1.2x (+7)",
+        "2 EMAs rising (+10)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 1133,
+        "invested": 498180.11,
+        "stop_loss": 426.46,
+        "risk_amount": 14998.08,
+        "target_1": 466.18,
+        "target_2": 479.41,
+        "rr_ratio": "2:1 / 3:1"
+      },
+      "timestamp": "2026-05-09T21:18:50.407311"
+    },
+    {
+      "symbol": "ATUL",
+      "decision": "HIGH_CONVICTION",
+      "score": 82,
+      "stage": 2,
+      "setup_type": "BREAKOUT_CONT",
+      "setup_desc": "Breakout continuation",
+      "in_stockedge": true,
+      "price": 7088.5,
+      "ema_20": 6775.6,
+      "ema_50": 6563.31,
+      "ema_200": 6408.32,
+      "rsi": 68.4,
+      "vol_ratio": 1.45,
+      "vol_5d_ratio": 1.45,
+      "ema_dist_pct": 4.62,
+      "from_52w_high": -8.68,
+      "atr_pct": 2.88,
+      "st_direction": 1,
+      "reasons": [
+        "Stage 2 (+25)",
+        "BREAKOUT_CONT (+10)",
+        "RSI 68 (+13)",
+        "Vol 1.4x (+13)",
+        "All EMAs rising (+15)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 49,
+        "invested": 347336.5,
+        "stop_loss": 6782.45,
+        "risk_amount": 14996.62,
+        "target_1": 7700.61,
+        "target_2": 8006.66,
+        "rr_ratio": "2:1 / 3:1"
+      },
+      "timestamp": "2026-05-09T21:18:50.619902"
     },
     {
       "symbol": "POWERGRID",
@@ -57,7 +251,7 @@
       "score": 99,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 313.95,
       "ema_20": 314.0,
@@ -71,10 +265,10 @@
       "atr_pct": 1.71,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 54 ideal (+20)",
-        "Vol 1.3x above avg (+13)",
+        "RSI 54 (+20)",
+        "Vol 1.3x (+13)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -88,7 +282,7 @@
         "target_2": 342.21,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.178097"
+      "timestamp": "2026-05-09T21:18:48.771516"
     },
     {
       "symbol": "COALINDIA",
@@ -96,7 +290,7 @@
       "score": 99,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 456.4,
       "ema_20": 461.3,
@@ -110,10 +304,10 @@
       "atr_pct": 2.4,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 49 ideal (+20)",
-        "Vol 1.7x above avg (+13)",
+        "RSI 49 (+20)",
+        "Vol 1.7x (+13)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -127,7 +321,7 @@
         "target_2": 505.59,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.265657"
+      "timestamp": "2026-05-09T21:18:48.857884"
     },
     {
       "symbol": "GLENMARK",
@@ -135,7 +329,7 @@
       "score": 99,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 2366.4,
       "ema_20": 2322.31,
@@ -149,10 +343,10 @@
       "atr_pct": 2.81,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 61 ideal (+20)",
-        "Vol 1.2x above avg (+13)",
+        "RSI 61 (+20)",
+        "Vol 1.2x (+13)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -166,7 +360,7 @@
         "target_2": 2665.17,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.793231"
+      "timestamp": "2026-05-09T21:18:49.378078"
     },
     {
       "symbol": "NHPC",
@@ -174,7 +368,7 @@
       "score": 99,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 80.77,
       "ema_20": 81.59,
@@ -188,10 +382,10 @@
       "atr_pct": 2.43,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 49 ideal (+20)",
-        "Vol 1.8x above avg (+13)",
+        "RSI 49 (+20)",
+        "Vol 1.8x (+13)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -205,7 +399,7 @@
         "target_2": 89.6,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:06.949634"
+      "timestamp": "2026-05-09T21:18:50.506540"
     },
     {
       "symbol": "NOCIL",
@@ -213,7 +407,7 @@
       "score": 99,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 182.48,
       "ema_20": 178.8,
@@ -227,10 +421,10 @@
       "atr_pct": 3.36,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 59 ideal (+20)",
-        "Vol 1.5x above avg (+13)",
+        "RSI 59 (+20)",
+        "Vol 1.5x (+13)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -244,7 +438,7 @@
         "target_2": 210.1,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:07.080508"
+      "timestamp": "2026-05-09T21:18:50.634112"
     },
     {
       "symbol": "HINDALCO",
@@ -252,7 +446,7 @@
       "score": 93,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 1044.4,
       "ema_20": 1027.95,
@@ -266,10 +460,10 @@
       "atr_pct": 2.12,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 59 ideal (+20)",
-        "Vol 0.9x avg (+7)",
+        "RSI 59 (+20)",
+        "Vol 0.9x (+7)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -283,7 +477,7 @@
         "target_2": 1144.06,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.557957"
+      "timestamp": "2026-05-09T21:18:49.143621"
     },
     {
       "symbol": "MUTHOOTFIN",
@@ -305,10 +499,10 @@
       "atr_pct": 2.37,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
-        "RSI 54 ideal (+20)",
-        "Vol 1.7x above avg (+13)",
+        "RSI 54 (+20)",
+        "Vol 1.7x (+13)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -322,7 +516,7 @@
         "target_2": 3905.81,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.704867"
+      "timestamp": "2026-05-09T21:18:49.291695"
     },
     {
       "symbol": "TATAPOWER",
@@ -330,7 +524,7 @@
       "score": 93,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 436.0,
       "ema_20": 432.72,
@@ -344,10 +538,10 @@
       "atr_pct": 2.18,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 57 ideal (+20)",
-        "Vol 0.9x avg (+7)",
+        "RSI 57 (+20)",
+        "Vol 0.9x (+7)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -361,7 +555,7 @@
         "target_2": 478.85,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.866453"
+      "timestamp": "2026-05-09T21:18:49.449695"
     },
     {
       "symbol": "NMDC",
@@ -369,7 +563,7 @@
       "score": 93,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 88.8,
       "ema_20": 88.03,
@@ -383,10 +577,10 @@
       "atr_pct": 2.35,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 57 ideal (+20)",
-        "Vol 1.0x avg (+7)",
+        "RSI 57 (+20)",
+        "Vol 1.0x (+7)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -400,7 +594,7 @@
         "target_2": 98.19,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.954884"
+      "timestamp": "2026-05-09T21:18:49.535286"
     },
     {
       "symbol": "LT",
@@ -408,7 +602,7 @@
       "score": 89,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 3974.5,
       "ema_20": 3993.75,
@@ -422,10 +616,10 @@
       "atr_pct": 2.06,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 50 ideal (+20)",
-        "Vol 0.5x low (+3)",
+        "RSI 50 (+20)",
+        "Vol 0.5x (+3)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -439,7 +633,7 @@
         "target_2": 4343.08,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:04.986413"
+      "timestamp": "2026-05-09T21:18:48.584442"
     },
     {
       "symbol": "TITAN",
@@ -461,10 +655,10 @@
       "atr_pct": 2.26,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 60 ideal (+20)",
-        "Vol 5.8x surge (+20)",
+        "RSI 60 (+20)",
+        "Vol 5.8x (+20)",
         "All EMAs rising (+15)",
         "Supertrend bullish (+3)"
       ],
@@ -477,7 +671,7 @@
         "target_2": 4967.61,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.103149"
+      "timestamp": "2026-05-09T21:18:48.698751"
     },
     {
       "symbol": "DRREDDY",
@@ -485,7 +679,7 @@
       "score": 89,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 1293.9,
       "ema_20": 1287.98,
@@ -499,10 +693,10 @@
       "atr_pct": 3.06,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 52 ideal (+20)",
-        "Vol 0.5x low (+3)",
+        "RSI 52 (+20)",
+        "Vol 0.5x (+3)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -516,46 +710,46 @@
         "target_2": 1472.29,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.324171"
+      "timestamp": "2026-05-09T21:18:48.914921"
     },
     {
-      "symbol": "RADICO",
+      "symbol": "AARTIIND",
       "decision": "GO",
       "score": 89,
       "stage": 2,
-      "setup_type": "BREAKOUT_CONT",
-      "setup_desc": "Breakout continuation",
+      "setup_type": "PULLBACK_EMA20",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
-      "price": 3477.2,
-      "ema_20": 3244.81,
-      "ema_50": 3050.37,
-      "ema_200": 2918.5,
-      "rsi": 69.77,
-      "vol_ratio": 2.01,
-      "vol_5d_ratio": 2.01,
-      "ema_dist_pct": 7.16,
-      "from_52w_high": -3.19,
-      "atr_pct": 3.33,
+      "price": 485.45,
+      "ema_20": 475.59,
+      "ema_50": 450.15,
+      "ema_200": 420.85,
+      "rsi": 58.08,
+      "vol_ratio": 0.28,
+      "vol_5d_ratio": 0.26,
+      "ema_dist_pct": 2.07,
+      "from_52w_high": -7.2,
+      "atr_pct": 3.5,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
-        "BREAKOUT_CONT (+10)",
-        "RSI 70 strong (+13)",
-        "Vol 2.0x surge (+20)",
+        "Stage 2 (+25)",
+        "PULLBACK_EMA20 (+20)",
+        "RSI 58 (+20)",
+        "Vol 0.3x (+3)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 43,
-        "invested": 149519.6,
-        "stop_loss": 3303.33,
-        "risk_amount": 7476.47,
-        "target_1": 3824.94,
-        "target_2": 3998.81,
+        "shares": 294,
+        "invested": 142722.3,
+        "stop_loss": 459.96,
+        "risk_amount": 7495.43,
+        "target_1": 536.44,
+        "target_2": 561.93,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:06.578736"
+      "timestamp": "2026-05-09T21:18:50.664217"
     },
     {
       "symbol": "BHARATFORG",
@@ -577,10 +771,10 @@
       "atr_pct": 3.1,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "BREAKOUT_CONT (+10)",
-        "RSI 68 strong (+13)",
-        "Vol 2.1x surge (+20)",
+        "RSI 68 (+13)",
+        "Vol 2.1x (+20)",
         "All EMAs rising (+15)",
         "Supertrend bullish (+3)"
       ],
@@ -593,46 +787,7 @@
         "target_2": 2267.48,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:06.446231"
-    },
-    {
-      "symbol": "FORTIS",
-      "decision": "GO",
-      "score": 85,
-      "stage": 2,
-      "setup_type": "TRENDING",
-      "setup_desc": "Stage 2 momentum",
-      "in_stockedge": false,
-      "price": 952.35,
-      "ema_20": 920.23,
-      "ema_50": 896.26,
-      "ema_200": 876.72,
-      "rsi": 64.84,
-      "vol_ratio": 2.91,
-      "vol_5d_ratio": 2.91,
-      "ema_dist_pct": 3.49,
-      "from_52w_high": -13.76,
-      "atr_pct": 2.34,
-      "st_direction": 1,
-      "reasons": [
-        "Stage 2 uptrend (+25)",
-        "TRENDING (+6)",
-        "RSI 65 strong (+13)",
-        "Vol 2.9x surge (+20)",
-        "All EMAs rising (+15)",
-        "Near 52W high (+3)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": {
-        "shares": 224,
-        "invested": 213326.39,
-        "stop_loss": 918.94,
-        "risk_amount": 7483.2,
-        "target_1": 1019.16,
-        "target_2": 1052.57,
-        "rr_ratio": "2:1 / 3:1"
-      },
-      "timestamp": "2026-05-09T21:09:06.681992"
+      "timestamp": "2026-05-09T21:18:50.005243"
     },
     {
       "symbol": "PFC",
@@ -654,10 +809,10 @@
       "atr_pct": 2.38,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 58 ideal (+20)",
-        "Vol 1.8x above avg (+13)",
+        "RSI 58 (+20)",
+        "Vol 1.8x (+13)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -671,7 +826,7 @@
         "target_2": 510.79,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:06.918536"
+      "timestamp": "2026-05-09T21:18:50.463889"
     },
     {
       "symbol": "DMART",
@@ -679,7 +834,7 @@
       "score": 84,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 4402.1,
       "ema_20": 4424.97,
@@ -693,10 +848,10 @@
       "atr_pct": 2.2,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 51 ideal (+20)",
-        "Vol 0.6x low (+3)",
+        "RSI 51 (+20)",
+        "Vol 0.6x (+3)",
         "2 EMAs rising (+10)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -710,7 +865,7 @@
         "target_2": 4838.57,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.572543"
+      "timestamp": "2026-05-09T21:18:49.163697"
     },
     {
       "symbol": "KAJARIACER",
@@ -718,7 +873,7 @@
       "score": 84,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20 \u2014 ideal re-entry",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
       "price": 1104.1,
       "ema_20": 1126.54,
@@ -732,10 +887,10 @@
       "atr_pct": 3.65,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 49 ideal (+20)",
-        "Vol 0.2x low (+3)",
+        "RSI 49 (+20)",
+        "Vol 0.2x (+3)",
         "2 EMAs rising (+10)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -749,7 +904,7 @@
         "target_2": 1285.27,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:06.490326"
+      "timestamp": "2026-05-09T21:18:50.048244"
     },
     {
       "symbol": "EICHERMOT",
@@ -771,10 +926,10 @@
       "atr_pct": 2.12,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
-        "RSI 55 ideal (+20)",
-        "Vol 0.6x low (+3)",
+        "RSI 55 (+20)",
+        "Vol 0.6x (+3)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -788,123 +943,45 @@
         "target_2": 7999.04,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.368278"
+      "timestamp": "2026-05-09T21:18:48.957983"
     },
     {
-      "symbol": "TATASTEEL",
+      "symbol": "AUBANK",
       "decision": "GO",
-      "score": 82,
+      "score": 79,
       "stage": 2,
-      "setup_type": "COMPRESSION",
-      "setup_desc": "Volatility compression",
+      "setup_type": "BREAKOUT_CONT",
+      "setup_desc": "Breakout continuation",
       "in_stockedge": false,
-      "price": 214.49,
-      "ema_20": 210.85,
-      "ema_50": 204.66,
-      "ema_200": 184.68,
-      "rsi": 59.36,
-      "vol_ratio": 1.0,
-      "vol_5d_ratio": 1.0,
-      "ema_dist_pct": 1.73,
-      "from_52w_high": -2.15,
-      "atr_pct": 1.79,
+      "price": 1050.4,
+      "ema_20": 1009.05,
+      "ema_50": 981.53,
+      "ema_200": 905.38,
+      "rsi": 64.86,
+      "vol_ratio": 1.7,
+      "vol_5d_ratio": 1.7,
+      "ema_dist_pct": 4.1,
+      "from_52w_high": -2.7,
+      "atr_pct": 2.5,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
-        "COMPRESSION (+12)",
-        "RSI 59 ideal (+20)",
-        "Vol 1.0x avg (+7)",
+        "Stage 2 (+25)",
+        "BREAKOUT_CONT (+10)",
+        "RSI 65 (+13)",
+        "Vol 1.7x (+13)",
         "All EMAs rising (+15)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 1165,
-        "invested": 249880.86,
-        "stop_loss": 208.06,
-        "risk_amount": 7496.43,
-        "target_1": 227.36,
-        "target_2": 233.79,
+        "shares": 190,
+        "invested": 199576.0,
+        "stop_loss": 1010.95,
+        "risk_amount": 7495.5,
+        "target_1": 1129.3,
+        "target_2": 1168.75,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.251128"
-    },
-    {
-      "symbol": "BEL",
-      "decision": "GO",
-      "score": 82,
-      "stage": 2,
-      "setup_type": "PULLBACK_EMA50",
-      "setup_desc": "Pullback to EMA50",
-      "in_stockedge": false,
-      "price": 439.7,
-      "ema_20": 438.34,
-      "ema_50": 436.0,
-      "ema_200": 411.39,
-      "rsi": 51.56,
-      "vol_ratio": 1.17,
-      "vol_5d_ratio": 1.17,
-      "ema_dist_pct": 0.31,
-      "from_52w_high": -7.13,
-      "atr_pct": 2.01,
-      "st_direction": 1,
-      "reasons": [
-        "Stage 2 uptrend (+25)",
-        "PULLBACK_EMA50 (+14)",
-        "RSI 52 ideal (+20)",
-        "Vol 1.2x avg (+7)",
-        "2 EMAs rising (+10)",
-        "Near 52W high (+3)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": {
-        "shares": 566,
-        "invested": 248870.21,
-        "stop_loss": 426.46,
-        "risk_amount": 7492.42,
-        "target_1": 466.18,
-        "target_2": 479.41,
-        "rr_ratio": "2:1 / 3:1"
-      },
-      "timestamp": "2026-05-09T21:09:06.860340"
-    },
-    {
-      "symbol": "ATUL",
-      "decision": "GO",
-      "score": 78,
-      "stage": 2,
-      "setup_type": "TRENDING",
-      "setup_desc": "Stage 2 momentum",
-      "in_stockedge": false,
-      "price": 7088.5,
-      "ema_20": 6775.6,
-      "ema_50": 6563.31,
-      "ema_200": 6408.32,
-      "rsi": 68.4,
-      "vol_ratio": 1.45,
-      "vol_5d_ratio": 1.45,
-      "ema_dist_pct": 4.62,
-      "from_52w_high": -8.68,
-      "atr_pct": 2.88,
-      "st_direction": 1,
-      "reasons": [
-        "Stage 2 uptrend (+25)",
-        "TRENDING (+6)",
-        "RSI 68 strong (+13)",
-        "Vol 1.4x above avg (+13)",
-        "All EMAs rising (+15)",
-        "Near 52W high (+3)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": {
-        "shares": 24,
-        "invested": 170124.0,
-        "stop_loss": 6782.45,
-        "risk_amount": 7345.29,
-        "target_1": 7700.61,
-        "target_2": 8006.66,
-        "rr_ratio": "2:1 / 3:1"
-      },
-      "timestamp": "2026-05-09T21:09:07.065919"
+      "timestamp": "2026-05-09T21:18:49.691869"
     },
     {
       "symbol": "JSWSTEEL",
@@ -926,10 +1003,10 @@
       "atr_pct": 1.91,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 60 ideal (+20)",
-        "Vol 0.7x avg (+7)",
+        "RSI 60 (+20)",
+        "Vol 0.7x (+7)",
         "All EMAs rising (+15)",
         "Supertrend bullish (+3)"
       ],
@@ -942,45 +1019,7 @@
         "target_2": 1392.8,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.236415"
-    },
-    {
-      "symbol": "AUBANK",
-      "decision": "GO",
-      "score": 75,
-      "stage": 2,
-      "setup_type": "TRENDING",
-      "setup_desc": "Stage 2 momentum",
-      "in_stockedge": false,
-      "price": 1050.4,
-      "ema_20": 1009.05,
-      "ema_50": 981.53,
-      "ema_200": 905.38,
-      "rsi": 64.86,
-      "vol_ratio": 1.7,
-      "vol_5d_ratio": 1.7,
-      "ema_dist_pct": 4.1,
-      "from_52w_high": -2.7,
-      "atr_pct": 2.5,
-      "st_direction": 1,
-      "reasons": [
-        "Stage 2 uptrend (+25)",
-        "TRENDING (+6)",
-        "RSI 65 strong (+13)",
-        "Vol 1.7x above avg (+13)",
-        "All EMAs rising (+15)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": {
-        "shares": 190,
-        "invested": 199576.0,
-        "stop_loss": 1010.95,
-        "risk_amount": 7495.5,
-        "target_1": 1129.3,
-        "target_2": 1168.75,
-        "rr_ratio": "2:1 / 3:1"
-      },
-      "timestamp": "2026-05-09T21:09:06.119633"
+      "timestamp": "2026-05-09T21:18:48.829124"
     },
     {
       "symbol": "NTPC",
@@ -1002,10 +1041,10 @@
       "atr_pct": 2.04,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 60 ideal (+20)",
-        "Vol 0.7x low (+3)",
+        "RSI 60 (+20)",
+        "Vol 0.7x (+3)",
         "All EMAs rising (+15)",
         "Supertrend bullish (+3)"
       ],
@@ -1018,7 +1057,7 @@
         "target_2": 439.13,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:05.192809"
+      "timestamp": "2026-05-09T21:18:48.785895"
     },
     {
       "symbol": "BOSCHLTD",
@@ -1040,10 +1079,10 @@
       "atr_pct": 2.45,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 65 strong (+13)",
-        "Vol 1.0x avg (+7)",
+        "RSI 65 (+13)",
+        "Vol 1.0x (+7)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
@@ -1057,7 +1096,68 @@
         "target_2": 42350.89,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:09:06.461278"
+      "timestamp": "2026-05-09T21:18:50.019808"
+    },
+    {
+      "symbol": "DIVISLAB",
+      "decision": "WATCH_CLOSELY",
+      "score": 65,
+      "stage": 2,
+      "setup_type": "COMPRESSION",
+      "setup_desc": "Volatility compression",
+      "in_stockedge": true,
+      "price": 6710.5,
+      "ema_20": 6437.87,
+      "ema_50": 6304.11,
+      "ema_200": 6273.43,
+      "rsi": 73.49,
+      "vol_ratio": 0.49,
+      "vol_5d_ratio": 0.49,
+      "ema_dist_pct": 4.23,
+      "from_52w_high": -4.67,
+      "atr_pct": 1.78,
+      "st_direction": 1,
+      "reasons": [
+        "Stage 2 (+25)",
+        "COMPRESSION (+12)",
+        "RSI 73 (+4)",
+        "Vol 0.5x (+3)",
+        "All EMAs rising (+15)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": null,
+      "timestamp": "2026-05-09T21:18:48.929441"
+    },
+    {
+      "symbol": "TORNTPHARM",
+      "decision": "WATCH_CLOSELY",
+      "score": 65,
+      "stage": 2,
+      "setup_type": "TRENDING",
+      "setup_desc": "Stage 2 momentum",
+      "in_stockedge": true,
+      "price": 4380.8,
+      "ema_20": 4235.83,
+      "ema_50": 4189.78,
+      "ema_200": 3884.77,
+      "rsi": 64.59,
+      "vol_ratio": 0.63,
+      "vol_5d_ratio": 0.63,
+      "ema_dist_pct": 3.42,
+      "from_52w_high": -2.28,
+      "atr_pct": 1.9,
+      "st_direction": 1,
+      "reasons": [
+        "Stage 2 (+25)",
+        "TRENDING (+6)",
+        "RSI 65 (+13)",
+        "Vol 0.6x (+3)",
+        "All EMAs rising (+15)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": null,
+      "timestamp": "2026-05-09T21:18:49.334822"
     },
     {
       "symbol": "ONGC",
@@ -1079,16 +1179,16 @@
       "atr_pct": 2.32,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
-        "RSI 43 bounce (+8)",
-        "Vol 0.7x avg (+7)",
+        "RSI 43 (+8)",
+        "Vol 0.7x (+7)",
         "2 EMAs rising (+10)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:09:05.221812"
+      "timestamp": "2026-05-09T21:18:48.814814"
     },
     {
       "symbol": "SIEMENS",
@@ -1110,15 +1210,15 @@
       "atr_pct": 2.56,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 65 strong (+13)",
-        "Vol 1.1x avg (+7)",
+        "RSI 65 (+13)",
+        "Vol 1.1x (+7)",
         "All EMAs rising (+15)",
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:09:05.587564"
+      "timestamp": "2026-05-09T21:18:49.178388"
     },
     {
       "symbol": "SAIL",
@@ -1140,15 +1240,15 @@
       "atr_pct": 2.37,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 67 strong (+13)",
-        "Vol 0.7x avg (+7)",
+        "RSI 67 (+13)",
+        "Vol 0.7x (+7)",
         "All EMAs rising (+15)",
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:09:05.939891"
+      "timestamp": "2026-05-09T21:18:49.520855"
     },
     {
       "symbol": "MOTHERSON",
@@ -1170,15 +1270,15 @@
       "atr_pct": 3.12,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 63 strong (+13)",
-        "Vol 1.1x avg (+7)",
+        "RSI 63 (+13)",
+        "Vol 1.1x (+7)",
         "All EMAs rising (+15)",
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:09:06.431111"
+      "timestamp": "2026-05-09T21:18:49.990659"
     },
     {
       "symbol": "KEI",
@@ -1200,16 +1300,16 @@
       "atr_pct": 3.57,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 65 strong (+13)",
-        "Vol 0.6x low (+3)",
+        "RSI 65 (+13)",
+        "Vol 0.6x (+3)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:09:06.548910"
+      "timestamp": "2026-05-09T21:18:50.105690"
     },
     {
       "symbol": "AJANTPHARM",
@@ -1231,16 +1331,16 @@
       "atr_pct": 2.44,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 64 strong (+13)",
-        "Vol 0.4x low (+3)",
+        "RSI 64 (+13)",
+        "Vol 0.4x (+3)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:09:06.623344"
+      "timestamp": "2026-05-09T21:18:50.178011"
     },
     {
       "symbol": "PHOENIXLTD",
@@ -1262,77 +1362,16 @@
       "atr_pct": 2.83,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 63 strong (+13)",
-        "Vol 0.4x low (+3)",
+        "RSI 63 (+13)",
+        "Vol 0.4x (+3)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:09:06.784863"
-    },
-    {
-      "symbol": "DIVISLAB",
-      "decision": "WATCH",
-      "score": 65,
-      "stage": 2,
-      "setup_type": "COMPRESSION",
-      "setup_desc": "Volatility compression",
-      "in_stockedge": false,
-      "price": 6710.5,
-      "ema_20": 6437.87,
-      "ema_50": 6304.11,
-      "ema_200": 6273.43,
-      "rsi": 73.49,
-      "vol_ratio": 0.49,
-      "vol_5d_ratio": 0.49,
-      "ema_dist_pct": 4.23,
-      "from_52w_high": -4.67,
-      "atr_pct": 1.78,
-      "st_direction": 1,
-      "reasons": [
-        "Stage 2 uptrend (+25)",
-        "COMPRESSION (+12)",
-        "RSI 73 extended (+4)",
-        "Vol 0.5x low (+3)",
-        "All EMAs rising (+15)",
-        "Near 52W high (+3)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": null,
-      "timestamp": "2026-05-09T21:09:05.339170"
-    },
-    {
-      "symbol": "TORNTPHARM",
-      "decision": "WATCH",
-      "score": 65,
-      "stage": 2,
-      "setup_type": "TRENDING",
-      "setup_desc": "Stage 2 momentum",
-      "in_stockedge": false,
-      "price": 4380.8,
-      "ema_20": 4235.83,
-      "ema_50": 4189.78,
-      "ema_200": 3884.77,
-      "rsi": 64.59,
-      "vol_ratio": 0.63,
-      "vol_5d_ratio": 0.63,
-      "ema_dist_pct": 3.42,
-      "from_52w_high": -2.28,
-      "atr_pct": 1.9,
-      "st_direction": 1,
-      "reasons": [
-        "Stage 2 uptrend (+25)",
-        "TRENDING (+6)",
-        "RSI 65 strong (+13)",
-        "Vol 0.6x low (+3)",
-        "All EMAs rising (+15)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": null,
-      "timestamp": "2026-05-09T21:09:05.748562"
+      "timestamp": "2026-05-09T21:18:50.335671"
     },
     {
       "symbol": "NAVINFLUOR",
@@ -1354,15 +1393,15 @@
       "atr_pct": 2.72,
       "st_direction": 1,
       "reasons": [
-        "Stage 2 uptrend (+25)",
+        "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 71 extended (+4)",
-        "Vol 0.6x low (+3)",
+        "RSI 71 (+4)",
+        "Vol 0.6x (+3)",
         "All EMAs rising (+15)",
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:09:06.340588"
+      "timestamp": "2026-05-09T21:18:49.904966"
     }
   ]
 }
