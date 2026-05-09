@@ -527,7 +527,7 @@ def screen_stocks(stockedge_symbols):
             symbol = ticker.replace('.NS', '')
 
             stock = yf.Ticker(ticker)
-            hist  = stock.history(period='300d')   # Extra history for EMA200
+            hist  = stock.history(period='1y')   # Extra history for EMA200
 
             if len(hist) < 210:
                 filtered['data'] += 1
