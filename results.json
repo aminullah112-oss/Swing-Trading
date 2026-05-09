@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-05-09T19:50:13.151402",
+  "timestamp": "2026-05-09T19:57:19.356889",
   "scan_date": "2026-05-09",
-  "scan_time": "19:50:13",
+  "scan_time": "19:57:19",
   "capital": 750000,
-  "total_scanned": 165,
+  "total_scanned": 160,
   "total_passed": 0,
   "summary": {
     "high_conviction": 0,
