@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDGE PROTOCOL v2.0 — NSE Swing Decision System</title>
+    <title>EDGE PROTOCOL v3.0 — NSE Swing Trading System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
 
     <header class="header">
-        <h1>📊 EDGE PROTOCOL v2.0</h1>
-        <p class="subtitle">NSE Swing Trading Decision System</p>
-        <p class="description">Score 0-100 | GO / WATCH / NO-GO | StockEdge Cross-Validation</p>
+        <h1>📊 EDGE PROTOCOL v3.0</h1>
+        <p class="subtitle">Professional NSE Swing Trading System</p>
+        <p class="description">Stage Analysis · EMA Pullback · ATR Stop · StockEdge Cross-Validation</p>
     </header>
 
-    <!-- Summary Cards -->
     <div class="summary-bar">
         <div class="summary-card hc">
             <div class="card-count" id="count-hc">0</div>
@@ -43,42 +42,40 @@
         </div>
     </div>
 
-    <!-- Scoring Legend -->
     <div class="legend-bar">
-        <span class="legend-title">Scoring:</span>
-        <span class="legend-item">EMA Proximity 30pts</span>
-        <span class="sep">|</span>
-        <span class="legend-item">RSI Quality 20pts</span>
-        <span class="sep">|</span>
-        <span class="legend-item">Volume Surge 25pts</span>
-        <span class="sep">|</span>
-        <span class="legend-item">Trend Slope 25pts</span>
-        <span class="sep">|</span>
+        <span class="legend-title">Method:</span>
+        <span class="legend-item">Stage 2 Uptrend (Weinstein)</span>
+        <span class="sep">·</span>
+        <span class="legend-item">EMA Pullback Entry</span>
+        <span class="sep">·</span>
+        <span class="legend-item">ATR Stop Loss</span>
+        <span class="sep">·</span>
+        <span class="legend-item">2:1 / 3:1 RR</span>
+        <span class="sep">·</span>
         <span class="legend-item">[SE] = StockEdge confirmed</span>
     </div>
 
-    <!-- Filter Tabs -->
     <div class="tab-bar">
-        <button class="tab active" onclick="filterDecision('ALL')">All</button>
-        <button class="tab tab-hc" onclick="filterDecision('HIGH_CONVICTION')">🟢 High Conviction</button>
-        <button class="tab tab-go" onclick="filterDecision('GO')">🟩 GO</button>
-        <button class="tab tab-wc" onclick="filterDecision('WATCH_CLOSELY')">🟡 Watch Closely</button>
-        <button class="tab tab-w"  onclick="filterDecision('WATCH')">🟨 Watch</button>
+        <button class="tab active"   onclick="filterDecision('ALL')">All</button>
+        <button class="tab tab-hc"   onclick="filterDecision('HIGH_CONVICTION')">🟢 High Conviction</button>
+        <button class="tab tab-go"   onclick="filterDecision('GO')">🟩 GO</button>
+        <button class="tab tab-wc"   onclick="filterDecision('WATCH_CLOSELY')">🟡 Watch Closely</button>
+        <button class="tab tab-w"    onclick="filterDecision('WATCH')">🟨 Watch</button>
     </div>
 
-    <!-- Results Table -->
     <div class="table-wrapper">
         <table class="results-table">
             <thead>
                 <tr>
                     <th>Decision</th>
-                    <th>Symbol</th>
+                    <th>Symbol / Setup</th>
                     <th>Score</th>
                     <th>SE</th>
                     <th>Price</th>
                     <th>RSI</th>
                     <th>Vol Ratio</th>
-                    <th>EMA Dist%</th>
+                    <th>EMA20 Dist</th>
+                    <th>52W High</th>
                     <th>Stop Loss</th>
                     <th>Target 1</th>
                     <th>Target 2</th>
@@ -88,25 +85,25 @@
                 </tr>
             </thead>
             <tbody id="tbody">
-                <tr><td colspan="14" class="loading-cell">
-                    <div class="spinner"></div>Loading...
+                <tr><td colspan="15" class="loading-cell">
+                    <div class="spinner"></div>Loading scan results...
                 </td></tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Capital Info -->
     <div class="capital-note">
-        <strong>Capital Base:</strong> ₹7.5L (midpoint of ₹5L–₹10L range) &nbsp;|&nbsp;
-        <strong>High Conviction Risk:</strong> 2% = ₹15,000/trade &nbsp;|&nbsp;
+        <strong>Capital:</strong> ₹7.5L &nbsp;|&nbsp;
+        <strong>HC Risk:</strong> 2% = ₹15,000/trade &nbsp;|&nbsp;
         <strong>GO Risk:</strong> 1% = ₹7,500/trade &nbsp;|&nbsp;
-        <strong>Stop:</strong> 3% below entry &nbsp;|&nbsp;
-        <strong>Max Positions:</strong> 5
+        <strong>Stop:</strong> 1.5x ATR (volatility-adjusted) &nbsp;|&nbsp;
+        <strong>Max:</strong> 5 positions &nbsp;|&nbsp;
+        <strong>Exit:</strong> Close below EMA20 on daily chart
     </div>
 
     <footer class="footer">
-        <p>EDGE PROTOCOL v2.0 | Automated at 9 AM IST Mon–Fri via GitHub Actions</p>
-        <p><a href="https://github.com/aminullah112-oss/Swing-Trading" target="_blank">GitHub Repo</a> &nbsp;|&nbsp; Not financial advice</p>
+        <p>EDGE PROTOCOL v3.0 · Stage Analysis + EMA Pullback · Auto-runs 9 AM IST Mon–Fri</p>
+        <p><a href="https://github.com/aminullah112-oss/Swing-Trading" target="_blank">GitHub</a> · Not financial advice · For research only</p>
     </footer>
 
 </div>
