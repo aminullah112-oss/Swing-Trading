@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-05-09T21:18:50.694183",
-  "scan_date": "2026-05-09",
-  "scan_time": "21:18:50",
+  "timestamp": "2026-05-10T03:21:19.389924",
+  "scan_date": "2026-05-10",
+  "scan_time": "03:21:19",
   "capital": 750000,
   "total_scanned": 160,
   "total_passed": 38,
@@ -49,7 +49,7 @@
         "target_2": 2645.77,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:49.306023"
+      "timestamp": "2026-05-10T03:21:18.319004"
     },
     {
       "symbol": "RADICO",
@@ -88,7 +88,7 @@
         "target_2": 3998.81,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.134729"
+      "timestamp": "2026-05-10T03:21:18.941709"
     },
     {
       "symbol": "FORTIS",
@@ -127,7 +127,7 @@
         "target_2": 1052.57,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.235283"
+      "timestamp": "2026-05-10T03:21:19.020573"
     },
     {
       "symbol": "TATASTEEL",
@@ -165,7 +165,7 @@
         "target_2": 233.79,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:48.843387"
+      "timestamp": "2026-05-10T03:21:17.972293"
     },
     {
       "symbol": "BEL",
@@ -204,7 +204,7 @@
         "target_2": 479.41,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.407311"
+      "timestamp": "2026-05-10T03:21:19.159038"
     },
     {
       "symbol": "ATUL",
@@ -243,7 +243,7 @@
         "target_2": 8006.66,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.619902"
+      "timestamp": "2026-05-10T03:21:19.329329"
     },
     {
       "symbol": "POWERGRID",
@@ -282,7 +282,7 @@
         "target_2": 342.21,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:48.771516"
+      "timestamp": "2026-05-10T03:21:17.918801"
     },
     {
       "symbol": "COALINDIA",
@@ -321,7 +321,7 @@
         "target_2": 505.59,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:48.857884"
+      "timestamp": "2026-05-10T03:21:17.983539"
     },
     {
       "symbol": "GLENMARK",
@@ -360,7 +360,7 @@
         "target_2": 2665.17,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:49.378078"
+      "timestamp": "2026-05-10T03:21:18.373425"
     },
     {
       "symbol": "NHPC",
@@ -399,7 +399,7 @@
         "target_2": 89.6,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.506540"
+      "timestamp": "2026-05-10T03:21:19.238735"
     },
     {
       "symbol": "NOCIL",
@@ -438,7 +438,7 @@
         "target_2": 210.1,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.634112"
+      "timestamp": "2026-05-10T03:21:19.341147"
     },
     {
       "symbol": "HINDALCO",
@@ -477,7 +477,7 @@
         "target_2": 1144.06,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:49.143621"
+      "timestamp": "2026-05-10T03:21:18.200067"
     },
     {
       "symbol": "MUTHOOTFIN",
@@ -516,7 +516,7 @@
         "target_2": 3905.81,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:49.291695"
+      "timestamp": "2026-05-10T03:21:18.308272"
     },
     {
       "symbol": "TATAPOWER",
@@ -555,7 +555,7 @@
         "target_2": 478.85,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:49.449695"
+      "timestamp": "2026-05-10T03:21:18.428178"
     },
     {
       "symbol": "NMDC",
@@ -594,7 +594,7 @@
         "target_2": 98.19,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:49.535286"
+      "timestamp": "2026-05-10T03:21:18.493029"
     },
     {
       "symbol": "LT",
@@ -633,7 +633,7 @@
         "target_2": 4343.08,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:48.584442"
+      "timestamp": "2026-05-10T03:21:17.778787"
     },
     {
       "symbol": "TITAN",
@@ -671,7 +671,7 @@
         "target_2": 4967.61,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:48.698751"
+      "timestamp": "2026-05-10T03:21:17.863093"
     },
     {
       "symbol": "DRREDDY",
@@ -710,7 +710,7 @@
         "target_2": 1472.29,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:48.914921"
+      "timestamp": "2026-05-10T03:21:18.026683"
     },
     {
       "symbol": "AARTIIND",
@@ -749,7 +749,7 @@
         "target_2": 561.93,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.664217"
+      "timestamp": "2026-05-10T03:21:19.366033"
     },
     {
       "symbol": "BHARATFORG",
@@ -787,7 +787,7 @@
         "target_2": 2267.48,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.005243"
+      "timestamp": "2026-05-10T03:21:18.843529"
     },
     {
       "symbol": "PFC",
@@ -826,7 +826,7 @@
         "target_2": 510.79,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.463889"
+      "timestamp": "2026-05-10T03:21:19.205324"
     },
     {
       "symbol": "DMART",
@@ -865,7 +865,7 @@
         "target_2": 4838.57,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:49.163697"
+      "timestamp": "2026-05-10T03:21:18.210933"
     },
     {
       "symbol": "KAJARIACER",
@@ -904,7 +904,7 @@
         "target_2": 1285.27,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.048244"
+      "timestamp": "2026-05-10T03:21:18.875664"
     },
     {
       "symbol": "EICHERMOT",
@@ -943,7 +943,7 @@
         "target_2": 7999.04,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:48.957983"
+      "timestamp": "2026-05-10T03:21:18.059317"
     },
     {
       "symbol": "AUBANK",
@@ -981,7 +981,7 @@
         "target_2": 1168.75,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:49.691869"
+      "timestamp": "2026-05-10T03:21:18.610250"
     },
     {
       "symbol": "JSWSTEEL",
@@ -1019,7 +1019,7 @@
         "target_2": 1392.8,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:48.829124"
+      "timestamp": "2026-05-10T03:21:17.961484"
     },
     {
       "symbol": "NTPC",
@@ -1057,7 +1057,7 @@
         "target_2": 439.13,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:48.785895"
+      "timestamp": "2026-05-10T03:21:17.929638"
     },
     {
       "symbol": "BOSCHLTD",
@@ -1096,7 +1096,7 @@
         "target_2": 42350.89,
         "rr_ratio": "2:1 / 3:1"
       },
-      "timestamp": "2026-05-09T21:18:50.019808"
+      "timestamp": "2026-05-10T03:21:18.854377"
     },
     {
       "symbol": "DIVISLAB",
@@ -1127,7 +1127,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:18:48.929441"
+      "timestamp": "2026-05-10T03:21:18.037683"
     },
     {
       "symbol": "TORNTPHARM",
@@ -1157,7 +1157,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:18:49.334822"
+      "timestamp": "2026-05-10T03:21:18.340624"
     },
     {
       "symbol": "ONGC",
@@ -1188,7 +1188,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:18:48.814814"
+      "timestamp": "2026-05-10T03:21:17.950809"
     },
     {
       "symbol": "SIEMENS",
@@ -1218,7 +1218,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:18:49.178388"
+      "timestamp": "2026-05-10T03:21:18.221901"
     },
     {
       "symbol": "SAIL",
@@ -1248,7 +1248,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:18:49.520855"
+      "timestamp": "2026-05-10T03:21:18.481886"
     },
     {
       "symbol": "MOTHERSON",
@@ -1278,7 +1278,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:18:49.990659"
+      "timestamp": "2026-05-10T03:21:18.832464"
     },
     {
       "symbol": "KEI",
@@ -1309,7 +1309,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:18:50.105690"
+      "timestamp": "2026-05-10T03:21:18.919630"
     },
     {
       "symbol": "AJANTPHARM",
@@ -1340,7 +1340,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:18:50.178011"
+      "timestamp": "2026-05-10T03:21:18.975947"
     },
     {
       "symbol": "PHOENIXLTD",
@@ -1371,7 +1371,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:18:50.335671"
+      "timestamp": "2026-05-10T03:21:19.102193"
     },
     {
       "symbol": "NAVINFLUOR",
@@ -1401,7 +1401,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-05-09T21:18:49.904966"
+      "timestamp": "2026-05-10T03:21:18.767658"
     }
   ]
 }
