@@ -65,3 +65,49 @@ def test_evaluate_adds_analysis_without_changing_the_signal():
     assert len(sp['close']) == len(sp['ema20']) == len(sp['ema50']) == 60 and sp['close'][-1] == rec['price']
     exp_stop_pct = (rec['trigger'] - rec['stop_loss']) / rec['trigger'] * 100
     assert abs(rec['stop_pct'] - exp_stop_pct) < 0.01
+
+
+# ---------------- data lag / session calendar -----------------
+from datetime import datetime, date, timezone, timedelta
+IST = timezone(timedelta(hours=5, minutes=30))
+
+
+def ist(y, m, d, hh, mm=0):
+    return datetime(y, m, d, hh, mm, tzinfo=IST)
+
+
+def test_expected_last_session_logic():
+    # 2026-10-14 is a Wednesday
+    assert an.expected_last_session(ist(2026, 10, 14, 17, 0)) == date(2026, 10, 14)    # after the close + buffer: today
+    assert an.expected_last_session(ist(2026, 10, 14, 9, 0)) == date(2026, 10, 13)     # before the close: yesterday
+    assert an.expected_last_session(ist(2026, 10, 14, 16, 0)) == date(2026, 10, 13)    # data not yet reliable
+    assert an.expected_last_session(ist(2026, 10, 12, 9, 0)) == date(2026, 10, 9)      # Monday morning -> Friday
+    assert an.expected_last_session(ist(2026, 10, 17, 12, 0)) == date(2026, 10, 16)    # Saturday -> Friday
+    assert an.expected_last_session(ist(2026, 10, 18, 22, 0)) == date(2026, 10, 16)    # Sunday night -> Friday
+    assert an.expected_last_session(ist(2026, 10, 16, 18, 0)) == date(2026, 10, 16)    # Friday evening
+
+
+def test_sessions_behind_counts_weekdays_only():
+    assert an.sessions_behind(date(2026, 10, 12), date(2026, 10, 12)) == 0
+    assert an.sessions_behind(date(2026, 10, 12), date(2026, 10, 13)) == 1
+    assert an.sessions_behind(date(2026, 10, 9), date(2026, 10, 12)) == 1             # Fri -> Mon is one session
+    assert an.sessions_behind(date(2026, 10, 9), date(2026, 10, 13)) == 2
+    assert an.sessions_behind(date(2026, 10, 14), date(2026, 10, 13)) == 0            # ahead of expectation: fine
+
+
+def test_the_real_case_that_prompted_this():
+    # scan at 2026-10-14 00:44 IST with data through 12 Oct: expected session is 13 Oct -> one behind
+    exp = an.expected_last_session(ist(2026, 10, 14, 0, 44))
+    assert exp == date(2026, 10, 13) and an.sessions_behind(date(2026, 10, 12), exp) == 1
+
+
+def test_regime_series_states():
+    idx = pd.bdate_range('2022-01-03', periods=500)
+    up = pd.Series(np.linspace(100, 200, 500), index=idx)
+    assert an.regime_series(up).iloc[-1] == 'uptrend'
+    down = pd.Series(np.linspace(200, 100, 500), index=idx)
+    assert an.regime_series(down).iloc[-1] == 'downtrend'
+    crash = pd.Series(np.r_[np.linspace(100, 200, 400), np.linspace(200, 150, 100)], index=idx)
+    assert an.regime_series(crash).iloc[-1] in ('pullback_in_uptrend', 'bounce_below_ema200', 'downtrend')
+    # same labels as the text shown on the desk
+    assert an.trend_label(110, 105, 100).startswith('Uptrend') and an.trend_label(90, 95, 100).startswith('Downtrend')

@@ -230,3 +230,30 @@ def test_universe_baseline_matches_hand_calculation():
     assert u['full']['nifty']['cagr_pct'] == 0.0
     assert abs(u['full']['universe_excess_cagr_pct'] - u['full']['equal_weight']['cagr_pct']) < 1e-9
     assert 'upper bound' in rs.universe_markdown(u, [])
+
+
+def test_cluster_diff_detects_and_rejects():
+    import research as rs
+    rng = np.random.default_rng(3)
+    months = np.repeat(pd.period_range('2018-01', periods=60, freq='M').astype(str), 20)
+    mask = np.tile(np.r_[np.ones(5, bool), np.zeros(15, bool)], 60)
+    noise = rng.normal(0, 1, len(months))
+    d = rs.cluster_ci_diff(noise, months, mask)
+    assert d[1] < 0 < d[2]                                   # no real difference: interval spans 0
+    shifted = noise + np.where(mask, -1.0, 0.0)
+    d2 = rs.cluster_ci_diff(shifted, months, mask)
+    assert d2[2] < 0 and abs(d2[0] + 1.0) < 0.15             # a -1R gap is detected and located
+    assert rs.cluster_ci_diff(noise, months, np.zeros(len(months), bool)) is None
+
+
+def test_regime_report_on_synthetic_trades():
+    import research as rs
+    frames = {f'S{i}': synth(n=1300, seed=i, drift=0.001) for i in range(8)}
+    bench = synth(n=1300, seed=77)['Close']
+    trades = bt.generate_trades(frames, bt.Config(trigger='prior_high', exit_mode='ema50', max_hold=120), bench)
+    out, md = rs.regime_report(trades, bench)
+    assert set(out['rows']) == set(rs.REGIME_LABELS) and out['today']['regime'] in rs.REGIME_LABELS
+    assert sum(v.get('trades', 0) for v in out['rows'].values()) == len(trades)
+    assert 'Regime breakdown' in md and 'not** corrected' in md
+    none_out, msg = rs.regime_report(trades, None)
+    assert none_out is None

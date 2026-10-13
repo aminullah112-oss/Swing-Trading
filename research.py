@@ -25,7 +25,9 @@ import json, os
 import numpy as np
 import pandas as pd
 
+import analysis as an
 import backtest as bt
+import strategy
 
 SPLIT = '2023-01-01'
 
@@ -303,6 +305,90 @@ def universe_markdown(u, rows):
     return '\n'.join(L)
 
 
+def cluster_ci_diff(r, clusters, mask, alpha=0.05, n=2000, seed=0):
+    """CI for mean(r[mask]) - mean(r[~mask]), resampling whole months with replacement."""
+    r = np.asarray(r, dtype=float); mask = np.asarray(mask, dtype=bool)
+    codes, uniq = pd.factorize(clusters)
+    k = len(uniq)
+    sm = np.bincount(codes, weights=r * mask, minlength=k); cm = np.bincount(codes, weights=mask.astype(float), minlength=k)
+    sn = np.bincount(codes, weights=r * ~mask, minlength=k); cn = np.bincount(codes, weights=(~mask).astype(float), minlength=k)
+    if cm.sum() == 0 or cn.sum() == 0:
+        return None
+    idx = np.random.default_rng(seed).integers(0, k, size=(n, k))
+    with np.errstate(invalid='ignore', divide='ignore'):
+        d = sm[idx].sum(1) / cm[idx].sum(1) - sn[idx].sum(1) / cn[idx].sum(1)
+    d = d[np.isfinite(d)]
+    if len(d) < n // 2:
+        return None
+    point = sm.sum() / cm.sum() - sn.sum() / cn.sum()
+    return [float(point), float(np.percentile(d, 100 * alpha / 2)), float(np.percentile(d, 100 * (1 - alpha / 2)))]
+
+
+REGIME_LABELS = {'uptrend': 'Uptrend (above EMA50 and EMA200)', 'pullback_in_uptrend': 'Pullback in uptrend (below EMA50, above EMA200)',
+                 'bounce_below_ema200': 'Bounce in weak market (above EMA50, below EMA200)', 'downtrend': 'Downtrend (below both)'}
+
+
+def regime_report(trades, bench):
+    """How the LIVE variant behaves by Nifty regime at the signal date. Descriptive: not a gate."""
+    if bench is None or trades.empty:
+        return None, 'Regime analysis needs trades and the index series.'
+    reg = an.regime_series(bench)
+    k = reg.index.searchsorted(pd.DatetimeIndex(trades['signal_date']), side='right') - 1
+    t = trades.copy()
+    t['regime4'] = [reg.iat[i] if i >= 0 else 'unknown' for i in k]
+    months = month_clusters(t)
+    rows = {}
+    for key in REGIME_LABELS:
+        g = t[t['regime4'] == key]
+        if len(g) == 0:
+            rows[key] = {'trades': 0}; continue
+        ci = cluster_ci_mean(g['r'].values, month_clusters(g), alpha=0.05)
+        wins, losses = g['r'][g['r'] > 0].sum(), -g['r'][g['r'] <= 0].sum()
+        rows[key] = {'trades': int(len(g)), 'months': int(g['entry_date'].dt.to_period('M').nunique()),
+                     'win_rate': round(float((g['r'] > 0).mean()), 3), 'avg_r': round(float(g['r'].mean()), 3),
+                     'ci95': [round(ci[0], 3), round(ci[1], 3)] if ci else None,
+                     'profit_factor': round(float(wins / losses), 2) if losses > 0 else None}
+    down = (t['regime4'] == 'downtrend').values
+    out = {'live_variant': strategy.describe()['name'], 'rows': rows, 'n_trades': int(len(t)),
+           'downtrend_minus_rest': cluster_ci_diff(t['r'].values, months, down)}
+    split = pd.Timestamp(SPLIT)
+    for label, sel in (('design', (t['entry_date'] < split).values), ('holdout', (t['entry_date'] >= split).values)):
+        if down[sel].any() and (~down[sel]).any():
+            out[f'downtrend_minus_rest_{label}'] = cluster_ci_diff(t['r'].values[sel], months[sel], down[sel])
+    now_state = reg.iat[-1]
+    out['today'] = {'regime': now_state, 'label': REGIME_LABELS[now_state], 'date': str(reg.index[-1].date())}
+    return out, regime_markdown(out)
+
+
+def regime_markdown(o):
+    L = ['# Regime breakdown of the live variant', '',
+         f"Variant: {o['live_variant']}. Nifty regime measured at each signal date with causal EMA50/EMA200. "
+         'Descriptive analysis: nothing in the scanner is gated on it. Intervals are month-clustered bootstrap, **not** corrected for multiple comparisons.', '',
+         '| Regime at signal | Trades | Months | Win | Avg R (95% CI) | PF |', '|---|---|---|---|---|---|']
+    for key, label in REGIME_LABELS.items():
+        v = o['rows'][key]
+        if not v.get('trades'):
+            L.append(f'| {label} | 0 | | | | |'); continue
+        ci = v['ci95']
+        L.append(f"| {label} | {v['trades']} | {v['months']} | {v['win_rate']:.0%} | {v['avg_r']:+.3f} ({ci[0]:+.3f}..{ci[1]:+.3f}) | {v['profit_factor']} |"
+                 if ci else f"| {label} | {v['trades']} | {v['months']} | {v['win_rate']:.0%} | {v['avg_r']:+.3f} | {v['profit_factor']} |")
+    d = o.get('downtrend_minus_rest')
+    L += ['']
+    if d:
+        verdict = ('Downtrend signals did **worse** than the rest, and the interval excludes 0.' if d[2] < 0 else
+                   'Downtrend signals did **better** than the rest, and the interval excludes 0.' if d[1] > 0 else
+                   'The interval spans 0: this data cannot tell whether downtrends are better or worse for the live rules.')
+        L.append(f'**Downtrend minus all other regimes (avg R):** {d[0]:+.3f} (95% CI {d[1]:+.3f}..{d[2]:+.3f}). {verdict}')
+    for label in ('design', 'holdout'):
+        d = o.get(f'downtrend_minus_rest_{label}')
+        if d:
+            L.append(f'- {label} period only: {d[0]:+.3f} (CI {d[1]:+.3f}..{d[2]:+.3f})')
+    t = o['today']
+    L += ['', f"**Today ({t['date']}): {t['label']}.** Few independent downtrend months exist in 10 years, so wide intervals are expected; "
+          'a result spanning zero means "unknown", not "safe".']
+    return '\n'.join(L)
+
+
 def main():
     import argparse
     ap = argparse.ArgumentParser()
@@ -331,6 +417,15 @@ def main():
     with open(f'{a.out}/grid.json', 'w') as f:
         json.dump(rows, f, indent=2)
     print(grid_markdown(rows, note))
+
+    rg_trades = bt.generate_trades(frames, strategy.backtest_config(), bench, prepared)
+    rg, rg_md = regime_report(rg_trades, bench)
+    with open(f'{a.out}/regime.md', 'w') as f:
+        f.write(rg_md)
+    if rg:
+        with open(f'{a.out}/regime.json', 'w') as f:
+            json.dump(rg, f, indent=2)
+    print(rg_md)
 
     parts = ['# Score diagnosis', '', 'Fixed reference configurations; see research.py docstring for caveats.', '']
     for label, trig, ex, hold in DIAG_REFS:

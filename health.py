@@ -18,6 +18,7 @@ import research as rs
 
 FRESH_WARN_DAYS = 4         # calendar days since the last market bar (covers weekend + one holiday)
 FRESH_FAIL_DAYS = 7
+LAG_FAIL_SESSIONS = 5       # sessions behind the expected last session
 LEDGER_STALE_DAYS = 3
 COVERAGE_WARN = 0.95
 PENDING_MAX_DAYS = 7        # a signal must resolve (trigger or expire) within a few sessions
@@ -69,9 +70,17 @@ def run_checks(ctx):
         age = _days_since(cutoff, now)
         lvl = 'fail' if age > FRESH_FAIL_DAYS else 'warn' if age > FRESH_WARN_DAYS else 'ok'
         out.append(_c('H1', lvl, f'market data through {cutoff} ({age} days old)'))
+        behind = res.get('sessions_behind')
+        if behind:
+            out.append(_c('H1b', 'fail' if behind >= LAG_FAIL_SESSIONS else 'warn',
+                          f"data ends {cutoff} but the last completed session should be {res.get('expected_session')} "
+                          f"({behind} session(s) behind): an exchange holiday, or the data vendor is lagging. If it was a "
+                          f"trading day, 'valid for the next session' buy levels refer to a session that already traded"))
         cov = res.get('symbols_processed', 0) / max(res.get('total_scanned', 1), 1)
+        miss = res.get('missing_symbols') or []
         out.append(_c('H2', 'warn' if cov < COVERAGE_WARN else 'ok',
-                      f"{res.get('symbols_processed')}/{res.get('total_scanned')} symbols had data ({cov:.0%})"))
+                      f"{res.get('symbols_processed')}/{res.get('total_scanned')} symbols had data ({cov:.0%})"
+                      + (f"; no data for: {', '.join(miss)}" if miss else '')))
         flood = res.get('total_passed', 0) / max(res.get('total_scanned', 1), 1)
         if flood > FLOOD_FRACTION:
             out.append(_c('H5', 'warn', f"{res.get('total_passed')} signals ({flood:.0%} of universe) at once; check for a data glitch"))

@@ -341,6 +341,7 @@ def main():
     now_utc = datetime.now(timezone.utc)
     last_bars = []
     results = []; stats = {'data': 0, 'stage': 0, 'st': 0, 'rsi': 0, 'price': 0, 'score': 0}
+    missing = []
 
     print(f"\n{'Symbol':<14}{'Setup':<20}{'Close':>10}{'Buy>':>10}{'Stop':>10}")
     print("-" * 70)
@@ -348,7 +349,7 @@ def main():
         try:
             df = extract_df(bulk, tick)
             if df is None:
-                stats['data'] += 1; continue
+                stats['data'] += 1; missing.append(sym); continue
             last_bars.append(df.index[-1])
             rec, why = evaluate(df, sym in se)
             if rec is None:
@@ -366,6 +367,8 @@ def main():
         sys.exit(1)
 
     data_cutoff = max(last_bars).strftime('%Y-%m-%d')
+    if missing:
+        print(f"No usable data for {len(missing)} symbols: {', '.join(missing)}")
     try:
         nifty = extract_df(bulk, BENCH)
         nifty_close = nifty['Close'] if nifty is not None else None
@@ -384,12 +387,17 @@ def main():
     print("=" * 70)
 
     now_ist = now_utc.astimezone(IST)
+    expected = analysis.expected_last_session(now_ist)
+    behind = analysis.sessions_behind(max(last_bars).date(), expected)
     out = {
         'scan_id':           uuid.uuid4().hex[:12],
         'timestamp':         now_utc.isoformat(),           # UTC, machine-readable
         'scan_date':         now_ist.strftime('%Y-%m-%d'),  # IST, display
         'scan_time':         now_ist.strftime('%H:%M:%S') + ' IST',
         'data_cutoff':       data_cutoff,
+        'expected_session':  str(expected),
+        'sessions_behind':   behind,
+        'missing_symbols':   missing,
         'symbols_processed': processed,
         'total_scanned':     len(NSE_STOCKS),
         'total_passed':      len(results),
