@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position Sizer — EDGE PROTOCOL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>🧮 Position Sizer</h1>
+        <p class="subtitle">Fixed-fractional risk sizing for NSE swing trades</p>
+        <p class="description"><a href="index.html" class="back-link">← Back to scanner</a></p>
+    </header>
+
+    <div class="sizer-grid">
+        <form class="sizer-card" id="sizer-form" autocomplete="off">
+            <h2>Inputs</h2>
+            <label>Capital (₹)<input type="number" id="capital" value="750000" min="0" step="1000"></label>
+            <label>Risk per trade (%)<input type="number" id="risk-pct" value="1" min="0" step="0.1"></label>
+            <label>Entry price (₹)<input type="number" id="entry" min="0" step="0.05" placeholder="e.g. 1250.50"></label>
+
+            <label>Stop-loss method
+                <select id="stop-mode">
+                    <option value="manual">Manual stop price</option>
+                    <option value="atr">ATR (matches scanner)</option>
+                </select>
+            </label>
+            <label data-mode="manual">Stop-loss price (₹)<input type="number" id="stop" min="0" step="0.05"></label>
+            <label data-mode="atr" hidden>ATR(14) (₹)<input type="number" id="atr" min="0" step="0.05"></label>
+            <label data-mode="atr" hidden>ATR multiple<input type="number" id="atr-mult" value="1.5" min="0" step="0.1"></label>
+
+            <label>Max position size (% of capital)<input type="number" id="max-pos" value="25" min="0" step="1"></label>
+            <label>Brokerage + taxes per round trip (%)<input type="number" id="costs" value="0.2" min="0" step="0.05"></label>
+        </form>
+
+        <div class="sizer-card" id="sizer-out">
+            <h2>Result</h2>
+            <div id="sizer-msg" class="sizer-msg">Enter capital, entry and stop to size a trade.</div>
+            <table class="sizer-table" id="sizer-table" hidden>
+                <tr><td>Shares</td><td id="o-shares" class="big"></td></tr>
+                <tr><td>Position value</td><td id="o-value"></td></tr>
+                <tr><td>% of capital</td><td id="o-pct"></td></tr>
+                <tr><td>Stop distance</td><td id="o-sd"></td></tr>
+                <tr><td>Stop-loss</td><td id="o-stop" class="stop-cell"></td></tr>
+                <tr><td>Actual risk</td><td id="o-risk" class="risk-cell"></td></tr>
+                <tr><td>Target 1 (2R)</td><td id="o-t1" class="t1-cell"></td></tr>
+                <tr><td>Target 2 (3R)</td><td id="o-t2" class="t2-cell"></td></tr>
+                <tr><td>Est. costs</td><td id="o-costs"></td></tr>
+            </table>
+            <p class="sizer-note" id="o-note"></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Shares = floor(capital × risk% ÷ stop distance), capped by max position size. Gaps and slippage can make real losses exceed the stop.</p>
+        <p>Not financial advice · For research only</p>
+    </footer>
+</div>
+<script src="sizer.js"></script>
+</body>
+</html>
