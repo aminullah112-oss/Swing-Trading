@@ -1,20 +1,20 @@
 # Backtest: baseline
 
-Config: `{"min_score": 72, "trigger": "none", "target_r": 0.0, "ema20_exit": true, "max_hold": 40, "slippage_bps": 10.0, "cost_bps": 15.0, "capital": 565000, "risk_pct": 0.005, "max_pos_pct": 0.25, "max_open_risk": 0.015, "oos_fraction": 0.4}`
+Config: `{"min_score": 72, "trigger": "none", "target_r": 0.0, "exit_mode": "ema20", "trail_k": 3.0, "max_hold": 40, "slippage_bps": 10.0, "cost_bps": 15.0, "capital": 565000, "risk_pct": 0.005, "max_pos_pct": 0.25, "max_open_risk": 0.015, "split_date": "2023-01-01"}`
 
-| Slice | Trades | Win | Avg R (95% CI) | PF | Worst R |
+| Slice | Trades | Win | Avg R (naive iid 95% CI, too narrow: trades cluster by date) | PF | Worst R |
 |---|---|---|---|---|---|
 | ALL | 13831 | 29% | -0.01 (-0.03..+0.02) | 0.99 | -3.19 |
-| In-sample | 8298 | 29% | -0.02 (-0.05..+0.01) | 0.94 | -3.19 |
-| Out-of-sample (from 2022-10-04) | 5533 | 29% | +0.02 (-0.02..+0.06) | 1.05 | -2.94 |
-| Score: 72-79 | 3690 | 32% | -0.01 (-0.05..+0.04) | 0.98 | -2.94 |
-| Score: 80-89 | 6517 | 28% | -0.00 (-0.04..+0.03) | 0.99 | -2.61 |
-| Score: 90+ | 3624 | 28% | -0.01 (-0.05..+0.04) | 0.99 | -3.19 |
-| Setup: BREAKOUT_CONT | 610 | 32% | +0.04 (-0.16..+0.23) | 1.06 | -2.61 |
+| Design period | 8828 | 29% | -0.03 (-0.05..+0.00) | 0.93 | -3.19 |
+| Hold-out (from 2023-01-01) | 5003 | 29% | +0.03 (-0.02..+0.08) | 1.08 | -2.94 |
+| Score: 72-79 | 3689 | 31% | -0.01 (-0.05..+0.04) | 0.98 | -2.94 |
+| Score: 80-89 | 6518 | 28% | -0.00 (-0.04..+0.03) | 0.99 | -2.61 |
+| Score: 90+ | 3624 | 28% | -0.00 (-0.05..+0.04) | 0.99 | -3.19 |
+| Setup: BREAKOUT_CONT | 611 | 32% | +0.05 (-0.15..+0.24) | 1.07 | -2.61 |
 | Setup: COMPRESSION | 155 | 33% | +0.16 (-0.14..+0.46) | 1.3 | -1.8 |
 | Setup: PULLBACK_EMA20 | 6427 | 27% | -0.04 (-0.07..-0.01) | 0.88 | -3.19 |
 | Setup: PULLBACK_EMA50 | 4572 | 30% | -0.03 (-0.06..+0.01) | 0.91 | -2.43 |
-| Setup: TRENDING | 2067 | 32% | +0.13 (+0.05..+0.22) | 1.27 | -2.94 |
+| Setup: TRENDING | 2066 | 32% | +0.13 (+0.05..+0.21) | 1.27 | -2.94 |
 | Regime: bear | 1618 | 30% | -0.04 (-0.11..+0.02) | 0.89 | -2.94 |
 | Regime: bull | 12213 | 29% | +0.00 (-0.03..+0.03) | 1.0 | -3.19 |
 | Exit: ema20 | 12102 | 30% | -0.04 (-0.06..-0.03) | 0.86 | -2.94 |
