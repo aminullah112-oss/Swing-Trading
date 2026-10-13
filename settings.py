@@ -44,5 +44,13 @@ SLIPPAGE_BPS_PER_SIDE = 10.0
 LIQUIDITY_PARTICIPATION_CAP = 0.05    # at most 5% of the entry day's volume can be filled
 ADV_ORDER_CAP = 0.02                  # order value at most 2% of 20-day average daily traded value
 
+# ---------------------------------------------------------------- order-level controls (riskgate.py); only ever tighter than the limits above
+MAX_QUOTE_AGE_S = 120                 # a price older than this is stale for entry purposes
+BROKER_HEARTBEAT_MAX_S = 60           # no broker heartbeat for this long => treat the broker as down
+MAX_CONSECUTIVE_REJECTS = 3           # this many broker rejections in a row halt new entries until a human clears it
+MAX_PER_CLUSTER = 2                   # open positions per correlation cluster / sector, when the cluster is known
+CASH_BUFFER = 0.02                    # keep 2% headroom over the order value for costs and slippage
+KILL_SWITCH_FILE = 'kill_switch.json'  # {"engaged": true} halts all new entries; absent or unreadable file = engaged
+
 # ---------------------------------------------------------------- live trading: hard-disabled
 LIVE_EXECUTION_ENABLED = False        # requires a code change plus the operator's separate written approval
