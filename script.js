@@ -1,5 +1,6 @@
 let allStocks = [];
 let activeFilter = 'ALL';
+let riskCfg = null;
 
 const DECISION_LABELS = {
     'HIGH_CONVICTION': '🟢 HIGH CONVICTION',
@@ -16,6 +17,38 @@ const SETUP_LABELS = {
     'TRENDING':       '📈 Trending',
 };
 
+const esc = v => String(v ?? '').replace(/[&<>"']/g,
+    c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const inr0 = n => '₹' + Number(n).toLocaleString('en-IN', {maximumFractionDigits: 0});
+
+// Fresh <= 4 calendar days since the last market bar (covers weekends and a holiday); else Stale.
+function renderStatus(data) {
+    const bar = document.getElementById('status-bar');
+    if (!data.data_cutoff) {
+        bar.className = 'status-bar status-stale';
+        bar.textContent = '⚠ STALE — results.json has no data-cutoff date (written by an older scanner version).';
+        return;
+    }
+    const ageDays = (Date.now() - new Date(data.data_cutoff + 'T00:00:00+05:30')) / 864e5;
+    const fresh   = ageDays <= 4;
+    bar.className = 'status-bar ' + (fresh ? 'status-fresh' : 'status-stale');
+    bar.textContent = (fresh ? '● FRESH' : '⚠ STALE') +
+        ` — market data through ${data.data_cutoff} · scanned ${data.scan_date} ${data.scan_time}` +
+        ` · ${data.symbols_processed}/${data.total_scanned} symbols · scan ${data.scan_id}`;
+}
+
+function renderRiskNote(cfg) {
+    if (!cfg) return;
+    document.getElementById('capital-note').innerHTML =
+        `<strong>Capital:</strong> ${esc(inr0(cfg.capital))} &nbsp;|&nbsp; ` +
+        `<strong>Risk/trade:</strong> HC ${esc(cfg.risk_pct_hc)}% · GO ${esc(cfg.risk_pct_go)}% &nbsp;|&nbsp; ` +
+        `<strong>Max position:</strong> ${esc(cfg.max_pos_pct)}% &nbsp;|&nbsp; ` +
+        `<strong>Max open risk:</strong> ${esc(cfg.max_open_risk_pct)}% &nbsp;|&nbsp; ` +
+        `<strong>Stop:</strong> max(1.5×ATR, 3%) &nbsp;|&nbsp; ` +
+        `<strong>Exit:</strong> close below EMA20 (daily). ` +
+        `Gaps can push real losses past the stop. Daily-updated screener, not real-time.`;
+}
+
 async function loadResults() {
     try {
         const res  = await fetch('results.json?t=' + Date.now());
@@ -25,6 +58,9 @@ async function loadResults() {
         }
         const data = await res.json();
         allStocks  = data.stocks || [];
+        riskCfg    = data.risk_config || null;
+        renderStatus(data);
+        renderRiskNote(data.risk_config);
 
         // Summary
         document.getElementById('count-hc').textContent      = data.summary?.high_conviction || 0;
@@ -78,11 +114,11 @@ function renderTable(filter) {
             : '—';
 
         return `
-        <tr class="stock-row" data-decision="${s.decision}">
-            <td><span class="badge badge-${s.decision}">${DECISION_LABELS[s.decision] || s.decision}</span></td>
+        <tr class="stock-row${p && !p.within_risk_budget ? ' over-budget' : ''}" data-decision="${esc(s.decision)}">
+            <td><span class="badge badge-${esc(s.decision)}">${esc(DECISION_LABELS[s.decision] || s.decision)}</span></td>
             <td class="symbol-cell">
-                <strong>${s.symbol}</strong>
-                <div class="setup-label">${setupLabel}</div>
+                <strong>${esc(s.symbol)}</strong>
+                <div class="setup-label">${esc(setupLabel)}</div>
             </td>
             <td>
                 <div class="score-wrap">
@@ -101,23 +137,23 @@ function renderTable(filter) {
             <td class="stop-cell">${p ? '₹' + p.stop_loss?.toFixed(2) : '—'}</td>
             <td class="t1-cell">${p ? '₹' + p.target_1?.toFixed(2) : '—'}</td>
             <td class="t2-cell">${p ? '₹' + p.target_2?.toFixed(2) : '—'}</td>
-            <td class="shares-cell">${p ? p.shares : '—'}${p ? ` <a class="back-link" title="Open in position sizer" href="sizer.html?entry=${s.price}&stop=${p.stop_loss}">🧮</a>` : ''}</td>
+            <td class="shares-cell" title="${esc(p?.note || (p && !p.within_risk_budget ? 'Exceeds open-risk budget' : ''))}">${p ? (p.shares || '0') : '—'}${p ? ` <a class="back-link" title="Open in position sizer" href="sizer.html?entry=${encodeURIComponent(s.price)}&stop=${encodeURIComponent(p.stop_loss)}">🧮</a>` : ''}</td>
             <td class="risk-cell">${p ? '₹' + p.risk_amount?.toLocaleString('en-IN') : '—'}</td>
-            <td class="reasons">${(s.reasons||[]).slice(0,3).join(' · ')}</td>
+            <td class="reasons">${esc((s.reasons||[]).slice(0,3).join(' · '))}</td>
         </tr>`;
     }).join('');
 }
 
-function filterDecision(decision) {
+function filterDecision(btn, decision) {
     activeFilter = decision;
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    event.target.classList.add('active');
+    btn.classList.add('active');
     renderTable(decision);
 }
 
 function showEmpty(msg) {
     document.getElementById('tbody').innerHTML =
-        `<tr><td colspan="15" class="loading-cell">${msg}</td></tr>`;
+        `<tr><td colspan="15" class="loading-cell">${esc(msg)}</td></tr>`;
 }
 
 document.addEventListener('DOMContentLoaded', loadResults);

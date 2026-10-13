@@ -16,6 +16,8 @@
         <a class="nav-link" href="sizer.html">🧮 Position Sizer</a>
     </header>
 
+    <div class="status-bar" id="status-bar">Loading scan status…</div>
+
     <div class="summary-bar">
         <div class="summary-card hc">
             <div class="card-count" id="count-hc">0</div>
@@ -57,11 +59,11 @@
     </div>
 
     <div class="tab-bar">
-        <button class="tab active"   onclick="filterDecision('ALL')">All</button>
-        <button class="tab tab-hc"   onclick="filterDecision('HIGH_CONVICTION')">🟢 High Conviction</button>
-        <button class="tab tab-go"   onclick="filterDecision('GO')">🟩 GO</button>
-        <button class="tab tab-wc"   onclick="filterDecision('WATCH_CLOSELY')">🟡 Watch Closely</button>
-        <button class="tab tab-w"    onclick="filterDecision('WATCH')">🟨 Watch</button>
+        <button class="tab active"   onclick="filterDecision(this,'ALL')">All</button>
+        <button class="tab tab-hc"   onclick="filterDecision(this,'HIGH_CONVICTION')">🟢 High Conviction</button>
+        <button class="tab tab-go"   onclick="filterDecision(this,'GO')">🟩 GO</button>
+        <button class="tab tab-wc"   onclick="filterDecision(this,'WATCH_CLOSELY')">🟡 Watch Closely</button>
+        <button class="tab tab-w"    onclick="filterDecision(this,'WATCH')">🟨 Watch</button>
     </div>
 
     <div class="table-wrapper">
@@ -93,13 +95,8 @@
         </table>
     </div>
 
-    <div class="capital-note">
-        <strong>Capital:</strong> ₹7.5L &nbsp;|&nbsp;
-        <strong>HC Risk:</strong> 2% = ₹15,000/trade &nbsp;|&nbsp;
-        <strong>GO Risk:</strong> 1% = ₹7,500/trade &nbsp;|&nbsp;
-        <strong>Stop:</strong> 1.5x ATR (volatility-adjusted) &nbsp;|&nbsp;
-        <strong>Max:</strong> 5 positions &nbsp;|&nbsp;
-        <strong>Exit:</strong> Close below EMA20 on daily chart
+    <div class="capital-note" id="capital-note">
+        Risk settings load with the scan. Daily-updated screener — not real-time data.
     </div>
 
     <footer class="footer">
