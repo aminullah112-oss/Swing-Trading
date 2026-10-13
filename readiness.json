@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-13T19:35:06+00:00",
+  "generated": "2026-10-13T19:43:21+00:00",
   "policy": {
-    "score": 1.5,
+    "score": 1.0,
     "mode": "PAPER ONLY",
     "live_risk_pct_allowed": 0.0,
     "reasons": [
@@ -16,7 +16,8 @@
       "F3 Forward expectancy (closed + open) has a 95% CI lower bound above 0",
       "F4 Forward expectancy is not clearly below the backtest design-period figure",
       "E1 At least 30 live fills with slippage within 2x the model",
-      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)"
+      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)",
+      "O1 Operations healthy: no health FAIL and no data lag"
     ]
   },
   "gates": [
@@ -126,14 +127,14 @@
     },
     {
       "id": "O1",
-      "label": "Operations healthy (no health FAIL)",
+      "label": "Operations healthy: no health FAIL and no data lag",
       "points": 0.5,
       "critical": false,
-      "status": "pass",
-      "earned": 0.5,
+      "status": "fail",
+      "earned": 0.0,
       "value": "WARN",
-      "threshold": "OK/WARN",
-      "detail": ""
+      "threshold": "no data lag",
+      "detail": "market data is behind the expected session; a system that buys the session after a signal cannot be traded on stale bars"
     },
     {
       "id": "R1",

@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-13T19:35:05.383775+00:00",
+  "updated": "2026-10-13T19:43:20.895382+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -183,11 +183,28 @@
       "status": "pending",
       "scan_id": "60b2b2bf4354",
       "taken": false
+    },
+    {
+      "id": "ETERNAL|2026-10-12",
+      "symbol": "ETERNAL",
+      "signal_date": "2026-10-12",
+      "setup": "PULLBACK_EMA50",
+      "score": 78,
+      "in_stockedge": false,
+      "close": 323.0,
+      "trigger": 327.7,
+      "stop": 309.41,
+      "plan_risk": 13.5857,
+      "shares": 154,
+      "risk_amount": 2816.66,
+      "status": "pending",
+      "scan_id": "6cea34aa4007",
+      "taken": false
     }
   ],
   "summary": {
-    "signals": 10,
-    "pending": 10,
+    "signals": 11,
+    "pending": 11,
     "open": 0,
     "closed": 0,
     "expired": 0,

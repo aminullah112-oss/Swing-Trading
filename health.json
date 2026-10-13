@@ -1,6 +1,6 @@
 {
   "status": "WARN",
-  "generated": "2026-10-13T19:35:06+00:00",
+  "generated": "2026-10-13T19:43:21+00:00",
   "checks": [
     {
       "id": "H1",
@@ -10,12 +10,12 @@
     {
       "id": "H1b",
       "level": "warn",
-      "msg": "data ends 2026-10-12 but the last completed session should be 2026-10-13 (1 session(s) behind): an exchange holiday, or the data vendor is lagging. If it was a trading day, 'valid for the next session' buy levels refer to a session that already traded"
+      "msg": "data ends 2026-10-12 but the last completed session should be 2026-10-13 (1 session(s) behind). Unless it was an exchange holiday missing from market_holidays.json, the data vendor is lagging and 'valid for the next session' buy levels refer to a session that already traded"
     },
     {
       "id": "H2",
       "level": "ok",
-      "msg": "157/160 symbols had data (98%); no data for: TATAMOTORS, ZOMATO, GUJARATGAS"
+      "msg": "158/160 symbols had data (99%); no data for: PFC, GUJARATGAS"
     },
     {
       "id": "H3",
@@ -25,7 +25,7 @@
     {
       "id": "H4",
       "level": "ok",
-      "msg": "10 signals, integrity ok"
+      "msg": "11 signals, integrity ok"
     },
     {
       "id": "H7",
