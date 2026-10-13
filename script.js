@@ -101,7 +101,7 @@ function renderTable(filter) {
             <td class="stop-cell">${p ? '₹' + p.stop_loss?.toFixed(2) : '—'}</td>
             <td class="t1-cell">${p ? '₹' + p.target_1?.toFixed(2) : '—'}</td>
             <td class="t2-cell">${p ? '₹' + p.target_2?.toFixed(2) : '—'}</td>
-            <td class="shares-cell">${p ? p.shares : '—'}</td>
+            <td class="shares-cell">${p ? p.shares : '—'}${p ? ` <a class="back-link" title="Open in position sizer" href="sizer.html?entry=${s.price}&stop=${p.stop_loss}">🧮</a>` : ''}</td>
             <td class="risk-cell">${p ? '₹' + p.risk_amount?.toLocaleString('en-IN') : '—'}</td>
             <td class="reasons">${(s.reasons||[]).slice(0,3).join(' · ')}</td>
         </tr>`;

@@ -99,3 +99,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .header h1{font-size:1.6em}
   .tab-bar{flex-wrap:wrap}
 }
+
+/* Position Sizer */
+.back-link{color:#a0b0ff;text-decoration:none}
+.nav-link{display:inline-block;margin-top:10px;color:#a0b0ff;text-decoration:none;border:1px solid #4a5aaa;padding:6px 14px;border-radius:6px;font-size:0.9em}
+.nav-link:hover{background:#2d3561;color:#fff}
+.sizer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding:20px}
+.sizer-card{background:#1a1f2e;border-radius:8px;padding:20px;border-top:3px solid #4a5aaa}
+.sizer-card h2{font-size:1.1em;color:#a0b0ff;margin-bottom:14px}
+.sizer-card label{display:block;font-size:0.85em;color:#aaa;margin-bottom:12px}
+.sizer-card label[hidden]{display:none}
+.sizer-card input,.sizer-card select{display:block;width:100%;margin-top:4px;padding:9px 10px;background:#0f1117;border:1px solid #333;border-radius:6px;color:#e0e0e0;font-size:1em}
+.sizer-card input:focus,.sizer-card select:focus{outline:none;border-color:#4a5aaa}
+.sizer-table{width:100%;border-collapse:collapse}
+.sizer-table td{padding:9px 4px;border-bottom:1px solid #1e2338}
+.sizer-table td:last-child{text-align:right;font-weight:600}
+.sizer-table .big{font-size:1.6em;color:#fff}
+.sizer-msg{color:#888;padding:20px 0}
+.sizer-note{color:#ffd740;font-size:0.85em;margin-top:12px}
