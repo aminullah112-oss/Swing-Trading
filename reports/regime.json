@@ -1,0 +1,70 @@
+{
+  "live_variant": "slow-exit v4 (paper-trading candidate)",
+  "rows": {
+    "uptrend": {
+      "trades": 3254,
+      "months": 81,
+      "win_rate": 0.267,
+      "avg_r": 0.341,
+      "ci95": [
+        0.115,
+        0.578
+      ],
+      "profit_factor": 1.59
+    },
+    "pullback_in_uptrend": {
+      "trades": 1104,
+      "months": 64,
+      "win_rate": 0.251,
+      "avg_r": 0.382,
+      "ci95": [
+        -0.076,
+        0.923
+      ],
+      "profit_factor": 1.71
+    },
+    "bounce_below_ema200": {
+      "trades": 100,
+      "months": 12,
+      "win_rate": 0.3,
+      "avg_r": 0.26,
+      "ci95": [
+        -0.198,
+        0.931
+      ],
+      "profit_factor": 1.4
+    },
+    "downtrend": {
+      "trades": 584,
+      "months": 40,
+      "win_rate": 0.291,
+      "avg_r": 0.44,
+      "ci95": [
+        0.09,
+        0.799
+      ],
+      "profit_factor": 1.88
+    }
+  },
+  "n_trades": 5042,
+  "downtrend_minus_rest": [
+    0.09019558878486683,
+    -0.32673620382131446,
+    0.5178035386789424
+  ],
+  "downtrend_minus_rest_design": [
+    0.310437920419647,
+    -0.14553799527134692,
+    0.818994418158966
+  ],
+  "downtrend_minus_rest_holdout": [
+    -0.3071395961247985,
+    -1.0871755992582075,
+    0.48893507011339327
+  ],
+  "today": {
+    "regime": "downtrend",
+    "label": "Downtrend (below both)",
+    "date": "2026-10-12"
+  }
+}
