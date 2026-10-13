@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T18:57:59+00:00",
+  "generated": "2026-10-13T19:14:37+00:00",
   "policy": {
     "score": 1.5,
     "mode": "PAPER ONLY",
@@ -36,11 +36,11 @@
       "label": "Beats buy-and-hold of the same universe per unit of drawdown (hold-out)",
       "points": 1.0,
       "critical": true,
-      "status": "insufficient",
+      "status": "fail",
       "earned": 0.0,
-      "value": null,
-      "threshold": null,
-      "detail": "reports/universe.json missing: rerun the Backtest workflow"
+      "value": "strategy 0.43 vs universe 0.83",
+      "threshold": "CAGR/|maxDD| >= universe",
+      "detail": "hold-out CAGR 6.7% / DD -15.7% vs universe 17.0% / -20.6%"
     },
     {
       "id": "B2",
@@ -71,7 +71,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": -1,
+      "value": 0,
       "threshold": 182,
       "detail": ""
     },
@@ -84,7 +84,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 0, -1)"
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, 0)"
     },
     {
       "id": "F4",
@@ -95,7 +95,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 0, -1)"
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, 0)"
     },
     {
       "id": "E1",
