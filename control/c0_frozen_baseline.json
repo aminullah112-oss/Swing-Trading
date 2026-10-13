@@ -1,0 +1,96 @@
+{
+ "_README": "Numbers copied from the Backtest reports committed before provenance existed. They are the reference that reproduction (c0_baseline.py) is compared against; drift beyond tolerance is flagged as a data revision or a code change, never silently accepted.",
+ "source_commit_of_reports": "f1ac90c1f8c2c2e28e02df7fd447c8eb91bf1f0c",
+ "universe_version_of_source": "U159_v2 (159 symbols with data)",
+ "grid_row_prior_high_ema50_h120": {
+  "design_n": 3310,
+  "design_avg_r": 0.22,
+  "holdout_n": 1778,
+  "holdout_avg_r": 0.633,
+  "holdout_adj_ci": [
+   0.089,
+   1.291
+  ],
+  "holdout_port_cagr": 6.7,
+  "holdout_port_maxdd": -15.7,
+  "full_cagr": 6.3,
+  "full_maxdd": -12.5,
+  "full_pf": 1.65
+ },
+ "benchmarks_holdout": {
+  "Live strategy (baseline)": {
+   "cagr_pct": 6.6,
+   "max_drawdown_pct": -15.7,
+   "calmar": 0.42,
+   "sharpe": 0.79,
+   "days": 931
+  },
+  "H1 momentum-30 replica": {
+   "cagr_pct": 24.1,
+   "max_drawdown_pct": -23.0,
+   "calmar": 1.05,
+   "sharpe": 1.36,
+   "days": 932
+  },
+  "Equal-weight universe": {
+   "cagr_pct": 17.1,
+   "max_drawdown_pct": -20.7,
+   "calmar": 0.83,
+   "sharpe": 1.17,
+   "days": 932
+  },
+  "Nifty 50": {
+   "cagr_pct": 5.8,
+   "max_drawdown_pct": -15.8,
+   "calmar": 0.36,
+   "sharpe": 0.52,
+   "days": 931
+  }
+ },
+ "benchmarks_design": {
+  "Live strategy (baseline)": {
+   "cagr_pct": 5.7,
+   "max_drawdown_pct": -8.5,
+   "calmar": 0.67,
+   "sharpe": 0.85,
+   "days": 1328
+  },
+  "H1 momentum-30 replica": {
+   "cagr_pct": 22.6,
+   "max_drawdown_pct": -37.4,
+   "calmar": 0.6,
+   "sharpe": 1.08,
+   "days": 1176
+  },
+  "Equal-weight universe": {
+   "cagr_pct": 21.5,
+   "max_drawdown_pct": -38.0,
+   "calmar": 0.57,
+   "sharpe": 1.2,
+   "days": 1538
+  },
+  "Nifty 50": {
+   "cagr_pct": 12.8,
+   "max_drawdown_pct": -38.4,
+   "calmar": 0.33,
+   "sharpe": 0.77,
+   "days": 1534
+  }
+ },
+ "universe_holdout": {
+  "equal_weight": {
+   "cagr_pct": 17.1,
+   "max_drawdown_pct": -20.7
+  },
+  "nifty": {
+   "cagr_pct": 5.8,
+   "max_drawdown_pct": -15.8
+  },
+  "universe_excess_cagr_pct": 11.3
+ },
+ "tolerance": {
+  "avg_r_abs": 0.05,
+  "cagr_pts": 1.0,
+  "trades_rel": 0.03
+ }
+}

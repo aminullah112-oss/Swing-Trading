@@ -22,61 +22,19 @@ warnings.filterwarnings('ignore')
 
 IST = ZoneInfo('Asia/Kolkata')
 
-def _env_float(name, default):
-    try:    return float(os.environ.get(name, default))
-    except ValueError: return default
+# Risk, capital and execution settings: single source of truth in settings.py (re-exported here for compatibility)
+from settings import (CAPITAL, RISK_PCT, MAX_POS_PCT, MAX_OPEN_RISK, MIN_DATA_RATIO, _env_float)  # noqa: E402,F401
+import universe as _universe  # noqa: E402
 
-# Override via workflow env / repo variables. Defaults are deliberately conservative.
-CAPITAL        = _env_float('EDGE_CAPITAL', 565000)    # actual available INR equity
-RISK_PCT       = _env_float('EDGE_RISK_PCT', 0.5) / 100
-MAX_POS_PCT    = _env_float('EDGE_MAX_POS_PCT', 25) / 100     # per-position value cap
-MAX_OPEN_RISK  = _env_float('EDGE_MAX_OPEN_RISK_PCT', 1.5) / 100  # across all signals
-MIN_DATA_RATIO = 0.8    # fail the scan if fewer than 80% of symbols have usable data
-
-# Corrected Yahoo Finance ticker symbols for NSE
-NSE_STOCKS = [
-    'RELIANCE','TCS','HDFCBANK','INFY','HINDUNILVR',
-    'ICICIBANK','SBIN','BHARTIARTL','KOTAKBANK','LT',
-    'AXISBANK','WIPRO','MARUTI','BAJFINANCE','HCLTECH',
-    'ASIANPAINT','ULTRACEMCO','TITAN','SUNPHARMA','NESTLEIND',
-    'TECHM','TATAMOTORS','INDUSINDBK','POWERGRID','NTPC',
-    'BAJAJFINSV','ONGC','JSWSTEEL','TATASTEEL','COALINDIA',
-    'ADANIENT','ADANIPORTS','CIPLA','DRREDDY','DIVISLAB',
-    'BRITANNIA','EICHERMOT','GRASIM','HEROMOTOCO','ITC',
-    'M&M','BPCL','IOC','TATACONSUM','APOLLOHOSP',
-    'BAJAJ-AUTO','UPL','SBILIFE','HDFCLIFE','HINDALCO',
-    'DMART','SIEMENS','HAVELLS','PIDILITIND','DABUR',
-    'MARICO','COLPAL','BERGEPAINT','GODREJCP','MUTHOOTFIN',
-    'LUPIN','BIOCON','TORNTPHARM','ALKEM','AUROPHARMA',
-    'GLENMARK','AMBUJACEM','ACC','SHREECEM','INDIGO',
-    'TATAPOWER','TRENT','NAUKRI','IRCTC','CONCOR',
-    'SAIL','NMDC','VEDL','GAIL','PETRONET',
-    'IGL','BANKBARODA','PNB','CANBK','FEDERALBNK',
-    'IDFCFIRSTB','RBLBANK','AUBANK','CHOLAFIN','LICHSGFIN',
-    'MANAPPURAM','SUNDARMFIN','SHRIRAMFIN','PIIND','PERSISTENT',
-    'COFORGE','MPHASIS','LTTS','KPITTECH','TATAELXSI',
-    'CYIENT','DEEPAKNTR','NAVINFLUOR','TATACHEM','APOLLOTYRE',
-    'BALKRISIND','CEATLTD','MRF','MOTHERSON','BHARATFORG',
-    'BOSCHLTD','VOLTAS','KAJARIACER','SUPREMEIND','ASTRAL',
-    'POLYCAB','KEI','PAGEIND','RADICO','LAURUSLABS',
-    'GRANULES','AJANTPHARM','ERIS','METROPOLIS','MAXHEALTH',
-    'FORTIS','NH','SYNGENE','BRIGADE','SOBHA',
-    'PRESTIGE','GODREJPROP','PHOENIXLTD','OBEROIRLTY','THERMAX',
-    'CUMMINSIND','EMAMILTD','BEL','HAL','IRFC',
-    'RVNL','PFC','RECLTD','SJVN','NHPC',       # REC.NS → RECLTD.NS
-    'SUZLON','TRIDENT','RAYMOND','COROMANDEL','CHAMBLFERT',
-    'RALLIS','DHANUKA','ATUL','NOCIL','APLAPOLLO',
-    'ZOMATO','AARTIIND','TVSMOTOR','PRAJIND',   # Fixed tickers
-]
-NSE_STOCKS = list(dict.fromkeys(NSE_STOCKS))
+# The stock universe is a frozen, versioned file (universe/*.json); see universe.py
+_U = _universe.load()
+UNIVERSE_VERSION = _U['version']
+NSE_STOCKS = _U['symbols']
 YF_TICKERS = [f"{s}.NS" for s in NSE_STOCKS]
 BENCH = '^NSEI'
 # Renamed / restructured tickers. The modern symbol is tried first, then the original. A series that
 # stops more than STALE_DAYS before the latest bar is treated as missing (delisted or renamed).
-SYMBOL_ALIASES = {
-    'ZOMATO': ['ETERNAL'],          # renamed Eternal Ltd in 2025
-    'TATAMOTORS': ['TMPV'],         # demerger: passenger-vehicle company
-}
+SYMBOL_ALIASES = _U['aliases']
 ALIAS_TICKERS = [f'{a}.NS' for v in SYMBOL_ALIASES.values() for a in v]
 STALE_DAYS = 7
 PROV_MIN_COVERAGE = 0.8      # use provisional bars only if intraday data covers most of the universe
