@@ -34,13 +34,19 @@ jobs:
       run: python research.py --years ${{ inputs.years }} --cache history_cache.pkl
     - name: Same-universe benchmarks and pre-registered redesign tests
       run: python benchmarks.py --years ${{ inputs.years }} --cache history_cache.pkl
+    - name: Stamp reports with provenance
+      run: python stamp_reports.py
+    - name: Regenerate readiness from the new evidence
+      run: |
+        python health.py || true
+        python readiness.py
     - name: Publish summary
       run: cat reports/benchmarks.md reports/universe.md reports/regime.md reports/grid.md reports/diagnosis.md reports/backtest_baseline.md reports/backtest_trigger.md >> "$GITHUB_STEP_SUMMARY"
     - name: Commit reports
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
-        git add reports/
+        git add reports/ health.json readiness.json
         git commit -m "Backtest reports $(date -u +'%Y-%m-%d %H:%M UTC')" || { echo "No changes"; exit 0; }
         git pull --rebase origin main
         git push origin main

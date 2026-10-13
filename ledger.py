@@ -361,7 +361,7 @@ def forward_returns(ledger):
     Including open trades matters: under a slow exit, closed-only results are biased toward losers."""
     rs, months = [], []
     for r in ledger['signals']:
-        if not r.get('entry_date'):
+        if not r.get('entry_date') or r.get('evidence_eligible') is False:
             continue
         if r['status'] == 'closed':
             rs.append(float(r['r']))
@@ -379,6 +379,9 @@ def summarize(ledger):
     open_ = [r for r in sigs if r['status'] == 'open']
     rs = np.array([r['r'] for r in closed], dtype=float)
     out = {
+        'closed_eligible': sum(1 for r in closed if r.get('evidence_eligible') is not False),
+        'first_eligible_signal': min((r['signal_date'] for r in sigs if r.get('evidence_eligible') is not False
+                                      and r['status'] != 'rejected'), default=None),
         'signals': len(sigs), 'pending': sum(r['status'] == 'pending' for r in sigs), 'open': len(open_),
         'closed': len(closed), 'expired': sum(r['status'] == 'expired' for r in sigs),
         'void': sum(r['status'] == 'void' for r in sigs),
