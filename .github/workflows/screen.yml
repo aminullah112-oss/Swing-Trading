@@ -32,15 +32,21 @@ jobs:
       env:
         # Set repo variables (Settings > Secrets and variables > Actions > Variables) to override.
         EDGE_CAPITAL: ${{ vars.EDGE_CAPITAL || '565000' }}
-        EDGE_RISK_PCT_HC: ${{ vars.EDGE_RISK_PCT_HC || '0.5' }}
-        EDGE_RISK_PCT_GO: ${{ vars.EDGE_RISK_PCT_GO || '0.25' }}
+        EDGE_RISK_PCT: ${{ vars.EDGE_RISK_PCT || '0.5' }}
       run: python screener.py
 
+    - name: Update paper-trade ledger
+      env:
+        EDGE_CAPITAL: ${{ vars.EDGE_CAPITAL || '565000' }}
+        EDGE_RISK_PCT: ${{ vars.EDGE_RISK_PCT || '0.5' }}
+      run: python paper.py
+
     - name: Commit results
+      if: always()
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
-        git add results.json
+        git add results.json ledger.json
         git commit -m "Scan update $(date -u +'%Y-%m-%d %H:%M UTC')" || { echo "No changes"; exit 0; }
         git pull --rebase origin main
         git push origin main

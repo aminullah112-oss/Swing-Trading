@@ -164,7 +164,8 @@ def simulate_trade(a, s, cfg, setup='', score=0):
         if cfg.exit_mode in ('ema20', 'ema50') and C[d] < ref[d]:
             if d + 1 < n:
                 return _finish(a, s, e, d + 1, fill, stop, O[d + 1], cfg.exit_mode, cfg, setup, score, sd)
-            return _finish(a, s, e, d, fill, stop, C[d], cfg.exit_mode, cfg, setup, score, sd)
+            # exit signal on the final bar: the real exit is tomorrow's open, which we don't have yet
+            return _finish(a, s, e, d, fill, stop, C[d], cfg.exit_mode + '_pending', cfg, setup, score, sd)
         if cfg.exit_mode == 'chandelier':      # trail set at today's close, active from tomorrow
             hh = max(hh, H[d])
             cur_stop = max(cur_stop, hh - cfg.trail_k * a['atr'][d])

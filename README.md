@@ -296,10 +296,9 @@ Position sizing lives in `risk.py` and is configured by environment variables (s
 | Variable | Default | Meaning |
 |---|---|---|
 | `EDGE_CAPITAL` | 565000 | Available INR equity |
-| `EDGE_RISK_PCT_HC` | 0.5 | % of capital risked per High Conviction trade |
-| `EDGE_RISK_PCT_GO` | 0.25 | % of capital risked per GO trade |
+| `EDGE_RISK_PCT` | 0.5 | % of capital risked per trade |
 | `EDGE_MAX_POS_PCT` | 25 | Max position value, % of capital |
-| `EDGE_MAX_OPEN_RISK_PCT` | 1.5 | Signals beyond this cumulative risk are dimmed as over budget |
+| `EDGE_MAX_OPEN_RISK_PCT` | 1.5 | Signals beyond this cumulative risk are dimmed as over budget (listed in an arbitrary fixed order: nothing is ranked) |
 
 Shares are rounded down to the strictest of the risk, position-cap and cash limits; there is no forced one-share minimum. `sizer.js` mirrors the same formula and reads its defaults from `results.json`. If the data download fails or under 80% of symbols have usable data, the scan exits non-zero and the previous `results.json` is kept. Tests: `tests/test_risk.py` (pytest).
 
@@ -323,3 +322,21 @@ Shares are rounded down to the strictest of the risk, position-cap and cash limi
 Runs a fixed grid of 12 entry/exit variants (trial count fixed in advance) and a diagnosis of whether the 0-100 score, or any of its components, predicts R. Design period = entries before 2023-01-01, hold-out = 2023 onward. Confidence intervals are month-clustered bootstraps (trades entered in the same month share market moves) with a Bonferroni adjustment for 12 trials. A variant is "promising" only if the design period is positive, the hold-out adjusted CI lower bound is above zero, and a fresh-start hold-out portfolio has positive CAGR. Outputs: `reports/grid.md`, `reports/diagnosis.md`.
 
 Caveats: survivorship bias; the TRENDING-vs-pullback pattern was seen on the full sample before the hold-out was set, so only forward paper-trading data can confirm it.
+
+
+---
+
+## 🧾 Live strategy (v4) and paper-trading ledger
+
+The scanner now outputs one thing: **signals** for the `prior_high/ema50/h120` variant of the pre-registered grid (spec in `strategy.py`). The High Conviction / GO / Watch tiers and the score ranking are gone, because the score did not predict returns (`reports/diagnosis.md`).
+
+- **Signal:** stage 2 + Supertrend up + the scanner's filters, with the old score kept only as a qualifier (>= 72) because every tested signal satisfied it
+- **Entry:** buy-stop at the signal-day high, valid for the next session only
+- **Exit:** next open after a daily close below EMA50, or after 120 trading days; hard stop = close - max(1.5 x ATR, 3%)
+- **Sizing:** from the buy-stop price to the stop, 0.5% risk, 25% position cap, 1.5% open-risk budget
+
+`paper.py` logs every signal into `ledger.json` and follows it with the same `simulate_trade` the backtest uses, so paper and backtest results share one definition of a trade. `tests/test_screener_backtest_parity.py` asserts the live scanner and the backtest agree on every sampled day.
+
+The Backtest workflow also writes `reports/universe.md`: the equal-weight return of this exact stock list versus the Nifty, an upper bound on how much any result is just "today's survivors went up".
+
+**Status: paper-trading candidate, not a validated edge.** Survivorship bias, a strong 2023-26 hold-out and wide confidence intervals are unresolved. Do not trade real money from it until the ledger has on the order of 100 closed trades that look like the backtest.

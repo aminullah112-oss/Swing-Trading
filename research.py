@@ -248,6 +248,61 @@ def diagnose(trades, label):
     return '\n'.join(L), res
 
 
+def _cagr_dd(ret):
+    """CAGR and max drawdown from a daily simple-return series."""
+    ret = ret.dropna()
+    if len(ret) < 20:
+        return None
+    eq = (1 + ret).cumprod()
+    years = max((eq.index[-1] - eq.index[0]).days / 365.25, 1e-9)
+    return {'cagr_pct': round(float(eq.iloc[-1] ** (1 / years) - 1) * 100, 1),
+            'max_drawdown_pct': round(float((eq / eq.cummax() - 1).min()) * 100, 1)}
+
+
+def universe_baseline(frames, bench, since):
+    """What did owning today's universe (equal weight, daily rebalanced, no costs) earn versus the
+    index? A large gap is the ceiling on how much of any strategy's result is just 'the stocks that
+    are in the list today went up'. It also contains genuine size/style differences (the universe
+    is mid-cap heavy; the Nifty 50 is not), so it overstates pure survivorship."""
+    closes = pd.DataFrame({s: df['Close'].astype(float) for s, df in frames.items()}).sort_index()
+    ew = closes.pct_change().mean(axis=1)                       # equal-weight daily return
+    b = bench.astype(float).pct_change() if bench is not None else None
+    since = pd.Timestamp(since)
+    out = {'symbols': int(closes.shape[1])}
+    for label, lo in (('full', closes.index[0]), ('holdout', since)):
+        e = _cagr_dd(ew[ew.index >= lo])
+        n = _cagr_dd(b[b.index >= lo]) if b is not None else None
+        ex = round(e['cagr_pct'] - n['cagr_pct'], 1) if e and n else None
+        out[label] = {'equal_weight': e, 'nifty': n, 'universe_excess_cagr_pct': ex}
+    return out
+
+
+def universe_markdown(u, rows):
+    L = ['# Universe / survivorship check', '',
+         f"Equal-weight buy-and-hold of the {u['symbols']} stocks in today's universe (daily rebalanced, no costs) versus the Nifty.",
+         'The gap is an **upper bound** on survivorship effects: it also contains real size/style differences (this list is mid-cap heavy).', '',
+         '| Period | Universe CAGR / maxDD | Nifty CAGR / maxDD | Universe excess CAGR |', '|---|---|---|---|']
+    for k, name in (('full', 'Full history'), ('holdout', f'Hold-out (from {SPLIT})')):
+        v = u[k]
+        if v['equal_weight'] and v['nifty']:
+            L.append(f"| {name} | {v['equal_weight']['cagr_pct']}% / {v['equal_weight']['max_drawdown_pct']}% | "
+                     f"{v['nifty']['cagr_pct']}% / {v['nifty']['max_drawdown_pct']}% | {v['universe_excess_cagr_pct']} pts |")
+        else:
+            L.append(f'| {name} | n/a | n/a | n/a |')
+    nift = u['holdout']['nifty']['cagr_pct'] if u['holdout']['nifty'] else None
+    ux = u['holdout']['universe_excess_cagr_pct']
+    L += ['', '**Do the passing variants beat what the universe alone delivered?** Hold-out portfolio CAGR vs Nifty, next to the universe excess above. '
+          'Note the strategy portfolio holds at most ~3 positions at 0.5% risk, so it is rarely more than half invested; compare drawdown as well.', '',
+          '| Variant | Hold-out portfolio CAGR | Excess over Nifty | Beats universe excess? |', '|---|---|---|---|']
+    for r in rows:
+        if r['promising'] and nift is not None and r['holdout_port_cagr'] is not None:
+            ex = round(r['holdout_port_cagr'] - nift, 1)
+            L.append(f"| {r['label']} | {r['holdout_port_cagr']}% | {ex} pts | {'yes' if ux is not None and ex > ux else 'no'} |")
+    L += ['', 'Reading it: if the universe alone beat the Nifty by about as much as a passing variant did, the variant has shown no edge beyond '
+          '"these stocks went up". Beating it does not prove the edge is real: data without delisted names can still flatter every row.']
+    return '\n'.join(L)
+
+
 def main():
     import argparse
     ap = argparse.ArgumentParser()
@@ -265,6 +320,10 @@ def main():
     hold_start = pd.Timestamp(SPLIT)
     b_hold = bt.benchmark_stats(bench, hold_start, span[1]) if span[1] is not None else None
     note = f'Nifty buy-and-hold since {SPLIT}: {json.dumps(b_hold)}'
+    u = universe_baseline(frames, bench, SPLIT)
+    with open(f'{a.out}/universe.md', 'w') as f:
+        f.write(universe_markdown(u, rows))
+    print(universe_markdown(u, rows))
     with open(f'{a.out}/grid.md', 'w') as f:
         f.write(grid_markdown(rows, note))
     with open(f'{a.out}/grid.json', 'w') as f:
