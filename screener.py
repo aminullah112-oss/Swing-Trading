@@ -15,6 +15,7 @@ import yfinance as yf
 
 from risk import size_position, stop_distance
 import strategy
+import analysis
 
 warnings.filterwarnings('ignore')
 
@@ -69,6 +70,7 @@ NSE_STOCKS = [
 ]
 NSE_STOCKS = list(dict.fromkeys(NSE_STOCKS))
 YF_TICKERS = [f"{s}.NS" for s in NSE_STOCKS]
+BENCH = '^NSEI'
 
 
 def load_stockedge():
@@ -114,7 +116,7 @@ def fetch_bulk():
     for attempt in range(3):
         try:
             data = yf.download(
-                tickers=YF_TICKERS,
+                tickers=YF_TICKERS + [BENCH],
                 period='1y',
                 interval='1d',
                 group_by='ticker',
@@ -273,7 +275,19 @@ def evaluate(df, in_se=False):
         return None, 'score'
     price = float(ind['price'])
     sd = stop_distance(price, ind['atr'])
+    trigger, stop = round(float(ind['high']), 2), round(price - sd, 2)
+    feat = analysis.day_features(df, ind)
+    feat.update({
+        'stop_pct': round((trigger - stop) / trigger * 100, 2) if trigger > 0 else 99.0,
+        'trigger_gap_pct': round((trigger - price) / price * 100, 2),
+        'ema_dist_pct': float(ind['ema20_dist']),
+        'vol_ratio': float(max(ind['vol_ratio'], ind['vol_5d'])),
+    })
+    checks = analysis.build_checks(feat)
     return {
+        'avg_value_cr': feat['avg_value_cr'], 'close_in_range': feat['close_in_range'],
+        'stop_pct': feat['stop_pct'], 'trigger_gap_pct': feat['trigger_gap_pct'],
+        'checks': checks, 'execution_ok': analysis.execution_ok(checks), 'spark': analysis.sparkline(df),
         'symbol': None, 'decision': 'SIGNAL', 'score': sc_, 'stage': stg,
         'setup_type': stp, 'setup_desc': sdsc, 'in_stockedge': in_se,
         'signal_date': str(df.index[-1].date()),
@@ -352,6 +366,11 @@ def main():
         sys.exit(1)
 
     data_cutoff = max(last_bars).strftime('%Y-%m-%d')
+    try:
+        nifty = extract_df(bulk, BENCH)
+        nifty_close = nifty['Close'] if nifty is not None else None
+    except Exception:
+        nifty_close = None
     results.sort(key=lambda r: arbitrary_order(data_cutoff, r['symbol']))
     open_risk = 0.0
     for r in results:
@@ -380,7 +399,8 @@ def main():
             'capital': CAPITAL, 'risk_pct': RISK_PCT * 100,
             'max_pos_pct': MAX_POS_PCT * 100, 'max_open_risk_pct': MAX_OPEN_RISK * 100,
         },
-        'summary':           {'signals': len(results)},
+        'summary':           {'signals': len(results), 'tradeable': sum(1 for r in results if r['execution_ok'])},
+        'market':            analysis.market_context(nifty_close, processed - stats['stage'], processed, len(results)),
         'stocks':            results,
     }
     # write-then-rename so a crash never leaves a half-written results.json

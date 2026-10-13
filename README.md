@@ -351,3 +351,14 @@ The Backtest workflow also writes `reports/universe.md`: the equal-weight return
 The score maps to a live-risk policy: under 4.5 or any kill switch or unconfirmed capital means paper only; a fill-test tier of 0.10% risk opens once the forward gates pass; 0.25% and 0.50% need more evidence. The thresholds are fixed in the code, not tuned.
 
 **`health.py`** runs daily: scan freshness and coverage, ledger freshness and integrity, signal drought, edge decay on the forward record, a drawdown kill switch (8% of capital on taken signals; warning at 5%) and risk-limit sanity. A FAIL turns the workflow red (GitHub emails you) and opens an issue. Kill-switch levels are set in advance so they cannot be argued away during a drawdown.
+
+
+---
+
+## 🖥️ Pages
+
+- **Trade Desk** (`index.html`, the homepage): market backdrop (Nifty trend, breadth), then one card per tradeable signal with a 60-day chart (EMA20, EMA50, buy level, stop), the plan (buy-stop, stop, shares, risk, exit line), automated execution checks and a manual pre-trade checklist. Signals that fail a hard execution check (thin liquidity, stop wider than 15%) move to a separate table with the reason. It always shows the live-trading status bar from the readiness scorecard.
+- **Paper Trading & Readiness** (`paper.html`): the forward ledger, its results, the readiness scorecard and health checks.
+- **Position Sizer** (`sizer.html`).
+
+`analysis.py` defines the execution checks and the market backdrop. They are hygiene, not alpha: they were not part of the backtested rules, `warn` is information, and only a `block` hides a signal from the tradeable list. Sizes on the desk use the live risk the readiness policy allows; while that is 0 they show the reference (paper) size and say so.

@@ -3,133 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDGE PROTOCOL v4 — NSE Slow-Exit Paper Trading</title>
+    <title>EDGE PROTOCOL — Trade Desk</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
+    <nav class="topnav">
+        <a href="index.html" class="active">📈 Trade Desk</a>
+        <a href="paper.html">🧾 Paper Trading &amp; Readiness</a>
+        <a href="sizer.html">🧮 Position Sizer</a>
+        <a href="https://github.com/aminullah112-oss/Swing-Trading" target="_blank">GitHub</a>
+    </nav>
 
     <header class="header">
-        <h1>📊 EDGE PROTOCOL v4</h1>
-        <p class="subtitle">Slow-exit trend system · NSE · daily-updated</p>
-        <p class="description">Paper-trading candidate — not a validated edge. <a href="sizer.html" class="back-link">🧮 Position sizer</a></p>
+        <h1>📈 Trade Desk</h1>
+        <p class="subtitle">Slow-exit trend system · NSE · daily-updated · swing setups with stop and exit plan</p>
+        <p class="description">Signals come from rules tested in backtests; the checks below are execution hygiene, not extra edge.</p>
     </header>
 
     <div class="status-bar" id="status-bar">Loading scan status…</div>
-
-    <div class="summary-bar">
-        <div class="summary-card go">
-            <div class="card-count" id="count-signals">0</div>
-            <div class="card-label">Signals today</div>
-        </div>
-        <div class="summary-card hc">
-            <div class="card-count" id="count-open">0</div>
-            <div class="card-label" id="label-open">Paper: open</div>
-        </div>
-        <div class="summary-card wc">
-            <div class="card-count" id="count-closed">0</div>
-            <div class="card-label">Paper: closed</div>
-        </div>
-        <div class="summary-card w">
-            <div class="card-count" id="avg-r">—</div>
-            <div class="card-label">Avg R (closed + open, mtm)</div>
-        </div>
-        <div class="summary-card meta">
-            <div class="card-count" id="count-scanned">—</div>
-            <div class="card-label">Stocks scanned</div>
-        </div>
-        <div class="summary-card meta">
-            <div class="card-count" id="scan-time">—</div>
-            <div class="card-label">Last scan</div>
-        </div>
-    </div>
-
-    <div class="legend-bar" id="rules-bar">
-        <span class="legend-title">Rules:</span>
-        <span class="legend-item">Stage 2 uptrend + Supertrend up</span>
-        <span class="sep">·</span>
-        <span class="legend-item">Buy-stop at signal-day high, next session only</span>
-        <span class="sep">·</span>
-        <span class="legend-item">Exit: close below EMA50 → next open (max 120 days)</span>
-        <span class="sep">·</span>
-        <span class="legend-item">Hard stop = close − max(1.5×ATR, 3%)</span>
-    </div>
-
     <div class="status-bar" id="live-bar">Loading live-trading status…</div>
 
-    <h2 class="section-title">Today's signals</h2>
-    <div class="table-wrapper">
-        <table class="results-table">
-            <thead>
-                <tr>
-                    <th>Symbol / Setup</th>
-                    <th>Close</th>
-                    <th>Buy above</th>
-                    <th>Stop</th>
-                    <th>Shares</th>
-                    <th>Invested</th>
-                    <th>Risk ₹</th>
-                    <th>EMA50 (exit)</th>
-                    <th>RSI</th>
-                    <th>Vol Ratio</th>
-                    <th>SE*</th>
-                </tr>
-            </thead>
-            <tbody id="tbody">
-                <tr><td colspan="11" class="loading-cell">
-                    <div class="spinner"></div>Loading scan results...
-                </td></tr>
-            </tbody>
-        </table>
+    <h2 class="section-title">Market backdrop <span class="muted">informational: the backtest found market regime made little difference, so it does not gate signals</span></h2>
+    <div class="mkt-row" id="market-row"></div>
+
+    <div class="summary-bar summary-bar-3">
+        <div class="summary-card hc"><div class="card-count" id="count-signals">0</div><div class="card-label">Signals today</div></div>
+        <div class="summary-card go"><div class="card-count" id="count-tradeable">0</div><div class="card-label">Tradeable now (pass execution checks)</div></div>
+        <div class="summary-card meta"><div class="card-count" id="count-scanned">—</div><div class="card-label">Stocks scanned</div></div>
+        <div class="summary-card meta"><div class="card-count" id="scan-time">—</div><div class="card-label">Last scan (IST)</div></div>
     </div>
 
-    <div class="capital-note" id="capital-note">
-        Risk settings load with the scan. Daily-updated screener — not real-time data.
-    </div>
-    <div class="capital-note" id="order-note">
-        Signals are listed in an arbitrary fixed order: the old 0–100 score did not predict returns in testing, so nothing here is ranked.
-        Dimmed rows exceed the open-risk budget. *SE = appears in the uploaded StockEdge file; this flag has never been backtested.
-    </div>
-
-    <h2 class="section-title">Paper-trade ledger <span class="muted" id="ledger-meta"></span></h2>
-    <div class="table-wrapper">
-        <table class="results-table">
-            <thead>
-                <tr>
-                    <th>Status</th><th>Symbol</th><th>Signal</th><th>Entry</th><th>Exit / Mark</th>
-                    <th>R</th><th>Days</th><th>Shares</th><th>P&amp;L ₹</th><th>Taken*</th>
-                </tr>
-            </thead>
-            <tbody id="ledger-body">
-                <tr><td colspan="10" class="loading-cell">No paper trades yet.</td></tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="capital-note" id="ledger-note">
-        Every signal is logged and followed with the same simulation the backtest uses. *Taken = would have fit the open-risk budget.
-        <strong>Read closed-only averages with care:</strong> with a slow exit, losers stop out fast while winners stay open, so closed-only results
-        look worse than the true picture for months. The headline figure includes open trades marked to the last close. Fewer than ~100 closed trades says almost nothing about expectancy.
+    <div class="legend-bar">
+        <span class="legend-title">Playbook:</span>
+        <span class="legend-item">Place a buy-stop at the trigger for today's session only; if it doesn't fill, the signal is void</span>
+        <span class="sep">·</span>
+        <span class="legend-item">On fill, place the stop immediately and leave it fixed</span>
+        <span class="sep">·</span>
+        <span class="legend-item">Review at the close: below EMA50 → sell at the next open</span>
     </div>
 
-    <h2 class="section-title">Readiness scorecard <span class="muted" id="readiness-meta"></span></h2>
-    <div class="table-wrapper">
-        <table class="results-table">
-            <thead><tr><th>Gate</th><th>Points</th><th>Status</th><th>Detail</th></tr></thead>
-            <tbody id="readiness-body"><tr><td colspan="4" class="loading-cell">Loading…</td></tr></tbody>
-        </table>
-    </div>
-    <div class="capital-note" id="health-note"></div>
+    <h2 class="section-title">Trade plans</h2>
+    <div class="plans" id="plans"><div class="empty-note"><div class="spinner"></div>Loading trade plans…</div></div>
+    <div class="capital-note" id="capital-note"></div>
     <div class="capital-note">
-        Points are earned only by verified evidence; unverifiable items default to "not attested". Live trading stays off until the policy in
-        <a class="back-link" href="https://github.com/aminullah112-oss/Swing-Trading/blob/main/reports/readiness.md" target="_blank">reports/readiness.md</a> allows it.
+        Signals are not ranked: the old 0–100 score did not predict returns in testing. Choose among them with your own chart read and the checks on each card,
+        and avoid several names from one sector. Execution checks were not part of the backtested rules and do not add expected return.
+    </div>
+
+    <div id="filtered" hidden>
+        <h2 class="section-title">Signals failing an execution check <span class="muted"><span id="filtered-count">0</span> hidden from trade plans</span></h2>
+        <div class="table-wrapper">
+            <table class="results-table">
+                <thead><tr><th>Symbol</th><th>Buy above</th><th>Stop</th><th>Why it is not tradeable</th></tr></thead>
+                <tbody id="filtered-body"></tbody>
+            </table>
+        </div>
     </div>
 
     <footer class="footer">
-        <p>EDGE PROTOCOL v4 · Stage 2 trend + buy-stop entry + EMA50 exit · Auto-runs 9 AM IST Mon–Fri</p>
-        <p><a href="https://github.com/aminullah112-oss/Swing-Trading" target="_blank">GitHub</a> · Not financial advice · For research only</p>
+        <p>EDGE PROTOCOL · Stage 2 trend + buy-stop entry + EMA50 exit · Auto-runs 9 AM IST Mon–Fri · Daily bars, not real-time</p>
+        <p>Not financial advice · For research only · <a href="paper.html">Paper trading and readiness scorecard</a></p>
     </footer>
-
 </div>
-<script src="script.js"></script>
+<script src="common.js"></script>
+<script src="desk.js"></script>
 </body>
 </html>

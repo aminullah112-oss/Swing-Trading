@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDGE PROTOCOL — Paper Trading &amp; Readiness</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <nav class="topnav">
+        <a href="index.html">📈 Trade Desk</a>
+        <a href="paper.html" class="active">🧾 Paper Trading &amp; Readiness</a>
+        <a href="sizer.html">🧮 Position Sizer</a>
+        <a href="https://github.com/aminullah112-oss/Swing-Trading" target="_blank">GitHub</a>
+    </nav>
+
+    <header class="header">
+        <h1>🧾 Paper Trading &amp; Readiness</h1>
+        <p class="subtitle">Forward test of the live rules, with a go-live scorecard computed from evidence</p>
+        <p class="description">Every signal is logged and followed with the same simulation the backtest uses.</p>
+    </header>
+
+    <div class="status-bar" id="status-bar">Loading scan status…</div>
+    <div class="status-bar" id="live-bar">Loading live-trading status…</div>
+
+    <div class="summary-bar">
+        <div class="summary-card go"><div class="card-count" id="count-signals">0</div><div class="card-label">Signals logged</div></div>
+        <div class="summary-card hc"><div class="card-count" id="count-open">0</div><div class="card-label" id="label-open">Paper: open</div></div>
+        <div class="summary-card wc"><div class="card-count" id="count-closed">0</div><div class="card-label">Paper: closed</div></div>
+        <div class="summary-card w"><div class="card-count" id="avg-r">—</div><div class="card-label">Avg R (closed + open, mtm)</div></div>
+    </div>
+
+    <h2 class="section-title">Paper-trade ledger <span class="muted" id="ledger-meta"></span></h2>
+    <div class="table-wrapper">
+        <table class="results-table">
+            <thead>
+                <tr><th>Status</th><th>Symbol</th><th>Signal</th><th>Entry</th><th>Exit / Mark</th><th>R</th><th>Days</th><th>Shares</th><th>P&amp;L ₹</th><th>Taken*</th></tr>
+            </thead>
+            <tbody id="ledger-body"><tr><td colspan="10" class="loading-cell">No paper trades yet.</td></tr></tbody>
+        </table>
+    </div>
+    <div class="capital-note">
+        *Taken = would have fit the open-risk budget. <strong>Read closed-only averages with care:</strong> with a slow exit, losers stop out fast while winners stay open,
+        so closed-only results look worse than the true picture for months. The headline figure includes open trades marked to the last close.
+        Fewer than ~100 closed trades says almost nothing about expectancy.
+    </div>
+
+    <h2 class="section-title">Readiness scorecard <span class="muted" id="readiness-meta"></span></h2>
+    <div class="table-wrapper">
+        <table class="results-table">
+            <thead><tr><th>Gate</th><th>Points</th><th>Status</th><th>Detail</th></tr></thead>
+            <tbody id="readiness-body"><tr><td colspan="4" class="loading-cell">Loading…</td></tr></tbody>
+        </table>
+    </div>
+    <div class="capital-note" id="health-note"></div>
+    <div class="capital-note">
+        Points are earned only by verified evidence; unverifiable items default to "not attested". Policy and thresholds:
+        <a class="back-link" href="https://github.com/aminullah112-oss/Swing-Trading/blob/main/reports/readiness.md" target="_blank">reports/readiness.md</a>.
+    </div>
+
+    <footer class="footer">
+        <p><a href="index.html">← Back to the Trade Desk</a> · Not financial advice · For research only</p>
+    </footer>
+</div>
+<script src="common.js"></script>
+<script src="paper.js"></script>
+</body>
+</html>
