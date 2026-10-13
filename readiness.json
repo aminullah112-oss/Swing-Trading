@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T20:57:03+00:00",
+  "generated": "2026-10-13T21:10:08+00:00",
   "policy": {
     "score": 0.5,
     "mode": "PAPER ONLY",
@@ -61,7 +61,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "attestations.json: survivorship_free_backtest_passed",
+      "detail": "survivorship bias remains: no point-in-time universe tested (attestations.json: survivorship_free_backtest_passed also required)",
       "evidence_state": "unverifiable"
     },
     {
@@ -189,8 +189,8 @@
   ],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-13T20:57:03+00:00",
-    "commit_sha": "393fa300399bc7ad7901d198f078e0bb361cfc4d",
+    "generated_at": "2026-10-13T21:10:08+00:00",
+    "commit_sha": "820fe3a1d35e5214f4c1dfce64be867f1f799301",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",

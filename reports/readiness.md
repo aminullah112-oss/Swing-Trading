@@ -1,12 +1,12 @@
 # Readiness scorecard: 0.5/10 — PAPER ONLY
 
-Generated 2026-10-13T20:57:03+00:00. Live risk allowed: **0.0%** per trade.
+Generated 2026-10-13T21:10:08+00:00. Live risk allowed: **0.0%** per trade.
 
 | Gate | Points | Status | Value / detail |
 |---|---|---|---|
 | B1 Live variant passes the pre-registered backtest gates | 0/0.5 | ♻️ stale evidence | STALE EVIDENCE, no credit: report has no provenance block (produced before provenance existed): rerun it (rerun the Backtest workflow) |
 | U1 Beats buy-and-hold of the same universe AND a momentum-30 replica per unit of drawdown (hold-out) **(critical)** | 0/1 | ♻️ stale evidence | STALE EVIDENCE, no credit: report has no provenance block (produced before provenance existed): rerun it |
-| B2 Survivorship-free backtest passes the same gates (attested) **(critical)** | 0/1.5 | 🖐 not attested | attestations.json: survivorship_free_backtest_passed |
+| B2 Survivorship-free backtest passes the same gates (attested) **(critical)** | 0/1.5 | 🖐 not attested | survivorship bias remains: no point-in-time universe tested (attestations.json: survivorship_free_backtest_passed also required) |
 | F1 At least 100 closed forward signals | 0/1 | ❌ fail | 0 |
 | F2 At least 182 days of forward record | 0/1 | ❌ fail | 0 |
 | F3 Forward expectancy (closed + open) has a 95% CI lower bound above 0 **(critical)** | 0/1.5 | ⏳ not enough data | needs 100+ closed signals and 182+ days first (have 0, 0) |
