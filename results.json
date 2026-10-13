@@ -1,10 +1,20 @@
 {
-  "timestamp": "2026-10-13T10:53:09.535059",
+  "scan_id": "8fbbe3ee46e3",
+  "timestamp": "2026-10-13T17:56:55.247332+00:00",
   "scan_date": "2026-10-13",
-  "scan_time": "10:53:09",
-  "capital": 750000,
+  "scan_time": "23:26:55 IST",
+  "data_cutoff": "2026-10-13",
+  "symbols_processed": 157,
   "total_scanned": 160,
   "total_passed": 15,
+  "capital": 565000.0,
+  "risk_config": {
+    "capital": 565000.0,
+    "risk_pct_hc": 0.5,
+    "risk_pct_go": 0.25,
+    "max_pos_pct": 25.0,
+    "max_open_risk_pct": 1.5
+  },
   "summary": {
     "high_conviction": 2,
     "go": 9,
@@ -31,6 +41,7 @@
       "from_52w_high": -4.36,
       "atr_pct": 2.77,
       "st_direction": 1,
+      "atr": 125.86,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
@@ -41,15 +52,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 79,
-        "invested": 358660.0,
-        "stop_loss": 4351.2,
-        "risk_amount": 14914.92,
-        "target_1": 4917.59,
-        "target_2": 5106.39,
-        "rr_ratio": "2:1 / 3:1"
+        "shares": 14,
+        "invested": 63560.0,
+        "stop_loss": 4351.21,
+        "risk_amount": 2643.06,
+        "target_1": 4917.58,
+        "target_2": 5106.37,
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.468,
+        "within_risk_budget": true
       },
-      "timestamp": "2026-10-13T10:53:08.964919"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "DIVISLAB",
@@ -70,6 +84,7 @@
       "from_52w_high": -4.67,
       "atr_pct": 2.38,
       "st_direction": 1,
+      "atr": 220.71,
       "reasons": [
         "Stage 2 (+25)",
         "TRENDING (+6)",
@@ -80,15 +95,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 45,
-        "invested": 417825.0,
-        "stop_loss": 8953.93,
-        "risk_amount": 14898.21,
-        "target_1": 9947.14,
-        "target_2": 10278.21,
-        "rr_ratio": "2:1 / 3:1"
+        "shares": 8,
+        "invested": 74280.0,
+        "stop_loss": 8953.94,
+        "risk_amount": 2648.52,
+        "target_1": 9947.13,
+        "target_2": 10278.2,
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.469,
+        "within_risk_budget": true
       },
-      "timestamp": "2026-10-13T10:53:07.732103"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "COFORGE",
@@ -109,6 +127,7 @@
       "from_52w_high": -4.56,
       "atr_pct": 3.15,
       "st_direction": 1,
+      "atr": 60.84,
       "reasons": [
         "Stage 2 (+25)",
         "BREAKOUT_CONT (+10)",
@@ -119,15 +138,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 82,
-        "invested": 158178.0,
+        "shares": 15,
+        "invested": 28935.0,
         "stop_loss": 1837.74,
-        "risk_amount": 7483.67,
-        "target_1": 2111.53,
-        "target_2": 2202.79,
-        "rr_ratio": "2:1 / 3:1"
+        "risk_amount": 1368.9,
+        "target_1": 2111.52,
+        "target_2": 2202.78,
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.242,
+        "within_risk_budget": true
       },
-      "timestamp": "2026-10-13T10:53:08.626342"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "AUROPHARMA",
@@ -148,6 +170,7 @@
       "from_52w_high": -3.18,
       "atr_pct": 2.15,
       "st_direction": 1,
+      "atr": 36.19,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
@@ -158,15 +181,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 138,
-        "invested": 232474.8,
-        "stop_loss": 1630.32,
-        "risk_amount": 7490.44,
-        "target_1": 1793.16,
-        "target_2": 1847.44,
-        "rr_ratio": "2:1 / 3:1"
+        "shares": 26,
+        "invested": 43799.6,
+        "stop_loss": 1630.31,
+        "risk_amount": 1411.41,
+        "target_1": 1793.17,
+        "target_2": 1847.46,
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.25,
+        "within_risk_budget": true
       },
-      "timestamp": "2026-10-13T10:53:08.171599"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "PNB",
@@ -187,6 +213,7 @@
       "from_52w_high": -11.25,
       "atr_pct": 2.58,
       "st_direction": 1,
+      "atr": 3.01,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
@@ -197,15 +224,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 1663,
-        "invested": 193822.66,
+        "shares": 312,
+        "invested": 36363.6,
         "stop_loss": 112.04,
-        "risk_amount": 7497.75,
-        "target_1": 125.57,
-        "target_2": 130.08,
-        "rr_ratio": "2:1 / 3:1"
+        "risk_amount": 1408.68,
+        "target_1": 125.58,
+        "target_2": 130.1,
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.249,
+        "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T10:53:08.435011"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "NAVINFLUOR",
@@ -226,6 +256,7 @@
       "from_52w_high": -5.38,
       "atr_pct": 2.46,
       "st_direction": 1,
+      "atr": 208.29,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
@@ -236,15 +267,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 24,
-        "invested": 203232.0,
-        "stop_loss": 8155.57,
-        "risk_amount": 7498.29,
-        "target_1": 9092.86,
-        "target_2": 9405.29,
-        "rr_ratio": "2:1 / 3:1"
+        "shares": 4,
+        "invested": 33872.0,
+        "stop_loss": 8155.56,
+        "risk_amount": 1249.74,
+        "target_1": 9092.87,
+        "target_2": 9405.3,
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.221,
+        "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T10:53:08.728577"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "KAJARIACER",
@@ -265,6 +299,7 @@
       "from_52w_high": -4.09,
       "atr_pct": 3.18,
       "st_direction": 1,
+      "atr": 39.04,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
@@ -275,15 +310,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 128,
-        "invested": 157017.59,
-        "stop_loss": 1168.15,
-        "risk_amount": 7494.86,
-        "target_1": 1343.81,
-        "target_2": 1402.36,
-        "rr_ratio": "2:1 / 3:1"
+        "shares": 24,
+        "invested": 29440.8,
+        "stop_loss": 1168.14,
+        "risk_amount": 1405.44,
+        "target_1": 1343.82,
+        "target_2": 1402.38,
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.249,
+        "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T10:53:08.877105"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "HAL",
@@ -304,6 +342,7 @@
       "from_52w_high": -5.45,
       "atr_pct": 2.43,
       "st_direction": 1,
+      "atr": 118.33,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
@@ -314,15 +353,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 42,
-        "invested": 204498.0,
-        "stop_loss": 4691.51,
-        "risk_amount": 7454.7,
+        "shares": 7,
+        "invested": 34083.0,
+        "stop_loss": 4691.5,
+        "risk_amount": 1242.47,
         "target_1": 5223.99,
         "target_2": 5401.48,
-        "rr_ratio": "2:1 / 3:1"
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.22,
+        "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T10:53:09.256383"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "APLAPOLLO",
@@ -343,6 +385,7 @@
       "from_52w_high": -4.69,
       "atr_pct": 2.82,
       "st_direction": 1,
+      "atr": 61.72,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
@@ -353,15 +396,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 81,
-        "invested": 176985.0,
+        "shares": 15,
+        "invested": 32775.0,
         "stop_loss": 2092.42,
-        "risk_amount": 7499.15,
+        "risk_amount": 1388.7,
         "target_1": 2370.16,
-        "target_2": 2462.75,
-        "rr_ratio": "2:1 / 3:1"
+        "target_2": 2462.74,
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.246,
+        "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T10:53:09.488359"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "RBLBANK",
@@ -382,6 +428,7 @@
       "from_52w_high": -9.67,
       "atr_pct": 3.47,
       "st_direction": 1,
+      "atr": 13.45,
       "reasons": [
         "Stage 2 (+25)",
         "TRENDING (+6)",
@@ -392,15 +439,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 371,
-        "invested": 143966.55,
-        "stop_loss": 367.87,
-        "risk_amount": 7484.92,
+        "shares": 70,
+        "invested": 27163.5,
+        "stop_loss": 367.88,
+        "risk_amount": 1412.25,
         "target_1": 428.4,
-        "target_2": 448.57,
-        "rr_ratio": "2:1 / 3:1"
+        "target_2": 448.58,
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.25,
+        "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T10:53:08.493697"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "RAYMOND",
@@ -421,6 +471,7 @@
       "from_52w_high": -13.38,
       "atr_pct": 6.75,
       "st_direction": 1,
+      "atr": 78.32,
       "reasons": [
         "Stage 2 (+25)",
         "TRENDING (+6)",
@@ -431,15 +482,18 @@
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 63,
-        "invested": 73067.4,
+        "shares": 12,
+        "invested": 13917.6,
         "stop_loss": 1042.32,
-        "risk_amount": 7401.38,
+        "risk_amount": 1409.76,
         "target_1": 1394.76,
-        "target_2": 1512.25,
-        "rr_ratio": "2:1 / 3:1"
+        "target_2": 1512.24,
+        "rr_ratio": "2:1 / 3:1",
+        "note": null,
+        "risk_pct_of_capital": 0.25,
+        "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T10:53:09.386260"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "MOTHERSON",
@@ -460,6 +514,7 @@
       "from_52w_high": -7.66,
       "atr_pct": 3.01,
       "st_direction": 1,
+      "atr": 4.82,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
@@ -470,7 +525,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-10-13T10:53:08.818522"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "CYIENT",
@@ -491,6 +546,7 @@
       "from_52w_high": -3.58,
       "atr_pct": 4.57,
       "st_direction": 1,
+      "atr": 53.76,
       "reasons": [
         "Stage 2 (+25)",
         "TRENDING (+6)",
@@ -501,7 +557,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-10-13T10:53:08.699349"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "KOTAKBANK",
@@ -522,6 +578,7 @@
       "from_52w_high": -2.97,
       "atr_pct": 2.44,
       "st_direction": 1,
+      "atr": 10.71,
       "reasons": [
         "Stage 2 (+25)",
         "TRENDING (+6)",
@@ -531,7 +588,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-10-13T10:53:07.366683"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     },
     {
       "symbol": "BOSCHLTD",
@@ -552,6 +609,7 @@
       "from_52w_high": -10.2,
       "atr_pct": 2.71,
       "st_direction": 1,
+      "atr": 1215.36,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA50 (+14)",
@@ -562,7 +620,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-10-13T10:53:08.847953"
+      "timestamp": "2026-10-13T17:56:55.247332+00:00"
     }
   ]
 }
