@@ -1,0 +1,31 @@
+{
+  "all_fills_simulated": true,
+  "signals_total": 13,
+  "evidence_eligible": 13,
+  "legacy_excluded": 0,
+  "by_status": {
+    "pending": 13
+  },
+  "not_taken_reasons": {},
+  "closed": 0,
+  "forward_avg_r_incl_open": null,
+  "forward_avg_r_ci95_clustered": null,
+  "effective_independent_months": 0,
+  "rolling_expectancy_last_closed": {},
+  "taken_equity_drawdown_pct": 0.0,
+  "taken_equity_now_pct": 0.0,
+  "gap_through_stop_exits": 0,
+  "partial_fills": 0,
+  "readiness_distance": {
+    "closed_needed": 100,
+    "closed_have": 0,
+    "days_needed": 182,
+    "first_eligible_signal": null
+  },
+  "event_log": {
+    "verified": true,
+    "events": 0,
+    "problem": null
+  },
+  "reconciliation": null
+}

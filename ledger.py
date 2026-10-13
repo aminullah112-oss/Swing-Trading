@@ -173,7 +173,7 @@ def update_status(ledger, frames, cfg=None, events=None, ts=None, expected_sessi
     buy-stop was not hit, the signal expires and is never revived. If the data does not cover that session, the signal
     stays pending with needs_data=True (fail closed; reconcile() reports it) instead of being guessed at."""
     import analysis
-    cfg = cfg or strategy.backtest_config()
+    cfg = cfg or strategy.realistic_config()        # forward paper results use the itemised cost model
     liq = settings.LIQUIDITY_PARTICIPATION_CAP
     changed = 0
     for rec in ledger['signals']:
@@ -347,6 +347,12 @@ def mark_taken(ledger, capital, max_open_risk):
     entered = [r for r in ledger['signals'] if r.get('entry_date')]
     for r in ledger['signals']:
         r['taken'] = False
+        r.pop('not_taken_reason', None)
+        if r['status'] in ('expired', 'cancelled', 'void', 'rejected'):
+            r['not_taken_reason'] = {'expired': 'entry session passed without a trigger', 'cancelled': r.get('cancel_reason', 'cancelled'),
+                                     'void': r.get('void_reason', 'void'), 'rejected': r.get('reject_reason', 'rejected')}[r['status']]
+        elif r['status'] == 'pending':
+            r['not_taken_reason'] = 'not yet triggered'
     live = []   # (exit_date or None, risk)
     for rec in sorted(entered, key=_order_key):
         live = [(x, k) for x, k in live if x is None or x >= rec['entry_date']]
@@ -354,6 +360,9 @@ def mark_taken(ledger, capital, max_open_risk):
         if eff_shares(rec) > 0 and risk_now + eff_risk(rec) <= cap:
             rec['taken'] = True
             live.append((rec.get('exit_date'), eff_risk(rec)))
+        else:
+            rec['not_taken_reason'] = 'zero shares fundable' if eff_shares(rec) <= 0 else \
+                f'aggregate open-risk budget {max_open_risk:.1%} of capital would be exceeded'
 
 
 def forward_returns(ledger):

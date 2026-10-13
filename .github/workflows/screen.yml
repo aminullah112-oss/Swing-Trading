@@ -48,6 +48,11 @@ jobs:
       continue-on-error: true
       run: python health.py
 
+    - name: Forward-validation report
+      if: always()
+      continue-on-error: true
+      run: python forward_report.py
+
     - name: Readiness scorecard
       if: always()
       run: python readiness.py
@@ -57,7 +62,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
-        for f in results.json ledger.json events.jsonl health.json readiness.json reports/readiness.md provisional_bars.json provisional_audit.json; do git add -A -- "$f" 2>/dev/null || true; done
+        for f in results.json ledger.json events.jsonl health.json readiness.json reports/readiness.md reports/forward.md reports/forward.json provisional_bars.json provisional_audit.json; do git add -A -- "$f" 2>/dev/null || true; done
         git commit -m "Scan update $(date -u +'%Y-%m-%d %H:%M UTC')" || { echo "No changes"; exit 0; }
         git pull --rebase origin main
         git push origin main

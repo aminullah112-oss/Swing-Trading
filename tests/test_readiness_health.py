@@ -37,8 +37,8 @@ def led_with(n_closed, mean_r, months=9, n_open=0, started='2026-10-14', taken=F
     return led
 
 
-def ctx(led, att=ATT_NO, uni=UNI_WINS, fills=(), health='OK', res=RES, rprov='current'):
-    return {'report_provenance': dict(provn.make('backtest'), generated_at=NOW.isoformat()) if rprov == 'current' else rprov, 'report_ids': None, 'ledger': led, 'results': res, 'grid': GRID, 'universe': uni, 'attest': att, 'fills': list(fills),
+def ctx(led, att=ATT_NO, uni=UNI_WINS, fills=(), health='OK', res=RES, rprov='current', pit={'passed': True, 'status': 'pass', 'reasons': []}):
+    return {'pit': pit, 'report_provenance': dict(provn.make('backtest'), generated_at=NOW.isoformat()) if rprov == 'current' else rprov, 'report_ids': None, 'ledger': led, 'results': res, 'grid': GRID, 'universe': uni, 'attest': att, 'fills': list(fills),
             'health': {'status': health}, 'now': NOW}
 
 

@@ -193,8 +193,18 @@ def evaluate(ctx):
         out.append(_g('U1', 'stale' if stale else 'insufficient',
                       detail=('STALE EVIDENCE, no credit: ' + stale[0]) if stale else 'reports/benchmarks.json and universe.json missing: rerun the Backtest workflow'))
 
-    ok = bool(att.get('survivorship_free_backtest_passed'))
-    out.append(_g('B2', 'pass' if ok else 'manual', detail='attestations.json: survivorship_free_backtest_passed'))
+    # B2 needs the attestation AND the machine-checked point-in-time acceptance (reports/pit_acceptance.json): delisted names with
+    # prices, >=95% coverage. A tightening of the original attestation-only gate; it can only withhold credit.
+    pit_res = ctx.get('pit')
+    pit_ok = bool(pit_res and pit_res.get('passed') and not stale)
+    ok = bool(att.get('survivorship_free_backtest_passed')) and pit_ok
+    if ok:
+        out.append(_g('B2', 'pass', detail='attested and reports/pit_acceptance.json passed'))
+    elif att.get('survivorship_free_backtest_passed') and not pit_ok:
+        out.append(_g('B2', 'fail', detail='attested, but the point-in-time acceptance test did not pass: ' + '; '.join((pit_res or {}).get('reasons', ['reports/pit_acceptance.json missing or stale']))))
+    else:
+        out.append(_g('B2', 'manual', detail='survivorship bias remains: ' + '; '.join((pit_res or {}).get('reasons', ['no point-in-time universe tested'])[:2])
+                      + ' (attestations.json: survivorship_free_backtest_passed also required)'))
 
     # --- forward evidence
     summ = led.get('summary') or {}
@@ -341,7 +351,7 @@ def main():
     ctx = {'ledger': _load('ledger.json', lg.empty()), 'results': _load('results.json', {}),
            'grid': _load('reports/grid.json'), 'universe': _load('reports/universe.json'), 'benchmarks': _load('reports/benchmarks.json'),
            'attest': _load('attestations.json', {}), 'fills': load_fills(), 'health': health,
-           'report_provenance': _load('reports/provenance.json'),
+           'report_provenance': _load('reports/provenance.json'), 'pit': _load('reports/pit_acceptance.json'),
            'report_ids': {k: provn.file_id(p) for k, p in __import__('stamp_reports').REPORTS.items()},
            'artifact_ids': {k: provn.file_id(p) for k, p in ARTEFACTS.items()}}
     gates = evaluate(ctx)

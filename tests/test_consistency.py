@@ -139,3 +139,17 @@ def test_evidence_state_classification():
     assert rd.evidence_state('F1', 'fail') == 'pending_time' and rd.evidence_state('F3', 'fail') == 'failed'
     assert rd.evidence_state('B2', 'manual') == 'unverifiable' and rd.evidence_state('B1', 'stale') == 'blocked_defect'
     assert rd.evidence_state('E1', 'insufficient') == 'pending_time' and rd.evidence_state('U1', 'insufficient') == 'blocked_defect'
+
+
+# ---------------------------------------------------------------- B2 needs the objective point-in-time test, not just a flag
+def test_b2_requires_attestation_and_a_passing_pit_acceptance():
+    fail = {'passed': False, 'status': 'fail', 'reasons': ['none of the 12 departed stocks has price history']}
+    none = {'passed': False, 'status': 'no_pit_universe', 'reasons': ['no point-in-time membership file']}
+    g = by_id(rd.evaluate(ctx(lg.empty(), att=ATT_ALL, pit=fail)))['B2']
+    assert g['status'] == 'fail' and g['earned'] == 0 and 'departed stocks' in g['detail']
+    g = by_id(rd.evaluate(ctx(lg.empty(), att=ATT_ALL, pit=None)))['B2']
+    assert g['status'] == 'fail' and g['earned'] == 0                                  # attested but never tested: no credit
+    g = by_id(rd.evaluate(ctx(lg.empty(), pit=none)))['B2']
+    assert g['status'] == 'manual' and 'survivorship bias remains' in g['detail']
+    assert by_id(rd.evaluate(ctx(lg.empty(), att=ATT_ALL)))['B2']['status'] == 'pass'
+    assert by_id(rd.evaluate(ctx(lg.empty(), att=ATT_ALL, rprov=None)))['B2']['status'] == 'fail'    # stale backtest evidence: no B2 either

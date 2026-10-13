@@ -11,7 +11,8 @@ import sys
 import provenance as prov
 
 REPORTS = {'grid': 'reports/grid.json', 'benchmarks': 'reports/benchmarks.json', 'universe': 'reports/universe.json',
-           'regime': 'reports/regime.json', 'baseline': 'reports/backtest_baseline.json', 'trigger': 'reports/backtest_trigger.json'}
+           'regime': 'reports/regime.json', 'baseline': 'reports/backtest_baseline.json', 'trigger': 'reports/backtest_trigger.json',
+           'pit': 'reports/pit_acceptance.json', 'experiments': 'reports/experiments.json'}
 
 
 def main():
