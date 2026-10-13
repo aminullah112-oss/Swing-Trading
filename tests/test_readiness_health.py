@@ -176,3 +176,18 @@ def test_health_flags_data_lag_and_names_missing_symbols():
     assert lvl(hl.run_checks(hctx(res=dict(RES, sessions_behind=0))), 'H1b') is None
     miss = hl.run_checks(hctx(res=dict(RES, symbols_processed=157, total_scanned=160, missing_symbols=['AAA', 'BBB', 'CCC'])))
     assert 'AAA, BBB, CCC' in next(x['msg'] for x in miss if x['id'] == 'H2')
+
+
+def test_data_lag_fails_the_operations_gate_and_costs_a_point():
+    lag_health = {'status': 'WARN', 'checks': [{'id': 'H1b', 'level': 'warn', 'msg': 'behind'}]}
+    g = by_id(rd.evaluate(ctx(lg.empty(), uni=None, health='WARN')))
+    assert g['O1']['status'] == 'pass'                                  # WARN for another reason is fine
+    c = ctx(lg.empty(), uni=None); c['health'] = lag_health
+    g = by_id(rd.evaluate(c))
+    assert g['O1']['status'] == 'fail' and g['O1']['earned'] == 0
+    assert rd.policy(list(g.values()), ATT_NO, lag_health)['score'] == 1.0   # B1 + R1 only
+
+
+def test_three_sessions_behind_is_a_health_fail():
+    assert lvl(hl.run_checks(hctx(res=dict(RES, sessions_behind=2, expected_session='2027-06-01'))), 'H1b') == 'warn'
+    assert lvl(hl.run_checks(hctx(res=dict(RES, sessions_behind=3, expected_session='2027-06-01'))), 'H1b') == 'fail'

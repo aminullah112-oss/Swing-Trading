@@ -1,0 +1,4 @@
+{
+  "_README": "NSE trading holidays that fall on weekdays, as YYYY-MM-DD. Add dates from the exchange's annual holiday circular. The data-lag check treats only these (plus weekends) as non-sessions, so a missing holiday here shows up as a lag warning, which is the safe direction. Dates are never guessed.",
+  "holidays": []
+}

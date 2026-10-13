@@ -5,8 +5,9 @@ backtested rules, so they must not be read as improving expectancy. A 'block' hi
 'tradeable now' view only for practical reasons (can't be traded cleanly); 'warn' is information for
 your own judgement. The signal itself (strategy.py) is unchanged.
 """
+import json
 import numpy as np
-from datetime import timedelta
+from datetime import date, datetime, timedelta
 
 THIN_CR = 2.0           # avg daily traded value below this (Rs crore) -> block
 LOW_CR = 5.0            # below this -> warn
@@ -66,24 +67,44 @@ def execution_ok(checks):
     return not any(c['status'] == 'block' for c in checks)
 
 
-def expected_last_session(now_ist, close_hhmm=(16, 30)):
-    """Date of the most recent weekday session whose data should already be available.
-    NSE closes 15:30 IST; allow an hour for data vendors. Exchange holidays are unknown here, so a
-    mismatch can be a holiday or a vendor lagging a session."""
+def load_holidays(path='market_holidays.json'):
+    """Exchange holidays (weekday closures) from a hand-maintained file; unknown holidays are never invented.
+    Missing or malformed file -> empty set. Invalid dates are ignored."""
+    try:
+        with open(path) as f:
+            raw = json.load(f).get('holidays', [])
+    except (OSError, ValueError, AttributeError):
+        return set()
+    out = set()
+    for d in raw:
+        try:
+            out.add(datetime.strptime(str(d)[:10], '%Y-%m-%d').date())
+        except ValueError:
+            continue
+    return out
+
+
+def _is_session(d, holidays):
+    return d.weekday() < 5 and d not in holidays
+
+
+def expected_last_session(now_ist, close_hhmm=(16, 30), holidays=frozenset()):
+    """Date of the most recent session whose data should already be available.
+    NSE closes 15:30 IST; allow an hour for data vendors. `holidays` are non-trading weekdays."""
     d = now_ist.date()
-    if now_ist.weekday() < 5 and (now_ist.hour, now_ist.minute) >= close_hhmm:
+    if _is_session(d, holidays) and (now_ist.hour, now_ist.minute) >= close_hhmm:
         return d
     d -= timedelta(days=1)
-    while d.weekday() >= 5:
+    while not _is_session(d, holidays):
         d -= timedelta(days=1)
     return d
 
 
-def sessions_behind(cutoff, expected):
-    """Weekdays between the last bar we have and the session we expected (0 = up to date)."""
+def sessions_behind(cutoff, expected, holidays=frozenset()):
+    """Sessions between the last bar we have and the session we expected (0 = up to date)."""
     if cutoff >= expected:
         return 0
-    return int(np.busday_count(cutoff + timedelta(days=1), expected + timedelta(days=1)))
+    return int(np.busday_count(cutoff + timedelta(days=1), expected + timedelta(days=1), holidays=sorted(holidays)))
 
 
 def trend_label(last, e50, e200):

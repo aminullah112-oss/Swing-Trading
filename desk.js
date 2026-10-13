@@ -94,15 +94,15 @@ function renderDataNotes(data) {
     lag.hidden = !behind;
     if (behind) {
         lag.innerHTML = `⚠ DATA LAG — market data ends ${esc(data.data_cutoff)}, but the last completed session should be ${esc(data.expected_session)} ` +
-            `(${esc(behind)} session${behind > 1 ? 's' : ''} behind). If that was a trading day, the buy levels below refer to a session that has already traded: ` +
-            `check the live price before placing anything. If it was an exchange holiday, ignore this.`;
+            `(${esc(behind)} session${behind > 1 ? 's' : ''} behind). Unless that day is an exchange holiday missing from market_holidays.json, the data vendor is lagging: ` +
+            `the session each buy-stop applies to has already traded, so every signal below is blocked as stale. Wait for a scan with current data.`;
     }
     const miss = data.missing_symbols || [];
     const note = document.getElementById('missing-note');
     note.hidden = !miss.length;
     if (miss.length) {
         note.innerHTML = `<strong>Not scanned (no usable data):</strong> ${miss.map(esc).join(', ')} — these ${miss.length} stocks cannot signal until their data returns. ` +
-            `Often a renamed, merged or delisted ticker; check the symbol list in screener.py.`;
+            `Often a renamed, merged or delisted ticker; see SYMBOL_ALIASES in screener.py.`;
     }
 }
 
