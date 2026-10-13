@@ -257,3 +257,22 @@ def test_regime_report_on_synthetic_trades():
     assert 'Regime breakdown' in md and 'not** corrected' in md
     none_out, msg = rs.regime_report(trades, None)
     assert none_out is None
+
+
+def test_markdown_survives_single_trade_buckets():
+    # regression: the Backtest workflow crashed when a bucket held exactly one trade (no CI)
+    rep = {'config': {}, 'all_trades': {'trades': 1, 'win_rate': 1.0, 'avg_r': 2.0, 'avg_r_ci95': None, 'profit_factor': None, 'worst_r': 2.0},
+           'in_sample': {'trades': 0}, 'out_of_sample': {'trades': 0}, 'oos_starts': '2023-01-01', 'portfolio': {}, 'benchmark': None,
+           'buckets': {'by_exit': {'gap_trail': {'trades': 1, 'win_rate': 0.0, 'avg_r': -1.2, 'avg_r_ci95': None,
+                                                 'profit_factor': 0.0, 'worst_r': -1.2}}}}
+    md = bt.to_markdown(rep, 't')
+    assert 'gap_trail' in md and 'n/a: 1 trade' in md
+    st = bt.r_stats([1.5])
+    assert st['trades'] == 1 and st['avg_r_ci95'] is None
+
+
+def test_report_from_a_real_run_never_crashes_on_tiny_buckets():
+    frames = {f'S{i}': synth(n=1300, seed=i, drift=0.001) for i in range(2)}
+    for trig in ('none', 'prior_high'):
+        rep, trades, eq = bt.run(frames, bt.Config(min_score=72, trigger=trig, exit_mode='ema50', max_hold=120))
+        assert isinstance(bt.to_markdown(rep, 'x'), str)

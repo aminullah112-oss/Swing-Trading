@@ -399,9 +399,10 @@ def to_markdown(rep, title):
     def row(name, s):
         if not s or not s.get('trades'):
             return f'| {name} | 0 | | | | |'
-        ci = s.get('avg_r_ci95')
-        return (f"| {name} | {s['trades']} | {s['win_rate']:.0%} | {s['avg_r']:+.2f} "
-                f"({ci[0]:+.2f}..{ci[1]:+.2f}) | {s['profit_factor']} | {s['worst_r']} |")
+        ci = s.get('avg_r_ci95')            # None when a bucket has a single trade
+        ci_txt = f" ({ci[0]:+.2f}..{ci[1]:+.2f})" if ci else ' (n/a: 1 trade)'
+        return (f"| {name} | {s['trades']} | {s['win_rate']:.0%} | {s['avg_r']:+.2f}"
+                f"{ci_txt} | {s['profit_factor']} | {s['worst_r']} |")
     L = [f'# {title}', '',
          f"Config: `{json.dumps(rep['config'])}`", '',
          '| Slice | Trades | Win | Avg R (naive iid 95% CI, too narrow: trades cluster by date) | PF | Worst R |', '|---|---|---|---|---|---|',

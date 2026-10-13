@@ -169,6 +169,57 @@ def resolve_symbol(bulk, sym, frame_last):
     return None, sym, 'no usable or current data'
 
 
+def diagnose_symbol(bulk, sym):
+    """Why a symbol came back empty: per candidate ticker, whether it is in the download and how far it runs."""
+    out = []
+    try:
+        present = set(bulk.columns.get_level_values(0))
+    except Exception:
+        present = set()
+    for cand in SYMBOL_ALIASES.get(sym, []) + [sym]:
+        t = f'{cand}.NS'
+        if t not in present:
+            out.append({'ticker': t, 'in_download': False}); continue
+        closes = bulk[t]['Close'].dropna() if 'Close' in bulk[t] else []
+        out.append({'ticker': t, 'in_download': True, 'rows': int(len(closes)),
+                    'last_bar': str(closes.index[-1].date()) if len(closes) else None})
+    return out
+
+
+def retry_download(symbols):
+    """Second chance for symbols the bulk download dropped; Yahoo fails intermittently per ticker."""
+    ticks = []
+    for s in symbols:
+        ticks += [f'{c}.NS' for c in SYMBOL_ALIASES.get(s, []) + [s]]
+    for attempt in range(2):
+        try:
+            data = yf.download(tickers=ticks, period='1y', interval='1d', group_by='ticker',
+                               auto_adjust=True, progress=False, threads=False, timeout=60)
+            if data is not None and not data.empty:
+                return data
+        except Exception as e:
+            print(f"Retry attempt {attempt + 1}: {e}")
+        time.sleep(3)
+    return None
+
+
+def probe_vendor():
+    """When the data lags, see whether other Yahoo endpoints already hold the expected session."""
+    out = {}
+    for label, kw in (('daily_5d', dict(period='5d', interval='1d')), ('intraday_5m_1d', dict(period='1d', interval='5m'))):
+        try:
+            d = yf.download(tickers=['RELIANCE.NS', 'TCS.NS', BENCH], group_by='ticker', auto_adjust=True,
+                            progress=False, timeout=30, **kw)
+            if d is None or d.empty:
+                out[label] = 'empty'; continue
+            closes = d.xs('Close', axis=1, level=1) if hasattr(d.columns, 'levels') else d[['Close']]
+            out[label] = {'last_row': str(d.index.max()), 'rows': int(len(d)),
+                          'non_null_closes_on_last_row': int(closes.iloc[-1].notna().sum())}
+        except Exception as e:
+            out[label] = f'error: {str(e)[:80]}'
+    return out
+
+
 def compute_atr(h, l, c, p=14):
     tr = pd.concat([h-l,(h-c.shift()).abs(),(l-c.shift()).abs()],axis=1).max(axis=1)
     return tr.rolling(p).mean()
@@ -368,23 +419,46 @@ def main():
     print("-" * 70)
     frame_last = bulk.index.max()
     aliases_used = {}
+
+    def handle(sym, df, used):
+        if used != sym:
+            aliases_used[sym] = used
+        last_bars.append(df.index[-1])
+        rec, why = evaluate(df, (sym in se) or (used in se))
+        if rec is None:
+            stats[why] += 1
+            return
+        rec['symbol'] = used
+        rec['timestamp'] = now_utc.isoformat()
+        results.append(rec)
+        print(f"{sym:<14}{rec['setup_type']:<20}{rec['price']:>10.2f}{rec['trigger']:>10.2f}{rec['stop_loss']:>10.2f}")
+
     for sym in NSE_STOCKS:
         try:
             df, used, _ = resolve_symbol(bulk, sym, frame_last)
             if df is None:
-                stats['data'] += 1; missing.append(sym); continue
-            if used != sym:
-                aliases_used[sym] = used
-            last_bars.append(df.index[-1])
-            rec, why = evaluate(df, (sym in se) or (used in se))
-            if rec is None:
-                stats[why] += 1; continue
-            rec['symbol'] = used
-            rec['timestamp'] = now_utc.isoformat()
-            results.append(rec)
-            print(f"{sym:<14}{rec['setup_type']:<20}{rec['price']:>10.2f}{rec['trigger']:>10.2f}{rec['stop_loss']:>10.2f}")
+                missing.append(sym); continue
+            handle(sym, df, used)
         except Exception as e:
             print(f"{sym}: {str(e)[:50]}")
+
+    recovered = []
+    if missing:                        # second chance before declaring anything missing
+        print(f"Retrying {len(missing)} symbols individually: {', '.join(missing)}")
+        again = retry_download(missing)
+        for sym in list(missing):
+            if again is None:
+                break
+            try:
+                df, used, _ = resolve_symbol(again, sym, frame_last)
+                if df is not None:
+                    handle(sym, df, used); missing.remove(sym); recovered.append(sym)
+            except Exception as e:
+                print(f"{sym} (retry): {str(e)[:50]}")
+    missing_detail = {sym: diagnose_symbol(again if again is not None else bulk, sym) for sym in missing}
+    stats['data'] = len(missing)
+    if recovered:
+        print(f"Recovered on retry: {', '.join(recovered)}")
 
     processed = len(NSE_STOCKS) - stats['data']
     if processed < MIN_DATA_RATIO * len(NSE_STOCKS) or not last_bars:
@@ -425,6 +499,9 @@ def main():
                                   sorted(__import__('collections').Counter(d.date() for d in last_bars).items(), reverse=True)[:4]}}
     print(f"Vendor last row {vendor['frame_last_row']}; last-bar counts {vendor['last_bar_counts']}; "
           f"non-null closes on last row: {vendor['non_null_closes_on_last_row']}")
+    if behind > 0:
+        vendor['probe'] = probe_vendor()
+        print(f"Vendor probe: {vendor['probe']}")
     if behind > 0:   # the buy-stop session after the signal has already traded: not actionable
         for r in results:
             r['checks'].append({'id': 'freshness', 'status': 'block',
@@ -440,6 +517,8 @@ def main():
         'expected_session':  str(expected),
         'sessions_behind':   behind,
         'missing_symbols':   missing,
+        'missing_detail':    missing_detail,
+        'recovered_on_retry': recovered,
         'aliases_used':      aliases_used,
         'vendor':            vendor,
         'symbols_processed': processed,
