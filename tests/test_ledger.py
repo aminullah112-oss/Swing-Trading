@@ -23,7 +23,8 @@ def sig(symbol, df, shares=100, risk=300.0):
 
 
 def results_for(*recs):
-    return {'scan_id': 'x', 'scan_date': '2024-06-01', 'stocks': list(recs)}
+    cut = recs[0]['signal_date'] if recs else None
+    return {'scan_id': 'x', 'scan_date': '2024-06-01', 'stocks': list(recs), 'actionable': True, 'data_cutoff': cut}
 
 
 def one(df, **kw):
