@@ -316,3 +316,10 @@ Shares are rounded down to the strictest of the risk, position-cap and cash limi
 - Results in R-multiples with 95% CI, split by score band, setup, market regime, exit reason and year, plus an in-sample / out-of-sample split and a mark-to-market portfolio simulation
 
 **Limitations:** the universe is today's constituents (survivorship bias flatters results), the StockEdge flag has no history so tiers are by score, and daily bars hide intraday order. A failing backtest is meaningful; a passing one is only a reason to start paper trading.
+
+
+### Pre-registered research (`research.py`)
+
+Runs a fixed grid of 12 entry/exit variants (trial count fixed in advance) and a diagnosis of whether the 0-100 score, or any of its components, predicts R. Design period = entries before 2023-01-01, hold-out = 2023 onward. Confidence intervals are month-clustered bootstraps (trades entered in the same month share market moves) with a Bonferroni adjustment for 12 trials. A variant is "promising" only if the design period is positive, the hold-out adjusted CI lower bound is above zero, and a fresh-start hold-out portfolio has positive CAGR. Outputs: `reports/grid.md`, `reports/diagnosis.md`.
+
+Caveats: survivorship bias; the TRENDING-vs-pullback pattern was seen on the full sample before the hold-out was set, so only forward paper-trading data can confirm it.
