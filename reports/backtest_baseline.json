@@ -15,56 +15,56 @@
     "split_date": "2023-01-01"
   },
   "universe": {
-    "symbols": 156,
+    "symbols": 159,
     "survivorship_bias": true
   },
   "all_trades": {
-    "trades": 13808,
+    "trades": 13933,
     "win_rate": 0.289,
-    "avg_r": -0.005,
+    "avg_r": -0.002,
     "avg_r_ci95": [
-      -0.029,
-      0.019
+      -0.026,
+      0.022
     ],
-    "avg_win_r": 1.254,
+    "avg_win_r": 1.261,
     "avg_loss_r": -0.517,
     "profit_factor": 0.99,
     "worst_r": -3.19
   },
   "in_sample": {
-    "trades": 8808,
+    "trades": 8866,
     "win_rate": 0.288,
-    "avg_r": -0.025,
+    "avg_r": -0.024,
     "avg_r_ci95": [
-      -0.052,
-      0.002
+      -0.051,
+      0.003
     ],
-    "avg_win_r": 1.168,
-    "avg_loss_r": -0.508,
+    "avg_win_r": 1.172,
+    "avg_loss_r": -0.507,
     "profit_factor": 0.93,
     "worst_r": -3.19
   },
   "out_of_sample": {
-    "trades": 5000,
-    "win_rate": 0.291,
-    "avg_r": 0.031,
+    "trades": 5067,
+    "win_rate": 0.292,
+    "avg_r": 0.036,
     "avg_r_ci95": [
-      -0.016,
-      0.078
+      -0.011,
+      0.082
     ],
-    "avg_win_r": 1.405,
-    "avg_loss_r": -0.534,
-    "profit_factor": 1.08,
+    "avg_win_r": 1.413,
+    "avg_loss_r": -0.533,
+    "profit_factor": 1.09,
     "worst_r": -2.94
   },
   "oos_starts": "2023-01-01",
   "portfolio": {
-    "accepted": 966,
-    "rejected_by_limits": 12842,
-    "final_equity": 391612.0,
-    "total_return_pct": -30.7,
-    "cagr_pct": -4.0,
-    "max_drawdown_pct": -30.8,
+    "accepted": 917,
+    "rejected_by_limits": 13016,
+    "final_equity": 452312.0,
+    "total_return_pct": -19.9,
+    "cagr_pct": -2.4,
+    "max_drawdown_pct": -25.3,
     "longest_drawdown_days": 2207,
     "years": 8.99
   },
@@ -75,57 +75,57 @@
   "buckets": {
     "by_score": {
       "72-79": {
-        "trades": 3685,
-        "win_rate": 0.315,
-        "avg_r": -0.006,
+        "trades": 3720,
+        "win_rate": 0.316,
+        "avg_r": -0.002,
         "avg_r_ci95": [
-          -0.05,
-          0.038
+          -0.046,
+          0.043
         ],
-        "avg_win_r": 1.154,
+        "avg_win_r": 1.162,
         "avg_loss_r": -0.538,
-        "profit_factor": 0.98,
+        "profit_factor": 1.0,
         "worst_r": -2.94
       },
       "80-89": {
-        "trades": 6505,
+        "trades": 6564,
         "win_rate": 0.279,
-        "avg_r": -0.003,
+        "avg_r": -0.002,
         "avg_r_ci95": [
-          -0.039,
-          0.032
+          -0.038,
+          0.033
         ],
-        "avg_win_r": 1.284,
-        "avg_loss_r": -0.503,
+        "avg_win_r": 1.288,
+        "avg_loss_r": -0.502,
         "profit_factor": 0.99,
         "worst_r": -2.61
       },
       "90+": {
-        "trades": 3618,
-        "win_rate": 0.282,
-        "avg_r": -0.005,
+        "trades": 3649,
+        "win_rate": 0.281,
+        "avg_r": -0.002,
         "avg_r_ci95": [
-          -0.053,
-          0.042
+          -0.05,
+          0.045
         ],
-        "avg_win_r": 1.316,
-        "avg_loss_r": -0.524,
+        "avg_win_r": 1.327,
+        "avg_loss_r": -0.523,
         "profit_factor": 0.99,
         "worst_r": -3.19
       }
     },
     "by_setup": {
       "BREAKOUT_CONT": {
-        "trades": 606,
-        "win_rate": 0.318,
-        "avg_r": 0.038,
+        "trades": 615,
+        "win_rate": 0.32,
+        "avg_r": 0.049,
         "avg_r_ci95": [
-          -0.156,
-          0.232
+          -0.144,
+          0.242
         ],
-        "avg_win_r": 2.09,
-        "avg_loss_r": -0.921,
-        "profit_factor": 1.06,
+        "avg_win_r": 2.104,
+        "avg_loss_r": -0.919,
+        "profit_factor": 1.08,
         "worst_r": -2.61
       },
       "COMPRESSION": {
@@ -142,84 +142,84 @@
         "worst_r": -1.8
       },
       "PULLBACK_EMA20": {
-        "trades": 6417,
-        "win_rate": 0.271,
-        "avg_r": -0.039,
+        "trades": 6468,
+        "win_rate": 0.27,
+        "avg_r": -0.038,
         "avg_r_ci95": [
-          -0.07,
-          -0.009
+          -0.069,
+          -0.008
         ],
-        "avg_win_r": 1.068,
+        "avg_win_r": 1.073,
         "avg_loss_r": -0.45,
         "profit_factor": 0.88,
         "worst_r": -3.19
       },
       "PULLBACK_EMA50": {
-        "trades": 4567,
+        "trades": 4609,
         "win_rate": 0.296,
         "avg_r": -0.029,
         "avg_r_ci95": [
-          -0.064,
+          -0.063,
           0.006
         ],
-        "avg_win_r": 1.014,
+        "avg_win_r": 1.015,
         "avg_loss_r": -0.467,
         "profit_factor": 0.91,
         "worst_r": -2.43
       },
       "TRENDING": {
-        "trades": 2063,
-        "win_rate": 0.321,
-        "avg_r": 0.132,
+        "trades": 2086,
+        "win_rate": 0.323,
+        "avg_r": 0.141,
         "avg_r_ci95": [
-          0.047,
-          0.217
+          0.056,
+          0.226
         ],
-        "avg_win_r": 1.922,
-        "avg_loss_r": -0.716,
-        "profit_factor": 1.27,
+        "avg_win_r": 1.931,
+        "avg_loss_r": -0.714,
+        "profit_factor": 1.29,
         "worst_r": -2.94
       }
     },
     "by_regime": {
       "bear": {
-        "trades": 1615,
-        "win_rate": 0.302,
-        "avg_r": -0.041,
+        "trades": 1626,
+        "win_rate": 0.301,
+        "avg_r": -0.042,
         "avg_r_ci95": [
           -0.106,
-          0.024
+          0.023
         ],
-        "avg_win_r": 1.093,
-        "avg_loss_r": -0.531,
+        "avg_win_r": 1.09,
+        "avg_loss_r": -0.53,
         "profit_factor": 0.89,
         "worst_r": -2.94
       },
       "bull": {
-        "trades": 12193,
+        "trades": 12307,
         "win_rate": 0.288,
-        "avg_r": 0.0,
+        "avg_r": 0.003,
         "avg_r_ci95": [
-          -0.026,
-          0.026
+          -0.023,
+          0.029
         ],
-        "avg_win_r": 1.277,
+        "avg_win_r": 1.284,
         "avg_loss_r": -0.515,
-        "profit_factor": 1.0,
+        "profit_factor": 1.01,
         "worst_r": -3.19
       }
     },
     "by_exit": {
       "ema20": {
-        "trades": 12080,
+        "trades": 12190,
         "win_rate": 0.304,
-        "avg_r": -0.042,
+        "avg_r": -0.041,
         "avg_r_ci95": [
-          -0.058,
-          -0.026
+          -0.057,
+          -0.025
         ],
-        "avg_win_r": 0.82,
-        "avg_loss_r": -0.419,
+        "avg_win_r": 0.822,
+        "avg_loss_r": -0.418,
         "profit_factor": 0.86,
         "worst_r": -2.94
       },
@@ -237,20 +237,20 @@
         "worst_r": 0.11
       },
       "gap_stop": {
-        "trades": 69,
+        "trades": 70,
         "win_rate": 0.0,
-        "avg_r": -0.992,
+        "avg_r": -0.996,
         "avg_r_ci95": [
-          -1.172,
-          -0.811
+          -1.174,
+          -0.818
         ],
         "avg_win_r": 0.0,
-        "avg_loss_r": -0.992,
+        "avg_loss_r": -0.996,
         "profit_factor": 0.0,
         "worst_r": -3.19
       },
       "stop": {
-        "trades": 1338,
+        "trades": 1346,
         "win_rate": 0.0,
         "avg_r": -1.113,
         "avg_r_ci95": [
@@ -263,14 +263,14 @@
         "worst_r": -2.62
       },
       "time": {
-        "trades": 316,
+        "trades": 322,
         "win_rate": 1.0,
-        "avg_r": 6.263,
+        "avg_r": 6.267,
         "avg_r_ci95": [
-          5.849,
-          6.677
+          5.857,
+          6.678
         ],
-        "avg_win_r": 6.263,
+        "avg_win_r": 6.267,
         "avg_loss_r": 0.0,
         "profit_factor": null,
         "worst_r": 1.21
@@ -278,28 +278,28 @@
     },
     "by_year": {
       "2017": {
-        "trades": 529,
-        "win_rate": 0.31,
+        "trades": 537,
+        "win_rate": 0.307,
         "avg_r": 0.063,
         "avg_r_ci95": [
-          -0.054,
-          0.181
+          -0.053,
+          0.179
         ],
-        "avg_win_r": 1.316,
-        "avg_loss_r": -0.5,
+        "avg_win_r": 1.322,
+        "avg_loss_r": -0.495,
         "profit_factor": 1.18,
         "worst_r": -2.12
       },
       "2018": {
-        "trades": 1320,
-        "win_rate": 0.247,
+        "trades": 1332,
+        "win_rate": 0.248,
         "avg_r": -0.187,
         "avg_r_ci95": [
-          -0.238,
+          -0.237,
           -0.136
         ],
-        "avg_win_r": 0.848,
-        "avg_loss_r": -0.527,
+        "avg_win_r": 0.844,
+        "avg_loss_r": -0.526,
         "profit_factor": 0.53,
         "worst_r": -1.84
       },
@@ -317,94 +317,94 @@
         "worst_r": -2.31
       },
       "2020": {
-        "trades": 1375,
-        "win_rate": 0.333,
-        "avg_r": 0.169,
+        "trades": 1388,
+        "win_rate": 0.334,
+        "avg_r": 0.177,
         "avg_r_ci95": [
-          0.081,
-          0.256
+          0.088,
+          0.266
         ],
-        "avg_win_r": 1.538,
-        "avg_loss_r": -0.515,
-        "profit_factor": 1.49,
+        "avg_win_r": 1.56,
+        "avg_loss_r": -0.516,
+        "profit_factor": 1.51,
         "worst_r": -3.19
       },
       "2021": {
-        "trades": 2506,
-        "win_rate": 0.3,
-        "avg_r": 0.037,
+        "trades": 2526,
+        "win_rate": 0.299,
+        "avg_r": 0.036,
         "avg_r_ci95": [
-          -0.017,
-          0.091
+          -0.018,
+          0.089
         ],
-        "avg_win_r": 1.257,
+        "avg_win_r": 1.259,
         "avg_loss_r": -0.487,
-        "profit_factor": 1.11,
+        "profit_factor": 1.1,
         "worst_r": -1.84
       },
       "2022": {
-        "trades": 1605,
+        "trades": 1610,
         "win_rate": 0.284,
-        "avg_r": -0.103,
+        "avg_r": -0.104,
         "avg_r_ci95": [
-          -0.16,
-          -0.047
+          -0.161,
+          -0.048
         ],
-        "avg_win_r": 0.982,
+        "avg_win_r": 0.98,
         "avg_loss_r": -0.534,
         "profit_factor": 0.73,
         "worst_r": -1.8
       },
       "2023": {
-        "trades": 1680,
-        "win_rate": 0.333,
-        "avg_r": 0.325,
+        "trades": 1705,
+        "win_rate": 0.334,
+        "avg_r": 0.333,
         "avg_r_ci95": [
-          0.216,
-          0.435
+          0.224,
+          0.442
         ],
-        "avg_win_r": 1.985,
-        "avg_loss_r": -0.502,
-        "profit_factor": 1.97,
+        "avg_win_r": 1.992,
+        "avg_loss_r": -0.5,
+        "profit_factor": 2.0,
         "worst_r": -2.22
       },
       "2024": {
-        "trades": 1607,
+        "trades": 1631,
         "win_rate": 0.287,
-        "avg_r": -0.063,
+        "avg_r": -0.059,
         "avg_r_ci95": [
-          -0.13,
-          0.003
+          -0.125,
+          0.007
         ],
-        "avg_win_r": 1.168,
-        "avg_loss_r": -0.558,
-        "profit_factor": 0.84,
+        "avg_win_r": 1.178,
+        "avg_loss_r": -0.556,
+        "profit_factor": 0.85,
         "worst_r": -2.62
       },
       "2025": {
-        "trades": 925,
+        "trades": 934,
         "win_rate": 0.262,
-        "avg_r": -0.136,
+        "avg_r": -0.132,
         "avg_r_ci95": [
-          -0.208,
-          -0.064
+          -0.204,
+          -0.061
         ],
-        "avg_win_r": 0.979,
+        "avg_win_r": 0.99,
         "avg_loss_r": -0.531,
-        "profit_factor": 0.65,
+        "profit_factor": 0.66,
         "worst_r": -2.94
       },
       "2026": {
-        "trades": 788,
-        "win_rate": 0.247,
-        "avg_r": -0.21,
+        "trades": 797,
+        "win_rate": 0.248,
+        "avg_r": -0.209,
         "avg_r_ci95": [
-          -0.289,
+          -0.287,
           -0.131
         ],
-        "avg_win_r": 0.831,
-        "avg_loss_r": -0.553,
-        "profit_factor": 0.49,
+        "avg_win_r": 0.827,
+        "avg_loss_r": -0.552,
+        "profit_factor": 0.5,
         "worst_r": -2.0
       }
     }
