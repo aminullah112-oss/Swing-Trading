@@ -153,7 +153,38 @@ function renderLedger(led) {
     }).join('');
 }
 
-function init() { loadResults(); loadLedger(); }
+// ---------- readiness + health ----------
+async function loadReadiness() {
+    try {
+        const [rr, hr] = await Promise.all([fetch('readiness.json?t=' + Date.now()), fetch('health.json?t=' + Date.now())]);
+        const rd = rr.ok ? await rr.json() : null;
+        const hl = hr.ok ? await hr.json() : null;
+        const bar = document.getElementById('live-bar');
+        if (!rd) { bar.className = 'status-bar status-stale'; bar.textContent = 'Readiness not computed yet (run the Daily Stock Screen workflow).'; return; }
+        const p = rd.policy, allowed = p.live_risk_pct_allowed > 0;
+        bar.className = 'status-bar ' + (allowed ? 'status-fresh' : 'status-stale');
+        bar.textContent = (allowed ? `LIVE TRADING ALLOWED at up to ${p.live_risk_pct_allowed}% risk per trade` : 'LIVE TRADING NOT ALLOWED — paper only')
+            + ` · readiness ${p.score}/10 (${p.mode})` + (hl ? ` · health ${hl.status}` : '')
+            + (p.reasons && p.reasons.length ? ` · ${p.reasons[0]}` : '');
+        setText('readiness-meta', `${p.score}/10 · generated ${String(rd.generated).slice(0, 16).replace('T', ' ')} UTC`);
+        const ST = {pass: '✅ pass', fail: '❌ fail', insufficient: '⏳ not enough data', manual: '🖐 not attested'};
+        const fmt = v => v == null ? '' : (typeof v === 'object' ? JSON.stringify(v) : String(v));
+        document.getElementById('readiness-body').innerHTML = rd.gates.map(g => `
+            <tr class="stock-row">
+                <td>${esc(g.id)} ${esc(g.label)}${g.critical ? ' <strong>(critical)</strong>' : ''}</td>
+                <td>${esc(g.earned)}/${esc(g.points)}</td>
+                <td>${esc(ST[g.status] || g.status)}</td>
+                <td>${esc([fmt(g.value), g.detail].filter(Boolean).join(' — '))}</td>
+            </tr>`).join('');
+        if (hl) {
+            const bad = hl.checks.filter(c => c.level !== 'ok');
+            document.getElementById('health-note').innerHTML = `<strong>Health: ${esc(hl.status)}</strong>` +
+                (bad.length ? ' — ' + bad.map(c => `${esc(c.id)}: ${esc(c.msg)}`).join(' · ') : ' — all checks passing');
+        }
+    } catch (e) { console.error(e); }
+}
+
+function init() { loadResults(); loadLedger(); loadReadiness(); }
 document.addEventListener('DOMContentLoaded', init);
 setInterval(init, 5 * 60 * 1000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) init(); });

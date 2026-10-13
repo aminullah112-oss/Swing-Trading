@@ -1,0 +1,155 @@
+{
+  "generated": "2026-10-13T18:57:59+00:00",
+  "policy": {
+    "score": 1.5,
+    "mode": "PAPER ONLY",
+    "live_risk_pct_allowed": 0.0,
+    "reasons": [
+      "capital not confirmed in attestations.json"
+    ],
+    "critical_gates_passed": false,
+    "unmet": [
+      "U1 Beats buy-and-hold of the same universe per unit of drawdown (hold-out)",
+      "B2 Survivorship-free backtest passes the same gates (attested)",
+      "F1 At least 100 closed forward signals",
+      "F2 At least 182 days of forward record",
+      "F3 Forward expectancy (closed + open) has a 95% CI lower bound above 0",
+      "F4 Forward expectancy is not clearly below the backtest design-period figure",
+      "E1 At least 30 live fills with slippage within 2x the model",
+      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)"
+    ]
+  },
+  "gates": [
+    {
+      "id": "B1",
+      "label": "Live variant passes the pre-registered backtest gates",
+      "points": 0.5,
+      "critical": false,
+      "status": "pass",
+      "earned": 0.5,
+      "value": "G1/G2/G3 = True/True/True",
+      "threshold": "all three gates",
+      "detail": "variant prior_high/ema50/h120"
+    },
+    {
+      "id": "U1",
+      "label": "Beats buy-and-hold of the same universe per unit of drawdown (hold-out)",
+      "points": 1.0,
+      "critical": true,
+      "status": "insufficient",
+      "earned": 0.0,
+      "value": null,
+      "threshold": null,
+      "detail": "reports/universe.json missing: rerun the Backtest workflow"
+    },
+    {
+      "id": "B2",
+      "label": "Survivorship-free backtest passes the same gates (attested)",
+      "points": 1.5,
+      "critical": true,
+      "status": "manual",
+      "earned": 0.0,
+      "value": null,
+      "threshold": null,
+      "detail": "attestations.json: survivorship_free_backtest_passed"
+    },
+    {
+      "id": "F1",
+      "label": "At least 100 closed forward signals",
+      "points": 1.0,
+      "critical": false,
+      "status": "fail",
+      "earned": 0.0,
+      "value": 0,
+      "threshold": 100,
+      "detail": ""
+    },
+    {
+      "id": "F2",
+      "label": "At least 182 days of forward record",
+      "points": 1.0,
+      "critical": false,
+      "status": "fail",
+      "earned": 0.0,
+      "value": -1,
+      "threshold": 182,
+      "detail": ""
+    },
+    {
+      "id": "F3",
+      "label": "Forward expectancy (closed + open) has a 95% CI lower bound above 0",
+      "points": 1.5,
+      "critical": true,
+      "status": "insufficient",
+      "earned": 0.0,
+      "value": null,
+      "threshold": null,
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, -1)"
+    },
+    {
+      "id": "F4",
+      "label": "Forward expectancy is not clearly below the backtest design-period figure",
+      "points": 1.0,
+      "critical": true,
+      "status": "insufficient",
+      "earned": 0.0,
+      "value": null,
+      "threshold": null,
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, -1)"
+    },
+    {
+      "id": "E1",
+      "label": "At least 30 live fills with slippage within 2x the model",
+      "points": 1.0,
+      "critical": true,
+      "status": "insufficient",
+      "earned": 0.0,
+      "value": {
+        "n_entries": 0,
+        "n_exits": 0,
+        "entry_slip_bps": null,
+        "exit_slip_bps": null
+      },
+      "threshold": "30+ fills in live_fills.csv",
+      "detail": ""
+    },
+    {
+      "id": "S1",
+      "label": "Forward record includes a >=10% Nifty drawdown, rules followed (attested)",
+      "points": 0.5,
+      "critical": false,
+      "status": "manual",
+      "earned": 0.0,
+      "value": null,
+      "threshold": null,
+      "detail": "attestations.json: market_stress_observed"
+    },
+    {
+      "id": "O1",
+      "label": "Operations healthy (no health FAIL)",
+      "points": 0.5,
+      "critical": false,
+      "status": "pass",
+      "earned": 0.5,
+      "value": "OK",
+      "threshold": "OK/WARN",
+      "detail": ""
+    },
+    {
+      "id": "R1",
+      "label": "Risk limits within safe bounds (risk/trade <= 1%, open risk <= 3%, position <= 25%)",
+      "points": 0.5,
+      "critical": false,
+      "status": "pass",
+      "earned": 0.5,
+      "value": {
+        "capital": 565000.0,
+        "risk_pct": 0.5,
+        "max_pos_pct": 25.0,
+        "max_open_risk_pct": 1.5
+      },
+      "threshold": null,
+      "detail": ""
+    }
+  ]
+}

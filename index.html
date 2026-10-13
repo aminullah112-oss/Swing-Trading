@@ -55,6 +55,8 @@
         <span class="legend-item">Hard stop = close − max(1.5×ATR, 3%)</span>
     </div>
 
+    <div class="status-bar" id="live-bar">Loading live-trading status…</div>
+
     <h2 class="section-title">Today's signals</h2>
     <div class="table-wrapper">
         <table class="results-table">
@@ -107,6 +109,19 @@
         Every signal is logged and followed with the same simulation the backtest uses. *Taken = would have fit the open-risk budget.
         <strong>Read closed-only averages with care:</strong> with a slow exit, losers stop out fast while winners stay open, so closed-only results
         look worse than the true picture for months. The headline figure includes open trades marked to the last close. Fewer than ~100 closed trades says almost nothing about expectancy.
+    </div>
+
+    <h2 class="section-title">Readiness scorecard <span class="muted" id="readiness-meta"></span></h2>
+    <div class="table-wrapper">
+        <table class="results-table">
+            <thead><tr><th>Gate</th><th>Points</th><th>Status</th><th>Detail</th></tr></thead>
+            <tbody id="readiness-body"><tr><td colspan="4" class="loading-cell">Loading…</td></tr></tbody>
+        </table>
+    </div>
+    <div class="capital-note" id="health-note"></div>
+    <div class="capital-note">
+        Points are earned only by verified evidence; unverifiable items default to "not attested". Live trading stays off until the policy in
+        <a class="back-link" href="https://github.com/aminullah112-oss/Swing-Trading/blob/main/reports/readiness.md" target="_blank">reports/readiness.md</a> allows it.
     </div>
 
     <footer class="footer">

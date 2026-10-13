@@ -1,0 +1,9 @@
+{
+  "_README": "Facts the code cannot verify. Set a value to true only when it is genuinely and verifiably true; the scorecard gives no credit otherwise. Edit by hand and commit.",
+  "survivorship_free_backtest_passed": false,
+  "survivorship_free_backtest_note": "Point-in-time constituents incl. delisted stocks; the live variant must pass the same pre-registered gates. Link or path to the report:",
+  "market_stress_observed": false,
+  "market_stress_note": "The forward record spans a >=10% Nifty drawdown; the live rules were followed through it:",
+  "capital_confirmed": false,
+  "capital_note": "EDGE_CAPITAL repo variable equals actual tradable equity:"
+}
