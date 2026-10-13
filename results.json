@@ -1,9 +1,16 @@
 {
-  "scan_id": "dc926e8742e4",
-  "timestamp": "2026-10-13T19:14:32.695978+00:00",
+  "scan_id": "cd67395a8560",
+  "timestamp": "2026-10-13T19:35:00.482688+00:00",
   "scan_date": "2026-10-14",
-  "scan_time": "00:44:32 IST",
+  "scan_time": "01:05:00 IST",
   "data_cutoff": "2026-10-12",
+  "expected_session": "2026-10-13",
+  "sessions_behind": 1,
+  "missing_symbols": [
+    "TATAMOTORS",
+    "ZOMATO",
+    "GUJARATGAS"
+  ],
   "symbols_processed": 157,
   "total_scanned": 160,
   "total_passed": 10,
@@ -310,7 +317,7 @@
         "note": null,
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-13T19:14:32.695978+00:00"
+      "timestamp": "2026-10-13T19:35:00.482688+00:00"
     },
     {
       "avg_value_cr": 145.9,
@@ -579,7 +586,7 @@
         "note": null,
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-13T19:14:32.695978+00:00"
+      "timestamp": "2026-10-13T19:35:00.482688+00:00"
     },
     {
       "avg_value_cr": 61.43,
@@ -849,7 +856,7 @@
         "note": null,
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-13T19:14:32.695978+00:00"
+      "timestamp": "2026-10-13T19:35:00.482688+00:00"
     },
     {
       "avg_value_cr": 155.84,
@@ -1119,7 +1126,7 @@
         "note": null,
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T19:14:32.695978+00:00"
+      "timestamp": "2026-10-13T19:35:00.482688+00:00"
     },
     {
       "avg_value_cr": 386.74,
@@ -1389,7 +1396,7 @@
         "note": null,
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T19:14:32.695978+00:00"
+      "timestamp": "2026-10-13T19:35:00.482688+00:00"
     },
     {
       "avg_value_cr": 322.0,
@@ -1659,7 +1666,7 @@
         "note": null,
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T19:14:32.695978+00:00"
+      "timestamp": "2026-10-13T19:35:00.482688+00:00"
     },
     {
       "avg_value_cr": 137.07,
@@ -1929,7 +1936,7 @@
         "note": null,
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T19:14:32.695978+00:00"
+      "timestamp": "2026-10-13T19:35:00.482688+00:00"
     },
     {
       "avg_value_cr": 93.04,
@@ -2199,7 +2206,7 @@
         "note": null,
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T19:14:32.695978+00:00"
+      "timestamp": "2026-10-13T19:35:00.482688+00:00"
     },
     {
       "avg_value_cr": 123.94,
@@ -2469,7 +2476,7 @@
         "note": null,
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T19:14:32.695978+00:00"
+      "timestamp": "2026-10-13T19:35:00.482688+00:00"
     },
     {
       "avg_value_cr": 463.25,
@@ -2739,7 +2746,7 @@
         "note": null,
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-13T19:14:32.695978+00:00"
+      "timestamp": "2026-10-13T19:35:00.482688+00:00"
     }
   ]
 }

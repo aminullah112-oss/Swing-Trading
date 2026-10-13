@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-13T19:14:37+00:00",
+  "generated": "2026-10-13T19:35:06+00:00",
   "policy": {
     "score": 1.5,
     "mode": "PAPER ONLY",
@@ -38,9 +38,9 @@
       "critical": true,
       "status": "fail",
       "earned": 0.0,
-      "value": "strategy 0.43 vs universe 0.83",
+      "value": "strategy 0.51 vs universe 0.83",
       "threshold": "CAGR/|maxDD| >= universe",
-      "detail": "hold-out CAGR 6.7% / DD -15.7% vs universe 17.0% / -20.6%"
+      "detail": "hold-out CAGR 7.5% / DD -14.8% vs universe 17.1% / -20.5%"
     },
     {
       "id": "B2",
@@ -131,7 +131,7 @@
       "critical": false,
       "status": "pass",
       "earned": 0.5,
-      "value": "OK",
+      "value": "WARN",
       "threshold": "OK/WARN",
       "detail": ""
     },

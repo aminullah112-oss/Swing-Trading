@@ -1,6 +1,6 @@
 {
-  "status": "OK",
-  "generated": "2026-10-13T19:14:36+00:00",
+  "status": "WARN",
+  "generated": "2026-10-13T19:35:06+00:00",
   "checks": [
     {
       "id": "H1",
@@ -8,9 +8,14 @@
       "msg": "market data through 2026-10-12 (1 days old)"
     },
     {
+      "id": "H1b",
+      "level": "warn",
+      "msg": "data ends 2026-10-12 but the last completed session should be 2026-10-13 (1 session(s) behind): an exchange holiday, or the data vendor is lagging. If it was a trading day, 'valid for the next session' buy levels refer to a session that already traded"
+    },
+    {
       "id": "H2",
       "level": "ok",
-      "msg": "157/160 symbols had data (98%)"
+      "msg": "157/160 symbols had data (98%); no data for: TATAMOTORS, ZOMATO, GUJARATGAS"
     },
     {
       "id": "H3",
