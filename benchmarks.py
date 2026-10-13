@@ -144,7 +144,8 @@ def _slice(ret, lo=None, hi=None):
 
 
 # --------------------------------------------------------------------------- report
-def run(frames, bench, prepared=None, cfg=None):
+def compute_series(frames, bench, prepared=None, cfg=None):
+    """All daily return series used in the report (also reused by official_index.py)."""
     cfg = cfg or strategy.backtest_config()
     prepared = prepared if prepared is not None else bt.prepare(frames)
     trades = bt.generate_trades(frames, cfg, bench, prepared)
@@ -153,7 +154,12 @@ def run(frames, bench, prepared=None, cfg=None):
     nifty = bench.astype(float).pct_change() if bench is not None else None
     mom, hold = momentum_portfolio(closes)
     strat = strategy_portfolios(frames, trades, cfg, bench)
+    return {'trades': trades, 'ew': ew, 'nifty': nifty, 'mom': mom, 'holdings': hold, 'strat': strat}
 
+
+def run(frames, bench, prepared=None, cfg=None, series_bundle=None):
+    s = series_bundle or compute_series(frames, bench, prepared, cfg)
+    trades, ew, nifty, mom, hold, strat = s['trades'], s['ew'], s['nifty'], s['mom'], s['holdings'], s['strat']
     series = {'Live strategy (baseline)': None, 'H1 momentum-30 replica': mom, 'Equal-weight universe': ew, 'Nifty 50': nifty}
     periods = {'design': (None, SPLIT), 'holdout': (SPLIT, None)}
     table = {}
