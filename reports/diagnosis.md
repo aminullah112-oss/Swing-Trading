@@ -20,8 +20,8 @@ Design n=8828, hold-out n=5003.
 | rsi | 45-62 | 20 | 7247 | -0.021 | 4054 | +0.016 |
 | rsi | 62-70 | 13 | 738 | -0.045 | 408 | +0.289 |
 | rsi | 70-76 | 4 | 113 | +0.124 | 52 | +0.407 |
-| volr | 0-0.7 | 3 | 1872 | -0.038 | 1084 | +0.008 |
-| volr | 0.7-1.2 | 7 | 3530 | -0.041 | 1985 | +0.046 |
+| volr | 0-0.7 | 3 | 1871 | -0.038 | 1084 | +0.008 |
+| volr | 0.7-1.2 | 7 | 3531 | -0.041 | 1985 | +0.046 |
 | volr | 1.2-1.8 | 13 | 1883 | +0.012 | 1105 | -0.042 |
 | volr | 1.8+ | 20 | 1543 | -0.016 | 829 | +0.120 |
 | nrising | 1 | 3 | 8828 | -0.025 | 5003 | +0.031 |
@@ -39,14 +39,14 @@ Rank agreement between live points and realised R (design, hold-out); +1 = score
 - setup: (-0.5, -0.5)
 
 **Learned additive score** (bin means from the design period only, shrunk toward 0), evaluated on the hold-out:
-- Spearman: [-0.067, -0.107, -0.028]
+- Spearman: [-0.067, -0.107, -0.027]
 - top minus bottom tercile avg R: [0.072, -0.088, 0.264]
 
 Compare with the live score above. If the learned score's CI also spans 0, no component of the score carries a dependable signal and the ranking should be dropped rather than refitted.
 
 ## Score diagnosis: slow exit: next-open, chandelier(3 ATR), 120d
 
-Design n=4426, hold-out n=2478.
+Design n=4425, hold-out n=2478.
 
 **Does the live score predict R?** Spearman (point, month-clustered 95% CI):
 - design: [0.007, -0.025, 0.04]
@@ -59,17 +59,17 @@ Design n=4426, hold-out n=2478.
 |---|---|---|---|---|---|---|
 | rsi | 0-38 | 0 | 10 | -0.687 | 9 | -0.712 |
 | rsi | 38-45 | 8 | 443 | +0.038 | 270 | +0.179 |
-| rsi | 45-62 | 20 | 3272 | +0.078 | 1841 | +0.163 |
+| rsi | 45-62 | 20 | 3271 | +0.078 | 1841 | +0.163 |
 | rsi | 62-70 | 13 | 606 | +0.004 | 316 | +0.475 |
 | rsi | 70-76 | 4 | 95 | -0.324 | 42 | +0.643 |
 | volr | 0-0.7 | 3 | 788 | +0.030 | 474 | +0.196 |
-| volr | 0.7-1.2 | 7 | 1741 | +0.075 | 975 | +0.203 |
+| volr | 0.7-1.2 | 7 | 1740 | +0.076 | 975 | +0.203 |
 | volr | 1.2-1.8 | 13 | 1037 | +0.031 | 579 | +0.198 |
 | volr | 1.8+ | 20 | 860 | +0.057 | 450 | +0.254 |
-| nrising | 1 | 3 | 4426 | +0.053 | 2478 | +0.210 |
+| nrising | 1 | 3 | 4425 | +0.053 | 2478 | +0.210 |
 | near52 | 0 | 0 | 443 | +0.162 | 215 | +0.018 |
-| near52 | 1 | 3 | 3983 | +0.041 | 2263 | +0.228 |
-| setup | PULLBACK_EMA20 | 20 | 2138 | +0.050 | 1306 | +0.182 |
+| near52 | 1 | 3 | 3982 | +0.041 | 2263 | +0.228 |
+| setup | PULLBACK_EMA20 | 20 | 2137 | +0.050 | 1306 | +0.182 |
 | setup | PULLBACK_EMA50 | 14 | 1132 | +0.054 | 601 | +0.107 |
 | setup | COMPRESSION | 12 | 37 | -0.020 | 65 | +0.145 |
 | setup | BREAKOUT_CONT | 10 | 301 | -0.012 | 128 | +0.493 |
@@ -81,7 +81,7 @@ Rank agreement between live points and realised R (design, hold-out); +1 = score
 - setup: (-0.2, -0.6)
 
 **Learned additive score** (bin means from the design period only, shrunk toward 0), evaluated on the hold-out:
-- Spearman: [-0.011, -0.044, 0.025]
-- top minus bottom tercile avg R: [-0.164, -0.364, 0.047]
+- Spearman: [-0.01, -0.044, 0.025]
+- top minus bottom tercile avg R: [-0.143, -0.347, 0.073]
 
 Compare with the live score above. If the learned score's CI also spans 0, no component of the score carries a dependable signal and the ranking should be dropped rather than refitted.

@@ -1,0 +1,25 @@
+{
+  "symbols": 157,
+  "full": {
+    "equal_weight": {
+      "cagr_pct": 19.9,
+      "max_drawdown_pct": -37.8
+    },
+    "nifty": {
+      "cagr_pct": 10.1,
+      "max_drawdown_pct": -38.4
+    },
+    "universe_excess_cagr_pct": 9.8
+  },
+  "holdout": {
+    "equal_weight": {
+      "cagr_pct": 17.0,
+      "max_drawdown_pct": -20.6
+    },
+    "nifty": {
+      "cagr_pct": 5.8,
+      "max_drawdown_pct": -15.8
+    },
+    "universe_excess_cagr_pct": 11.2
+  }
+}
