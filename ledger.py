@@ -53,6 +53,7 @@ def add_signals(ledger, results):
             'close': r['price'], 'trigger': r['trigger'], 'stop': r['stop_loss'], 'plan_risk': r['plan_risk'],
             'shares': pos.get('shares', 0), 'risk_amount': pos.get('risk_amount', 0.0),
             'status': 'pending', 'scan_id': results.get('scan_id'),
+            'provisional': bool(r.get('provisional')),
         })
         busy.add(r['symbol']); added += 1
     if ledger['started'] is None and ledger['signals']:
@@ -81,6 +82,17 @@ def update_status(ledger, frames, cfg=None):
         if sdate not in df.index:
             continue
         s = df.index.get_loc(sdate)
+        if rec.get('provisional') and not rec.get('verified'):
+            # The signal was generated from a provisional bar; re-check it against the official one.
+            import screener as sc
+            official, _ = sc.evaluate(df.iloc[:s + 1])
+            if official is None:
+                rec.update({'status': 'void', 'void_reason': 'official bar no longer qualifies as a signal'})
+                changed += 1
+                continue
+            rec['verified'] = True
+            rec['trigger_official'] = official['trigger']
+            rec['stop_official'] = official['stop_loss']
         a = _arrays(df)
         t = bt.simulate_trade(a, s, cfg, rec['setup'], rec['score'])
         n = len(df)
@@ -152,6 +164,7 @@ def summarize(ledger):
     out = {
         'signals': len(sigs), 'pending': sum(r['status'] == 'pending' for r in sigs), 'open': len(open_),
         'closed': len(closed), 'expired': sum(r['status'] == 'expired' for r in sigs),
+        'void': sum(r['status'] == 'void' for r in sigs),
         'win_rate': round(float((rs > 0).mean()), 3) if len(rs) else None,
         'avg_r': round(float(rs.mean()), 3) if len(rs) else None,
         'total_r': round(float(rs.sum()), 2) if len(rs) else 0.0,

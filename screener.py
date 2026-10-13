@@ -16,6 +16,7 @@ import yfinance as yf
 from risk import size_position, stop_distance
 import strategy
 import analysis
+import intraday
 
 warnings.filterwarnings('ignore')
 
@@ -66,7 +67,6 @@ NSE_STOCKS = [
     'SUZLON','TRIDENT','RAYMOND','COROMANDEL','CHAMBLFERT',
     'RALLIS','DHANUKA','ATUL','NOCIL','APLAPOLLO',
     'ZOMATO','AARTIIND','TVSMOTOR','PRAJIND',   # Fixed tickers
-    'GUJARATGAS',
 ]
 NSE_STOCKS = list(dict.fromkeys(NSE_STOCKS))
 YF_TICKERS = [f"{s}.NS" for s in NSE_STOCKS]
@@ -75,11 +75,11 @@ BENCH = '^NSEI'
 # stops more than STALE_DAYS before the latest bar is treated as missing (delisted or renamed).
 SYMBOL_ALIASES = {
     'ZOMATO': ['ETERNAL'],          # renamed Eternal Ltd in 2025
-    'GUJARATGAS': ['GUJGASLTD'],    # NSE symbol is GUJGASLTD
     'TATAMOTORS': ['TMPV'],         # demerger: passenger-vehicle company
 }
 ALIAS_TICKERS = [f'{a}.NS' for v in SYMBOL_ALIASES.values() for a in v]
 STALE_DAYS = 7
+PROV_MIN_COVERAGE = 0.8      # use provisional bars only if intraday data covers most of the universe
 
 
 def load_stockedge():
@@ -201,6 +201,54 @@ def retry_download(symbols):
             print(f"Retry attempt {attempt + 1}: {e}")
         time.sleep(3)
     return None
+
+
+def fetch_intraday(tickers):
+    """Latest session as 5-minute bars (Yahoo can hold these while its daily bar is still empty)."""
+    for attempt in range(2):
+        try:
+            d = yf.download(tickers=tickers, period='1d', interval='5m', group_by='ticker', auto_adjust=True,
+                            progress=False, threads=True, timeout=90)
+            if d is not None and not d.empty:
+                return d
+        except Exception as e:
+            print(f"Intraday attempt {attempt + 1}: {e}")
+        time.sleep(3)
+    return None
+
+
+def audit_previous_provisional(bulk):
+    """If provisional bars were stored by an earlier run and the official daily bars are now published,
+    measure the error and record it. Returns the audit dict or None."""
+    pending = intraday.load_json(intraday.BARS_BAND, None)
+    if not pending or not pending.get('bars'):
+        return None
+    day = pd.Timestamp(pending['date']).date()
+    official = {}
+    for sym in pending['bars']:
+        df = extract_df(bulk, f'{sym}.NS')
+        if df is None:
+            continue
+        row = df[df.index.date == day]
+        if len(row) and pd.notna(row['Close'].iloc[-1]):
+            r = row.iloc[-1]
+            official[sym] = {'open': float(r['Open']), 'high': float(r['High']), 'low': float(r['Low']),
+                             'close': float(r['Close']), 'volume': float(r['Volume'])}
+    if len(official) < 0.5 * len(pending['bars']):
+        return None                                  # official bars not published yet; keep waiting
+    a = intraday.audit(pending['bars'], None, official)
+    if a is None:
+        return None
+    a['date'] = pending['date']; a['audited_at'] = intraday.stamp()
+    audits = intraday.load_json(intraday.AUDIT_FILE, [])
+    audits.append(a)
+    intraday.save_json(audits, intraday.AUDIT_FILE)
+    try:
+        os.remove(intraday.BARS_BAND)
+    except OSError:
+        pass
+    print(f"Provisional-bar audit for {a['date']}: {a['median_abs_error_bps']}")
+    return a
 
 
 def probe_vendor():
@@ -419,8 +467,12 @@ def main():
     print("-" * 70)
     frame_last = bulk.index.max()
     aliases_used = {}
+    now_ist = now_utc.astimezone(IST)
+    holidays = analysis.load_holidays()
+    expected = analysis.expected_last_session(now_ist, holidays=holidays)
+    latest_audit = audit_previous_provisional(bulk)
 
-    def handle(sym, df, used):
+    def handle(sym, df, used, prov=None):
         if used != sym:
             aliases_used[sym] = used
         last_bars.append(df.index[-1])
@@ -430,19 +482,28 @@ def main():
             return
         rec['symbol'] = used
         rec['timestamp'] = now_utc.isoformat()
+        if prov:
+            rec['provisional'] = True
+            rec['checks'].append({'id': 'provisional', 'status': 'warn',
+                                  'text': f"Provisional bar: built from 5-minute data ({prov}) because the official daily bar "
+                                          f"is not published yet; the official close may differ slightly"})
         results.append(rec)
-        print(f"{sym:<14}{rec['setup_type']:<20}{rec['price']:>10.2f}{rec['trigger']:>10.2f}{rec['stop_loss']:>10.2f}")
+        print(f"{sym:<14}{rec['setup_type']:<20}{rec['price']:>10.2f}{rec['trigger']:>10.2f}{rec['stop_loss']:>10.2f}"
+              f"{'  (provisional)' if prov else ''}")
 
+    resolved = {}
     for sym in NSE_STOCKS:
         try:
             df, used, _ = resolve_symbol(bulk, sym, frame_last)
             if df is None:
-                missing.append(sym); continue
-            handle(sym, df, used)
+                missing.append(sym)
+            else:
+                resolved[sym] = (df, used)
         except Exception as e:
             print(f"{sym}: {str(e)[:50]}")
 
     recovered = []
+    again = None
     if missing:                        # second chance before declaring anything missing
         print(f"Retrying {len(missing)} symbols individually: {', '.join(missing)}")
         again = retry_download(missing)
@@ -452,13 +513,43 @@ def main():
             try:
                 df, used, _ = resolve_symbol(again, sym, frame_last)
                 if df is not None:
-                    handle(sym, df, used); missing.remove(sym); recovered.append(sym)
+                    resolved[sym] = (df, used); missing.remove(sym); recovered.append(sym)
             except Exception as e:
                 print(f"{sym} (retry): {str(e)[:50]}")
     missing_detail = {sym: diagnose_symbol(again if again is not None else bulk, sym) for sym in missing}
     stats['data'] = len(missing)
     if recovered:
         print(f"Recovered on retry: {', '.join(recovered)}")
+
+    # The vendor's daily bar for the latest session can lag while its 5-minute bars are complete.
+    prov_bars, prov_method, intr, nifty_bar = {}, None, None, None
+    if resolved:
+        data_last = max(df.index[-1] for df, _ in resolved.values()).date()
+        if data_last < expected:
+            tick_map = {used: f'{used}.NS' for _, used in resolved.values()}
+            intr = fetch_intraday(list(tick_map.values()) + [BENCH])
+            prov_bars = intraday.build_bars(intr, tick_map, expected)
+            if len(prov_bars) < PROV_MIN_COVERAGE * len(resolved):
+                print(f"Intraday data covers only {len(prov_bars)}/{len(resolved)} symbols; not using provisional bars.")
+                prov_bars = {}
+            else:
+                prov_method = intraday.choose_method(intraday.load_json(intraday.AUDIT_FILE, []))
+                nb = intraday.build_bars(intr, {BENCH: BENCH}, expected).get(BENCH)
+                nifty_bar = nb
+                print(f"Using provisional {expected} bars for {len(prov_bars)} symbols (close = {prov_method}).")
+
+    for sym, (df, used) in resolved.items():
+        try:
+            prov = None
+            if used in prov_bars:
+                df = intraday.append_provisional(df, prov_bars[used], prov_method)
+                prov = prov_method
+            handle(sym, df, used, prov)
+        except Exception as e:
+            print(f"{sym}: {str(e)[:50]}")
+    if prov_bars:
+        intraday.save_json({'date': str(expected), 'method': prov_method, 'created': intraday.stamp(), 'bars': prov_bars},
+                           intraday.BARS_BAND)
 
     processed = len(NSE_STOCKS) - stats['data']
     if processed < MIN_DATA_RATIO * len(NSE_STOCKS) or not last_bars:
@@ -472,6 +563,8 @@ def main():
         print(f"Resolved renamed tickers: {aliases_used}")
     try:
         nifty = extract_df(bulk, BENCH)
+        if nifty is not None and nifty_bar:
+            nifty = intraday.append_provisional(nifty, nifty_bar, prov_method)
         nifty_close = nifty['Close'] if nifty is not None else None
     except Exception:
         nifty_close = None
@@ -487,9 +580,6 @@ def main():
           f"Price:{stats['price']} Score<{strategy.MIN_SCORE}:{stats['score']} Data:{stats['data']}")
     print("=" * 70)
 
-    now_ist = now_utc.astimezone(IST)
-    holidays = analysis.load_holidays()
-    expected = analysis.expected_last_session(now_ist, holidays=holidays)
     behind = analysis.sessions_behind(max(last_bars).date(), expected, holidays)
     # What the vendor actually returned, so a lag can be diagnosed instead of guessed at
     last_row = bulk.iloc[-1]
@@ -520,6 +610,8 @@ def main():
         'missing_detail':    missing_detail,
         'recovered_on_retry': recovered,
         'aliases_used':      aliases_used,
+        'provisional':       ({'used': True, 'date': str(expected), 'method': prov_method, 'symbols': len(prov_bars)} if prov_bars else {'used': False}),
+        'provisional_audit': latest_audit or (intraday.load_json(intraday.AUDIT_FILE, []) or [None])[-1],
         'vendor':            vendor,
         'symbols_processed': processed,
         'total_scanned':     len(NSE_STOCKS),

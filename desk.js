@@ -97,6 +97,17 @@ function renderDataNotes(data) {
             `(${esc(behind)} session${behind > 1 ? 's' : ''} behind). Unless that day is an exchange holiday missing from market_holidays.json, the data vendor is lagging: ` +
             `the session each buy-stop applies to has already traded, so every signal below is blocked as stale. Wait for a scan with current data.`;
     }
+    const prov = data.provisional || {};
+    const pbar = document.getElementById('prov-bar');
+    if (pbar) {
+        pbar.hidden = !prov.used;
+        if (prov.used) {
+            const aud = data.provisional_audit && data.provisional_audit.median_abs_error_bps;
+            pbar.innerHTML = `ℹ PROVISIONAL DATA — Yahoo has not published the official daily bar for ${esc(prov.date)}, so ${esc(prov.symbols)} stocks use a bar ` +
+                `built from 5-minute data (close = ${esc(prov.method)}). Signals are marked provisional and are re-checked when the official bar arrives.` +
+                (aud && aud.close_last != null ? ` Last audit: median close error ${esc(aud.close_last)} bps (last trade) / ${esc(aud.close_vwap30)} bps (30-min VWAP).` : ' No audit yet.');
+        }
+    }
     const miss = data.missing_symbols || [];
     const note = document.getElementById('missing-note');
     note.hidden = !miss.length;
