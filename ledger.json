@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-13T19:52:42.716294+00:00",
+  "updated": "2026-10-13T20:21:40.411445+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -200,14 +200,51 @@
       "status": "pending",
       "scan_id": "6cea34aa4007",
       "taken": false
+    },
+    {
+      "id": "AUROPHARMA|2026-10-13",
+      "symbol": "AUROPHARMA",
+      "signal_date": "2026-10-13",
+      "setup": "PULLBACK_EMA20",
+      "score": 94,
+      "in_stockedge": false,
+      "close": 1684.6,
+      "trigger": 1704.8,
+      "stop": 1629.87,
+      "plan_risk": 54.7286,
+      "shares": 37,
+      "risk_amount": 2772.41,
+      "status": "pending",
+      "scan_id": "844361f61331",
+      "provisional": true,
+      "taken": false
+    },
+    {
+      "id": "LICHSGFIN|2026-10-13",
+      "symbol": "LICHSGFIN",
+      "signal_date": "2026-10-13",
+      "setup": "TRENDING",
+      "score": 75,
+      "in_stockedge": false,
+      "close": 564.0,
+      "trigger": 564.75,
+      "stop": 536.5,
+      "plan_risk": 27.4982,
+      "shares": 100,
+      "risk_amount": 2825.0,
+      "status": "pending",
+      "scan_id": "844361f61331",
+      "provisional": true,
+      "taken": false
     }
   ],
   "summary": {
-    "signals": 11,
-    "pending": 11,
+    "signals": 13,
+    "pending": 13,
     "open": 0,
     "closed": 0,
     "expired": 0,
+    "void": 0,
     "win_rate": null,
     "avg_r": null,
     "total_r": 0.0,

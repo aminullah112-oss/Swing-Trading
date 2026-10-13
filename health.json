@@ -1,21 +1,21 @@
 {
   "status": "WARN",
-  "generated": "2026-10-13T19:52:43+00:00",
+  "generated": "2026-10-13T20:21:40+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-12 (1 days old)"
+      "msg": "market data through 2026-10-13 (0 days old)"
     },
     {
-      "id": "H1b",
+      "id": "H1c",
       "level": "warn",
-      "msg": "data ends 2026-10-12 but the last completed session should be 2026-10-13 (1 session(s) behind). Unless it was an exchange holiday missing from market_holidays.json, the data vendor is lagging and 'valid for the next session' buy levels refer to a session that already traded"
+      "msg": "signals use provisional 2026-10-13 bars built from 5-minute data for 159 symbols (close = last); the official daily bar is not published yet. No audit yet"
     },
     {
       "id": "H2",
       "level": "ok",
-      "msg": "159/160 symbols had data (99%); no data for: GUJARATGAS"
+      "msg": "159/159 symbols had data (100%)"
     },
     {
       "id": "H3",
@@ -25,7 +25,7 @@
     {
       "id": "H4",
       "level": "ok",
-      "msg": "11 signals, integrity ok"
+      "msg": "13 signals, integrity ok"
     },
     {
       "id": "H7",

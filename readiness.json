@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-13T19:52:43+00:00",
+  "generated": "2026-10-13T20:21:41+00:00",
   "policy": {
-    "score": 1.0,
+    "score": 1.5,
     "mode": "PAPER ONLY",
     "live_risk_pct_allowed": 0.0,
     "reasons": [
@@ -9,16 +9,21 @@
     ],
     "critical_gates_passed": false,
     "unmet": [
-      "U1 Beats buy-and-hold of the same universe per unit of drawdown (hold-out)",
+      "U1 Beats buy-and-hold of the same universe AND a momentum-30 replica per unit of drawdown (hold-out)",
       "B2 Survivorship-free backtest passes the same gates (attested)",
       "F1 At least 100 closed forward signals",
       "F2 At least 182 days of forward record",
       "F3 Forward expectancy (closed + open) has a 95% CI lower bound above 0",
       "F4 Forward expectancy is not clearly below the backtest design-period figure",
       "E1 At least 30 live fills with slippage within 2x the model",
-      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)",
-      "O1 Operations healthy: no health FAIL and no data lag"
-    ]
+      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)"
+    ],
+    "live_budget": {
+      "closed_live_trades": 0,
+      "net_pnl_inr": 0.0,
+      "loss_budget_inr": 11300.0,
+      "exhausted": false
+    }
   },
   "gates": [
     {
@@ -34,14 +39,14 @@
     },
     {
       "id": "U1",
-      "label": "Beats buy-and-hold of the same universe per unit of drawdown (hold-out)",
+      "label": "Beats buy-and-hold of the same universe AND a momentum-30 replica per unit of drawdown (hold-out)",
       "points": 1.0,
       "critical": true,
       "status": "fail",
       "earned": 0.0,
       "value": "strategy 0.51 vs universe 0.83",
       "threshold": "CAGR/|maxDD| >= universe",
-      "detail": "hold-out CAGR 7.5% / DD -14.8% vs universe 17.1% / -20.5%"
+      "detail": "hold-out CAGR 7.5% / DD -14.8% vs universe 17.1% / -20.7% (run Backtest to add the momentum benchmark)"
     },
     {
       "id": "B2",
@@ -130,11 +135,11 @@
       "label": "Operations healthy: no health FAIL and no data lag",
       "points": 0.5,
       "critical": false,
-      "status": "fail",
-      "earned": 0.0,
+      "status": "pass",
+      "earned": 0.5,
       "value": "WARN",
-      "threshold": "no data lag",
-      "detail": "market data is behind the expected session; a system that buys the session after a signal cannot be traded on stale bars"
+      "threshold": "OK/WARN",
+      "detail": ""
     },
     {
       "id": "R1",
