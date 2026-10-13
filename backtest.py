@@ -35,7 +35,8 @@ class Config:
     min_score: int = 72
     trigger: str = 'none'          # 'none' (next open) | 'prior_high' (buy-stop above signal high)
     target_r: float = 0.0          # 0 = no fixed target
-    ema20_exit: bool = True        # exit next open after a close below EMA20
+    exit_mode: str = 'ema20'       # 'none' | 'ema20' | 'ema50' (close below, exit next open) | 'chandelier'
+    trail_k: float = 3.0           # chandelier: highest high since entry - k*ATR, ratchets up only
     max_hold: int = 40             # trading days
     slippage_bps: float = 10.0     # per side
     cost_bps: float = 15.0         # brokerage + STT + GST + stamp, per side (delivery)
@@ -43,7 +44,7 @@ class Config:
     risk_pct: float = 0.005
     max_pos_pct: float = 0.25
     max_open_risk: float = 0.015
-    oos_fraction: float = 0.4      # last 40% of entries reported separately
+    split_date: str = '2023-01-01' # entries before = design period, on/after = hold-out
 
 
 # --------------------------------------------------------------------------------------
@@ -78,8 +79,8 @@ def indicator_series(df):
     return out
 
 
-def signals_for(df, cfg):
-    """Per-day scanner output: DataFrame(index=dates) with score, stage, setup, passed."""
+def base_signals(df):
+    """Per-day scanner output independent of any threshold: score, stage, setup, passed (filters ok)."""
     ind = indicator_series(df)
     rows = []
     for i in range(len(ind)):
@@ -94,9 +95,31 @@ def signals_for(df, cfg):
             rows.append((0, stg, '', False)); continue
         stp, _ = sc.setup(d)
         s, _ = sc.score(d, stg, stp)
-        rows.append((s, stg, stp, s >= cfg.min_score))
-    sig = pd.DataFrame(rows, index=ind.index, columns=['score', 'stage', 'setup', 'signal'])
+        rows.append((s, stg, stp, True))
+    sig = pd.DataFrame(rows, index=ind.index, columns=['score', 'stage', 'setup', 'passed'])
     return ind, sig
+
+
+def signals_for(df, cfg):
+    ind, sig = base_signals(df)
+    sig['signal'] = sig['passed'] & (sig['score'] >= cfg.min_score)
+    return ind, sig
+
+
+def prepare(frames):
+    """Compute indicators/signals once per symbol so many configs can be replayed cheaply."""
+    out = {}
+    for sym, df in frames.items():
+        if len(df) < WARMUP + 20:
+            continue
+        ind, sig = base_signals(df)
+        out[sym] = {
+            'dates': df.index, 'ind': ind, 'sig': sig,
+            'a': {'open': df['Open'].astype(float).values, 'high': df['High'].astype(float).values,
+                  'low': df['Low'].astype(float).values, 'close': df['Close'].astype(float).values,
+                  'ema20': ind['ema_20'].values, 'ema50': ind['ema_50'].values, 'atr': ind['atr'].values},
+        }
+    return out
 
 
 # --------------------------------------------------------------------------------------
@@ -123,22 +146,28 @@ def simulate_trade(a, s, cfg, setup='', score=0):
         # gapped open below the planned stop: still taken at the open, as a loss
         return _finish(a, s, e, e, fill, stop, O[e], 'gap_stop', cfg, setup, score, sd)
     target = fill + cfg.target_r * sd if cfg.target_r > 0 else None
+    cur_stop, hh = stop, H[e]
+    ref = a['ema50'] if cfg.exit_mode == 'ema50' else E20
 
     for d in range(e, n):
-        if d > e and O[d] <= stop:
-            return _finish(a, s, e, d, fill, stop, O[d], 'gap_stop', cfg, setup, score, sd)
-        if L[d] <= stop:
-            return _finish(a, s, e, d, fill, stop, min(stop, O[d]) if d > e else stop, 'stop', cfg, setup, score, sd)
+        why = 'trail' if cur_stop > stop else 'stop'
+        if d > e and O[d] <= cur_stop:
+            return _finish(a, s, e, d, fill, stop, O[d], 'gap_' + why, cfg, setup, score, sd)
+        if L[d] <= cur_stop:
+            return _finish(a, s, e, d, fill, stop, min(cur_stop, O[d]) if d > e else cur_stop, why, cfg, setup, score, sd)
         if target is not None and d > e and O[d] >= target:
             return _finish(a, s, e, d, fill, stop, O[d], 'target_gap', cfg, setup, score, sd)
         if target is not None and H[d] >= target:
             return _finish(a, s, e, d, fill, stop, target, 'target', cfg, setup, score, sd)
         if d - e + 1 >= cfg.max_hold:
             return _finish(a, s, e, d, fill, stop, C[d], 'time', cfg, setup, score, sd)
-        if cfg.ema20_exit and C[d] < E20[d]:
+        if cfg.exit_mode in ('ema20', 'ema50') and C[d] < ref[d]:
             if d + 1 < n:
-                return _finish(a, s, e, d + 1, fill, stop, O[d + 1], 'ema20', cfg, setup, score, sd)
-            return _finish(a, s, e, d, fill, stop, C[d], 'ema20', cfg, setup, score, sd)
+                return _finish(a, s, e, d + 1, fill, stop, O[d + 1], cfg.exit_mode, cfg, setup, score, sd)
+            return _finish(a, s, e, d, fill, stop, C[d], cfg.exit_mode, cfg, setup, score, sd)
+        if cfg.exit_mode == 'chandelier':      # trail set at today's close, active from tomorrow
+            hh = max(hh, H[d])
+            cur_stop = max(cur_stop, hh - cfg.trail_k * a['atr'][d])
     return _finish(a, s, e, n - 1, fill, stop, C[n - 1], 'end_of_data', cfg, setup, score, sd)
 
 
@@ -156,29 +185,36 @@ def _finish(a, s, e, d_exit, fill, stop, exit_raw, reason, cfg, setup, score, pl
     }
 
 
-def generate_trades(frames, cfg, bench=None):
+FEATURES = ['rsi', 'volr', 'nrising', 'near52', 'from_52h', 'ema20_dist', 'atr_pct']
+
+
+def _features(row):
+    return {'rsi': row['rsi'], 'volr': max(row['vol_ratio'], row['vol_5d']),
+            'nrising': int((row['ema20_slope'] > 0) + (row['ema50_slope'] > 0) + (row['ema200_slope'] > 0)),
+            'near52': int(-18 <= row['from_52h'] <= -3), 'from_52h': row['from_52h'],
+            'ema20_dist': row['ema20_dist'], 'atr_pct': row['atr_pct']}
+
+
+def generate_trades(frames, cfg, bench=None, prepared=None):
     """One sequential position per symbol (a symbol can't re-enter until its trade has exited)."""
+    prepared = prepared if prepared is not None else prepare(frames)
     trades = []
     bench_up = None
     if bench is not None and len(bench) > 200:
         bench_up = (bench > bench.ewm(span=200, adjust=False).mean())
-    for sym, df in frames.items():
-        if len(df) < WARMUP + 20:
-            continue
-        ind, sig = signals_for(df, cfg)
-        a = {'open': df['Open'].astype(float).values, 'high': df['High'].astype(float).values,
-             'low': df['Low'].astype(float).values, 'close': df['Close'].astype(float).values,
-             'ema20': ind['ema_20'].values, 'atr': ind['atr'].values}
-        dates = df.index
+    for sym, p in prepared.items():
+        ind, sig, a, dates = p['ind'], p['sig'], p['a'], p['dates']
+        flag = (sig['passed'] & (sig['score'] >= cfg.min_score)).values
         i = WARMUP
-        while i < len(df) - 1:
-            if sig['signal'].iat[i]:
+        while i < len(dates) - 1:
+            if flag[i]:
                 t = simulate_trade(a, i, cfg, sig['setup'].iat[i], sig['score'].iat[i])
                 if t:
                     t['symbol'] = sym
                     t['signal_date'] = dates[t['signal_idx']]
                     t['entry_date'] = dates[t['entry_idx']]
                     t['exit_date'] = dates[t['exit_idx']]
+                    t.update(_features(ind.iloc[i]))
                     if bench_up is not None:
                         k = bench_up.index.searchsorted(t['signal_date'], side='right') - 1
                         t['regime'] = ('bull' if bench_up.iat[k] else 'bear') if k >= 0 else 'unknown'
@@ -189,7 +225,7 @@ def generate_trades(frames, cfg, bench=None):
                     continue
             i += 1
     cols = ['symbol', 'signal_date', 'entry_date', 'exit_date', 'entry', 'stop', 'exit', 'plan_risk', 'r', 'pnl_per_share',
-            'reason', 'hold', 'setup', 'score', 'regime']
+            'reason', 'hold', 'setup', 'score', 'regime'] + FEATURES
     df = pd.DataFrame(trades)
     return df[cols] if len(df) else pd.DataFrame(columns=cols)
 
@@ -229,12 +265,9 @@ def bucket_stats(trades):
     return out
 
 
-def split_in_out_of_sample(trades, frac):
-    if trades.empty:
-        return trades, trades
-    t = trades.sort_values('entry_date').reset_index(drop=True)
-    cut = int(len(t) * (1 - frac))
-    return t.iloc[:cut], t.iloc[cut:]
+def split_in_out_of_sample(trades, split_date):
+    cut = pd.Timestamp(split_date)
+    return trades[trades['entry_date'] < cut], trades[trades['entry_date'] >= cut]
 
 
 # --------------------------------------------------------------------------------------
@@ -316,9 +349,9 @@ def benchmark_stats(bench, start, end):
 # --------------------------------------------------------------------------------------
 # Orchestration, data, report
 # --------------------------------------------------------------------------------------
-def run(frames, cfg, bench=None):
-    trades = generate_trades(frames, cfg, bench)
-    ins, oos = split_in_out_of_sample(trades, cfg.oos_fraction)
+def run(frames, cfg, bench=None, prepared=None):
+    trades = generate_trades(frames, cfg, bench, prepared)
+    ins, oos = split_in_out_of_sample(trades, cfg.split_date)
     pstats, eq = portfolio(frames, trades, cfg)
     report = {
         'config': asdict(cfg),
@@ -326,7 +359,7 @@ def run(frames, cfg, bench=None):
         'all_trades': r_stats(trades['r']) if len(trades) else {'trades': 0},
         'in_sample': r_stats(ins['r']) if len(ins) else {'trades': 0},
         'out_of_sample': r_stats(oos['r']) if len(oos) else {'trades': 0},
-        'oos_starts': str(oos['entry_date'].min().date()) if len(oos) else None,
+        'oos_starts': cfg.split_date,
         'portfolio': pstats,
         'benchmark': benchmark_stats(bench, eq.index[0], eq.index[-1]) if len(eq) else None,
         'buckets': bucket_stats(trades),
@@ -369,9 +402,9 @@ def to_markdown(rep, title):
                 f"({ci[0]:+.2f}..{ci[1]:+.2f}) | {s['profit_factor']} | {s['worst_r']} |")
     L = [f'# {title}', '',
          f"Config: `{json.dumps(rep['config'])}`", '',
-         '| Slice | Trades | Win | Avg R (95% CI) | PF | Worst R |', '|---|---|---|---|---|---|',
-         row('ALL', rep['all_trades']), row('In-sample', rep['in_sample']),
-         row(f"Out-of-sample (from {rep['oos_starts']})", rep['out_of_sample'])]
+         '| Slice | Trades | Win | Avg R (naive iid 95% CI, too narrow: trades cluster by date) | PF | Worst R |', '|---|---|---|---|---|---|',
+         row('ALL', rep['all_trades']), row('Design period', rep['in_sample']),
+         row(f"Hold-out (from {rep['oos_starts']})", rep['out_of_sample'])]
     for key, label in [('by_score', 'Score'), ('by_setup', 'Setup'), ('by_regime', 'Regime'),
                        ('by_exit', 'Exit'), ('by_year', 'Year')]:
         for k, v in rep['buckets'].get(key, {}).items():
@@ -392,12 +425,13 @@ def main():
     ap.add_argument('--min-score', type=int, default=72)
     ap.add_argument('--trigger', choices=['none', 'prior_high'], default='none')
     ap.add_argument('--target-r', type=float, default=0.0)
-    ap.add_argument('--no-ema20-exit', action='store_true')
+    ap.add_argument('--exit-mode', choices=['none', 'ema20', 'ema50', 'chandelier'], default='ema20')
+    ap.add_argument('--trail-k', type=float, default=3.0)
     ap.add_argument('--max-hold', type=int, default=40)
     ap.add_argument('--capital', type=float, default=565000)
     ap.add_argument('--risk-pct', type=float, default=0.5, help='percent')
     a = ap.parse_args()
-    cfg = Config(min_score=a.min_score, trigger=a.trigger, target_r=a.target_r, ema20_exit=not a.no_ema20_exit,
+    cfg = Config(min_score=a.min_score, trigger=a.trigger, target_r=a.target_r, exit_mode=a.exit_mode, trail_k=a.trail_k,
                  max_hold=a.max_hold, capital=a.capital, risk_pct=a.risk_pct / 100)
     frames, bench = load_history(a.years, a.cache)
     rep, trades, eq = run(frames, cfg, bench)

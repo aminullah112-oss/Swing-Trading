@@ -44,7 +44,7 @@ def arrays(o, h, l, c, e20=None, atr=None):
             'atr': np.array(atr if atr is not None else [1.0] * n, float)}
 
 
-CFG0 = bt.Config(slippage_bps=0, cost_bps=0, ema20_exit=False, max_hold=50)
+CFG0 = bt.Config(slippage_bps=0, cost_bps=0, exit_mode='none', max_hold=50)
 
 
 def test_stop_hit_intraday_is_minus_one_r():
@@ -62,14 +62,14 @@ def test_gap_through_stop_loses_more_than_one_r():
 
 
 def test_stop_beats_target_inside_same_bar():
-    cfg = bt.Config(slippage_bps=0, cost_bps=0, ema20_exit=False, target_r=2)
+    cfg = bt.Config(slippage_bps=0, cost_bps=0, exit_mode='none', target_r=2)
     a = arrays(o=[100, 100, 100], h=[100, 101, 110], l=[99, 99, 96], c=[100, 100, 100])
     t = bt.simulate_trade(a, 0, cfg)
     assert t['reason'] == 'stop'
 
 
 def test_target_fills_at_target_and_gap_above_fills_at_open():
-    cfg = bt.Config(slippage_bps=0, cost_bps=0, ema20_exit=False, target_r=2)
+    cfg = bt.Config(slippage_bps=0, cost_bps=0, exit_mode='none', target_r=2)
     a = arrays(o=[100, 100, 101], h=[100, 101, 107], l=[99, 99, 100], c=[100, 100, 106])
     t = bt.simulate_trade(a, 0, cfg)
     assert t['reason'] == 'target' and np.isclose(t['exit'], 106) and np.isclose(t['r'], 2.0)
@@ -80,8 +80,8 @@ def test_target_fills_at_target_and_gap_above_fills_at_open():
 
 def test_costs_and_slippage_reduce_r():
     a = arrays(o=[100, 100, 100, 100], h=[100, 101, 101, 106], l=[99, 99, 99, 99], c=[100, 100, 100, 106])
-    free = bt.simulate_trade(a, 0, bt.Config(slippage_bps=0, cost_bps=0, ema20_exit=False, max_hold=3))
-    paid = bt.simulate_trade(a, 0, bt.Config(slippage_bps=10, cost_bps=15, ema20_exit=False, max_hold=3))
+    free = bt.simulate_trade(a, 0, bt.Config(slippage_bps=0, cost_bps=0, exit_mode='none', max_hold=3))
+    paid = bt.simulate_trade(a, 0, bt.Config(slippage_bps=10, cost_bps=15, exit_mode='none', max_hold=3))
     assert free['reason'] == paid['reason'] == 'time' and paid['r'] < free['r'] - 0.05
 
 
@@ -92,7 +92,7 @@ def test_prior_high_trigger_skips_when_not_reached():
 
 
 def test_ema20_exit_fills_next_open():
-    cfg = bt.Config(slippage_bps=0, cost_bps=0, ema20_exit=True)
+    cfg = bt.Config(slippage_bps=0, cost_bps=0, exit_mode='ema20')
     a = arrays(o=[100, 100, 101, 102], h=[100, 101, 102, 103], l=[99, 99, 100, 101],
                c=[100, 101, 99, 102], e20=[90, 100, 100, 100])
     t = bt.simulate_trade(a, 0, cfg)
@@ -120,3 +120,99 @@ def test_portfolio_respects_open_risk_budget():
     cfg = bt.Config(min_score=55, risk_pct=0.005, max_open_risk=0.01)   # at most 2 concurrent positions
     rep, trades, eq = bt.run(frames, cfg)
     assert rep['portfolio']['rejected_by_limits'] > 0
+
+
+# ---------------- exit variants -----------------
+def test_chandelier_ratchets_up_and_exits_on_trail():
+    cfg = bt.Config(slippage_bps=0, cost_bps=0, exit_mode='chandelier', trail_k=2.0, max_hold=100)
+    # signal close 100, atr 1 -> initial stop 97. Price runs to a high of 120 on day 4 -> trail 118.
+    o = [100, 100, 106, 112, 118, 119, 112]
+    h = [100, 102, 108, 114, 120, 120, 113]
+    l = [99, 99, 105, 111, 117, 117, 108]
+    c = [100, 101, 107, 113, 119, 118, 110]
+    t = bt.simulate_trade(arrays(o, h, l, c, atr=[1.0] * 7), 0, cfg)
+    assert t['reason'] == 'trail' and t['exit'] == 118 and np.isclose(t['r'], 6.0) and t['exit_idx'] == 5
+    # same path but day 5 gaps open below the trail -> fills at the open
+    o2 = list(o); o2[5] = 116
+    t = bt.simulate_trade(arrays(o2, h, l, c, atr=[1.0] * 7), 0, cfg)
+    assert t['reason'] == 'gap_trail' and t['exit'] == 116
+
+
+def test_chandelier_trail_never_loosens():
+    cfg = bt.Config(slippage_bps=0, cost_bps=0, exit_mode='chandelier', trail_k=2.0, max_hold=100)
+    # high peaks early then ATR explodes: trail must stay at its peak level, not drop
+    o = [100, 100, 110, 110, 110, 100]
+    h = [100, 101, 112, 111, 111, 101]
+    l = [99, 99, 109, 108, 108, 99]
+    c = [100, 101, 111, 110, 110, 100]
+    a = arrays(o, h, l, c, atr=[1.0, 1.0, 1.0, 5.0, 5.0, 5.0])
+    t = bt.simulate_trade(a, 0, cfg)
+    assert t['exit'] >= 110 - 1e-9 and t['reason'] in ('trail', 'gap_trail')   # trail held near 110 (112 - 2*1)
+
+
+def test_ema50_exit_ignores_ema20_break():
+    cfg = bt.Config(slippage_bps=0, cost_bps=0, exit_mode='ema50', max_hold=100)
+    a = arrays(o=[100, 100, 101, 102, 103], h=[100, 101, 102, 103, 104], l=[99, 99, 100, 101, 102],
+               c=[100, 101, 99, 102, 98], e20=[110] * 5)
+    a['ema50'] = np.array([90.0, 90.0, 90.0, 90.0, 99.0])
+    t = bt.simulate_trade(a, 0, cfg)
+    # c[2]=99 < ema20 (110) is ignored; c[4]=98 < ema50 (99) -> exits at end of data close
+    assert t['reason'] == 'ema50' and t['exit_idx'] == 4
+
+
+def test_prepared_path_matches_unprepared():
+    frames = {f'S{i}': synth(seed=i, drift=0.001) for i in range(3)}
+    cfg = bt.Config(min_score=55, exit_mode='chandelier')
+    t1 = bt.generate_trades(frames, cfg)
+    t2 = bt.generate_trades(frames, cfg, prepared=bt.prepare(frames))
+    pd.testing.assert_frame_equal(t1, t2)
+    assert all(f in t1.columns for f in bt.FEATURES)
+
+
+# ---------------- research module -----------------
+def test_research_grid_and_diagnosis_run_on_synthetic():
+    import research as rs
+    frames = {f'S{i}': synth(n=1300, seed=i, drift=0.001) for i in range(8)}
+    bench = synth(n=1300, seed=77)['Close']
+    prepared = bt.prepare(frames)
+    rows = rs.run_grid(frames, bench, prepared)
+    assert len(rows) == rs.N_TRIALS == 12
+    assert {'G1', 'G2', 'G3', 'promising'} <= set(rows[0])
+    md = rs.grid_markdown(rows, 'note')
+    assert 'Trials run: **12**' in md and 'Bonferroni' in md
+    trades = bt.generate_trades(frames, rs.cfg_for('none', 'ema20', 40), bench, prepared)
+    text, res = rs.diagnose(trades, 'test')
+    assert 'Per-component bins' in text and 'learned_spearman_holdout' in res
+
+
+def test_clustered_ci_is_wider_when_trades_share_a_month():
+    import research as rs
+    rng = np.random.default_rng(0)
+    months = np.repeat(pd.period_range('2023-01', periods=40, freq='M').astype(str), 25)
+    shock = np.repeat(rng.normal(0, 0.5, 40), 25)             # common monthly move
+    r = shock + rng.normal(0, 1, len(months))
+    clustered = rs.cluster_ci_mean(r, months, alpha=0.05)
+    iid = rs.cluster_ci_mean(r, np.arange(len(r)), alpha=0.05)   # every trade its own cluster
+    assert (clustered[1] - clustered[0]) > 1.5 * (iid[1] - iid[0])
+
+
+def test_adjusted_ci_is_wider_than_unadjusted():
+    import research as rs
+    rng = np.random.default_rng(0)
+    d = pd.DataFrame({'r': rng.normal(0.05, 1, 600),
+                      'entry_date': pd.Timestamp('2023-01-02') + pd.to_timedelta(rng.integers(0, 900, 600), unit='D')})
+    a = rs.adj_ci(d, 12); b = rs.adj_ci(d, 1)
+    assert (a[1] - a[0]) > (b[1] - b[0])
+
+
+def test_learned_score_has_no_signal_on_noise():
+    import research as rs
+    rng = np.random.default_rng(1)
+    n = 4000
+    df = pd.DataFrame({'r': rng.normal(0, 1, n), 'rsi': rng.uniform(30, 80, n), 'volr': rng.uniform(0.2, 3, n),
+                       'nrising': rng.integers(0, 4, n), 'near52': rng.integers(0, 2, n),
+                       'setup': rng.choice(list(rs.SETUP_POINTS), n)})
+    tr, te = df.iloc[:2000], df.iloc[2000:]
+    ls = rs.learned_score(tr, te)
+    ci = rs.boot_spearman(ls, te['r'], np.arange(len(te)) // 20)
+    assert ci[1] <= 0 <= ci[2] or abs(ci[0]) < 0.08     # pure noise: no dependable signal
