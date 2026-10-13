@@ -36,7 +36,9 @@ function renderLiveGate(rd, hl, barId = 'live-bar') {
     if (!rd) { bar.className = 'status-bar status-stale'; bar.textContent = 'Readiness not computed yet (run the Daily Stock Screen workflow).'; return; }
     const p = rd.policy, allowed = p.live_risk_pct_allowed > 0;
     bar.className = 'status-bar ' + (allowed ? 'status-fresh' : 'status-stale');
-    bar.innerHTML = (allowed ? `LIVE TRADING ALLOWED at up to ${esc(p.live_risk_pct_allowed)}% risk per trade`
+    const micro = allowed && String(p.mode).startsWith('MICRO');
+    bar.innerHTML = (allowed ? `LIVE TRADING ALLOWED at up to ${esc(p.live_risk_pct_allowed)}% risk per trade` +
+                               (micro ? ' — MICRO-LIVE EXPERIMENT: real money at tiny size to gather fill and forward evidence; no edge has been shown' : '')
                              : 'LIVE TRADING NOT SUPPORTED BY THE EVIDENCE YET — paper only') +
         ` · readiness ${esc(p.score)}/10 (${esc(p.mode)})` + (hl ? ` · health ${esc(hl.status)}` : '') +
         ` · <a class="back-link" href="paper.html">scorecard and paper results →</a>`;

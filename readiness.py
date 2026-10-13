@@ -7,7 +7,11 @@ tuned to produce a nicer number: every threshold below was fixed before it was e
 
 Score (0-10) and the live-risk policy it implies:
 
-    score < 4.5, or any kill switch tripped, or capital not confirmed  -> PAPER ONLY (0% live risk)
+    kill switch tripped, capital not confirmed, or live-loss budget used up -> PAPER ONLY (0% live risk)
+    B1, O1, R1 pass and micro_live_acknowledged (attestations.json)       -> MICRO-LIVE: <= 0.05% risk/trade,
+                                                                          an experiment that buys evidence about
+                                                                          execution and starts a real forward
+                                                                          record; it does NOT claim an edge exists
     4.5 <= score < 6.5 and forward gates F1-F3 pass                    -> FILL TEST: <= 0.10% risk/trade
                                                                           (to gather the live-fill evidence E1)
     6.5 <= score < 8   and B2, F3, F4 pass                              -> <= 0.25% risk/trade
@@ -29,12 +33,14 @@ MODEL_SLIPPAGE_BPS = 10.0            # per side, as in backtest.Config
 MIN_CLOSED = 100
 MIN_DAYS = 182
 MIN_FILLS = 30
+MICRO_RISK_PCT = 0.05          # % of capital risked per trade in the micro-live experiment
+LIVE_LOSS_BUDGET_PCT = 2.0      # stop all live trading if net realised live loss reaches this % of capital
 CLUSTER_ALPHA = 0.05
 
 # id, label, points, critical
 GATES = [
     ('B1', 'Live variant passes the pre-registered backtest gates', 0.5, False),
-    ('U1', 'Beats buy-and-hold of the same universe per unit of drawdown (hold-out)', 1.0, True),
+    ('U1', 'Beats buy-and-hold of the same universe AND a momentum-30 replica per unit of drawdown (hold-out)', 1.0, True),
     ('B2', 'Survivorship-free backtest passes the same gates (attested)', 1.5, True),
     ('F1', f'At least {MIN_CLOSED} closed forward signals', 1.0, False),
     ('F2', f'At least {MIN_DAYS} days of forward record', 1.0, False),
@@ -100,16 +106,28 @@ def evaluate(ctx):
                   value=f"G1/G2/G3 = {row['G1']}/{row['G2']}/{row['G3']}" if row else None, threshold='all three gates',
                   detail=f'variant {LIVE_LABEL}' + ('' if row else ' not found in reports/grid.json')))
 
-    if row and uni and (uni.get('holdout') or {}).get('equal_weight') and row.get('holdout_port_cagr') is not None:
+    bm = ctx.get('benchmarks') or {}
+    hold = (bm.get('periods') or {}).get('holdout') or {}
+    s_b, ew_b, mom_b = hold.get('Live strategy (baseline)'), hold.get('Equal-weight universe'), hold.get('H1 momentum-30 replica')
+    if s_b and ew_b and s_b.get('calmar') is not None and ew_b.get('calmar') is not None:
+        rivals = {'universe buy-and-hold': ew_b['calmar']}
+        if mom_b and mom_b.get('calmar') is not None:
+            rivals['momentum-30 replica'] = mom_b['calmar']
+        best = max(rivals.values())
+        txt = ', '.join(f'{k} {v:.2f}' for k, v in rivals.items())
+        out.append(_g('U1', 'pass' if s_b['calmar'] >= best else 'fail', value=f"strategy {s_b['calmar']:.2f} vs {txt}",
+                      threshold='Calmar >= every same-universe benchmark (hold-out)',
+                      detail=f"hold-out CAGR {s_b['cagr_pct']}% / DD {s_b['max_drawdown_pct']}% (reports/benchmarks.md)"))
+    elif row and uni and (uni.get('holdout') or {}).get('equal_weight') and row.get('holdout_port_cagr') is not None:
         u = uni['holdout']['equal_weight']
         s_ratio = row['holdout_port_cagr'] / abs(row['holdout_port_maxdd']) if row['holdout_port_maxdd'] else float('inf')
         u_ratio = u['cagr_pct'] / abs(u['max_drawdown_pct']) if u['max_drawdown_pct'] else float('inf')
         out.append(_g('U1', 'pass' if s_ratio >= u_ratio else 'fail', value=f'strategy {s_ratio:.2f} vs universe {u_ratio:.2f}',
                       threshold='CAGR/|maxDD| >= universe',
                       detail=f"hold-out CAGR {row['holdout_port_cagr']}% / DD {row['holdout_port_maxdd']}% vs universe "
-                             f"{u['cagr_pct']}% / {u['max_drawdown_pct']}%"))
+                             f"{u['cagr_pct']}% / {u['max_drawdown_pct']}% (run Backtest to add the momentum benchmark)"))
     else:
-        out.append(_g('U1', 'insufficient', detail='reports/universe.json missing: rerun the Backtest workflow'))
+        out.append(_g('U1', 'insufficient', detail='reports/benchmarks.json and universe.json missing: rerun the Backtest workflow'))
 
     ok = bool(att.get('survivorship_free_backtest_passed'))
     out.append(_g('B2', 'pass' if ok else 'manual', detail='attestations.json: survivorship_free_backtest_passed'))
@@ -160,7 +178,21 @@ def evaluate(ctx):
     return out
 
 
-def policy(gates, att, health):
+def live_budget(fills, capital):
+    """Net realised P&L of closed live trades in live_fills.csv (needs shares, actual_entry, actual_exit)."""
+    pnl, n = 0.0, 0
+    for f in fills or []:
+        try:
+            sh, ae, ax = float(f['shares']), float(f['actual_entry']), float(f['actual_exit'])
+        except (KeyError, TypeError, ValueError):
+            continue
+        pnl += sh * (ax - ae); n += 1
+    budget = (capital or 0) * LIVE_LOSS_BUDGET_PCT / 100
+    return {'closed_live_trades': n, 'net_pnl_inr': round(pnl, 2), 'loss_budget_inr': round(budget, 2),
+            'exhausted': bool(budget > 0 and pnl <= -budget)}
+
+
+def policy(gates, att, health, fills=None, capital=None):
     by = {g['id']: g for g in gates}
     score = round(sum(g['earned'] for g in gates), 2)
     p = lambda i: by[i]['status'] == 'pass'
@@ -168,8 +200,11 @@ def policy(gates, att, health):
     reasons = []
     allowed = 0.0
     mode = 'PAPER ONLY'
+    budget = live_budget(fills, capital)
     if health.get('status') == 'FAIL':
         reasons.append('health FAIL (kill switch or stale/broken pipeline)')
+    elif budget['exhausted']:
+        reasons.append(f"live-loss budget used up: net {budget['net_pnl_inr']} INR vs limit -{budget['loss_budget_inr']} INR; review before resuming")
     elif not att.get('capital_confirmed'):
         reasons.append('capital not confirmed in attestations.json')
     elif score >= 8 and crit_ok:
@@ -178,11 +213,15 @@ def policy(gates, att, health):
         allowed, mode = 0.25, 'REDUCED (cap 0.25%)'
     elif score >= 4.5 and p('F1') and p('F2') and p('F3'):
         allowed, mode = 0.10, 'FILL TEST (cap 0.10%)'
-    else:
-        reasons.append(f'score {score} below the tier thresholds or required gates not passed')
+    elif p('B1') and p('O1') and p('R1') and att.get('micro_live_acknowledged'):
+        allowed, mode = MICRO_RISK_PCT, f'MICRO-LIVE experiment (cap {MICRO_RISK_PCT}%)'
     missing = [f"{g['id']} {g['label']}" for g in gates if g['status'] != 'pass']
+    if allowed == 0 and not reasons:
+        reasons.append(f'score {score} below the tier thresholds or required gates not passed')
+        if not att.get('micro_live_acknowledged'):
+            reasons.append('micro-live experiment not acknowledged in attestations.json (optional)')
     return {'score': score, 'mode': mode, 'live_risk_pct_allowed': allowed, 'reasons': reasons,
-            'critical_gates_passed': crit_ok, 'unmet': missing}
+            'critical_gates_passed': crit_ok, 'unmet': missing, 'live_budget': budget}
 
 
 def _load(path, default=None):
@@ -220,10 +259,10 @@ def markdown(res):
 def main():
     health = _load('health.json', {})
     ctx = {'ledger': _load('ledger.json', lg.empty()), 'results': _load('results.json', {}),
-           'grid': _load('reports/grid.json'), 'universe': _load('reports/universe.json'),
+           'grid': _load('reports/grid.json'), 'universe': _load('reports/universe.json'), 'benchmarks': _load('reports/benchmarks.json'),
            'attest': _load('attestations.json', {}), 'fills': load_fills(), 'health': health}
     gates = evaluate(ctx)
-    pol = policy(gates, ctx['attest'], health)
+    pol = policy(gates, ctx['attest'], health, ctx['fills'], (ctx['results'].get('risk_config') or {}).get('capital'))
     res = {'generated': datetime.now(timezone.utc).isoformat(timespec='seconds'), 'policy': pol, 'gates': gates}
     with open('readiness.json.tmp', 'w') as f:
         json.dump(res, f, indent=2, default=str)

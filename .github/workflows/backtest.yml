@@ -32,8 +32,10 @@ jobs:
       run: python backtest.py --years ${{ inputs.years }} --cache history_cache.pkl --name trigger --trigger prior_high
     - name: Pre-registered exit/entry grid and score diagnosis
       run: python research.py --years ${{ inputs.years }} --cache history_cache.pkl
+    - name: Same-universe benchmarks and pre-registered redesign tests
+      run: python benchmarks.py --years ${{ inputs.years }} --cache history_cache.pkl
     - name: Publish summary
-      run: cat reports/universe.md reports/regime.md reports/grid.md reports/diagnosis.md reports/backtest_baseline.md reports/backtest_trigger.md >> "$GITHUB_STEP_SUMMARY"
+      run: cat reports/benchmarks.md reports/universe.md reports/regime.md reports/grid.md reports/diagnosis.md reports/backtest_baseline.md reports/backtest_trigger.md >> "$GITHUB_STEP_SUMMARY"
     - name: Commit reports
       run: |
         git config --local user.email "action@github.com"

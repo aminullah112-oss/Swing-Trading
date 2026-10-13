@@ -362,3 +362,20 @@ The score maps to a live-risk policy: under 4.5 or any kill switch or unconfirme
 - **Position Sizer** (`sizer.html`).
 
 `analysis.py` defines the execution checks and the market backdrop. They are hygiene, not alpha: they were not part of the backtested rules, `warn` is information, and only a `block` hides a signal from the tradeable list. Sizes on the desk use the live risk the readiness policy allows; while that is 0 they show the reference (paper) size and say so.
+
+
+---
+
+## 🧭 Evidence ladder: how to get from "tested" to "trading with confidence"
+
+No test on old data replaces forward data, because the rules were designed after seeing that data. What can be done is to cut the cost and time of learning, in steps with objective criteria:
+
+1. **Same-universe benchmarks** (`benchmarks.py`, `reports/benchmarks.md`): the live strategy against a replica of NSE's Momentum-30 construction, equal-weight universe and the Nifty, on the same stocks and dates so survivorship flatters all of them equally. The scorecard gate U1 now requires beating *both* the universe and the momentum replica per unit of drawdown.
+2. **Pre-registered redesign tests**: H1 momentum-30 replica, H2 admit candidates by momentum rank, H3 halve risk when the Nifty is below its EMA200. A hypothesis improves only if its Calmar beats the baseline in both periods *and* the hold-out return difference has a month-clustered, Bonferroni-adjusted interval excluding zero (the Calmar-only rule passed by chance on random data, so it was strengthened).
+3. **Paper ledger** (forward, free, slow): the only unbiased evidence.
+4. **Micro-live experiment** (optional, bounded cost): set `micro_live_acknowledged` in `attestations.json` and, once the backtest gate, data feed and risk limits are healthy, the policy allows risk up to 0.05% per trade (about ₹280 on ₹5.65 lakh). Log fills in `live_fills.csv` (symbol, signal_date, planned/actual entry and exit, shares). A hard stop applies at a 2% net live loss. It buys evidence about execution and starts a real forward record. It does not mean an edge has been shown.
+5. **Larger tiers** only through the scorecard (forward gates, survivorship-free test).
+
+**Point-in-time universe** (`pit.py`): set `EDGE_PIT_UNIVERSE` to a CSV (`symbol,start,end`) and the backtests take a signal only when the stock was a member on that date. Membership alone does not remove survivorship: delisted stocks also need prices. `pit.coverage()` reports the share of member-months with price history; keep gate B2 unattested below about 95%. No file ships with the repo.
+
+**Provisional bars** (`intraday.py`): when Yahoo's daily bar lags but its 5-minute bars are complete, signals use a labelled provisional bar, audited against the official bar the next day (the better of last-trade and 30-minute VWAP close is then used). The ledger re-checks provisional signals against the official bar and voids any that no longer qualify.

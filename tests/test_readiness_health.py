@@ -191,3 +191,53 @@ def test_data_lag_fails_the_operations_gate_and_costs_a_point():
 def test_three_sessions_behind_is_a_health_fail():
     assert lvl(hl.run_checks(hctx(res=dict(RES, sessions_behind=2, expected_session='2027-06-01'))), 'H1b') == 'warn'
     assert lvl(hl.run_checks(hctx(res=dict(RES, sessions_behind=3, expected_session='2027-06-01'))), 'H1b') == 'fail'
+
+
+# ---------------- micro-live experiment tier -----------------
+def good_ops_gates():
+    """B1, O1, R1 pass (the minimum for the micro tier); everything else unmet."""
+    return rd.evaluate(ctx(lg.empty(), uni=None, att=ATT_NO))
+
+
+def fills_rows(pnls, shares=1):
+    return [{'shares': shares, 'actual_entry': 100.0, 'actual_exit': 100.0 + p, 'planned_entry': 100.0, 'planned_exit': 100.0 + p}
+            for p in pnls]
+
+
+def test_micro_tier_requires_explicit_opt_in_and_basic_health():
+    g = good_ops_gates()
+    assert by_id(g)['B1']['status'] == 'pass' and by_id(g)['O1']['status'] == 'pass' and by_id(g)['R1']['status'] == 'pass'
+    base = {'capital_confirmed': True}
+    p = rd.policy(g, base, {'status': 'OK'}, [], 565000)
+    assert p['live_risk_pct_allowed'] == 0.0 and any('not acknowledged' in r for r in p['reasons'])     # opt-in is required
+    att = dict(base, micro_live_acknowledged=True)
+    p = rd.policy(g, att, {'status': 'OK'}, [], 565000)
+    assert p['live_risk_pct_allowed'] == rd.MICRO_RISK_PCT and p['mode'].startswith('MICRO-LIVE')
+    # capital must still be confirmed, and a health FAIL still forces paper only
+    assert rd.policy(g, {'micro_live_acknowledged': True}, {'status': 'OK'}, [], 565000)['live_risk_pct_allowed'] == 0.0
+    assert rd.policy(g, att, {'status': 'FAIL'}, [], 565000)['live_risk_pct_allowed'] == 0.0
+
+
+def test_micro_tier_is_blocked_by_data_lag_or_a_failed_backtest():
+    att = {'capital_confirmed': True, 'micro_live_acknowledged': True}
+    lag = {'status': 'WARN', 'checks': [{'id': 'H1b', 'level': 'warn', 'msg': 'behind'}]}
+    c = ctx(lg.empty(), uni=None); c['health'] = lag
+    assert rd.policy(rd.evaluate(c), att, lag, [], 565000)['live_risk_pct_allowed'] == 0.0
+    bad_grid = [dict(GRID[0], promising=False, G1=False)]
+    c = ctx(lg.empty(), uni=None); c['grid'] = bad_grid
+    assert rd.policy(rd.evaluate(c), att, {'status': 'OK'}, [], 565000)['live_risk_pct_allowed'] == 0.0
+
+
+def test_live_loss_budget_stops_every_live_tier():
+    att = {'capital_confirmed': True, 'micro_live_acknowledged': True}
+    g = good_ops_gates()
+    ok = rd.live_budget(fills_rows([-5.0] * 10), 565000)                     # -50 INR vs a 11,300 budget
+    assert not ok['exhausted'] and ok['net_pnl_inr'] == -50.0
+    lost = fills_rows([-200.0] * 60)                                          # -12,000 INR: past the 2% budget
+    b = rd.live_budget(lost, 565000)
+    assert b['exhausted'] and b['loss_budget_inr'] == 11300.0
+    p = rd.policy(g, att, {'status': 'OK'}, lost, 565000)
+    assert p['live_risk_pct_allowed'] == 0.0 and any('budget used up' in r for r in p['reasons'])
+    # winners offset losers; rows missing shares/exit are ignored
+    mixed = fills_rows([-200.0] * 60 + [300.0] * 20) + [{'actual_entry': 100.0}]
+    assert not rd.live_budget(mixed, 565000)['exhausted']

@@ -38,7 +38,8 @@ function plan(s, cfg, liveRisk) {
     if (liveRisk > 0 && rps > 0) {
         let sh = Math.floor(cfg.capital * liveRisk / 100 / rps);
         sh = Math.min(sh, Math.floor(cfg.capital * cfg.max_pos_pct / 100 / s.trigger));
-        return {shares: sh, invested: sh * s.trigger, risk: sh * rps, label: `live size (≤${liveRisk}% risk)`, live: true};
+        return {shares: sh, invested: sh * s.trigger, risk: sh * rps, live: true,
+                label: sh === 0 ? `0: one share risks more than the ${liveRisk}% live limit` : `live size (≤${liveRisk}% risk)`};
     }
     const p = s.position || {};
     return {shares: p.shares ?? 0, invested: p.invested ?? 0, risk: p.risk_amount ?? 0,
