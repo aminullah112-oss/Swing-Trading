@@ -151,11 +151,10 @@ def _bulk(spec, last='2026-10-12', n=120):
 
 
 def test_alias_is_preferred_and_stale_tickers_are_rejected():
-    bulk = _bulk({'ETERNAL.NS': 0, 'ZOMATO.NS': 70, 'GUJGASLTD.NS': 0, 'TMPV.NS': 0, 'TATAMOTORS.NS': 80, 'INFY.NS': 0, 'DEAD.NS': 90})
+    bulk = _bulk({'ETERNAL.NS': 0, 'ZOMATO.NS': 70, 'TMPV.NS': 0, 'TATAMOTORS.NS': 80, 'INFY.NS': 0, 'DEAD.NS': 90})
     last = bulk.index.max()
     df, used, why = sc.resolve_symbol(bulk, 'ZOMATO', last)
     assert used == 'ETERNAL' and df is not None and why is None
-    assert sc.resolve_symbol(bulk, 'GUJARATGAS', last)[1] == 'GUJGASLTD'
     assert sc.resolve_symbol(bulk, 'TATAMOTORS', last)[1] == 'TMPV'
     assert sc.resolve_symbol(bulk, 'INFY', last)[1] == 'INFY'
     df, used, why = sc.resolve_symbol(bulk, 'DEAD', last)                   # series that stopped ~90 sessions ago
@@ -180,9 +179,9 @@ def test_alias_table_is_wired_into_downloads():
 
 
 def test_diagnose_symbol_reports_each_candidate_ticker():
-    bulk = _bulk({'ETERNAL.NS': 0, 'GUJGASLTD.NS': 60})
+    bulk = _bulk({'ETERNAL.NS': 0, 'TMPV.NS': 60})
     d = sc.diagnose_symbol(bulk, 'ZOMATO')
     assert [x['ticker'] for x in d] == ['ETERNAL.NS', 'ZOMATO.NS']
     assert d[0]['in_download'] and d[0]['rows'] > 0 and not d[1]['in_download']
-    g = sc.diagnose_symbol(bulk, 'GUJARATGAS')
+    g = sc.diagnose_symbol(bulk, 'TATAMOTORS')
     assert g[0]['in_download'] and g[0]['last_bar'] < str(bulk.index.max().date())      # present but stops early

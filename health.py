@@ -76,6 +76,13 @@ def run_checks(ctx):
                           f"data ends {cutoff} but the last completed session should be {res.get('expected_session')} "
                           f"({behind} session(s) behind). Unless it was an exchange holiday missing from market_holidays.json, the data vendor "
                           f"is lagging and 'valid for the next session' buy levels refer to a session that already traded"))
+        prov = res.get('provisional') or {}
+        if prov.get('used'):
+            aud = res.get('provisional_audit') or {}
+            err = (aud.get('median_abs_error_bps') or {}).get('close_last')
+            out.append(_c('H1c', 'warn', f"signals use provisional {prov.get('date')} bars built from 5-minute data for {prov.get('symbols')} symbols "
+                                         f"(close = {prov.get('method')}); the official daily bar is not published yet"
+                                         + (f". Last audit: median close error {err} bps" if err is not None else '. No audit yet')))
         cov = res.get('symbols_processed', 0) / max(res.get('total_scanned', 1), 1)
         miss = res.get('missing_symbols') or []
         out.append(_c('H2', 'warn' if cov < COVERAGE_WARN else 'ok',

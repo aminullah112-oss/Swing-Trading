@@ -75,6 +75,8 @@ def indicator_series(df):
         'from_52h': (c - h52) / h52 * 100,
         'atr': atr, 'atr_pct': atr / c * 100,
         'high': h, 'low': l,
+        # volatility-adjusted 6- and 12-month momentum (NSE Momentum-style); only used to rank candidates
+        'mom': 0.5 * ((c / c.shift(126) - 1) + (c / c.shift(252) - 1)) / c.pct_change().rolling(252).std(),
     })
     return out
 
@@ -186,19 +188,21 @@ def _finish(a, s, e, d_exit, fill, stop, exit_raw, reason, cfg, setup, score, pl
     }
 
 
-FEATURES = ['rsi', 'volr', 'nrising', 'near52', 'from_52h', 'ema20_dist', 'atr_pct']
+FEATURES = ['rsi', 'volr', 'nrising', 'near52', 'from_52h', 'ema20_dist', 'atr_pct', 'mom']
 
 
 def _features(row):
     return {'rsi': row['rsi'], 'volr': max(row['vol_ratio'], row['vol_5d']),
             'nrising': int((row['ema20_slope'] > 0) + (row['ema50_slope'] > 0) + (row['ema200_slope'] > 0)),
             'near52': int(-18 <= row['from_52h'] <= -3), 'from_52h': row['from_52h'],
-            'ema20_dist': row['ema20_dist'], 'atr_pct': row['atr_pct']}
+            'ema20_dist': row['ema20_dist'], 'atr_pct': row['atr_pct'], 'mom': row['mom']}
 
 
-def generate_trades(frames, cfg, bench=None, prepared=None):
+def generate_trades(frames, cfg, bench=None, prepared=None, membership=None):
     """One sequential position per symbol (a symbol can't re-enter until its trade has exited)."""
     prepared = prepared if prepared is not None else prepare(frames)
+    import pit
+    membership = membership if membership is not None else pit.from_env()      # EDGE_PIT_UNIVERSE; None = no filter
     trades = []
     bench_up = None
     if bench is not None and len(bench) > 200:
@@ -208,7 +212,7 @@ def generate_trades(frames, cfg, bench=None, prepared=None):
         flag = (sig['passed'] & (sig['score'] >= cfg.min_score)).values
         i = WARMUP
         while i < len(dates) - 1:
-            if flag[i]:
+            if flag[i] and pit.is_member(membership, sym, dates[i]):
                 t = simulate_trade(a, i, cfg, sig['setup'].iat[i], sig['score'].iat[i])
                 if t:
                     t['symbol'] = sym
@@ -274,13 +278,15 @@ def split_in_out_of_sample(trades, split_date):
 # --------------------------------------------------------------------------------------
 # Portfolio simulation (mark-to-market)
 # --------------------------------------------------------------------------------------
-def portfolio(frames, trades, cfg):
+def portfolio(frames, trades, cfg, order_col='score', risk_scale=None):
+    """order_col: which trade column ranks same-day candidates (descending).
+    risk_scale: optional callable date -> multiplier applied to per-trade risk and to the open-risk cap."""
     if trades.empty:
         return {'accepted': 0}, pd.Series(dtype=float)
     dates = sorted(set().union(*[set(df.index) for df in frames.values()]))
     dates = [d for d in dates if trades['entry_date'].min() <= d <= trades['exit_date'].max()]
     closes = {s: df['Close'].astype(float) for s, df in frames.items()}
-    by_entry = {d: g.sort_values('score', ascending=False) for d, g in trades.groupby('entry_date')}
+    by_entry = {d: g.sort_values(order_col, ascending=False, na_position='last') for d, g in trades.groupby('entry_date')}
     by_exit = {}
     realized = cfg.capital
     open_pos = []   # dicts: symbol, shares, entry, stop, exit_date, pnl_per_share
@@ -290,9 +296,10 @@ def portfolio(frames, trades, cfg):
         for _, t in by_entry.get(d, pd.DataFrame()).iterrows():
             if any(p['symbol'] == t['symbol'] for p in open_pos):
                 rejected += 1; continue
+            mult = risk_scale(d) if risk_scale else 1.0
             risk_open = sum(p['shares'] * p['plan_risk'] for p in open_pos)
-            sz = size_position(eq_now, cfg.risk_pct, t['entry'], t['plan_risk'], cfg.max_pos_pct)
-            if sz['shares'] < 1 or risk_open + sz['risk_amount'] > eq_now * cfg.max_open_risk:
+            sz = size_position(eq_now, cfg.risk_pct * mult, t['entry'], t['plan_risk'], cfg.max_pos_pct)
+            if sz['shares'] < 1 or risk_open + sz['risk_amount'] > eq_now * cfg.max_open_risk * mult:
                 rejected += 1; continue
             open_pos.append({'symbol': t['symbol'], 'shares': sz['shares'], 'entry': t['entry'], 'plan_risk': t['plan_risk'],
                              'exit_date': t['exit_date'], 'pnl_per_share': t['pnl_per_share']})

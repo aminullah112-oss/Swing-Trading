@@ -38,7 +38,8 @@ function plan(s, cfg, liveRisk) {
     if (liveRisk > 0 && rps > 0) {
         let sh = Math.floor(cfg.capital * liveRisk / 100 / rps);
         sh = Math.min(sh, Math.floor(cfg.capital * cfg.max_pos_pct / 100 / s.trigger));
-        return {shares: sh, invested: sh * s.trigger, risk: sh * rps, label: `live size (≤${liveRisk}% risk)`, live: true};
+        return {shares: sh, invested: sh * s.trigger, risk: sh * rps, live: true,
+                label: sh === 0 ? `0: one share risks more than the ${liveRisk}% live limit` : `live size (≤${liveRisk}% risk)`};
     }
     const p = s.position || {};
     return {shares: p.shares ?? 0, invested: p.invested ?? 0, risk: p.risk_amount ?? 0,
@@ -96,6 +97,17 @@ function renderDataNotes(data) {
         lag.innerHTML = `⚠ DATA LAG — market data ends ${esc(data.data_cutoff)}, but the last completed session should be ${esc(data.expected_session)} ` +
             `(${esc(behind)} session${behind > 1 ? 's' : ''} behind). Unless that day is an exchange holiday missing from market_holidays.json, the data vendor is lagging: ` +
             `the session each buy-stop applies to has already traded, so every signal below is blocked as stale. Wait for a scan with current data.`;
+    }
+    const prov = data.provisional || {};
+    const pbar = document.getElementById('prov-bar');
+    if (pbar) {
+        pbar.hidden = !prov.used;
+        if (prov.used) {
+            const aud = data.provisional_audit && data.provisional_audit.median_abs_error_bps;
+            pbar.innerHTML = `ℹ PROVISIONAL DATA — Yahoo has not published the official daily bar for ${esc(prov.date)}, so ${esc(prov.symbols)} stocks use a bar ` +
+                `built from 5-minute data (close = ${esc(prov.method)}). Signals are marked provisional and are re-checked when the official bar arrives.` +
+                (aud && aud.close_last != null ? ` Last audit: median close error ${esc(aud.close_last)} bps (last trade) / ${esc(aud.close_vwap30)} bps (30-min VWAP).` : ' No audit yet.');
+        }
     }
     const miss = data.missing_symbols || [];
     const note = document.getElementById('missing-note');

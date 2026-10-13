@@ -5,5 +5,7 @@
   "market_stress_observed": false,
   "market_stress_note": "The forward record spans a >=10% Nifty drawdown; the live rules were followed through it:",
   "capital_confirmed": false,
-  "capital_note": "EDGE_CAPITAL repo variable equals actual tradable equity:"
+  "capital_note": "EDGE_CAPITAL repo variable equals actual tradable equity:",
+  "micro_live_acknowledged": false,
+  "micro_live_note": "Set true only if you choose to run the micro-live EXPERIMENT (risk <= 0.05% per trade, hard stop at a 2% net live loss). It buys evidence about fills and starts a real forward record; it does not mean an edge has been shown. Real money is at risk."
 }

@@ -276,3 +276,35 @@ def test_report_from_a_real_run_never_crashes_on_tiny_buckets():
     for trig in ('none', 'prior_high'):
         rep, trades, eq = bt.run(frames, bt.Config(min_score=72, trigger=trig, exit_mode='ema50', max_hold=120))
         assert isinstance(bt.to_markdown(rep, 'x'), str)
+
+
+def test_point_in_time_membership_filters_signals(tmp_path, monkeypatch):
+    import pit
+    frames = {f'S{i}': synth(n=1300, seed=i, drift=0.001) for i in range(4)}
+    cfg = bt.Config(min_score=55, exit_mode='ema50', max_hold=120)
+    base = bt.generate_trades(frames, cfg)
+    assert len(base) > 20
+    # S0 was only a member for a short window; S1 never; S2/S3 always
+    p = tmp_path / 'u.csv'
+    p.write_text('symbol,start,end\nS0,2021-01-01,2021-06-30\nS2,,\nS3,2019-01-01,\n')
+    spans = pit.load_membership(str(p))
+    pt = bt.generate_trades(frames, cfg, membership=spans)
+    assert 'S1' not in set(pt['symbol']) and len(pt) < len(base)
+    s0 = pt[pt['symbol'] == 'S0']
+    assert ((s0['signal_date'] >= '2021-01-01') & (s0['signal_date'] <= '2021-06-30')).all()
+    # the env var path works and no file means no filter
+    monkeypatch.setenv('EDGE_PIT_UNIVERSE', str(p))
+    assert 'S1' not in set(bt.generate_trades(frames, cfg)['symbol'])
+    monkeypatch.delenv('EDGE_PIT_UNIVERSE')
+    assert len(bt.generate_trades(frames, cfg)) == len(base)
+
+
+def test_pit_coverage_reports_missing_price_history(tmp_path):
+    import pit
+    frames = {'A': synth(n=500, seed=1)}                              # 2020-01-01 .. ~2021-11
+    p = tmp_path / 'u.csv'
+    p.write_text('symbol,start,end\nA,2020-01-01,2021-10-31\nGONE,2020-01-01,2021-10-31\n')
+    cov = pit.coverage(pit.load_membership(str(p)), frames)
+    assert 0.45 < cov < 0.55                                          # half the member-months (delisted 'GONE') have no prices
+    assert pit.coverage({}, frames) is None
+    assert pit.is_member(None, 'X', '2020-01-01') is True

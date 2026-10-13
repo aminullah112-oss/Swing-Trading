@@ -19,7 +19,7 @@ function renderLedger(led) {
         `incl. open ${signed(sum.avg_r_incl_open)}R (${sum.total_r_incl_open ?? 0}R total)${ci}` +
         (led.last_update_ok === false ? ' · ⚠ last price update failed' : ''));
 
-    const order = {open: 0, pending: 1, closed: 2, expired: 3};
+    const order = {open: 0, pending: 1, closed: 2, expired: 3, void: 4};
     const rows = (led.signals || []).slice().sort((a, b) =>
         (order[a.status] - order[b.status]) || String(b.signal_date).localeCompare(String(a.signal_date))).slice(0, 80);
     if (!rows.length) return;
