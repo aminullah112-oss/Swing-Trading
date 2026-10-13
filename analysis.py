@@ -6,6 +6,7 @@ backtested rules, so they must not be read as improving expectancy. A 'block' hi
 your own judgement. The signal itself (strategy.py) is unchanged.
 """
 import numpy as np
+from datetime import timedelta
 
 THIN_CR = 2.0           # avg daily traded value below this (Rs crore) -> block
 LOW_CR = 5.0            # below this -> warn
@@ -65,9 +66,48 @@ def execution_ok(checks):
     return not any(c['status'] == 'block' for c in checks)
 
 
+def expected_last_session(now_ist, close_hhmm=(16, 30)):
+    """Date of the most recent weekday session whose data should already be available.
+    NSE closes 15:30 IST; allow an hour for data vendors. Exchange holidays are unknown here, so a
+    mismatch can be a holiday or a vendor lagging a session."""
+    d = now_ist.date()
+    if now_ist.weekday() < 5 and (now_ist.hour, now_ist.minute) >= close_hhmm:
+        return d
+    d -= timedelta(days=1)
+    while d.weekday() >= 5:
+        d -= timedelta(days=1)
+    return d
+
+
+def sessions_behind(cutoff, expected):
+    """Weekdays between the last bar we have and the session we expected (0 = up to date)."""
+    if cutoff >= expected:
+        return 0
+    return int(np.busday_count(cutoff + timedelta(days=1), expected + timedelta(days=1)))
+
+
+def trend_label(last, e50, e200):
+    if last > e50 > e200:
+        return 'Uptrend: above EMA50 and EMA200'
+    if last > e200:
+        return 'Above EMA200 but below EMA50: pullback within an uptrend'
+    if last > e50:
+        return 'Below EMA200, above EMA50: bounce in a weak market'
+    return 'Downtrend: below EMA50 and EMA200'
+
+
+def regime_series(close):
+    """Per-date trend regime of an index (causal EMAs), using the same four states as market_context."""
+    c = close.dropna().astype(float)
+    e50, e200 = c.ewm(span=50, adjust=False).mean(), c.ewm(span=200, adjust=False).mean()
+    state = np.where((c > e50) & (e50 > e200), 'uptrend',
+             np.where(c > e200, 'pullback_in_uptrend', np.where(c > e50, 'bounce_below_ema200', 'downtrend')))
+    return __import__('pandas').Series(state, index=c.index)
+
+
 def market_context(nifty_close_series, n_stage2, n_processed, n_signals):
-    """Informational market backdrop. The backtest found regime made little difference to the rules,
-    so none of this gates a signal."""
+    """Informational market backdrop. Regime effects on the live rules are measured in reports/regime.md;
+    nothing here gates a signal."""
     ctx = {'breadth_stage2_pct': round(100 * n_stage2 / max(n_processed, 1), 1), 'signals': n_signals}
     c = None if nifty_close_series is None else nifty_close_series.dropna().astype(float)
     if c is None or len(c) < 60:
@@ -75,14 +115,7 @@ def market_context(nifty_close_series, n_stage2, n_processed, n_signals):
         return ctx
     e50, e200 = c.ewm(span=50, adjust=False).mean().iloc[-1], c.ewm(span=200, adjust=False).mean().iloc[-1]
     last = float(c.iloc[-1])
-    if last > e50 > e200:
-        trend = 'Uptrend: above EMA50 and EMA200'
-    elif last > e200:
-        trend = 'Above EMA200 but below EMA50: pullback within an uptrend'
-    elif last > e50:
-        trend = 'Below EMA200, above EMA50: bounce in a weak market'
-    else:
-        trend = 'Downtrend: below EMA50 and EMA200'
+    trend = trend_label(last, e50, e200)
     ctx['nifty'] = {'close': round(last, 1), 'ema50': round(float(e50), 1), 'ema200': round(float(e200), 1),
                     'vs_ema200_pct': round((last / float(e200) - 1) * 100, 1),
                     'change_20d_pct': round((last / float(c.iloc[-21]) - 1) * 100, 1) if len(c) > 21 else None,

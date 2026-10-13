@@ -58,7 +58,7 @@ function card(s, cfg, liveRisk) {
         </header>
         ${sparkSVG(s.spark, s.trigger, s.stop_loss)}
         <div class="plan-grid">
-            <div><label>Buy above</label><b class="t1-cell">${inr2(s.trigger)}</b><small>valid today only</small></div>
+            <div><label>Buy above</label><b class="t1-cell">${inr2(s.trigger)}</b><small>valid for the session after ${esc(s.signal_date)} only</small></div>
             <div><label>Stop-loss</label><b class="stop-cell">${inr2(s.stop_loss)}</b><small>−${esc(s.stop_pct.toFixed(1))}% from entry</small></div>
             <div><label>Shares</label><b>${esc(pl.shares)}</b><small>${esc(pl.label)}</small></div>
             <div><label>Risk</label><b class="risk-cell">${inr0(pl.risk)}</b><small>${inr0(pl.invested)} invested</small></div>
@@ -67,7 +67,7 @@ function card(s, cfg, liveRisk) {
         <ul class="checks">${checks}</ul>
         <details><summary>Manual pre-trade checklist (not automated)</summary><ul class="checks manual">${manual}</ul></details>
         <footer class="plan-foot">
-            <span>RSI ${esc(s.rsi.toFixed(0))}</span><span>Vol ${esc(s.vol_ratio.toFixed(1))}x</span>
+            <span title="Close of the session the signal was generated on">signal: ${esc(s.signal_date)}</span><span>RSI ${esc(s.rsi.toFixed(0))}</span><span>Vol ${esc(s.vol_ratio.toFixed(1))}x</span>
             <span>${esc(s.from_52w_high.toFixed(1))}% from 52w high</span><span>ATR ${esc(s.atr_pct.toFixed(1))}%</span>
             ${s.in_stockedge ? '<span title="StockEdge flag has never been backtested">SE ✓</span>' : ''}
             <a class="back-link" href="sizer.html?entry=${encodeURIComponent(s.trigger)}&stop=${encodeURIComponent(s.stop_loss)}">🧮 resize</a>
@@ -88,12 +88,31 @@ function marketCards(m) {
     return items.map(([l, v, sub]) => `<div class="mkt-card"><div class="card-label">${esc(l)}</div><div class="mkt-val">${v}</div><div class="mkt-sub">${sub}</div></div>`).join('');
 }
 
+function renderDataNotes(data) {
+    const lag = document.getElementById('lag-bar');
+    const behind = data.sessions_behind || 0;
+    lag.hidden = !behind;
+    if (behind) {
+        lag.innerHTML = `⚠ DATA LAG — market data ends ${esc(data.data_cutoff)}, but the last completed session should be ${esc(data.expected_session)} ` +
+            `(${esc(behind)} session${behind > 1 ? 's' : ''} behind). If that was a trading day, the buy levels below refer to a session that has already traded: ` +
+            `check the live price before placing anything. If it was an exchange holiday, ignore this.`;
+    }
+    const miss = data.missing_symbols || [];
+    const note = document.getElementById('missing-note');
+    note.hidden = !miss.length;
+    if (miss.length) {
+        note.innerHTML = `<strong>Not scanned (no usable data):</strong> ${miss.map(esc).join(', ')} — these ${miss.length} stocks cannot signal until their data returns. ` +
+            `Often a renamed, merged or delisted ticker; check the symbol list in screener.py.`;
+    }
+}
+
 function render() {
     const {data, rd} = desk;
     const cfg = data.risk_config;
     const liveRisk = rd ? (rd.policy.live_risk_pct_allowed || 0) : 0;
     const stocks = data.stocks || [];
     const ok = stocks.filter(s => s.execution_ok), out = stocks.filter(s => !s.execution_ok);
+    renderDataNotes(data);
     setText('count-signals', stocks.length);
     setText('count-tradeable', ok.length);
     setText('count-scanned', data.total_scanned || '—');

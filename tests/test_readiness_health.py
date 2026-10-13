@@ -166,3 +166,13 @@ def test_overall_is_worst_level_and_config_check():
     assert hl.overall([]) == 'OK'
     bad = dict(RES, risk_config=dict(RES['risk_config'], risk_pct=2.0))
     assert lvl(hl.run_checks(hctx(res=bad)), 'H9') == 'fail'
+
+
+def test_health_flags_data_lag_and_names_missing_symbols():
+    behind = dict(RES, sessions_behind=1, expected_session='2027-06-01')
+    c = hl.run_checks(hctx(res=behind))
+    assert lvl(c, 'H1b') == 'warn' and 'holiday' in next(x['msg'] for x in c if x['id'] == 'H1b')
+    assert lvl(hl.run_checks(hctx(res=dict(RES, sessions_behind=6, expected_session='2027-06-01'))), 'H1b') == 'fail'
+    assert lvl(hl.run_checks(hctx(res=dict(RES, sessions_behind=0))), 'H1b') is None
+    miss = hl.run_checks(hctx(res=dict(RES, symbols_processed=157, total_scanned=160, missing_symbols=['AAA', 'BBB', 'CCC'])))
+    assert 'AAA, BBB, CCC' in next(x['msg'] for x in miss if x['id'] == 'H2')

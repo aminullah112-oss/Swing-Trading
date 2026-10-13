@@ -357,7 +357,7 @@ The score maps to a live-risk policy: under 4.5 or any kill switch or unconfirme
 
 ## 🖥️ Pages
 
-- **Trade Desk** (`index.html`, the homepage): market backdrop (Nifty trend, breadth), then one card per tradeable signal with a 60-day chart (EMA20, EMA50, buy level, stop), the plan (buy-stop, stop, shares, risk, exit line), automated execution checks and a manual pre-trade checklist. Signals that fail a hard execution check (thin liquidity, stop wider than 15%) move to a separate table with the reason. It always shows the live-trading status bar from the readiness scorecard.
+- **Trade Desk** (`index.html`, the homepage): market backdrop (Nifty trend, breadth; informational, with the live variant's regime behaviour in `reports/regime.md`), then one card per tradeable signal with a 60-day chart (EMA20, EMA50, buy level, stop), the plan (buy-stop, stop, shares, risk, exit line), automated execution checks and a manual pre-trade checklist. Signals that fail a hard execution check (thin liquidity, stop wider than 15%) move to a separate table with the reason. It always shows the live-trading status bar from the readiness scorecard.
 - **Paper Trading & Readiness** (`paper.html`): the forward ledger, its results, the readiness scorecard and health checks.
 - **Position Sizer** (`sizer.html`).
 
