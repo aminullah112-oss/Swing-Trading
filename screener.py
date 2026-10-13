@@ -71,6 +71,15 @@ NSE_STOCKS = [
 NSE_STOCKS = list(dict.fromkeys(NSE_STOCKS))
 YF_TICKERS = [f"{s}.NS" for s in NSE_STOCKS]
 BENCH = '^NSEI'
+# Renamed / restructured tickers. The modern symbol is tried first, then the original. A series that
+# stops more than STALE_DAYS before the latest bar is treated as missing (delisted or renamed).
+SYMBOL_ALIASES = {
+    'ZOMATO': ['ETERNAL'],          # renamed Eternal Ltd in 2025
+    'GUJARATGAS': ['GUJGASLTD'],    # NSE symbol is GUJGASLTD
+    'TATAMOTORS': ['TMPV'],         # demerger: passenger-vehicle company
+}
+ALIAS_TICKERS = [f'{a}.NS' for v in SYMBOL_ALIASES.values() for a in v]
+STALE_DAYS = 7
 
 
 def load_stockedge():
@@ -116,7 +125,7 @@ def fetch_bulk():
     for attempt in range(3):
         try:
             data = yf.download(
-                tickers=YF_TICKERS + [BENCH],
+                tickers=YF_TICKERS + ALIAS_TICKERS + [BENCH],
                 period='1y',
                 interval='1d',
                 group_by='ticker',
@@ -146,6 +155,18 @@ def extract_df(data, ticker):
         return df.sort_index() if len(df) >= 50 else None
     except:
         return None
+
+
+def resolve_symbol(bulk, sym, frame_last):
+    """Return (df, symbol_used, why_missing). Aliases first (renamed tickers), then the original."""
+    for cand in SYMBOL_ALIASES.get(sym, []) + [sym]:
+        df = extract_df(bulk, f"{cand}.NS")
+        if df is None:
+            continue
+        if (frame_last - df.index[-1]).days > STALE_DAYS:
+            continue
+        return df, cand, None
+    return None, sym, 'no usable or current data'
 
 
 def compute_atr(h, l, c, p=14):
@@ -345,16 +366,20 @@ def main():
 
     print(f"\n{'Symbol':<14}{'Setup':<20}{'Close':>10}{'Buy>':>10}{'Stop':>10}")
     print("-" * 70)
-    for sym, tick in zip(NSE_STOCKS, YF_TICKERS):
+    frame_last = bulk.index.max()
+    aliases_used = {}
+    for sym in NSE_STOCKS:
         try:
-            df = extract_df(bulk, tick)
+            df, used, _ = resolve_symbol(bulk, sym, frame_last)
             if df is None:
                 stats['data'] += 1; missing.append(sym); continue
+            if used != sym:
+                aliases_used[sym] = used
             last_bars.append(df.index[-1])
-            rec, why = evaluate(df, sym in se)
+            rec, why = evaluate(df, (sym in se) or (used in se))
             if rec is None:
                 stats[why] += 1; continue
-            rec['symbol'] = sym
+            rec['symbol'] = used
             rec['timestamp'] = now_utc.isoformat()
             results.append(rec)
             print(f"{sym:<14}{rec['setup_type']:<20}{rec['price']:>10.2f}{rec['trigger']:>10.2f}{rec['stop_loss']:>10.2f}")
@@ -369,6 +394,8 @@ def main():
     data_cutoff = max(last_bars).strftime('%Y-%m-%d')
     if missing:
         print(f"No usable data for {len(missing)} symbols: {', '.join(missing)}")
+    if aliases_used:
+        print(f"Resolved renamed tickers: {aliases_used}")
     try:
         nifty = extract_df(bulk, BENCH)
         nifty_close = nifty['Close'] if nifty is not None else None
@@ -387,8 +414,23 @@ def main():
     print("=" * 70)
 
     now_ist = now_utc.astimezone(IST)
-    expected = analysis.expected_last_session(now_ist)
-    behind = analysis.sessions_behind(max(last_bars).date(), expected)
+    holidays = analysis.load_holidays()
+    expected = analysis.expected_last_session(now_ist, holidays=holidays)
+    behind = analysis.sessions_behind(max(last_bars).date(), expected, holidays)
+    # What the vendor actually returned, so a lag can be diagnosed instead of guessed at
+    last_row = bulk.iloc[-1]
+    vendor = {'frame_last_row': str(bulk.index.max().date()), 'rows': int(len(bulk)),
+              'non_null_closes_on_last_row': int(last_row.xs('Close', level=1).notna().sum()) if hasattr(last_row.index, 'levels') else None,
+              'last_bar_counts': {str(k): int(v) for k, v in
+                                  sorted(__import__('collections').Counter(d.date() for d in last_bars).items(), reverse=True)[:4]}}
+    print(f"Vendor last row {vendor['frame_last_row']}; last-bar counts {vendor['last_bar_counts']}; "
+          f"non-null closes on last row: {vendor['non_null_closes_on_last_row']}")
+    if behind > 0:   # the buy-stop session after the signal has already traded: not actionable
+        for r in results:
+            r['checks'].append({'id': 'freshness', 'status': 'block',
+                                'text': f"Stale: data ends {data_cutoff} but the last completed session is {expected}; "
+                                        f"the session this buy-stop applies to has already traded"})
+            r['execution_ok'] = False
     out = {
         'scan_id':           uuid.uuid4().hex[:12],
         'timestamp':         now_utc.isoformat(),           # UTC, machine-readable
@@ -398,6 +440,8 @@ def main():
         'expected_session':  str(expected),
         'sessions_behind':   behind,
         'missing_symbols':   missing,
+        'aliases_used':      aliases_used,
+        'vendor':            vendor,
         'symbols_processed': processed,
         'total_scanned':     len(NSE_STOCKS),
         'total_passed':      len(results),

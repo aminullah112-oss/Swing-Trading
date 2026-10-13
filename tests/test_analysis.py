@@ -111,3 +111,69 @@ def test_regime_series_states():
     assert an.regime_series(crash).iloc[-1] in ('pullback_in_uptrend', 'bounce_below_ema200', 'downtrend')
     # same labels as the text shown on the desk
     assert an.trend_label(110, 105, 100).startswith('Uptrend') and an.trend_label(90, 95, 100).startswith('Downtrend')
+
+
+# ---------------- holiday calendar and ticker aliases -----------------
+import json
+
+
+def test_holidays_are_skipped_in_expected_session_and_lag_counts():
+    hol = {date(2026, 10, 13)}                                     # pretend Tuesday 13 Oct were a holiday
+    assert an.expected_last_session(ist(2026, 10, 14, 0, 44), holidays=hol) == date(2026, 10, 12)
+    assert an.sessions_behind(date(2026, 10, 12), date(2026, 10, 14), hol) == 1        # 13th is not a session
+    assert an.sessions_behind(date(2026, 10, 12), date(2026, 10, 14), set()) == 2
+    # a holiday today means yesterday's data is current even after the close
+    assert an.expected_last_session(ist(2026, 10, 13, 18, 0), holidays=hol) == date(2026, 10, 12)
+    # and with no holiday the same scan time is genuinely one session behind
+    exp = an.expected_last_session(ist(2026, 10, 14, 0, 44), holidays=set())
+    assert an.sessions_behind(date(2026, 10, 12), exp, set()) == 1
+
+
+def test_load_holidays_is_forgiving(tmp_path):
+    p = tmp_path / 'h.json'
+    p.write_text(json.dumps({'holidays': ['2026-10-20', 'not-a-date', '2026-11-08']}))
+    assert an.load_holidays(str(p)) == {date(2026, 10, 20), date(2026, 11, 8)}
+    assert an.load_holidays(str(tmp_path / 'missing.json')) == set()
+    p.write_text('{ broken')
+    assert an.load_holidays(str(p)) == set()
+    p.write_text('[1, 2]')
+    assert an.load_holidays(str(p)) == set()
+
+
+def _bulk(spec, last='2026-10-12', n=120):
+    idx = pd.bdate_range(end=last, periods=n)
+    cols = {}
+    for tick, end_offset in spec.items():
+        i = idx[: n - end_offset] if end_offset else idx
+        for f, v in (('Open', 100.0), ('High', 101.0), ('Low', 99.0), ('Close', 100.0), ('Volume', 1e6)):
+            cols[(tick, f)] = pd.Series(v, index=i).reindex(idx)
+    return pd.DataFrame(cols, index=idx)
+
+
+def test_alias_is_preferred_and_stale_tickers_are_rejected():
+    bulk = _bulk({'ETERNAL.NS': 0, 'ZOMATO.NS': 70, 'GUJGASLTD.NS': 0, 'TMPV.NS': 0, 'TATAMOTORS.NS': 80, 'INFY.NS': 0, 'DEAD.NS': 90})
+    last = bulk.index.max()
+    df, used, why = sc.resolve_symbol(bulk, 'ZOMATO', last)
+    assert used == 'ETERNAL' and df is not None and why is None
+    assert sc.resolve_symbol(bulk, 'GUJARATGAS', last)[1] == 'GUJGASLTD'
+    assert sc.resolve_symbol(bulk, 'TATAMOTORS', last)[1] == 'TMPV'
+    assert sc.resolve_symbol(bulk, 'INFY', last)[1] == 'INFY'
+    df, used, why = sc.resolve_symbol(bulk, 'DEAD', last)                   # series that stopped ~90 sessions ago
+    assert df is None and why
+
+
+def test_old_ticker_used_when_alias_has_no_data():
+    bulk = _bulk({'ZOMATO.NS': 0})
+    df, used, _ = sc.resolve_symbol(bulk, 'ZOMATO', bulk.index.max())
+    assert used == 'ZOMATO' and df is not None
+
+
+def test_stale_original_with_no_alias_is_missing_not_silently_used():
+    bulk = _bulk({'ZOMATO.NS': 70, 'INFY.NS': 0})
+    df, used, why = sc.resolve_symbol(bulk, 'ZOMATO', bulk.index.max())     # alias absent from the frame, original is stale
+    assert df is None
+
+
+def test_alias_table_is_wired_into_downloads():
+    assert sc.SYMBOL_ALIASES['ZOMATO'] == ['ETERNAL'] and 'ETERNAL.NS' in sc.ALIAS_TICKERS
+    assert all(k in sc.NSE_STOCKS for k in sc.SYMBOL_ALIASES)

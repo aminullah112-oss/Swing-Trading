@@ -373,17 +373,18 @@ def load_history(years, cache):
         raw = pd.read_pickle(cache)
     else:
         import yfinance as yf
-        raw = yf.download(tickers=sc.YF_TICKERS + ['^NSEI'], period=f'{years}y', interval='1d',
+        raw = yf.download(tickers=sc.YF_TICKERS + sc.ALIAS_TICKERS + ['^NSEI'], period=f'{years}y', interval='1d',
                           group_by='ticker', auto_adjust=True, progress=False, threads=True, timeout=120)
         if raw is None or raw.empty:
             sys.exit('FATAL: history download failed')
         if cache:
             raw.to_pickle(cache)
     frames = {}
-    for sym, tick in zip(sc.NSE_STOCKS, sc.YF_TICKERS):
-        df = sc.extract_df(raw, tick)
+    frame_last = raw.index.max()
+    for sym in sc.NSE_STOCKS:
+        df, used, _ = sc.resolve_symbol(raw, sym, frame_last)
         if df is not None:
-            frames[sym] = df
+            frames[used] = df
     bench = None
     try:
         bench = raw['^NSEI']['Close'].dropna().astype(float)

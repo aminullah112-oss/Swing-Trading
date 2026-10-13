@@ -18,7 +18,7 @@ import research as rs
 
 FRESH_WARN_DAYS = 4         # calendar days since the last market bar (covers weekend + one holiday)
 FRESH_FAIL_DAYS = 7
-LAG_FAIL_SESSIONS = 5       # sessions behind the expected last session
+LAG_FAIL_SESSIONS = 3       # sessions behind the expected last session (holiday calendar applied)
 LEDGER_STALE_DAYS = 3
 COVERAGE_WARN = 0.95
 PENDING_MAX_DAYS = 7        # a signal must resolve (trigger or expire) within a few sessions
@@ -74,8 +74,8 @@ def run_checks(ctx):
         if behind:
             out.append(_c('H1b', 'fail' if behind >= LAG_FAIL_SESSIONS else 'warn',
                           f"data ends {cutoff} but the last completed session should be {res.get('expected_session')} "
-                          f"({behind} session(s) behind): an exchange holiday, or the data vendor is lagging. If it was a "
-                          f"trading day, 'valid for the next session' buy levels refer to a session that already traded"))
+                          f"({behind} session(s) behind). Unless it was an exchange holiday missing from market_holidays.json, the data vendor "
+                          f"is lagging and 'valid for the next session' buy levels refer to a session that already traded"))
         cov = res.get('symbols_processed', 0) / max(res.get('total_scanned', 1), 1)
         miss = res.get('missing_symbols') or []
         out.append(_c('H2', 'warn' if cov < COVERAGE_WARN else 'ok',

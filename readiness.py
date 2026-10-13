@@ -42,7 +42,7 @@ GATES = [
     ('F4', 'Forward expectancy is not clearly below the backtest design-period figure', 1.0, True),
     ('E1', f'At least {MIN_FILLS} live fills with slippage within 2x the model', 1.0, True),
     ('S1', 'Forward record includes a >=10% Nifty drawdown, rules followed (attested)', 0.5, False),
-    ('O1', 'Operations healthy (no health FAIL)', 0.5, False),
+    ('O1', 'Operations healthy: no health FAIL and no data lag', 0.5, False),
     ('R1', 'Risk limits within safe bounds (risk/trade <= 1%, open risk <= 3%, position <= 25%)', 0.5, False),
 ]
 assert abs(sum(g[2] for g in GATES) - 10.0) < 1e-9
@@ -148,7 +148,12 @@ def evaluate(ctx):
 
     # --- operations and risk
     hs = health.get('status')
-    out.append(_g('O1', 'pass' if hs in ('OK', 'WARN') else ('fail' if hs == 'FAIL' else 'insufficient'), value=hs, threshold='OK/WARN'))
+    lagging = any(c.get('id') == 'H1b' for c in health.get('checks', []))
+    if lagging:
+        out.append(_g('O1', 'fail', value=hs, threshold='no data lag',
+                      detail='market data is behind the expected session; a system that buys the session after a signal cannot be traded on stale bars'))
+    else:
+        out.append(_g('O1', 'pass' if hs in ('OK', 'WARN') else ('fail' if hs == 'FAIL' else 'insufficient'), value=hs, threshold='OK/WARN'))
     cfg = res.get('risk_config') or {}
     safe = bool(cfg) and cfg.get('risk_pct', 99) <= 1.0 and cfg.get('max_open_risk_pct', 99) <= 3.0 and cfg.get('max_pos_pct', 99) <= 25.0
     out.append(_g('R1', 'pass' if safe else ('fail' if cfg else 'insufficient'), value=cfg or None))
