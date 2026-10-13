@@ -1,0 +1,41 @@
+{
+  "status": "OK",
+  "generated": "2026-10-13T18:57:58+00:00",
+  "checks": [
+    {
+      "id": "H1",
+      "level": "ok",
+      "msg": "market data through 2026-10-12 (1 days old)"
+    },
+    {
+      "id": "H2",
+      "level": "ok",
+      "msg": "157/160 symbols had data (98%)"
+    },
+    {
+      "id": "H3",
+      "level": "ok",
+      "msg": "ledger updated 0 days ago; last price update ok"
+    },
+    {
+      "id": "H4",
+      "level": "ok",
+      "msg": "10 signals, integrity ok"
+    },
+    {
+      "id": "H7",
+      "level": "ok",
+      "msg": "edge-decay check needs 30+ closed signals (have 0)"
+    },
+    {
+      "id": "H8",
+      "level": "ok",
+      "msg": "taken-signal equity drawdown 0.0% of capital (now +0.0%)"
+    },
+    {
+      "id": "H9",
+      "level": "ok",
+      "msg": "risk limits within bounds"
+    }
+  ]
+}

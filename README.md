@@ -340,3 +340,14 @@ The scanner now outputs one thing: **signals** for the `prior_high/ema50/h120` v
 The Backtest workflow also writes `reports/universe.md`: the equal-weight return of this exact stock list versus the Nifty, an upper bound on how much any result is just "today's survivors went up".
 
 **Status: paper-trading candidate, not a validated edge.** Survivorship bias, a strong 2023-26 hold-out and wide confidence intervals are unresolved. Do not trade real money from it until the ledger has on the order of 100 closed trades that look like the backtest.
+
+
+---
+
+## ✅ Readiness scorecard and monitoring
+
+**`readiness.py`** computes the go-live rating from evidence (`reports/readiness.md`, `readiness.json`). It has 11 gates worth 10 points. Points are earned only by verified evidence: a passing backtest of the live variant, beating buy-and-hold of the same universe per unit of drawdown, 100+ closed forward signals over 6+ months, a forward expectancy whose confidence lower bound is above zero and not clearly below the backtest, 30+ live fills with slippage within 2x the model, and healthy operations and risk limits. Things code cannot verify (a survivorship-free backtest, a market-stress period survived, correct capital) are flags in `attestations.json` that default to `false`; set them only when genuinely true. Log real fills in `live_fills.csv`.
+
+The score maps to a live-risk policy: under 4.5 or any kill switch or unconfirmed capital means paper only; a fill-test tier of 0.10% risk opens once the forward gates pass; 0.25% and 0.50% need more evidence. The thresholds are fixed in the code, not tuned.
+
+**`health.py`** runs daily: scan freshness and coverage, ledger freshness and integrity, signal drought, edge decay on the forward record, a drawdown kill switch (8% of capital on taken signals; warning at 5%) and risk-limit sanity. A FAIL turns the workflow red (GitHub emails you) and opens an issue. Kill-switch levels are set in advance so they cannot be argued away during a drawdown.

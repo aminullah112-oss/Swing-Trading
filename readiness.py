@@ -1,0 +1,233 @@
+#!/usr/bin/env python3
+"""Go-live readiness scorecard. The 'fit for real money' rating, computed from evidence.
+
+Points are earned only by verified evidence. Facts the code cannot check (survivorship-free test,
+market stress, correct capital) come from attestations.json and default to "no". Nothing here is
+tuned to produce a nicer number: every threshold below was fixed before it was ever evaluated.
+
+Score (0-10) and the live-risk policy it implies:
+
+    score < 4.5, or any kill switch tripped, or capital not confirmed  -> PAPER ONLY (0% live risk)
+    4.5 <= score < 6.5 and forward gates F1-F3 pass                    -> FILL TEST: <= 0.10% risk/trade
+                                                                          (to gather the live-fill evidence E1)
+    6.5 <= score < 8   and B2, F3, F4 pass                              -> <= 0.25% risk/trade
+    score >= 8         and every critical gate passes                   -> <= 0.50% risk/trade
+
+The policy is a proposal for a cautious ramp, not a guarantee of profit. Edit it knowingly.
+"""
+import csv, json, os
+from datetime import datetime, timezone
+
+import numpy as np
+
+import ledger as lg
+import research as rs
+import strategy
+
+LIVE_LABEL = f'{strategy.TRIGGER}/{strategy.EXIT_MODE}/h{strategy.MAX_HOLD}'
+MODEL_SLIPPAGE_BPS = 10.0            # per side, as in backtest.Config
+MIN_CLOSED = 100
+MIN_DAYS = 182
+MIN_FILLS = 30
+CLUSTER_ALPHA = 0.05
+
+# id, label, points, critical
+GATES = [
+    ('B1', 'Live variant passes the pre-registered backtest gates', 0.5, False),
+    ('U1', 'Beats buy-and-hold of the same universe per unit of drawdown (hold-out)', 1.0, True),
+    ('B2', 'Survivorship-free backtest passes the same gates (attested)', 1.5, True),
+    ('F1', f'At least {MIN_CLOSED} closed forward signals', 1.0, False),
+    ('F2', f'At least {MIN_DAYS} days of forward record', 1.0, False),
+    ('F3', 'Forward expectancy (closed + open) has a 95% CI lower bound above 0', 1.5, True),
+    ('F4', 'Forward expectancy is not clearly below the backtest design-period figure', 1.0, True),
+    ('E1', f'At least {MIN_FILLS} live fills with slippage within 2x the model', 1.0, True),
+    ('S1', 'Forward record includes a >=10% Nifty drawdown, rules followed (attested)', 0.5, False),
+    ('O1', 'Operations healthy (no health FAIL)', 0.5, False),
+    ('R1', 'Risk limits within safe bounds (risk/trade <= 1%, open risk <= 3%, position <= 25%)', 0.5, False),
+]
+assert abs(sum(g[2] for g in GATES) - 10.0) < 1e-9
+
+
+def _g(gid, status, value=None, threshold=None, detail=''):
+    _, label, pts, crit = next(g for g in GATES if g[0] == gid)
+    return {'id': gid, 'label': label, 'points': pts, 'critical': crit, 'status': status,
+            'earned': pts if status == 'pass' else 0.0, 'value': value, 'threshold': threshold, 'detail': detail}
+
+
+def live_variant(grid):
+    for r in grid or []:
+        if r.get('label') == LIVE_LABEL:
+            return r
+    return None
+
+
+def forward_ci(ledger):
+    rs_, months = lg.forward_returns(ledger)
+    if len(rs_) < 2:
+        return None, rs_, months
+    ci = rs.cluster_ci_mean(rs_, months, alpha=CLUSTER_ALPHA)
+    return ci, rs_, months
+
+
+def fills_stats(fills):
+    """fills: list of dict rows from live_fills.csv. Slippage in bps, positive = worse than planned."""
+    ent, ext = [], []
+    for f in fills:
+        try:
+            pe, ae = float(f['planned_entry']), float(f['actual_entry'])
+            ent.append((ae - pe) / pe * 1e4)
+        except (KeyError, TypeError, ValueError, ZeroDivisionError):
+            continue
+        try:
+            px, ax = float(f['planned_exit']), float(f['actual_exit'])
+            ext.append((px - ax) / px * 1e4)
+        except (KeyError, TypeError, ValueError, ZeroDivisionError):
+            pass
+    return {'n_entries': len(ent), 'n_exits': len(ext),
+            'entry_slip_bps': round(float(np.mean(ent)), 1) if ent else None,
+            'exit_slip_bps': round(float(np.mean(ext)), 1) if ext else None}
+
+
+def evaluate(ctx):
+    led, res, grid, att = ctx['ledger'], ctx.get('results') or {}, ctx.get('grid'), ctx.get('attest') or {}
+    uni, fills, health = ctx.get('universe'), ctx.get('fills') or [], ctx.get('health') or {}
+    now = ctx.get('now') or datetime.now(timezone.utc)
+    out = []
+
+    # --- backtest evidence
+    row = live_variant(grid)
+    out.append(_g('B1', 'pass' if row and row.get('promising') else ('fail' if row else 'insufficient'),
+                  value=f"G1/G2/G3 = {row['G1']}/{row['G2']}/{row['G3']}" if row else None, threshold='all three gates',
+                  detail=f'variant {LIVE_LABEL}' + ('' if row else ' not found in reports/grid.json')))
+
+    if row and uni and (uni.get('holdout') or {}).get('equal_weight') and row.get('holdout_port_cagr') is not None:
+        u = uni['holdout']['equal_weight']
+        s_ratio = row['holdout_port_cagr'] / abs(row['holdout_port_maxdd']) if row['holdout_port_maxdd'] else float('inf')
+        u_ratio = u['cagr_pct'] / abs(u['max_drawdown_pct']) if u['max_drawdown_pct'] else float('inf')
+        out.append(_g('U1', 'pass' if s_ratio >= u_ratio else 'fail', value=f'strategy {s_ratio:.2f} vs universe {u_ratio:.2f}',
+                      threshold='CAGR/|maxDD| >= universe',
+                      detail=f"hold-out CAGR {row['holdout_port_cagr']}% / DD {row['holdout_port_maxdd']}% vs universe "
+                             f"{u['cagr_pct']}% / {u['max_drawdown_pct']}%"))
+    else:
+        out.append(_g('U1', 'insufficient', detail='reports/universe.json missing: rerun the Backtest workflow'))
+
+    ok = bool(att.get('survivorship_free_backtest_passed'))
+    out.append(_g('B2', 'pass' if ok else 'manual', detail='attestations.json: survivorship_free_backtest_passed'))
+
+    # --- forward evidence
+    summ = led.get('summary') or {}
+    closed = summ.get('closed', 0)
+    out.append(_g('F1', 'pass' if closed >= MIN_CLOSED else 'fail', value=closed, threshold=MIN_CLOSED))
+    started = led.get('started')
+    days = max(0, (now.date() - datetime.fromisoformat(started).date()).days) if started else 0
+    out.append(_g('F2', 'pass' if days >= MIN_DAYS else 'fail', value=days, threshold=MIN_DAYS))
+
+    ci, rs_, months = forward_ci(led)
+    enough = closed >= MIN_CLOSED and days >= MIN_DAYS and ci is not None
+    if enough:
+        out.append(_g('F3', 'pass' if ci[0] > 0 else 'fail', value=f'mean {rs_.mean():+.3f} CI [{ci[0]:+.3f}, {ci[1]:+.3f}]', threshold='lower bound > 0'))
+        design = row['design_avg_r'] if row else None
+        if design is None:
+            out.append(_g('F4', 'insufficient', detail='no backtest figure to compare against'))
+        else:
+            out.append(_g('F4', 'pass' if ci[1] >= design else 'fail', value=f'CI upper {ci[1]:+.3f}', threshold=f'>= backtest design avg R {design:+.3f}'))
+    else:
+        why = f'needs {MIN_CLOSED}+ closed signals and {MIN_DAYS}+ days first (have {closed}, {days})'
+        out.append(_g('F3', 'insufficient', detail=why))
+        out.append(_g('F4', 'insufficient', detail=why))
+
+    fs = fills_stats(fills)
+    lim = 2 * MODEL_SLIPPAGE_BPS
+    if fs['n_entries'] >= MIN_FILLS and fs['entry_slip_bps'] is not None:
+        bad = fs['entry_slip_bps'] > lim or (fs['n_exits'] >= 10 and fs['exit_slip_bps'] is not None and fs['exit_slip_bps'] > lim)
+        out.append(_g('E1', 'fail' if bad else 'pass', value=fs, threshold=f'<= {lim:g} bps per side'))
+    else:
+        out.append(_g('E1', 'insufficient', value=fs, threshold=f'{MIN_FILLS}+ fills in live_fills.csv'))
+
+    out.append(_g('S1', 'pass' if att.get('market_stress_observed') else 'manual', detail='attestations.json: market_stress_observed'))
+
+    # --- operations and risk
+    hs = health.get('status')
+    out.append(_g('O1', 'pass' if hs in ('OK', 'WARN') else ('fail' if hs == 'FAIL' else 'insufficient'), value=hs, threshold='OK/WARN'))
+    cfg = res.get('risk_config') or {}
+    safe = bool(cfg) and cfg.get('risk_pct', 99) <= 1.0 and cfg.get('max_open_risk_pct', 99) <= 3.0 and cfg.get('max_pos_pct', 99) <= 25.0
+    out.append(_g('R1', 'pass' if safe else ('fail' if cfg else 'insufficient'), value=cfg or None))
+    return out
+
+
+def policy(gates, att, health):
+    by = {g['id']: g for g in gates}
+    score = round(sum(g['earned'] for g in gates), 2)
+    p = lambda i: by[i]['status'] == 'pass'
+    crit_ok = all(p(g['id']) for g in gates if g['critical'])
+    reasons = []
+    allowed = 0.0
+    mode = 'PAPER ONLY'
+    if health.get('status') == 'FAIL':
+        reasons.append('health FAIL (kill switch or stale/broken pipeline)')
+    elif not att.get('capital_confirmed'):
+        reasons.append('capital not confirmed in attestations.json')
+    elif score >= 8 and crit_ok:
+        allowed, mode = 0.5, 'FULL (cap 0.50%)'
+    elif score >= 6.5 and p('B2') and p('F3') and p('F4'):
+        allowed, mode = 0.25, 'REDUCED (cap 0.25%)'
+    elif score >= 4.5 and p('F1') and p('F2') and p('F3'):
+        allowed, mode = 0.10, 'FILL TEST (cap 0.10%)'
+    else:
+        reasons.append(f'score {score} below the tier thresholds or required gates not passed')
+    missing = [f"{g['id']} {g['label']}" for g in gates if g['status'] != 'pass']
+    return {'score': score, 'mode': mode, 'live_risk_pct_allowed': allowed, 'reasons': reasons,
+            'critical_gates_passed': crit_ok, 'unmet': missing}
+
+
+def _load(path, default=None):
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return default
+
+
+def load_fills(path='live_fills.csv'):
+    try:
+        with open(path, newline='') as f:
+            return list(csv.DictReader(f))
+    except OSError:
+        return []
+
+
+def markdown(res):
+    L = [f"# Readiness scorecard: {res['policy']['score']}/10 — {res['policy']['mode']}", '',
+         f"Generated {res['generated']}. Live risk allowed: **{res['policy']['live_risk_pct_allowed']}%** per trade.", '',
+         '| Gate | Points | Status | Value / detail |', '|---|---|---|---|']
+    sym = {'pass': '✅ pass', 'fail': '❌ fail', 'insufficient': '⏳ not enough data', 'manual': '🖐 not attested'}
+    for g in res['gates']:
+        d = g['value'] if g['value'] not in (None, '') else g['detail']
+        if g['value'] not in (None, '') and g['detail']:
+            d = f"{g['value']} — {g['detail']}"
+        L.append(f"| {g['id']} {g['label']}{' **(critical)**' if g['critical'] else ''} | {g['earned']:g}/{g['points']:g} | {sym[g['status']]} | {d} |")
+    if res['policy']['reasons']:
+        L += ['', 'Why not higher: ' + '; '.join(res['policy']['reasons'])]
+    L += ['', 'Points come only from verified evidence. Gates marked "not attested" need a human to set the flag in `attestations.json` once it is true.']
+    return '\n'.join(L)
+
+
+def main():
+    health = _load('health.json', {})
+    ctx = {'ledger': _load('ledger.json', lg.empty()), 'results': _load('results.json', {}),
+           'grid': _load('reports/grid.json'), 'universe': _load('reports/universe.json'),
+           'attest': _load('attestations.json', {}), 'fills': load_fills(), 'health': health}
+    gates = evaluate(ctx)
+    pol = policy(gates, ctx['attest'], health)
+    res = {'generated': datetime.now(timezone.utc).isoformat(timespec='seconds'), 'policy': pol, 'gates': gates}
+    with open('readiness.json.tmp', 'w') as f:
+        json.dump(res, f, indent=2, default=str)
+    os.replace('readiness.json.tmp', 'readiness.json')
+    os.makedirs('reports', exist_ok=True)
+    with open('reports/readiness.md', 'w') as f:
+        f.write(markdown(res))
+    print(markdown(res))
+
+
+if __name__ == '__main__':
+    main()

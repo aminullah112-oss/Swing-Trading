@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: daily-screen
@@ -41,12 +42,40 @@ jobs:
         EDGE_RISK_PCT: ${{ vars.EDGE_RISK_PCT || '0.5' }}
       run: python paper.py
 
+    - name: Health checks and kill switch
+      id: health
+      if: always()
+      continue-on-error: true
+      run: python health.py
+
+    - name: Readiness scorecard
+      if: always()
+      run: python readiness.py
+
     - name: Commit results
       if: always()
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
-        git add results.json ledger.json
+        for f in results.json ledger.json health.json readiness.json reports/readiness.md; do [ -e "$f" ] && git add "$f"; done
         git commit -m "Scan update $(date -u +'%Y-%m-%d %H:%M UTC')" || { echo "No changes"; exit 0; }
         git pull --rebase origin main
         git push origin main
+
+    - name: Open an issue if health failed
+      if: steps.health.outcome == 'failure'
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        title="Health FAIL: EDGE PROTOCOL pipeline or edge check"
+        existing=$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number')
+        if [ -z "$existing" ]; then
+          body=$(python3 -c "import json; h=json.load(open('health.json')); print('Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID'); print(); [print('- **%s**: %s' % (c['id'], c['msg'])) for c in h['checks'] if c['level']=='fail']")
+          gh issue create --title "$title" --body "$body" || echo "could not create issue"
+        fi
+
+    - name: Fail the run if health failed
+      if: steps.health.outcome == 'failure'
+      run: |
+        echo "Health FAIL: see health.json. If this is the drawdown kill switch, stop trading and review before resuming."
+        exit 1

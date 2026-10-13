@@ -127,6 +127,23 @@ def mark_taken(ledger, capital, max_open_risk):
             live.append((rec.get('exit_date'), rec['risk_amount']))
 
 
+def forward_returns(ledger):
+    """R per entered signal (closed = realised, open = marked to last close) and its entry month.
+    Including open trades matters: under a slow exit, closed-only results are biased toward losers."""
+    rs, months = [], []
+    for r in ledger['signals']:
+        if not r.get('entry_date'):
+            continue
+        if r['status'] == 'closed':
+            rs.append(float(r['r']))
+        elif r['status'] == 'open':
+            rs.append(float(r.get('unrealized_r', 0.0)))
+        else:
+            continue
+        months.append(str(r['entry_date'])[:7])
+    return np.array(rs, dtype=float), np.array(months)
+
+
 def summarize(ledger):
     sigs = ledger['signals']
     closed = [r for r in sigs if r['status'] == 'closed']

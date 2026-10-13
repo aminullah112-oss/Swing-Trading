@@ -321,6 +321,8 @@ def main():
     b_hold = bt.benchmark_stats(bench, hold_start, span[1]) if span[1] is not None else None
     note = f'Nifty buy-and-hold since {SPLIT}: {json.dumps(b_hold)}'
     u = universe_baseline(frames, bench, SPLIT)
+    with open(f'{a.out}/universe.json', 'w') as f:
+        json.dump(u, f, indent=2)
     with open(f'{a.out}/universe.md', 'w') as f:
         f.write(universe_markdown(u, rows))
     print(universe_markdown(u, rows))
