@@ -177,3 +177,12 @@ def test_stale_original_with_no_alias_is_missing_not_silently_used():
 def test_alias_table_is_wired_into_downloads():
     assert sc.SYMBOL_ALIASES['ZOMATO'] == ['ETERNAL'] and 'ETERNAL.NS' in sc.ALIAS_TICKERS
     assert all(k in sc.NSE_STOCKS for k in sc.SYMBOL_ALIASES)
+
+
+def test_diagnose_symbol_reports_each_candidate_ticker():
+    bulk = _bulk({'ETERNAL.NS': 0, 'GUJGASLTD.NS': 60})
+    d = sc.diagnose_symbol(bulk, 'ZOMATO')
+    assert [x['ticker'] for x in d] == ['ETERNAL.NS', 'ZOMATO.NS']
+    assert d[0]['in_download'] and d[0]['rows'] > 0 and not d[1]['in_download']
+    g = sc.diagnose_symbol(bulk, 'GUJARATGAS')
+    assert g[0]['in_download'] and g[0]['last_bar'] < str(bulk.index.max().date())      # present but stops early
