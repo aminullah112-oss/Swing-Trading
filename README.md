@@ -302,3 +302,17 @@ Position sizing lives in `risk.py` and is configured by environment variables (s
 | `EDGE_MAX_OPEN_RISK_PCT` | 1.5 | Signals beyond this cumulative risk are dimmed as over budget |
 
 Shares are rounded down to the strictest of the risk, position-cap and cash limits; there is no forced one-share minimum. `sizer.js` mirrors the same formula and reads its defaults from `results.json`. If the data download fails or under 80% of symbols have usable data, the scan exits non-zero and the previous `results.json` is kept. Tests: `tests/test_risk.py` (pytest).
+
+
+---
+
+## 🧪 Backtester
+
+`backtest.py` replays the live scanner rules (same `stage/setup/score/filters` code) over up to 10 years of history. Run it from **Actions → Backtest → Run workflow** (Yahoo is needed, so run it on GitHub or your own machine, not offline). Reports land in `reports/`.
+
+- Signal on the close of day *t*; entry on *t+1* (next open, or a buy-stop above the signal-day high in the `trigger` variant)
+- Stops fill at the stop or at the open on a gap; stop wins if stop and target share a bar
+- 15 bps statutory/brokerage + 10 bps slippage per side (edit `Config` to change)
+- Results in R-multiples with 95% CI, split by score band, setup, market regime, exit reason and year, plus an in-sample / out-of-sample split and a mark-to-market portfolio simulation
+
+**Limitations:** the universe is today's constituents (survivorship bias flatters results), the StockEdge flag has no history so tiers are by score, and daily bars hide intraday order. A failing backtest is meaningful; a passing one is only a reason to start paper trading.
