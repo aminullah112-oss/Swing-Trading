@@ -157,7 +157,7 @@ def test_ema50_exit_ignores_ema20_break():
     a['ema50'] = np.array([90.0, 90.0, 90.0, 90.0, 99.0])
     t = bt.simulate_trade(a, 0, cfg)
     # c[2]=99 < ema20 (110) is ignored; c[4]=98 < ema50 (99) -> exits at end of data close
-    assert t['reason'] == 'ema50' and t['exit_idx'] == 4
+    assert t['reason'] == 'ema50_pending' and t['exit_idx'] == 4   # signal on the last bar: exit is tomorrow's open
 
 
 def test_prepared_path_matches_unprepared():
@@ -216,3 +216,17 @@ def test_learned_score_has_no_signal_on_noise():
     ls = rs.learned_score(tr, te)
     ci = rs.boot_spearman(ls, te['r'], np.arange(len(te)) // 20)
     assert ci[1] <= 0 <= ci[2] or abs(ci[0]) < 0.08     # pure noise: no dependable signal
+
+
+def test_universe_baseline_matches_hand_calculation():
+    import research as rs
+    idx = pd.bdate_range('2022-01-03', periods=300)
+    up = pd.Series(100 * (1.001 ** np.arange(300)), index=idx)          # +0.1%/day
+    flatp = pd.Series(100.0, index=idx)                                  # 0%/day
+    frames = {'A': pd.DataFrame({'Close': up}), 'B': pd.DataFrame({'Close': flatp})}
+    u = rs.universe_baseline(frames, flatp.copy(), '2022-09-01')
+    # equal weight of +0.1% and 0% daily = +0.05%/day -> roughly 13% a year
+    assert 12.5 < u['full']['equal_weight']['cagr_pct'] < 14.5
+    assert u['full']['nifty']['cagr_pct'] == 0.0
+    assert abs(u['full']['universe_excess_cagr_pct'] - u['full']['equal_weight']['cagr_pct']) < 1e-9
+    assert 'upper bound' in rs.universe_markdown(u, [])

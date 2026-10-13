@@ -33,7 +33,7 @@ jobs:
     - name: Pre-registered exit/entry grid and score diagnosis
       run: python research.py --years ${{ inputs.years }} --cache history_cache.pkl
     - name: Publish summary
-      run: cat reports/grid.md reports/diagnosis.md reports/backtest_baseline.md reports/backtest_trigger.md >> "$GITHUB_STEP_SUMMARY"
+      run: cat reports/universe.md reports/grid.md reports/diagnosis.md reports/backtest_baseline.md reports/backtest_trigger.md >> "$GITHUB_STEP_SUMMARY"
     - name: Commit reports
       run: |
         git config --local user.email "action@github.com"
