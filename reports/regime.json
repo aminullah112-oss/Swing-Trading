@@ -2,21 +2,21 @@
   "live_variant": "slow-exit v4 (paper-trading candidate)",
   "rows": {
     "uptrend": {
-      "trades": 3277,
+      "trades": 3279,
       "months": 81,
       "win_rate": 0.267,
-      "avg_r": 0.346,
+      "avg_r": 0.345,
       "ci95": [
-        0.118,
+        0.116,
         0.595
       ],
       "profit_factor": 1.6
     },
     "pullback_in_uptrend": {
-      "trades": 1122,
+      "trades": 1123,
       "months": 64,
       "win_rate": 0.25,
-      "avg_r": 0.392,
+      "avg_r": 0.391,
       "ci95": [
         -0.077,
         0.952
@@ -24,15 +24,15 @@
       "profit_factor": 1.73
     },
     "bounce_below_ema200": {
-      "trades": 102,
+      "trades": 101,
       "months": 12,
-      "win_rate": 0.304,
-      "avg_r": 0.259,
+      "win_rate": 0.307,
+      "avg_r": 0.276,
       "ci95": [
-        -0.196,
-        0.92
+        -0.187,
+        0.962
       ],
-      "profit_factor": 1.4
+      "profit_factor": 1.43
     },
     "downtrend": {
       "trades": 585,
@@ -46,21 +46,21 @@
       "profit_factor": 1.87
     }
   },
-  "n_trades": 5086,
+  "n_trades": 5088,
   "downtrend_minus_rest": [
-    0.07668543531718591,
-    -0.34933540498860693,
-    0.5066956781193476
+    0.0772468309876218,
+    -0.3499314448993376,
+    0.5080280559280378
   ],
   "downtrend_minus_rest_design": [
-    0.30823913538284853,
-    -0.14845024780628732,
-    0.8187523411338049
+    0.30867902405199976,
+    -0.14746730218057372,
+    0.8193045308443944
   ],
   "downtrend_minus_rest_holdout": [
-    -0.3404477429045322,
-    -1.1274025993457517,
-    0.4643711165137148
+    -0.3395530747231192,
+    -1.1243379581441781,
+    0.46421524968113076
   ],
   "today": {
     "regime": "downtrend",

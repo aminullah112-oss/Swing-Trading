@@ -1,0 +1,238 @@
+{
+  "split": "2023-01-01",
+  "periods": {
+    "design": {
+      "Live strategy (baseline)": {
+        "cagr_pct": 5.7,
+        "max_drawdown_pct": -8.5,
+        "calmar": 0.67,
+        "sharpe": 0.85,
+        "days": 1328
+      },
+      "H1 momentum-30 replica": {
+        "cagr_pct": 22.6,
+        "max_drawdown_pct": -37.4,
+        "calmar": 0.6,
+        "sharpe": 1.08,
+        "days": 1176
+      },
+      "Equal-weight universe": {
+        "cagr_pct": 21.5,
+        "max_drawdown_pct": -38.0,
+        "calmar": 0.57,
+        "sharpe": 1.2,
+        "days": 1538
+      },
+      "Nifty 50": {
+        "cagr_pct": 12.8,
+        "max_drawdown_pct": -38.4,
+        "calmar": 0.33,
+        "sharpe": 0.77,
+        "days": 1534
+      }
+    },
+    "holdout": {
+      "Live strategy (baseline)": {
+        "cagr_pct": 6.6,
+        "max_drawdown_pct": -15.7,
+        "calmar": 0.42,
+        "sharpe": 0.79,
+        "days": 931
+      },
+      "H1 momentum-30 replica": {
+        "cagr_pct": 24.1,
+        "max_drawdown_pct": -23.0,
+        "calmar": 1.05,
+        "sharpe": 1.36,
+        "days": 932
+      },
+      "Equal-weight universe": {
+        "cagr_pct": 17.1,
+        "max_drawdown_pct": -20.7,
+        "calmar": 0.83,
+        "sharpe": 1.17,
+        "days": 932
+      },
+      "Nifty 50": {
+        "cagr_pct": 5.8,
+        "max_drawdown_pct": -15.8,
+        "calmar": 0.36,
+        "sharpe": 0.52,
+        "days": 931
+      }
+    }
+  },
+  "hypotheses": {
+    "baseline": {
+      "design": {
+        "cagr_pct": 5.7,
+        "max_drawdown_pct": -8.5,
+        "calmar": 0.67,
+        "sharpe": 0.85,
+        "days": 1328
+      },
+      "holdout": {
+        "cagr_pct": 6.6,
+        "max_drawdown_pct": -15.7,
+        "calmar": 0.42,
+        "sharpe": 0.79,
+        "days": 931
+      }
+    },
+    "H2": {
+      "design": {
+        "cagr_pct": 3.1,
+        "max_drawdown_pct": -14.8,
+        "calmar": 0.21,
+        "sharpe": 0.45,
+        "days": 1328
+      },
+      "holdout": {
+        "cagr_pct": 6.5,
+        "max_drawdown_pct": -15.5,
+        "calmar": 0.42,
+        "sharpe": 0.95,
+        "days": 931
+      }
+    },
+    "H3": {
+      "design": {
+        "cagr_pct": 0.5,
+        "max_drawdown_pct": -16.9,
+        "calmar": 0.03,
+        "sharpe": 0.12,
+        "days": 1328
+      },
+      "holdout": {
+        "cagr_pct": 3.3,
+        "max_drawdown_pct": -11.6,
+        "calmar": 0.29,
+        "sharpe": 0.44,
+        "days": 931
+      }
+    }
+  },
+  "verdict": {
+    "H2": false,
+    "H2_calmar_both": false,
+    "H2_holdout_ci_excludes_zero": false,
+    "H3": false,
+    "H3_calmar_both": false,
+    "H3_holdout_ci_excludes_zero": false,
+    "baseline_beats_momentum_holdout": false
+  },
+  "diff_ci": {
+    "H2": {
+      "design": [
+        -0.03883644333998964,
+        0.021462123204577233
+      ],
+      "holdout": [
+        -0.0406545384583128,
+        0.03406957625013927
+      ]
+    },
+    "H3": {
+      "design": [
+        -0.038149324943737975,
+        -0.0012029825533621825
+      ],
+      "holdout": [
+        -0.03537395441755264,
+        0.009868659177448693
+      ]
+    },
+    "baseline_minus_momentum_holdout": [
+      -0.12929688070755535,
+      -0.0018071581255466311
+    ]
+  },
+  "calendar_years": {
+    "Live strategy (baseline)": {
+      "2017": 2.9,
+      "2018": 6.0,
+      "2019": 8.6,
+      "2020": 7.0,
+      "2021": 2.2,
+      "2022": 4.3,
+      "2023": 24.6,
+      "2024": 9.1,
+      "2025": 2.0,
+      "2026": -7.0
+    },
+    "H1 momentum-30 replica": {
+      "2018": 0.6,
+      "2019": 11.6,
+      "2020": 29.7,
+      "2021": 73.1,
+      "2022": 4.2,
+      "2023": 62.4,
+      "2024": 38.3,
+      "2025": 9.5,
+      "2026": -8.1
+    },
+    "Equal-weight universe": {
+      "2016": -5.8,
+      "2017": 49.1,
+      "2018": -2.7,
+      "2019": 10.7,
+      "2020": 35.9,
+      "2021": 52.1,
+      "2022": 7.2,
+      "2023": 47.7,
+      "2024": 22.2,
+      "2025": 6.7,
+      "2026": -5.8
+    },
+    "Nifty 50": {
+      "2016": -4.5,
+      "2017": 28.6,
+      "2018": 3.2,
+      "2019": 12.0,
+      "2020": 14.9,
+      "2021": 24.1,
+      "2022": 4.3,
+      "2023": 20.0,
+      "2024": 8.8,
+      "2025": 10.5,
+      "2026": -14.4
+    }
+  },
+  "momentum_first_rebalance": "2018-04-02",
+  "trades": 5088,
+  "momentum_holdings_last": [
+    "2026-09-30",
+    [
+      "LAURUSLABS",
+      "RAYMOND",
+      "DIVISLAB",
+      "FEDERALBNK",
+      "BOSCHLTD",
+      "MOTHERSON",
+      "RBLBANK",
+      "ADANIPORTS",
+      "BAJAJ-AUTO",
+      "TITAN",
+      "ADANIENT",
+      "TORNTPHARM",
+      "SHRIRAMFIN",
+      "AUBANK",
+      "SAIL",
+      "COFORGE",
+      "IDFCFIRSTB",
+      "APLAPOLLO",
+      "TVSMOTOR",
+      "KAJARIACER",
+      "HINDALCO",
+      "GRASIM",
+      "METROPOLIS",
+      "NESTLEIND",
+      "INDUSINDBK",
+      "HAL",
+      "CYIENT",
+      "ETERNAL",
+      "OBEROIRLTY",
+      "MANAPPURAM"
+    ]
+  ]
+}
