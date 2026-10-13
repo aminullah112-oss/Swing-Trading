@@ -286,3 +286,19 @@ For issues or questions:
 **Built with ❤️ for NSE swing traders**
 
 Last updated: 2025-05-09
+
+---
+
+## ⚙️ Risk configuration
+
+Position sizing lives in `risk.py` and is configured by environment variables (set as repository **Variables** in GitHub → Settings → Secrets and variables → Actions):
+
+| Variable | Default | Meaning |
+|---|---|---|
+| `EDGE_CAPITAL` | 565000 | Available INR equity |
+| `EDGE_RISK_PCT_HC` | 0.5 | % of capital risked per High Conviction trade |
+| `EDGE_RISK_PCT_GO` | 0.25 | % of capital risked per GO trade |
+| `EDGE_MAX_POS_PCT` | 25 | Max position value, % of capital |
+| `EDGE_MAX_OPEN_RISK_PCT` | 1.5 | Signals beyond this cumulative risk are dimmed as over budget |
+
+Shares are rounded down to the strictest of the risk, position-cap and cash limits; there is no forced one-share minimum. `sizer.js` mirrors the same formula and reads its defaults from `results.json`. If the data download fails or under 80% of symbols have usable data, the scan exits non-zero and the previous `results.json` is kept. Tests: `tests/test_risk.py` (pytest).

@@ -117,3 +117,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .sizer-table .big{font-size:1.6em;color:#fff}
 .sizer-msg{color:#888;padding:20px 0}
 .sizer-note{color:#ffd740;font-size:0.85em;margin-top:12px}
+
+/* Scan status + risk budget */
+.status-bar{padding:10px 20px;font-size:0.85em;border-bottom:1px solid #2a2f45}
+.status-fresh{background:#0b2a1a;color:#69f0ae}
+.status-stale{background:#3a2200;color:#ffab40}
+.stock-row.over-budget{opacity:0.55}

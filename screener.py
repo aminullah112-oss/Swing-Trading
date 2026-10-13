@@ -6,17 +6,30 @@ EDGE PROTOCOL v3.4
 - Fixed 7 broken Yahoo Finance ticker symbols
 """
 
-import json, glob, time, warnings
-from datetime import datetime
+import json, glob, os, sys, time, uuid, warnings
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 import pandas as pd
 import numpy as np
 import yfinance as yf
 
+from risk import size_position, stop_distance
+
 warnings.filterwarnings('ignore')
 
-CAPITAL       = 750000
-RISK_PCT_HC   = 0.02
-RISK_PCT_GO   = 0.01
+IST = ZoneInfo('Asia/Kolkata')
+
+def _env_float(name, default):
+    try:    return float(os.environ.get(name, default))
+    except ValueError: return default
+
+# Override via workflow env / repo variables. Defaults are deliberately conservative.
+CAPITAL        = _env_float('EDGE_CAPITAL', 565000)    # actual available INR equity
+RISK_PCT_HC    = _env_float('EDGE_RISK_PCT_HC', 0.5) / 100
+RISK_PCT_GO    = _env_float('EDGE_RISK_PCT_GO', 0.25) / 100
+MAX_POS_PCT    = _env_float('EDGE_MAX_POS_PCT', 25) / 100     # per-position value cap
+MAX_OPEN_RISK  = _env_float('EDGE_MAX_OPEN_RISK_PCT', 1.5) / 100  # across all signals
+MIN_DATA_RATIO = 0.8    # fail the scan if fewer than 80% of symbols have usable data
 
 # Corrected Yahoo Finance ticker symbols for NSE
 NSE_STOCKS = [
@@ -251,37 +264,36 @@ def decision(sc, in_se):
     return 'NO_GO'
 
 
-def position(price, atr, dec):
-    sd=max(1.5*atr, price*0.03); stp=round(price-sd,2)
-    if dec=='HIGH_CONVICTION': risk=CAPITAL*RISK_PCT_HC
-    elif dec=='GO':            risk=CAPITAL*RISK_PCT_GO
+def position(price, atr, dec, open_risk=0.0):
+    """Size a signal. open_risk = risk already committed to higher-ranked signals."""
+    if dec=='HIGH_CONVICTION': risk_pct=RISK_PCT_HC
+    elif dec=='GO':            risk_pct=RISK_PCT_GO
     else: return None
-    sh=max(1,int(risk/sd))
-    return {'shares':sh,'invested':round(sh*price,2),'stop_loss':stp,
-            'risk_amount':round(sh*sd,2),
-            'target_1':round(price+2*sd,2),'target_2':round(price+3*sd,2),
-            'rr_ratio':'2:1 / 3:1'}
+    p = size_position(CAPITAL, risk_pct, price, stop_distance(price, atr), MAX_POS_PCT)
+    p['risk_pct_of_capital'] = round(p['risk_amount']/CAPITAL*100, 3)
+    p['within_risk_budget']  = bool(p['shares']>0 and open_risk+p['risk_amount'] <= CAPITAL*MAX_OPEN_RISK)
+    return p
 
 
 def main():
     print("\n"+"="*70)
     print("EDGE PROTOCOL v3.4 — NSE Swing Decision System")
-    print(f"Capital: Rs{CAPITAL/100000:.1f}L | Universe: {len(NSE_STOCKS)} stocks")
-    print(f"Scan: {datetime.now().strftime('%A %Y-%m-%d %H:%M:%S')}")
+    print(f"Capital: Rs{CAPITAL:,.0f} | Risk HC {RISK_PCT_HC:.2%} GO {RISK_PCT_GO:.2%} | "
+          f"Pos cap {MAX_POS_PCT:.0%} | Open-risk cap {MAX_OPEN_RISK:.2%} | Universe: {len(NSE_STOCKS)}")
+    print(f"Scan: {datetime.now(IST).strftime('%A %Y-%m-%d %H:%M:%S')} IST")
     print("="*70+"\n")
 
     se = load_stockedge()
     bulk = fetch_bulk()
 
     if bulk is None or bulk.empty:
-        print("FATAL: Data download failed.")
-        with open('results.json','w') as f:
-            json.dump({'timestamp':datetime.now().isoformat(),'error':'Download failed',
-                       'total_scanned':0,'total_passed':0,
-                       'summary':{'high_conviction':0,'go':0,'watch_closely':0,'watch':0},
-                       'stocks':[]},f,indent=2)
-        return
+        # Leave results.json untouched so the dashboard keeps the last good scan,
+        # and exit non-zero so the workflow run shows as failed.
+        print("FATAL: Data download failed. Keeping previous results.json.")
+        sys.exit(1)
 
+    now_utc = datetime.now(timezone.utc)
+    last_bars = []
     results=[]; stats={'data':0,'stage':0,'st':0,'rsi':0,'price':0,'nogo':0}
 
     print(f"\n{'Symbol':<14}{'Stage':<7}{'Setup':<20}{'Sc':<5}{'RSI':<7}Decision")
@@ -293,6 +305,7 @@ def main():
             if df is None: stats['data']+=1; continue
 
             ind = indicators(df)
+            last_bars.append(df.index[-1])
             stg = stage(ind)
             ok,reason = filters(ind,stg)
             if not ok:
@@ -307,7 +320,6 @@ def main():
 
             if dec=='NO_GO': stats['nogo']+=1; continue
 
-            pos = position(ind['price'],ind['atr'],dec)
             results.append({
                 'symbol':sym,'decision':dec,'score':sc,'stage':stg,
                 'setup_type':stp,'setup_desc':sdsc,'in_stockedge':in_se,
@@ -320,8 +332,8 @@ def main():
                 'from_52w_high':round(ind['from_52h'],2),
                 'atr_pct':round(ind['atr_pct'],2),
                 'st_direction':ind['st_dir'],
-                'reasons':rsns,'position':pos,
-                'timestamp':datetime.now().isoformat(),
+                'atr':round(ind['atr'],2),'reasons':rsns,'position':None,
+                'timestamp':now_utc.isoformat(),
             })
 
             tag={'HIGH_CONVICTION':'🟢HC','GO':'🟩GO',
@@ -335,6 +347,12 @@ def main():
     pri={'HIGH_CONVICTION':0,'GO':1,'WATCH_CLOSELY':2,'WATCH':3}
     results.sort(key=lambda x:(pri.get(x['decision'],9),-x['score']))
 
+    open_risk = 0.0
+    for r in results:
+        r['position'] = position(r['price'], r['atr'], r['decision'], open_risk)
+        if r['position'] and r['position']['within_risk_budget']:
+            open_risk += r['position']['risk_amount']
+
     hc=sum(1 for r in results if r['decision']=='HIGH_CONVICTION')
     go=sum(1 for r in results if r['decision']=='GO')
     wc=sum(1 for r in results if r['decision']=='WATCH_CLOSELY')
@@ -346,17 +364,35 @@ def main():
           f"Price:{stats['price']} Data:{stats['data']} NoGo:{stats['nogo']}")
     print("="*70)
 
-    with open('results.json','w') as f:
-        json.dump({
-            'timestamp':datetime.now().isoformat(),
-            'scan_date':datetime.now().strftime('%Y-%m-%d'),
-            'scan_time':datetime.now().strftime('%H:%M:%S'),
-            'capital':CAPITAL,'total_scanned':len(NSE_STOCKS),
-            'total_passed':len(results),
-            'summary':{'high_conviction':hc,'go':go,'watch_closely':wc,'watch':w},
-            'stocks':results,
-        },f,indent=2)
-    print(f"Saved {len(results)} results.")
+    processed = len(NSE_STOCKS) - stats['data']
+    if processed < MIN_DATA_RATIO*len(NSE_STOCKS) or not last_bars:
+        print(f"FATAL: only {processed}/{len(NSE_STOCKS)} symbols had usable data. "
+              "Keeping previous results.json.")
+        sys.exit(1)
+
+    now_ist = now_utc.astimezone(IST)
+    out = {
+        'scan_id':           uuid.uuid4().hex[:12],
+        'timestamp':         now_utc.isoformat(),           # UTC, machine-readable
+        'scan_date':         now_ist.strftime('%Y-%m-%d'),  # IST, display
+        'scan_time':         now_ist.strftime('%H:%M:%S') + ' IST',
+        'data_cutoff':       max(last_bars).strftime('%Y-%m-%d'),
+        'symbols_processed': processed,
+        'total_scanned':     len(NSE_STOCKS),
+        'total_passed':      len(results),
+        'capital':           CAPITAL,
+        'risk_config': {
+            'capital': CAPITAL, 'risk_pct_hc': RISK_PCT_HC*100, 'risk_pct_go': RISK_PCT_GO*100,
+            'max_pos_pct': MAX_POS_PCT*100, 'max_open_risk_pct': MAX_OPEN_RISK*100,
+        },
+        'summary':           {'high_conviction':hc,'go':go,'watch_closely':wc,'watch':w},
+        'stocks':            results,
+    }
+    # write-then-rename so a crash never leaves a half-written results.json
+    with open('results.json.tmp','w') as f:
+        json.dump(out,f,indent=2)
+    os.replace('results.json.tmp','results.json')
+    print(f"Saved {len(results)} results. Data cutoff {out['data_cutoff']}.")
 
 if __name__=='__main__':
     main()

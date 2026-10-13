@@ -68,5 +68,16 @@ const q = new URLSearchParams(location.search);
     if (q.has(k) && isFinite(parseFloat(q.get(k)))) $(id).value = q.get(k);
 });
 
+// Without explicit query params, take capital / risk / cap from the scanner's config
+// so the sizer and results.json can't silently disagree.
+fetch('results.json?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(d => {
+    const c = d && d.risk_config;
+    if (!c) return;
+    if (!q.has('capital')) $('capital').value = c.capital;
+    if (!q.has('risk'))    $('risk-pct').value = c.risk_pct_hc;
+    $('max-pos').value = c.max_pos_pct;
+    update();
+}).catch(() => {});
+
 document.querySelectorAll('#sizer-form input, #sizer-form select').forEach(el => el.addEventListener('input', update));
 update();
