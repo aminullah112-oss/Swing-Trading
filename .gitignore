@@ -46,3 +46,6 @@ npm-debug.log*
 .env
 .env.local
 .cache/
+
+# backtest cache
+history_cache.pkl

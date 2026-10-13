@@ -1,0 +1,42 @@
+name: Backtest
+
+on:
+  workflow_dispatch:
+    inputs:
+      years:
+        description: 'Years of history'
+        default: '10'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: backtest
+  cancel-in-progress: false
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - run: pip install -r requirements.txt pytest
+    - name: Unit tests
+      run: python -m pytest -q tests
+    - name: Baseline (scanner rules, next-open entry)
+      run: python backtest.py --years ${{ inputs.years }} --cache history_cache.pkl --name baseline
+    - name: With entry trigger (buy-stop above signal-day high)
+      run: python backtest.py --years ${{ inputs.years }} --cache history_cache.pkl --name trigger --trigger prior_high
+    - name: Publish summary
+      run: cat reports/backtest_baseline.md reports/backtest_trigger.md >> "$GITHUB_STEP_SUMMARY"
+    - name: Commit reports
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action Bot"
+        git add reports/
+        git commit -m "Backtest reports $(date -u +'%Y-%m-%d %H:%M UTC')" || { echo "No changes"; exit 0; }
+        git pull --rebase origin main
+        git push origin main
