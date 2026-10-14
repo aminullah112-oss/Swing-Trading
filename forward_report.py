@@ -45,6 +45,7 @@ def build(ledger, event_list, capital, now=None):
         'gap_through_stop_exits': len(gaps), 'partial_fills': len(partial),
         'readiness_distance': {'closed_needed': rd.MIN_CLOSED, 'closed_have': summ.get('closed_eligible', 0),
                                'days_needed': rd.MIN_DAYS, 'first_eligible_signal': summ.get('first_eligible_signal')},
+        'outcomes': (ledger.get('summary') or {}).get('outcomes'),
         'event_log': {'verified': chain[0], 'events': chain[1], 'problem': chain[2]},
         'reconciliation': ledger.get('reconciliation'),
     }
@@ -59,6 +60,9 @@ def markdown(rep):
          f"By status: {rep['by_status'] or 'none yet'}.", '']
     if rep['not_taken_reasons']:
         L += ['Signals not taken, with reasons:', ''] + [f'- {k}: {v}' for k, v in rep['not_taken_reasons'].items()] + ['']
+    oc = rep.get('outcomes')
+    if oc:
+        L += ['How the filtered stocks fared:', ''] + [f"- {c['label']}: {c['n']}" + (f" (avg {c['avg_r']:+.2f}R)" if c['avg_r'] is not None else '') for c in oc['classes'].values()] + ['']
     L += [f"Closed eligible signals: {c['closed_have']} of {c['closed_needed']} needed; first eligible signal {c['first_eligible_signal']}; {c['days_needed']} days required.", '']
     if rep['forward_avg_r_incl_open'] is None:
         L.append('No entered, eligible signals yet: no expectancy can be stated.')
