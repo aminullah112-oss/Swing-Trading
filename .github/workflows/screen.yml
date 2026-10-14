@@ -58,6 +58,11 @@ jobs:
       if: always()
       run: python readiness.py
 
+    - name: Pre-trade checklist (GO / NO-GO)
+      if: always()
+      continue-on-error: true
+      run: python pretrade.py
+
     - name: Remediation matrix
       if: always()
       continue-on-error: true
@@ -68,7 +73,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
-        for f in results.json ledger.json events.jsonl health.json readiness.json reports/readiness.md reports/forward.md reports/forward.json reports/remediation.md reports/remediation.json provisional_bars.json provisional_audit.json; do git add -A -- "$f" 2>/dev/null || true; done
+        for f in results.json ledger.json events.jsonl health.json readiness.json reports/readiness.md reports/forward.md reports/forward.json reports/pretrade.md reports/pretrade.json reports/remediation.md reports/remediation.json provisional_bars.json provisional_audit.json; do git add -A -- "$f" 2>/dev/null || true; done
         git commit -m "Scan update $(date -u +'%Y-%m-%d %H:%M UTC')" || { echo "No changes"; exit 0; }
         git pull --rebase origin main
         git push origin main
