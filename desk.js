@@ -128,23 +128,23 @@ function marketCards(m) {
 
 function renderDataNotes(data) {
     const lag = document.getElementById('lag-bar');
-    const behind = data.sessions_behind || 0;
-    lag.hidden = !behind;
-    if (behind) {
-        lag.innerHTML = `⚠ DATA LAG — market data ends ${esc(data.data_cutoff)}, but the last completed session should be ${esc(data.expected_session)} ` +
-            `(${esc(behind)} session${behind > 1 ? 's' : ''} behind). Unless that day is an exchange holiday missing from market_holidays.json, the data vendor is lagging: ` +
-            `the session each buy-stop applies to has already traded, so every signal below is blocked as stale. Wait for a scan with current data.`;
+    const dq = data.data_quality;
+    const untrusted = !!dq && dq.status !== 'TRUSTED';
+    lag.hidden = !untrusted;
+    if (untrusted) {
+        const cc = dq.crosscheck || {};
+        lag.innerHTML = `⚠ NO ENTRIES TODAY — the market data is not confirmed. Latest official data is ${esc(data.data_cutoff)}, but the session to trade is ${esc(dq.expected_session)}. ` +
+            `Why: ${dq.reasons.map(esc).join('; ')}. ` +
+            `Yahoo normally publishes official daily bars overnight; the 08:30 IST scan usually has them. ` +
+            `NSE cross-check: ${esc(cc.status || 'not run')}${cc.filled && cc.filled.length ? ` (${cc.filled.length} bars filled from NSE)` : ''}. ` +
+            `Nothing below is an entry instruction.`;
     }
-    const prov = data.provisional || {};
     const pbar = document.getElementById('prov-bar');
     if (pbar) {
-        pbar.hidden = !prov.used;
-        if (prov.used) {
-            const aud = data.provisional_audit && data.provisional_audit.median_abs_error_bps;
-            pbar.innerHTML = `ℹ PROVISIONAL DATA — Yahoo has not published the official daily bar for ${esc(prov.date)}, so ${esc(prov.symbols)} stocks use a bar ` +
-                `built from 5-minute data (close = ${esc(prov.method)}). Signals are marked provisional and are re-checked when the official bar arrives.` +
-                (aud && aud.close_last != null ? ` Last audit: median close error ${esc(aud.close_last)} bps (last trade) / ${esc(aud.close_vwap30)} bps (30-min VWAP).` : ' No audit yet.');
-        }
+        const n = (data.preview || []).length;
+        pbar.hidden = !(untrusted && n);
+        if (n) pbar.innerHTML = `ℹ WATCHLIST ONLY — ${esc(n)} stocks would qualify on provisional 5-minute data for ${esc(data.provisional && data.provisional.date)}. ` +
+            `They are shown below as a watchlist to prepare for the next trusted scan. They are not entries, and the plan may change when the official bar arrives.`;
     }
     const miss = data.missing_symbols || [];
     const note = document.getElementById('missing-note');
@@ -173,7 +173,17 @@ function render() {
 
     const grid = document.getElementById('plans');
     grid.innerHTML = ok.length ? ok.map(s => card(s, cfg, liveRisk)).join('') :
-        `<div class="empty-note">📊 No tradeable signals today.<br><small>${stocks.length ? 'Every signal failed an execution check (see below).' : 'No stock met the entry conditions. That is normal: the system trades selectively.'}</small></div>`;
+        `<div class="empty-note">📊 No tradeable signals right now.<br><small>${(data.data_quality && data.data_quality.status !== 'TRUSTED') ? 'The data is not confirmed, so no entries are allowed. Any provisional candidates are listed under Watchlist below.' : (stocks.length ? 'Every signal failed an execution check (see below).' : 'No stock met the entry conditions. That is normal: the system trades selectively.')}</small></div>`;
+
+    const wl = document.getElementById('watchlist');
+    if (wl) {
+        const pv = data.preview || [];
+        wl.hidden = !pv.length;
+        document.getElementById('watchlist-count').textContent = pv.length;
+        document.getElementById('watchlist-body').innerHTML = pv.map(s => `
+            <tr class="stock-row"><td><strong>${esc(s.symbol)}</strong></td><td>${esc(SETUP_LABELS[s.setup_type] || s.setup_type)}</td>
+            <td>${inr2(s.price)}</td><td>${inr2(s.trigger)}</td><td>${inr2(s.stop_loss)}</td><td>${esc(s.rsi.toFixed(0))}</td><td>${esc(s.from_52w_high.toFixed(1))}%</td></tr>`).join('');
+    }
 
     const f = document.getElementById('filtered');
     f.hidden = !out.length;

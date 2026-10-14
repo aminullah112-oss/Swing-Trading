@@ -166,3 +166,53 @@ def flag(per_symbol, rep):
         if used in per_symbol and 'nse_adjustment_mismatch' not in per_symbol[used]['errors']:
             per_symbol[used]['errors'].append('nse_adjustment_mismatch'); n += 1
     return n
+
+
+# ------------------------------------------------------------------ Nifty 50 from NSE's index file
+INDEX_URL = 'https://nsearchives.nseindia.com/content/indices/ind_close_all_{dmy}.csv'
+INDEX_NAME = 'NIFTY 50'
+
+
+def parse_index(text, session, name=INDEX_NAME):
+    """Row for the index in ind_close_all_DDMMYYYY.csv: Index Name, Index Date (DD-MM-YYYY), Open/High/Low/Closing Index Value,
+    Points Change. Returns a bar with prev_close derived from the points change, or None."""
+    want = pd.Timestamp(session).strftime('%d-%m-%Y')
+    for r in _rows(text):
+        if r.get('INDEX NAME', '').upper() != name or r.get('INDEX DATE', '') != want:
+            continue
+        c = _num(r.get('CLOSING INDEX VALUE'))
+        o, h, l = _num(r.get('OPEN INDEX VALUE')), _num(r.get('HIGH INDEX VALUE')), _num(r.get('LOW INDEX VALUE'))
+        try:
+            pc = c - float(r.get('POINTS CHANGE', '').replace(',', ''))
+        except (TypeError, ValueError):
+            pc = None
+        if None in (c, o, h, l, pc) or pc <= 0 or h < max(o, c, l) * 0.9995 or l > min(o, c, h) * 1.0005:
+            return None
+        return {'open': o, 'high': h, 'low': l, 'close': c, 'prev_close': pc, 'volume': 0.0}
+    return None
+
+
+def fetch_index(session, downloader=_download):
+    """{'status': 'ok'|'unavailable'|'disabled', 'bar': {...}}. Never raises."""
+    if os.environ.get('EDGE_BHAVCOPY', '1') == '0':
+        return {'status': 'disabled', 'bar': None}
+    url = INDEX_URL.format(dmy=pd.Timestamp(session).strftime('%d%m%Y'))
+    try:
+        bar = parse_index(downloader(url), session)
+        return {'status': 'ok', 'bar': bar, 'url': url} if bar else {'status': 'unavailable', 'bar': None, 'note': f'no usable {INDEX_NAME} row for {session}'}
+    except Exception as e:
+        return {'status': 'unavailable', 'bar': None, 'note': f'{type(e).__name__}: {str(e)[:80]}'}
+
+
+def fill_index(df, idx, expected):
+    """Append the NSE bar to a lagging index frame when the previous close matches (continuity). Returns (df, filled: bool)."""
+    if idx.get('status') != 'ok' or idx.get('bar') is None or df is None or not len(df):
+        return df, False
+    exp, last = _day(expected), df.index[-1]
+    bar = idx['bar']
+    if _day(last) >= exp or abs(float(df['Close'].iloc[-1]) / bar['prev_close'] - 1) > 0.002:
+        return df, False
+    ts = exp.tz_localize(last.tzinfo) if last.tzinfo else exp
+    new = pd.DataFrame({'Open': [bar['open']], 'High': [bar['high']], 'Low': [bar['low']], 'Close': [bar['close']], 'Volume': [0.0]}, index=[ts])
+    new.index.name = df.index.name
+    return pd.concat([df, new]), True

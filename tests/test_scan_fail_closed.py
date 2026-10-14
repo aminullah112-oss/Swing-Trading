@@ -55,6 +55,7 @@ def run_scan(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     monkeypatch.setattr(sc, 'load_stockedge', lambda: set())
     monkeypatch.setattr(sc, 'retry_download', lambda syms: None)
+    monkeypatch.setattr(sc.bhavcopy, 'fetch_index', lambda session: {'status': 'unavailable', 'bar': None, 'note': 'test: no network'})
     monkeypatch.setattr(sc.bhavcopy, 'fetch', lambda session: {'status': 'unavailable', 'rows': {}, 'note': 'test: no network'})
     monkeypatch.setattr(sc, 'probe_vendor', lambda: {'daily_5d': 'stub'})
     monkeypatch.setattr(analysis, 'expected_last_session', lambda now_ist, close_hhmm=(16, 30), holidays=frozenset(): EXPECTED)
