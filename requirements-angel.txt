@@ -1,0 +1,3 @@
+# Optional: second data source (Angel One SmartAPI). Installed by the screen workflow; the scanner runs without it.
+smartapi-python
+pyotp

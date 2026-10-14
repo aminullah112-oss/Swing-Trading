@@ -31,8 +31,16 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
+    - name: Install optional Angel One client
+      continue-on-error: true
+      run: pip install -r requirements-angel.txt
+
     - name: Run screener
       env:
+        ANGEL_API_KEY: ${{ secrets.ANGEL_API_KEY }}
+        ANGEL_CLIENT_CODE: ${{ secrets.ANGEL_CLIENT_CODE }}
+        ANGEL_PIN: ${{ secrets.ANGEL_PIN }}
+        ANGEL_TOTP_SECRET: ${{ secrets.ANGEL_TOTP_SECRET }}
         # Set repo variables (Settings > Secrets and variables > Actions > Variables) to override.
         EDGE_CAPITAL: ${{ vars.EDGE_CAPITAL || '565000' }}
         EDGE_RISK_PCT: ${{ vars.EDGE_RISK_PCT || '0.5' }}

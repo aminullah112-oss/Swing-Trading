@@ -179,13 +179,20 @@ def test_riskgate_is_independent_of_signal_generation():
 
 
 def test_no_broker_or_network_code_in_the_repository():
-    banned = re.compile(r'\b(kiteconnect|upstox|angelone|smartapi|fyers|dhan|zerodha|ib_insync|alpaca|place_order|placeorder|breeze)\b', re.I)
+    banned = re.compile(r'\b(kiteconnect|upstox|fyers|dhan|zerodha|ib_insync|alpaca|place_order|placeorder|breeze)\b', re.I)
     offenders = []
     for f in glob.glob(os.path.join(ROOT, '*.py')):
         src = open(f).read()
-        if banned.search(re.sub(r'#.*', '', src)) and os.path.basename(f) not in ('execution_guard.py',):
+        if re.search(r'SmartApi|SmartConnect', src) and os.path.basename(f) != 'angelone.py':
+            offenders.append(os.path.basename(f) + ' (SmartApi outside angelone.py)')
+        if banned.search(re.sub(r'#.*', '', src)) and os.path.basename(f) not in ('execution_guard.py', 'angelone.py'):
             offenders.append(os.path.basename(f))
     assert offenders == [], offenders
+    # angelone.py is the one reviewed exception: a read-only market-data client. It may not call any order or GTT endpoint.
+    ao = re.sub(r'""".*?"""', '', open(os.path.join(ROOT, 'angelone.py')).read(), flags=re.S)
+    ao = re.sub(r'#[^\n]*', '', ao)
+    assert not re.search(r'(placeOrder|modifyOrder|cancelOrder|gttCreate|gttModify|gttCancel|orderBook|tradeBook|\bposition\b|rmsLimit|convertPosition)', ao, re.I), 'order/position endpoints in angelone.py'
+    assert set(re.findall(r'client\.(\w+)\(', ao)) == {'getCandleData'}, 'angelone.py may only call getCandleData'
     guard = _imports(os.path.join(ROOT, 'execution_guard.py'))
     assert guard <= {'events', 'riskgate', 'settings'}, guard
 

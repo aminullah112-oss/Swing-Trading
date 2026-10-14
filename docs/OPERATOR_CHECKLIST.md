@@ -29,3 +29,12 @@ Live trading is disabled in code (`settings.LIVE_EXECUTION_ENABLED = False`) and
 * Raise risk limits (0.5% / 25% / 1.5%) or edit `settings.LIVE_EXECUTION_ENABLED`, `control/C0.json` or `experiments/PREREG_v1.*`.
 * Delete failed experiments, hold-out logs or reports.
 * Treat a backtest as proof, or a paper record under ~100 closed signals / 182 days as evidence of edge.
+
+
+## Angel One data source (optional, one-time setup)
+Used only when NSE's own files cannot be fetched. Read-only market data; no orders.
+1. In Angel One, enable TOTP and note the **secret key** shown next to the QR code (not the 6-digit code).
+2. At smartapi.angelone.in create an app and copy its **API key**.
+3. In the GitHub repo: Settings, Secrets and variables, Actions, add four secrets: `ANGEL_API_KEY`, `ANGEL_CLIENT_CODE`, `ANGEL_PIN`, `ANGEL_TOTP_SECRET`.
+4. After the next scan, health H15 names the source used. Anything but `ok` in `data_quality.crosscheck.angelone` means a login or data problem; the scan still runs.
+Treat these four secrets like a bank password: never paste them in chat, issues or commits. Rotate them if exposed.
