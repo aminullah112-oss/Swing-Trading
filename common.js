@@ -22,6 +22,12 @@ function renderFreshness(data, barId = 'status-bar') {
         bar.textContent = '⚠ STALE — no scan data, or written by an older scanner version.';
         return;
     }
+    const dq = data.data_quality;
+    if (dq && dq.status !== 'TRUSTED') {
+        bar.className = 'status-bar status-stale';
+        bar.textContent = `⚠ DATA NOT CONFIRMED — latest official data is ${data.data_cutoff} (expected ${dq.expected_session}) · scanned ${data.scan_date} ${data.scan_time} · no entries until it is confirmed`;
+        return;
+    }
     const ageDays = (Date.now() - new Date(data.data_cutoff + 'T00:00:00+05:30')) / 864e5;
     const fresh = ageDays <= 4;
     bar.className = 'status-bar ' + (fresh ? 'status-fresh' : 'status-stale');

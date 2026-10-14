@@ -163,3 +163,52 @@ def test_health_reports_the_crosscheck_state():
     ok = {'status': 'ok', 'compared': 150, 'close_mismatch': {}, 'adjustment_mismatch': {}, 'filled': []}
     assert lvl(hl.run_checks(hctx(res=dict(RES, data_quality=dict(base, crosscheck=ok)))), 'H15') == 'ok'
     assert lvl(hl.run_checks(hctx(res=dict(RES, data_quality=dict(base, crosscheck=dict(ok, close_mismatch={'X': 1.2}))))), 'H15') == 'warn'
+
+
+# ------------------------------------------------------------ Nifty from NSE's index file
+def index_csv(day='14-10-2026', close=22700.0, change=77.3, name='Nifty 50'):
+    head = 'Index Name,Index Date,Open Index Value,High Index Value,Low Index Value,Closing Index Value,Points Change,Change(%),Volume'
+    return head + f'\n{name},{day},22650.0,22750.0,22600.0,{close},{change},0.34,1000\nNifty Bank,{day},50000,50500,49800,50200,100,0.2,1'
+
+
+def test_index_parse_and_fetch():
+    b = bc.parse_index(index_csv(), date(2026, 10, 14))
+    assert b['close'] == 22700.0 and abs(b['prev_close'] - 22622.7) < 1e-6
+    assert bc.parse_index(index_csv(day='13-10-2026'), date(2026, 10, 14)) is None          # wrong date
+    assert bc.parse_index(index_csv(close=22800.0, change=77.3).replace('22750.0', '22600.0'), date(2026, 10, 14)) is None   # high below close
+    assert bc.fetch_index(date(2026, 10, 14), downloader=lambda u: index_csv())['status'] == 'ok'
+    def boom(u):
+        raise OSError('403')
+    assert bc.fetch_index(date(2026, 10, 14), downloader=boom)['status'] == 'unavailable'
+
+
+def test_fill_index_needs_continuity():
+    idx = pd.bdate_range(end='2026-10-13', periods=30)
+    df = pd.DataFrame({'Open': 22600.0, 'High': 22700.0, 'Low': 22500.0, 'Close': 22622.7, 'Volume': 0.0}, index=idx)
+    ok = {'status': 'ok', 'bar': bc.parse_index(index_csv(), date(2026, 10, 14))}
+    out, filled = bc.fill_index(df, ok, date(2026, 10, 14))
+    assert filled and out.index[-1] == pd.Timestamp('2026-10-14') and out['Close'].iloc[-1] == 22700.0 and len(out) == 31
+    far = {'status': 'ok', 'bar': dict(ok['bar'], prev_close=20000.0)}
+    assert bc.fill_index(df, far, date(2026, 10, 14)) == (df, False) or not bc.fill_index(df, far, date(2026, 10, 14))[1]
+    assert bc.fill_index(df, {'status': 'unavailable', 'bar': None}, date(2026, 10, 14))[1] is False
+    assert bc.fill_index(out, ok, date(2026, 10, 14))[1] is False                            # already current
+
+
+def test_scan_becomes_trusted_when_nse_supplies_stocks_and_the_nifty(run_scan, monkeypatch):
+    full = make_bulk()
+    lag = full.copy()
+    for t in sc.YF_TICKERS + sc.ALIAS_TICKERS + [sc.BENCH]:
+        for f in ('Open', 'High', 'Low', 'Close', 'Volume'):
+            lag.loc[lag.index[-1], (t, f)] = np.nan            # Yahoo has no official values for anything, the Nifty included
+    monkeypatch.setattr(sc.bhavcopy, 'fetch', lambda session: {
+        'status': 'ok', 'source': 'test file', 'retrieved_at': 'x',
+        'rows': {t.replace('.NS', ''): dict(open=float(full[(t, 'Open')].iloc[-1]), high=float(full[(t, 'High')].iloc[-1]), low=float(full[(t, 'Low')].iloc[-1]),
+                                            close=float(full[(t, 'Close')].iloc[-1]), prev_close=float(full[(t, 'Close')].iloc[-2]), volume=float(full[(t, 'Volume')].iloc[-1]))
+                 for t in sc.YF_TICKERS}})
+    nc = full[(sc.BENCH, 'Close')]
+    monkeypatch.setattr(sc.bhavcopy, 'fetch_index', lambda session: {'status': 'ok', 'bar': {
+        'open': float(nc.iloc[-1]), 'high': float(nc.iloc[-1]) * 1.001, 'low': float(nc.iloc[-1]) * 0.999, 'close': float(nc.iloc[-1]),
+        'prev_close': float(nc.iloc[-2]), 'volume': 0.0}})
+    r = run_scan(lag, with_intraday=False)
+    assert r['data_quality']['crosscheck']['nifty']['filled'] is True
+    assert r['data_quality']['status'] == 'TRUSTED' and r['actionable'] is True and r['summary']['signals'] > 0

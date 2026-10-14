@@ -494,6 +494,9 @@ def main():
     per_symbol = {used: dataquality.summarize_symbol(df, expected, holidays) for _, (df, used) in resolved.items()}
     bhavcopy.flag(per_symbol, crosscheck)
     nifty_df = extract_df(bulk, BENCH)
+    nifty_idx = bhavcopy.fetch_index(expected)
+    nifty_df, nifty_filled = bhavcopy.fill_index(nifty_df, nifty_idx, expected)
+    crosscheck['nifty'] = {'status': nifty_idx['status'], 'filled': nifty_filled, 'note': nifty_idx.get('note')}
     nifty_last = nifty_df.index[-1].date() if nifty_df is not None else None
     dq = dataquality.assess(per_symbol, expected, nifty_last)
     if crosscheck['mismatch_share'] > bhavcopy.MAX_MISMATCH_SHARE:
