@@ -14,6 +14,10 @@ Live trading is disabled in code (`settings.LIVE_EXECUTION_ENABLED = False`) and
 6. **Ledger.** `reconciliation.ok` should be true. `needs_data` or `overdue_pending` means a bar for the permitted entry session is missing: check `market_holidays.json` and the vendor, then rerun. Never edit `ledger.json` or `events.jsonl` by hand (CI rejects non-append changes to the log).
 7. **Holidays.** If an exchange holiday is not in `market_holidays.json`, add it before the next run.
 
+## Event calendar (new, manual input)
+* Keep `event_calendar.json` current: earnings dates, ex-dates, splits/bonuses and the ASM/GSM list. A known event within 5 sessions of a signal blocks the entry; an empty calendar only means "unverified" (the desk shows it).
+* The NSE F&O ban list is fetched automatically when NSE allows it.
+
 ## Weekly
 * Skim `reports/remediation.md`. Do not set an attestation unless the real-world fact has occurred.
 
