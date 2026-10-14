@@ -18,6 +18,7 @@ import strategy
 import analysis
 import intraday
 import tradeplan
+import bhavcopy
 import dataquality
 import provenance
 
@@ -480,11 +481,23 @@ def main():
     if aliases_used:
         print(f"Resolved renamed tickers: {aliases_used}")
 
+    # 1b. independent check against NSE's own end-of-day file; fills sessions Yahoo has not published (guarded)
+    nse = bhavcopy.fetch(expected)
+    resolved, crosscheck = bhavcopy.reconcile(resolved, nse, expected)
+    print(f"NSE bhavcopy: {crosscheck['status']}" + (f" | compared {crosscheck['compared']}, close mismatches {len(crosscheck['close_mismatch'])}, "
+          f"adjustment mismatches {len(crosscheck['adjustment_mismatch'])}, filled {len(crosscheck['filled'])}" if crosscheck['status'] == 'ok' else f" ({crosscheck.get('note')})"))
+
     # 2. validate, then decide whether ANY signal may be actionable (fail closed)
     per_symbol = {used: dataquality.summarize_symbol(df, expected, holidays) for _, (df, used) in resolved.items()}
+    bhavcopy.flag(per_symbol, crosscheck)
     nifty_df = extract_df(bulk, BENCH)
     nifty_last = nifty_df.index[-1].date() if nifty_df is not None else None
     dq = dataquality.assess(per_symbol, expected, nifty_last)
+    if crosscheck['mismatch_share'] > bhavcopy.MAX_MISMATCH_SHARE:
+        dq['status'] = 'UNTRUSTED'
+        dq['reasons'].append(f"Yahoo disagrees with NSE's own file for {crosscheck['mismatch_share']:.0%} of compared symbols (limit {bhavcopy.MAX_MISMATCH_SHARE:.0%})")
+    dq['crosscheck'] = {k: v for k, v in crosscheck.items() if k not in ('close_mismatch', 'adjustment_mismatch')}
+    dq['crosscheck']['close_mismatch'] = crosscheck['close_mismatch']; dq['crosscheck']['adjustment_mismatch'] = crosscheck['adjustment_mismatch']
     trusted = dq['status'] == 'TRUSTED'
     allowed = dataquality.actionable_symbols(per_symbol, expected) if trusted else set()
     last_bars = [df.index[-1] for df, _ in resolved.values()]

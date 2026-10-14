@@ -7,6 +7,7 @@ Live trading is disabled in code (`settings.LIVE_EXECUTION_ENABLED = False`) and
 ## After the Daily Stock Screen run (after 16:30 IST, once the vendor has published the day's bars)
 1. **Run status.** Open the run. Red is acceptable and informative; silence is not.
 2. **`results.json` → `data_quality.status`.** `TRUSTED` or `UNTRUSTED`. If `UNTRUSTED`, read `reasons`. There are **no actionable signals**; `preview` entries are labelled provisional and are not entries. Rerun later after the official bars exist. Do not trade from a preview.
+2b. **NSE cross-check (health H15).** `ok` means Yahoo's closes matched NSE's own file. `unavailable` means NSE did not serve the file to the runner (the scan still runs, unverified). Mismatched symbols are quarantined; if more than 5% disagree the whole scan is UNTRUSTED.
 3. **`health.json` status.** `OK`/`WARN` allow new entries; `DEGRADED` allows none (existing positions still follow their exit rules); `FAIL` stops everything. Check H10 (data), H11 (ledger reconciliation), H12 (event-log chain), H14 (live switch off).
 4. **`reports/readiness.md`.** Score and mode. Anything but PAPER ONLY needs the owner's separate written approval.
 5. **`reports/forward.md`.** Count of signals by fate, reasons for signals not taken, event-log verification.

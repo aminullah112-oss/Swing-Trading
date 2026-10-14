@@ -185,6 +185,17 @@ def run_checks(ctx):
             out.append(_c('H10', 'warn' if q else 'ok', f"data trusted: {dq.get('official_coverage', 0):.0%} official-bar coverage"
                           + (f"; {len(q)} symbol(s) quarantined ({', '.join(sorted(q)[:6])})" if q else '')))
 
+    # --- independent check against NSE's own end-of-day file
+    cc = (dq or {}).get('crosscheck')
+    if res and dq:
+        if not cc or cc.get('status') != 'ok':
+            out.append(_c('H15', 'warn', f"NSE bhavcopy cross-check {('unavailable: ' + str(cc.get('note'))) if cc else 'not run'}; Yahoo bars are unverified against the exchange"))
+        else:
+            bad = len(cc.get('close_mismatch', {})) + len(cc.get('adjustment_mismatch', {}))
+            out.append(_c('H15', 'warn' if bad or cc.get('filled') else 'ok',
+                          f"NSE bhavcopy: compared {cc.get('compared')}, {len(cc.get('close_mismatch', {}))} close and {len(cc.get('adjustment_mismatch', {}))} adjustment mismatches"
+                          + (f", {len(cc['filled'])} bar(s) filled from NSE because Yahoo lagged" if cc.get('filled') else '')))
+
     # --- ledger reconciliation and event chain (P0-B)
     rec = led.get('reconciliation')
     if rec is None:
