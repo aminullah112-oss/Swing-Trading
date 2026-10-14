@@ -68,6 +68,19 @@ function planBlock(s) {
             <small>${esc(add.note)}. Never: ${esc(add.never_add)}.</small></li></ul></details>`;
 }
 
+const TIER = {preferred: ['⭐ Preferred', 'meets every selection condition'], standard: ['Standard', 'a C0 signal that misses one or more selection conditions'], avoid: ['⛔ Avoid', 'known event risk']};
+function selectionBlock(s) {
+    const x = s.selection;
+    if (!x) return '';
+    const t = TIER[x.tier] || [x.tier, ''];
+    const conds = Object.entries(x.conditions).map(([k, v]) => `<li class="chk-${v ? 'ok' : 'warn'}">${v ? '✅' : '⚠️'} ${esc(k)}</li>`).join('');
+    const ev = x.events.reasons.map(r => `<li class="chk-block">⛔ ${esc(r)}</li>`).join('') +
+        x.events.unverified.map(r => `<li class="chk-warn">❔ ${esc(r)}</li>`).join('');
+    return `<details class="selection"><summary><b>${esc(t[0])}</b> · RS rank ${x.rs_rank_pct != null ? esc(x.rs_rank_pct) + 'th pct' : 'n/a'} · ${esc(x.sector)} · Nifty ${esc(x.regime)}</summary>
+        <ul class="checks">${conds}${ev}${x.size_notes.map(n => `<li class="chk-warn">📉 ${esc(n)}</li>`).join('')}</ul>
+        <div class="setup-label">${esc(t[1])}. Hypothesis, not proven: C0 trades every signal; the tiers are tested in PREREG_v2. Rank order was tested for admission and did not help.</div></details>`;
+}
+
 function card(s, cfg, liveRisk) {
     const pl = plan(s, cfg, liveRisk);
     const warns = s.checks.filter(c => c.status !== 'ok');
@@ -87,6 +100,7 @@ function card(s, cfg, liveRisk) {
             <div><label>Risk</label><b class="risk-cell">${inr0(pl.risk)}</b><small>${inr0(pl.invested)} invested</small></div>
         </div>
         <div class="plan-note">Exit: close below EMA50 (<b>${inr2(s.ema_50)}</b>) → sell next open · max 120 sessions · stop stays fixed.</div>
+        ${selectionBlock(s)}
         ${planBlock(s)}
         <ul class="checks">${checks}</ul>
         <details><summary>Manual pre-trade checklist (not automated)</summary><ul class="checks manual">${manual}</ul></details>

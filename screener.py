@@ -18,6 +18,8 @@ import strategy
 import analysis
 import intraday
 import tradeplan
+import selection
+import corpevents
 import bhavcopy
 import dataquality
 import provenance
@@ -27,6 +29,7 @@ warnings.filterwarnings('ignore')
 IST = ZoneInfo('Asia/Kolkata')
 
 # Risk, capital and execution settings: single source of truth in settings.py (re-exported here for compatibility)
+import settings  # noqa: E402
 from settings import (CAPITAL, RISK_PCT, MAX_POS_PCT, MAX_OPEN_RISK, MIN_DATA_RATIO, _env_float)  # noqa: E402,F401
 import universe as _universe  # noqa: E402
 
@@ -88,7 +91,7 @@ def fetch_bulk():
         try:
             data = yf.download(
                 tickers=YF_TICKERS + ALIAS_TICKERS + [BENCH],
-                period='1y',
+                period='2y',
                 interval='1d',
                 group_by='ticker',
                 auto_adjust=True,
@@ -155,7 +158,7 @@ def retry_download(symbols):
         ticks += [f'{c}.NS' for c in SYMBOL_ALIASES.get(s, []) + [s]]
     for attempt in range(2):
         try:
-            data = yf.download(tickers=ticks, period='1y', interval='1d', group_by='ticker',
+            data = yf.download(tickers=ticks, period='2y', interval='1d', group_by='ticker',
                                auto_adjust=True, progress=False, threads=False, timeout=60)
             if data is not None and not data.empty:
                 return data
@@ -386,15 +389,15 @@ def evaluate(df, in_se=False):
     }, None
 
 
-def position(rec, open_risk=0.0):
-    """Size from the buy-stop price to the stop (the risk actually taken if the stop-buy fills)."""
+def position(rec, open_risk=0.0, risk_mult=1.0, notes=()):
+    """Size from the buy-stop price to the stop (the risk actually taken if the stop-buy fills). risk_mult is only ever <= 1."""
     trigger, stop = rec['trigger'], rec['stop_loss']
     if trigger <= stop:
         return None
-    p = size_position(CAPITAL, RISK_PCT, trigger, trigger - stop, MAX_POS_PCT)
+    p = size_position(CAPITAL, RISK_PCT * min(1.0, risk_mult), trigger, trigger - stop, MAX_POS_PCT)
     return {
         'shares': p['shares'], 'invested': p['invested'], 'stop_loss': stop, 'risk_amount': p['risk_amount'],
-        'risk_pct_of_capital': round(p['risk_amount'] / CAPITAL * 100, 3), 'note': p['note'],
+        'risk_pct_of_capital': round(p['risk_amount'] / CAPITAL * 100, 3), 'note': p['note'], 'size_notes': list(notes),
         'within_risk_budget': bool(p['shares'] > 0 and open_risk + p['risk_amount'] <= CAPITAL * MAX_OPEN_RISK),
     }
 
@@ -409,7 +412,7 @@ def vendor_metadata(bulk, retrieved_at, last_bars):
     last_row = bulk.iloc[-1]
     return {
         'vendor': 'yahoo-finance via yfinance', 'vendor_version': getattr(yf, '__version__', 'unknown'),
-        'interval': '1d', 'period': '1y', 'auto_adjust': True, 'retrieved_at': retrieved_at.isoformat(timespec='seconds'),
+        'interval': '1d', 'period': '2y', 'auto_adjust': True, 'retrieved_at': retrieved_at.isoformat(timespec='seconds'),
         'frame_last_row': str(bulk.index.max().date()), 'rows': int(len(bulk)),
         'non_null_closes_on_last_row': int(last_row.xs('Close', level=1).notna().sum()) if hasattr(last_row.index, 'levels') else None,
         'last_bar_counts': {str(k): int(v) for k, v in sorted(__import__('collections').Counter(d.date() for d in last_bars).items(), reverse=True)[:4]},
@@ -506,6 +509,13 @@ def main():
     print(f"Data quality: {dq['status']} | official coverage {dq['official_coverage']:.0%} for {expected}"
           + ('' if trusted else f" | reasons: {'; '.join(dq['reasons'])}"))
 
+    # selection context: sectors, relative-strength rank, regime, known events (all only remove or shrink entries)
+    sectors = selection.load_sectors()
+    ranks = selection.rank_universe({used: df for _, (df, used) in resolved.items()})
+    reg = selection.regime(nifty_df['Close'] if nifty_df is not None else None)
+    ev_manual, ev_ban = corpevents.load_manual(), corpevents.fetch_ban(expected)
+    print(f"Regime: {reg} | F&O ban list: {ev_ban['status']} | event calendar updated: {ev_manual['updated']}")
+
     results, previews = [], []
 
     def handle(sym, df, used, into, preview=False):
@@ -521,6 +531,19 @@ def main():
                                   'text': 'PREVIEW ONLY: built from provisional 5-minute data. Never an entry or exit instruction.'})
         else:
             rec['actionable'] = True
+            sig_date = datetime.fromisoformat(rec['signal_date']).date()
+            ev = corpevents.assess(used, sig_date, ev_manual, ev_ban, corpevents.fetch_earnings_yf(used), holidays)
+            rank = ranks.get(used)
+            tr, cond = selection.tier(rec, rank, reg, ev['blocked'] and settings.EVENT_BLOCK_ENABLED)
+            mult, size_notes = selection.size_multiplier(rec, reg)
+            rec['selection'] = {'tier': tr, 'conditions': cond, 'rs_rank_pct': round(rank * 100) if rank == rank and rank is not None else None,
+                                'sector': selection.sector_of(used, sectors), 'regime': reg, 'events': ev, 'risk_mult': mult, 'size_notes': size_notes,
+                                'status': 'hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2'}
+            if ev['blocked'] and settings.EVENT_BLOCK_ENABLED:
+                rec['checks'].append({'id': 'events', 'status': 'block', 'text': 'Known event inside the window: ' + '; '.join(ev['reasons'])})
+                rec['execution_ok'] = analysis.execution_ok(rec['checks'])
+            elif ev['unverified']:
+                rec['checks'].append({'id': 'events', 'status': 'warn', 'text': 'Event risk unverified: ' + '; '.join(ev['unverified'])})
         into.append(rec)
         print(f"{sym:<14}{rec['setup_type']:<20}{rec['price']:>10.2f}{rec['trigger']:>10.2f}{rec['stop_loss']:>10.2f}"
               f"{'  (PREVIEW, not actionable)' if preview else ''}")
@@ -564,7 +587,8 @@ def main():
     hold_stats_data = intraday.load_json('reports/hold_stats.json', None)
     open_risk = 0.0
     for r in results:
-        r['position'] = position(r, open_risk)
+        sel = r.get('selection') or {}
+        r['position'] = position(r, open_risk, sel.get('risk_mult', 1.0), sel.get('size_notes', ()))
         r['plan'] = tradeplan.build(r, hold_stats_data, CAPITAL)
         if r['position'] and r['position']['within_risk_budget']:
             open_risk += r['position']['risk_amount']

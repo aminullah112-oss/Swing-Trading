@@ -1,0 +1,6 @@
+{
+ "updated": null,
+ "_how_to": "Add known events as {\"symbol\": \"TCS\", \"date\": \"2026-10-16\", \"kind\": \"earnings|ex_date|corporate_action|other\", \"note\": \"Q2 results\"}. List symbols on the ASM/GSM surveillance lists under asm_gsm. Set updated to today's date when you refresh it. A known event within 5 sessions of a signal blocks the entry; an empty calendar only means the check is unverified.",
+ "events": [],
+ "asm_gsm": []
+}
