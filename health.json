@@ -1,16 +1,26 @@
 {
-  "status": "WARN",
+  "status": "DEGRADED",
   "permits": {
-    "new_entries": true,
+    "new_entries": false,
     "manage_exits": true,
-    "ops_credit": true
+    "ops_credit": false
   },
-  "generated": "2026-10-14T17:24:46+00:00",
+  "generated": "2026-10-14T19:36:17+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-14 (0 days old)"
+      "msg": "market data through 2026-10-13 (1 days old)"
+    },
+    {
+      "id": "H1b",
+      "level": "warn",
+      "msg": "data ends 2026-10-13 but the last completed session should be 2026-10-14 (1 session(s) behind). Unless it was an exchange holiday missing from market_holidays.json, the data vendor is lagging and 'valid for the next session' buy levels refer to a session that already traded"
+    },
+    {
+      "id": "H1c",
+      "level": "warn",
+      "msg": "signals use provisional 2026-10-14 bars built from 5-minute data for 142 symbols (close = last); the official daily bar is not published yet. Last audit: median close error 0.0 bps"
     },
     {
       "id": "H2",
@@ -39,8 +49,8 @@
     },
     {
       "id": "H10",
-      "level": "warn",
-      "msg": "data trusted: 100% official-bar coverage; 1 symbol(s) quarantined (VEDL)"
+      "level": "degraded",
+      "msg": "market data UNTRUSTED, no actionable signals: only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-13': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-13)"
     },
     {
       "id": "H11",
@@ -50,7 +60,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (40 events)"
+      "msg": "event log verified (42 events)"
     },
     {
       "id": "H13b",
@@ -70,19 +80,19 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-14T17:24:46+00:00",
-    "commit_sha": "952bdc2c0ca1833b7cbe686d01439963b9a9bf21",
+    "generated_at": "2026-10-14T19:36:17+00:00",
+    "commit_sha": "c209d711d5377077633dc5646d78b51a2dfd1304",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-14",
+    "data_cutoff": "2026-10-13",
     "source_ids": {
-      "results": "6ae1bf8e5ab0",
-      "ledger": "d4ec25a30e89",
-      "events": "55c8ebfb3c80"
+      "results": "124482babc1d",
+      "ledger": "32188956a8d7",
+      "events": "fcd918609c6d"
     }
   }
 }

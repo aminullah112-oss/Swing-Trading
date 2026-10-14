@@ -1,14 +1,14 @@
-# Pre-trade checklist: **GO (no qualifying signals)** (paper only)
+# Pre-trade checklist: **NO-GO** (paper only)
 
-Generated 2026-10-14T17:24:48+00:00.
+Generated 2026-10-14T19:36:19+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
-| P1 block | ✅ | scan data cutoff 2026-10-14 vs expected session 2026-10-14 (0 behind) |
+| P1 block | ❌ | scan data cutoff 2026-10-13 vs expected session 2026-10-14 (1 behind) |
 | P2 block | ✅ | scan provenance current |
-| P3 block | ✅ | data quality TRUSTED |
-| P4 block | ✅ | health WARN: new entries allowed |
-| P5 block | ✅ | event log verified (40 events) |
+| P3 block | ❌ | data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-13': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-13) |
+| P4 block | ❌ | health DEGRADED: new entries NOT allowed |
+| P5 block | ✅ | event log verified (42 events) |
 | P6 block | ✅ | ledger reconciles |
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |
@@ -21,18 +21,6 @@ Generated 2026-10-14T17:24:48+00:00.
 
 ## Rejected
 
-- DIVISLAB: aggregate open-risk budget would be exceeded
-- COFORGE: symbol already has an active signal; aggregate open-risk budget would be exceeded
-- ETERNAL: symbol already has an active signal; aggregate open-risk budget would be exceeded
-- KAJARIACER: symbol already has an active signal; aggregate open-risk budget would be exceeded
-- KOTAKBANK: symbol already has an active signal; aggregate open-risk budget would be exceeded
-- HAL: symbol already has an active signal; aggregate open-risk budget would be exceeded
-- RADICO: aggregate open-risk budget would be exceeded
-- NAVINFLUOR: aggregate open-risk budget would be exceeded
-- RAYMOND: aggregate open-risk budget would be exceeded
-- AUROPHARMA: aggregate open-risk budget would be exceeded
-- APLAPOLLO: symbol already has an active signal; aggregate open-risk budget would be exceeded
-- PNB: aggregate open-risk budget would be exceeded
-- MOTHERSON: symbol already has an active signal; aggregate open-risk budget would be exceeded
+- *: entries blocked: scan data cutoff 2026-10-13 vs expected session 2026-10-14 (1 behind); data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-13': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-13); health DEGRADED: new entries NOT allowed
 
 A GO means the checks passed, not that the trade is wise. Paper only: no order is sent anywhere.

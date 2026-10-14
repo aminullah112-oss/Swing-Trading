@@ -1,12 +1,12 @@
 {
-  "verdict": "GO (no qualifying signals)",
-  "generated": "2026-10-14T17:24:48+00:00",
+  "verdict": "NO-GO",
+  "generated": "2026-10-14T19:36:19+00:00",
   "checks": [
     {
       "id": "P1",
       "level": "block",
-      "ok": true,
-      "msg": "scan data cutoff 2026-10-14 vs expected session 2026-10-14 (0 behind)"
+      "ok": false,
+      "msg": "scan data cutoff 2026-10-13 vs expected session 2026-10-14 (1 behind)"
     },
     {
       "id": "P2",
@@ -17,20 +17,20 @@
     {
       "id": "P3",
       "level": "block",
-      "ok": true,
-      "msg": "data quality TRUSTED"
+      "ok": false,
+      "msg": "data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-13': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-13)"
     },
     {
       "id": "P4",
       "level": "block",
-      "ok": true,
-      "msg": "health WARN: new entries allowed"
+      "ok": false,
+      "msg": "health DEGRADED: new entries NOT allowed"
     },
     {
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (40 events)"
+      "msg": "event log verified (42 events)"
     },
     {
       "id": "P6",
@@ -72,88 +72,9 @@
   "tradable": [],
   "rejected": [
     {
-      "symbol": "DIVISLAB",
+      "symbol": "*",
       "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "COFORGE",
-      "reasons": [
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "ETERNAL",
-      "reasons": [
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "KAJARIACER",
-      "reasons": [
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "KOTAKBANK",
-      "reasons": [
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "HAL",
-      "reasons": [
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "RADICO",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "NAVINFLUOR",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "RAYMOND",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "AUROPHARMA",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "APLAPOLLO",
-      "reasons": [
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "PNB",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "MOTHERSON",
-      "reasons": [
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
+        "entries blocked: scan data cutoff 2026-10-13 vs expected session 2026-10-14 (1 behind); data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-13': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-13); health DEGRADED: new entries NOT allowed"
       ]
     }
   ],

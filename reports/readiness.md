@@ -1,6 +1,6 @@
-# Readiness scorecard: 1.0/10 — PAPER ONLY
+# Readiness scorecard: 0.5/10 — PAPER ONLY
 
-Generated 2026-10-14T17:24:47+00:00. Live risk allowed: **0.0%** per trade.
+Generated 2026-10-14T19:36:18+00:00. Live risk allowed: **0.0%** per trade.
 
 | Gate | Points | Status | Value / detail |
 |---|---|---|---|
@@ -13,9 +13,9 @@ Generated 2026-10-14T17:24:47+00:00. Live risk allowed: **0.0%** per trade.
 | F4 Forward expectancy is not clearly below the backtest design-period figure **(critical)** | 0/1 | ⏳ not enough data | needs 100+ closed signals and 182+ days first (have 0, 0) |
 | E1 At least 30 live fills with slippage within 2x the model **(critical)** | 0/1 | ⏳ not enough data | {'n_entries': 0, 'n_exits': 0, 'entry_slip_bps': None, 'exit_slip_bps': None} |
 | S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested) | 0/0.5 | 🖐 not attested | attestations.json: market_stress_observed |
-| O1 Operations healthy: no health FAIL and no data lag | 0.5/0.5 | ✅ pass | WARN |
+| O1 Operations healthy: no health FAIL and no data lag | 0/0.5 | ❌ fail | DEGRADED — latest scan data UNTRUSTED (no actionable signals): only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-13': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-13) |
 | R1 Risk limits within safe bounds (risk/trade <= 1%, open risk <= 3%, position <= 25%) | 0.5/0.5 | ✅ pass | {'capital': 565000.0, 'risk_pct': 0.5, 'max_pos_pct': 25.0, 'max_open_risk_pct': 1.5} |
 
-Why not higher: capital not confirmed in attestations.json
+Why not higher: health DEGRADED (data/ledger untrusted, kill switch or broken pipeline)
 
 Points come only from verified evidence. Gates marked "not attested" need a human to set the flag in `attestations.json` once it is true.

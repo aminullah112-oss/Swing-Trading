@@ -122,13 +122,13 @@
       "label": "Operations healthy: no health FAIL and no data lag",
       "weight": 0.5,
       "critical": false,
-      "status": "pass",
-      "state": "passed",
-      "owner": "\u2014",
+      "status": "fail",
+      "state": "failed",
+      "owner": "Strategy research (evidence says no)",
       "action": "Run the Daily Stock Screen on a day the vendor has published the official bars; health must be OK/WARN with trusted data and consistent artefacts.",
       "depends_on": "Vendor publishes daily bars; Yahoo reachable from Actions.",
       "acceptance": "health OK/WARN, data_quality TRUSTED, no inconsistencies.",
-      "detail": ""
+      "detail": "latest scan data UNTRUSTED (no actionable signals): only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-13': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-13)"
     },
     {
       "id": "R1",
@@ -144,7 +144,7 @@
       "detail": ""
     }
   ],
-  "score_now": 1.0,
-  "ceiling_after_reruns": 1.5,
+  "score_now": 0.5,
+  "ceiling_after_reruns": 1.0,
   "u1_note": "U1 excluded from the near-term ceiling: the frozen hold-out comparison shows C0 below momentum-30 and equal-weight on Calmar."
 }

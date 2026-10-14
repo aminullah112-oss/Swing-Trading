@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-14T17:24:45+00:00",
+  "updated": "2026-10-14T19:36:16+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -124,10 +124,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 1229.23,
-      "mark_price": 1224.6,
-      "unrealized_r": -0.154,
+      "mark_price": 1226.7,
+      "unrealized_r": -0.118,
       "exit_signal": false,
-      "days_held": 2
+      "days_held": 1
     },
     {
       "id": "PNB|2026-10-12",
@@ -202,10 +202,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 1886.78,
-      "mark_price": 1928.0,
-      "unrealized_r": 0.399,
+      "mark_price": 1929.0,
+      "unrealized_r": 0.411,
       "exit_signal": false,
-      "days_held": 2,
+      "days_held": 1,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -244,10 +244,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 4781.78,
-      "mark_price": 4933.0,
-      "unrealized_r": 0.804,
+      "mark_price": 4869.0,
+      "unrealized_r": 0.422,
       "exit_signal": false,
-      "days_held": 2
+      "days_held": 1
     },
     {
       "id": "RADICO|2026-10-12",
@@ -359,10 +359,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 2172.17,
-      "mark_price": 2160.0,
-      "unrealized_r": -0.216,
+      "mark_price": 2185.0,
+      "unrealized_r": 0.058,
       "exit_signal": false,
-      "days_held": 2
+      "days_held": 1
     },
     {
       "id": "DIVISLAB|2026-10-12",
@@ -437,10 +437,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 328.03,
-      "mark_price": 316.0,
-      "unrealized_r": -0.967,
-      "exit_signal": true,
-      "days_held": 2,
+      "mark_price": 320.45,
+      "unrealized_r": -0.64,
+      "exit_signal": false,
+      "days_held": 1,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -839,12 +839,12 @@
     "win_rate": null,
     "avg_r": null,
     "total_r": 0.0,
-    "open_unrealized_r": -0.13,
+    "open_unrealized_r": 0.13,
     "taken_closed": 0,
     "taken_pnl_inr": 0,
     "avg_r_ci95": null,
-    "avg_r_incl_open": -0.027,
-    "total_r_incl_open": -0.13,
+    "avg_r_incl_open": 0.027,
+    "total_r_incl_open": 0.13,
     "outcomes": {
       "classes": {
         "won": {
@@ -907,30 +907,29 @@
   ],
   "last_cutoff": "2026-10-14",
   "last_ingest": {
-    "scan_id": "5eb1afb687f8",
-    "accepted": 2,
-    "rejected": 11,
-    "blocked": null
+    "scan_id": "800ba7cc92cc",
+    "accepted": 0,
+    "blocked": "scan data not trusted (not actionable): only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-13': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-13)"
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-14T17:24:45+00:00"
+    "checked": "2026-10-14T19:36:16+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-14T17:24:46+00:00",
-    "commit_sha": "952bdc2c0ca1833b7cbe686d01439963b9a9bf21",
+    "generated_at": "2026-10-14T19:36:17+00:00",
+    "commit_sha": "c209d711d5377077633dc5646d78b51a2dfd1304",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-14",
+    "data_cutoff": "2026-10-13",
     "source_ids": {
-      "results": "6ae1bf8e5ab0"
+      "results": "124482babc1d"
     },
-    "scan_id": "5eb1afb687f8"
+    "scan_id": "800ba7cc92cc"
   }
 }

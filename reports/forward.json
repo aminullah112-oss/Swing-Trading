@@ -17,7 +17,7 @@
   "effective_independent_months": 0,
   "rolling_expectancy_last_closed": {},
   "taken_equity_drawdown_pct": 0.0,
-  "taken_equity_now_pct": 0.19,
+  "taken_equity_now_pct": 0.16,
   "gap_through_stop_exits": 0,
   "partial_fills": 0,
   "readiness_distance": {
@@ -80,12 +80,12 @@
   },
   "event_log": {
     "verified": true,
-    "events": 40,
+    "events": 42,
     "problem": null
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-14T17:24:45+00:00"
+    "checked": "2026-10-14T19:36:16+00:00"
   }
 }
