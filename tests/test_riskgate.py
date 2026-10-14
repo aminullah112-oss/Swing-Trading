@@ -189,7 +189,8 @@ def test_no_broker_or_network_code_in_the_repository():
             offenders.append(os.path.basename(f))
     assert offenders == [], offenders
     # angelone.py is the one reviewed exception: a read-only market-data client. It may not call any order or GTT endpoint.
-    ao = re.sub(r'#.*|""".*?"""', '', open(os.path.join(ROOT, 'angelone.py')).read(), flags=re.S)
+    ao = re.sub(r'""".*?"""', '', open(os.path.join(ROOT, 'angelone.py')).read(), flags=re.S)
+    ao = re.sub(r'#[^\n]*', '', ao)
     assert not re.search(r'(placeOrder|modifyOrder|cancelOrder|gttCreate|gttModify|gttCancel|orderBook|tradeBook|\bposition\b|rmsLimit|convertPosition)', ao, re.I), 'order/position endpoints in angelone.py'
     assert set(re.findall(r'client\.(\w+)\(', ao)) == {'getCandleData'}, 'angelone.py may only call getCandleData'
     guard = _imports(os.path.join(ROOT, 'execution_guard.py'))
