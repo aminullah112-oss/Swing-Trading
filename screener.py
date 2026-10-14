@@ -17,6 +17,7 @@ from risk import size_position, stop_distance
 import strategy
 import analysis
 import intraday
+import tradeplan
 import dataquality
 import provenance
 
@@ -379,6 +380,7 @@ def evaluate(df, in_se=False):
         'vol_5d_ratio': round(ind['vol_5d'], 2),
         'ema_dist_pct': round(ind['ema20_dist'], 2), 'from_52w_high': round(ind['from_52h'], 2),
         'atr_pct': round(ind['atr_pct'], 2), 'st_direction': ind['st_dir'],
+        'ema50_slope_pct': round(float(ind['ema50_slope']), 3),
         'atr': round(ind['atr'], 2), 'reasons': rsns, 'position': None,
     }, None
 
@@ -546,9 +548,11 @@ def main():
         nd = intraday.append_provisional(nifty_df, nifty_bar, prov_method) if (nifty_bar and not trusted) else nifty_df
         nifty_close = nd['Close']
     results.sort(key=lambda r: arbitrary_order(data_cutoff, r['symbol']))
+    hold_stats_data = intraday.load_json('reports/hold_stats.json', None)
     open_risk = 0.0
     for r in results:
         r['position'] = position(r, open_risk)
+        r['plan'] = tradeplan.build(r, hold_stats_data, CAPITAL)
         if r['position'] and r['position']['within_risk_budget']:
             open_risk += r['position']['risk_amount']
 

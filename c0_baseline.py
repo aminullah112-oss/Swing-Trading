@@ -91,6 +91,7 @@ def main():
     a = ap.parse_args()
     frames, bench = bt.load_history(a.years, a.cache)
     res = reproduce(frames, bench)
+    trades = bt.run(frames, strategy.backtest_config(split_date=SPLIT), bench)[1]      # same call reproduce() makes; kept for hold_stats
     with open(os.path.join(CONTROL, 'c0_frozen_baseline.json')) as f:
         frozen = json.load(f)
     drifts = compare_to_frozen(res, frozen)
@@ -98,6 +99,9 @@ def main():
     os.makedirs(a.out, exist_ok=True)
     with open(f'{a.out}/c0_baseline.json', 'w') as f:
         json.dump(res, f, indent=2, default=str)
+    trades.to_csv(f'{a.out}/trades_c0.csv', index=False)
+    import hold_stats
+    hold_stats.main(f'{a.out}/trades_c0.csv', f'{a.out}/hold_stats.json')
     md = markdown(res, drifts)
     with open(f'{a.out}/c0_baseline.md', 'w') as f:
         f.write(md)

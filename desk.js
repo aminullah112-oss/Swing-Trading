@@ -46,6 +46,28 @@ function plan(s, cfg, liveRisk) {
             label: `reference size (${cfg.risk_pct}% risk, paper)`, live: false};
 }
 
+const BASIS = {rule: 'C0 rule (backtested)', reference: 'reference level', empirical: 'past C0 trades', untested: 'untested idea'};
+function planBlock(s) {
+    const p = s.plan;
+    if (!p) return '';
+    const tag = b => `<span class="setup-label">${esc(BASIS[b] || b)}</span>`;
+    const lv = p.profit_review_levels.levels.map(l => `${l.r}R ${inr2(l.price)} (+${l.gain_pct}%)`).join(' · ');
+    const d = p.expected_duration;
+    const dur = d.available === false ? esc(d.note)
+        : `Winners usually ran <b>${esc(d.winners_median_days)}</b> sessions (middle half ${esc(d.winners_range_days[0])}-${esc(d.winners_range_days[1])}); ` +
+          `stopped-out trades ended after ~${esc(d.losers_median_days)}. Typical winner +${esc(d.typical_winner_r)}R (${inr2(d.typical_winner_price)}), ` +
+          `strong +${esc(d.strong_winner_r)}R. Win rate ${Math.round(d.win_rate * 100)}% <small>(${esc(d.from)})</small>`;
+    const sell = p.sell_trigger, add = p.add_more;
+    return `<details class="trade-plan" open><summary>Trade plan from daily data</summary><ul class="checks">
+        <li>🎯 <b>Profit review levels</b> ${tag('reference')}: ${lv}. <small>${esc(p.profit_review_levels.note)}</small></li>
+        <li>⛔ <b>Stop</b> ${tag('rule')}: ${inr2(p.stop.price)}. <small>${esc(p.stop.note)}</small></li>
+        <li>⏱ <b>How long</b> ${tag('empirical')}: ${dur}. <small>${esc(d.note || '')}</small></li>
+        <li>🔔 <b>Sell trigger</b> ${tag('rule')}: ${esc(sell.condition)}. EMA50 now ${inr2(sell.ema50_now)}${sell.ema50_in_about_a_week ? `, about ${inr2(sell.ema50_in_about_a_week)} in a week` : ''}; ${esc(sell.time_exit)}.
+            Watch: ${sell.warning_signs.map(esc).join('; ')}.</li>
+        <li>➕ <b>Add more</b> ${tag('untested')} <i>${esc(add.default)}</i>: only if ${add.conditions.map(esc).join('; ')}. Up to ${esc(add.max_extra_shares)} extra shares (₹${esc(add.risk_of_add_inr)} risk).
+            <small>${esc(add.note)}. Never: ${esc(add.never_add)}.</small></li></ul></details>`;
+}
+
 function card(s, cfg, liveRisk) {
     const pl = plan(s, cfg, liveRisk);
     const warns = s.checks.filter(c => c.status !== 'ok');
@@ -65,6 +87,7 @@ function card(s, cfg, liveRisk) {
             <div><label>Risk</label><b class="risk-cell">${inr0(pl.risk)}</b><small>${inr0(pl.invested)} invested</small></div>
         </div>
         <div class="plan-note">Exit: close below EMA50 (<b>${inr2(s.ema_50)}</b>) → sell next open · max 120 sessions · stop stays fixed.</div>
+        ${planBlock(s)}
         <ul class="checks">${checks}</ul>
         <details><summary>Manual pre-trade checklist (not automated)</summary><ul class="checks manual">${manual}</ul></details>
         <footer class="plan-foot">
