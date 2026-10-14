@@ -1,6 +1,8 @@
 name: Backtest
 
 on:
+  schedule:
+    - cron: '0 2 * * 0'      # Sundays 07:30 IST; keeps backtest evidence inside its 45-day freshness limit
   workflow_dispatch:
     inputs:
       years:
@@ -27,21 +29,21 @@ jobs:
     - name: Unit tests
       run: python -m pytest -q tests
     - name: Baseline (scanner rules, next-open entry)
-      run: python backtest.py --years ${{ inputs.years }} --cache history_cache.pkl --name baseline
+      run: python backtest.py --years ${{ inputs.years || '10' }} --cache history_cache.pkl --name baseline
     - name: With entry trigger (buy-stop above signal-day high)
-      run: python backtest.py --years ${{ inputs.years }} --cache history_cache.pkl --name trigger --trigger prior_high
+      run: python backtest.py --years ${{ inputs.years || '10' }} --cache history_cache.pkl --name trigger --trigger prior_high
     - name: Pre-registered exit/entry grid and score diagnosis
-      run: python research.py --years ${{ inputs.years }} --cache history_cache.pkl
+      run: python research.py --years ${{ inputs.years || '10' }} --cache history_cache.pkl
     - name: Same-universe benchmarks and pre-registered redesign tests
-      run: python benchmarks.py --years ${{ inputs.years }} --cache history_cache.pkl
+      run: python benchmarks.py --years ${{ inputs.years || '10' }} --cache history_cache.pkl
     - name: Reproduce control C0 and compare with the frozen baseline
-      run: python c0_baseline.py --years ${{ inputs.years }} --cache history_cache.pkl
+      run: python c0_baseline.py --years ${{ inputs.years || '10' }} --cache history_cache.pkl
     - name: Pre-registered experiments (C0 versus H1-H8, hold-out opened once)
       continue-on-error: true      # a failed experiment run must not block the core reports; the failure is visible in the run
       run: python experiments.py --years 12 --cache history_cache_12y.pkl
     - name: Point-in-time universe acceptance test
       continue-on-error: true
-      run: python pit_report.py --years ${{ inputs.years }} --cache history_cache.pkl
+      run: python pit_report.py --years ${{ inputs.years || '10' }} --cache history_cache.pkl
     - name: Stamp reports with provenance
       run: python stamp_reports.py
     - name: Regenerate readiness from the new evidence
