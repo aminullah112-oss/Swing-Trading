@@ -132,3 +132,14 @@ def test_cutoffs_are_consistent_across_actionable_signals(run_scan):
     r = run_scan(make_bulk())
     assert {s['signal_date'] for s in r['stocks']} == {'2026-10-13'}
     assert r['data_cutoff'] == '2026-10-13' and r['sessions_behind'] == 0
+
+
+def test_actionable_signals_carry_a_trade_plan(run_scan):
+    r = run_scan(make_bulk())
+    assert r['stocks']
+    for s in r['stocks']:
+        p = s['plan']
+        assert p['stop']['price'] == s['stop_loss'] and p['entry']['buy_stop'] == s['trigger']
+        assert [l['r'] for l in p['profit_review_levels']['levels']] == [1, 2, 3]
+        assert p['sell_trigger']['ema50_now'] == s['ema_50'] and p['add_more']['default'] == 'do not add'
+        assert p['expected_duration']['basis'] == 'empirical'
