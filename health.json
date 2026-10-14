@@ -1,21 +1,16 @@
 {
-  "status": "DEGRADED",
+  "status": "WARN",
   "permits": {
-    "new_entries": false,
+    "new_entries": true,
     "manage_exits": true,
-    "ops_credit": false
+    "ops_credit": true
   },
-  "generated": "2026-10-13T20:57:03+00:00",
+  "generated": "2026-10-14T17:24:46+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-13 (0 days old)"
-    },
-    {
-      "id": "H1c",
-      "level": "warn",
-      "msg": "signals use provisional 2026-10-13 bars built from 5-minute data for 159 symbols (close = last); the official daily bar is not published yet. No audit yet"
+      "msg": "market data through 2026-10-14 (0 days old)"
     },
     {
       "id": "H2",
@@ -30,7 +25,7 @@
     {
       "id": "H4",
       "level": "ok",
-      "msg": "13 signals, integrity ok"
+      "msg": "26 signals, integrity ok"
     },
     {
       "id": "H7",
@@ -40,27 +35,22 @@
     {
       "id": "H8",
       "level": "ok",
-      "msg": "taken-signal equity drawdown 0.0% of capital (now +0.0%)"
+      "msg": "taken-signal equity drawdown 0.0% of capital (now +0.2%)"
     },
     {
       "id": "H10",
-      "level": "degraded",
-      "msg": "results.json has no data_quality verdict (produced before the fail-closed scanner): rerun the Daily Stock Screen"
+      "level": "warn",
+      "msg": "data trusted: 100% official-bar coverage; 1 symbol(s) quarantined (VEDL)"
     },
     {
       "id": "H11",
-      "level": "warn",
-      "msg": "ledger has not been reconciled yet"
+      "level": "ok",
+      "msg": "ledger reconciles with the event log and the calendar"
     },
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (0 events)"
-    },
-    {
-      "id": "H13",
-      "level": "warn",
-      "msg": "scan report provenance: report has no provenance block (produced before provenance existed): rerun it"
+      "msg": "event log verified (40 events)"
     },
     {
       "id": "H13b",
@@ -80,19 +70,19 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-13T20:57:03+00:00",
-    "commit_sha": "393fa300399bc7ad7901d198f078e0bb361cfc4d",
+    "generated_at": "2026-10-14T17:24:46+00:00",
+    "commit_sha": "952bdc2c0ca1833b7cbe686d01439963b9a9bf21",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-13",
+    "data_cutoff": "2026-10-14",
     "source_ids": {
-      "results": "8a65e6e12ba8",
-      "ledger": "ff5a17f04c1f",
-      "events": "e3b0c44298fc"
+      "results": "6ae1bf8e5ab0",
+      "ledger": "d4ec25a30e89",
+      "events": "55c8ebfb3c80"
     }
   }
 }

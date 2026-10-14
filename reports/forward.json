@@ -1,31 +1,91 @@
 {
   "all_fills_simulated": true,
-  "signals_total": 13,
+  "signals_total": 26,
   "evidence_eligible": 13,
-  "legacy_excluded": 0,
+  "legacy_excluded": 13,
   "by_status": {
-    "pending": 13
+    "rejected": 11,
+    "pending": 2
   },
-  "not_taken_reasons": {},
+  "not_taken_reasons": {
+    "symbol already has an active signal": 11,
+    "not yet triggered": 2
+  },
   "closed": 0,
   "forward_avg_r_incl_open": null,
   "forward_avg_r_ci95_clustered": null,
   "effective_independent_months": 0,
   "rolling_expectancy_last_closed": {},
   "taken_equity_drawdown_pct": 0.0,
-  "taken_equity_now_pct": 0.0,
+  "taken_equity_now_pct": 0.19,
   "gap_through_stop_exits": 0,
   "partial_fills": 0,
   "readiness_distance": {
     "closed_needed": 100,
     "closed_have": 0,
     "days_needed": 182,
-    "first_eligible_signal": null
+    "first_eligible_signal": "2026-10-14"
+  },
+  "outcomes": {
+    "classes": {
+      "won": {
+        "label": "Won: closed in profit",
+        "n": 0,
+        "avg_r": null
+      },
+      "stopped": {
+        "label": "Lost: stop hit",
+        "n": 0,
+        "avg_r": null
+      },
+      "exited_loss": {
+        "label": "Lost: exited at a loss (trend/time exit)",
+        "n": 0,
+        "avg_r": null
+      },
+      "open_profit": {
+        "label": "Open, in profit (mark-to-market)",
+        "n": 0,
+        "avg_r": null
+      },
+      "open_loss": {
+        "label": "Open, at a loss (mark-to-market)",
+        "n": 0,
+        "avg_r": null
+      },
+      "never_triggered": {
+        "label": "Never triggered (buy-stop not reached)",
+        "n": 0,
+        "avg_r": null
+      },
+      "waiting": {
+        "label": "Waiting for entry session",
+        "n": 2,
+        "avg_r": null
+      },
+      "not_tradable": {
+        "label": "Not tradable (rejected, cancelled or void)",
+        "n": 11,
+        "avg_r": null
+      }
+    },
+    "entered": 0,
+    "closed": 0,
+    "closed_win_rate": null,
+    "entered_in_profit_rate": null,
+    "trigger_rate": null,
+    "by_setup": {},
+    "legacy_excluded": 13,
+    "note": "Win/loss counts are descriptive. Below ~100 closed signals they say little about the criteria; winners run under a slow exit, so early closed-only results skew to stops."
   },
   "event_log": {
     "verified": true,
-    "events": 0,
+    "events": 40,
     "problem": null
   },
-  "reconciliation": null
+  "reconciliation": {
+    "ok": true,
+    "issues": [],
+    "checked": "2026-10-14T17:24:45+00:00"
+  }
 }

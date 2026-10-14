@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-13T21:10:08+00:00",
+  "generated": "2026-10-14T17:24:47+00:00",
   "policy": {
-    "score": 0.5,
+    "score": 1.0,
     "mode": "PAPER ONLY",
     "live_risk_pct_allowed": 0.0,
     "reasons": [
-      "health DEGRADED (data/ledger untrusted, kill switch or broken pipeline)"
+      "capital not confirmed in attestations.json"
     ],
     "critical_gates_passed": false,
     "unmet": [
@@ -17,8 +17,7 @@
       "F3 Forward expectancy (closed + open) has a 95% CI lower bound above 0",
       "F4 Forward expectancy is not clearly below the backtest design-period figure",
       "E1 At least 30 live fills with slippage within 2x the model",
-      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)",
-      "O1 Operations healthy: no health FAIL and no data lag"
+      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)"
     ],
     "live_budget": {
       "closed_live_trades": 0,
@@ -146,12 +145,12 @@
       "label": "Operations healthy: no health FAIL and no data lag",
       "points": 0.5,
       "critical": false,
-      "status": "blocked",
-      "earned": 0.0,
-      "value": "DEGRADED",
-      "threshold": "artefacts consistent",
-      "detail": "inconsistent artefacts, regenerate: ledger.json has no provenance block",
-      "evidence_state": "blocked_defect"
+      "status": "pass",
+      "earned": 0.5,
+      "value": "WARN",
+      "threshold": "OK/WARN",
+      "detail": "",
+      "evidence_state": "passed"
     },
     {
       "id": "R1",
@@ -172,9 +171,9 @@
     }
   ],
   "inputs": {
-    "results": "8a65e6e12ba8",
-    "ledger": "ff5a17f04c1f",
-    "health": "7f3e1e2e581c",
+    "results": "6ae1bf8e5ab0",
+    "ledger": "d4ec25a30e89",
+    "health": "b18d54a8eacf",
     "grid": "ba2286b4d2b0",
     "benchmarks": "07507b88585d",
     "universe": "204b5b06f773",
@@ -184,24 +183,22 @@
   "stale_evidence": [
     "report has no provenance block (produced before provenance existed): rerun it"
   ],
-  "inconsistencies": [
-    "ledger.json has no provenance block"
-  ],
+  "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-13T21:10:08+00:00",
-    "commit_sha": "820fe3a1d35e5214f4c1dfce64be867f1f799301",
+    "generated_at": "2026-10-14T17:24:47+00:00",
+    "commit_sha": "952bdc2c0ca1833b7cbe686d01439963b9a9bf21",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-13",
+    "data_cutoff": "2026-10-14",
     "source_ids": {
-      "results": "8a65e6e12ba8",
-      "ledger": "ff5a17f04c1f",
-      "health": "7f3e1e2e581c",
+      "results": "6ae1bf8e5ab0",
+      "ledger": "d4ec25a30e89",
+      "health": "b18d54a8eacf",
       "grid": "ba2286b4d2b0",
       "benchmarks": "07507b88585d",
       "universe": "204b5b06f773",

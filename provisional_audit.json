@@ -1,0 +1,23 @@
+[
+  {
+    "symbols": 159,
+    "median_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 12.4,
+      "high": 0.0,
+      "low": 4.5,
+      "open": 18.4,
+      "volume": 163.4
+    },
+    "p90_abs_error_bps": {
+      "close_last": 5.2,
+      "close_vwap30": 43.7,
+      "high": 19.3,
+      "low": 21.4,
+      "open": 60.4,
+      "volume": 370.1
+    },
+    "date": "2026-10-13",
+    "audited_at": "2026-10-14T17:24:42+00:00"
+  }
+]
