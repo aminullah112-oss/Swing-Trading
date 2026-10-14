@@ -193,7 +193,7 @@ def run_checks(ctx):
         else:
             bad = len(cc.get('close_mismatch', {})) + len(cc.get('adjustment_mismatch', {}))
             out.append(_c('H15', 'warn' if bad or cc.get('filled') else 'ok',
-                          f"NSE bhavcopy: compared {cc.get('compared')}, {len(cc.get('close_mismatch', {}))} close and {len(cc.get('adjustment_mismatch', {}))} adjustment mismatches"
+                          f"{cc.get('source') or 'NSE'}: compared {cc.get('compared')}, {len(cc.get('close_mismatch', {}))} close and {len(cc.get('adjustment_mismatch', {}))} adjustment mismatches"
                           + (f", {len(cc['filled'])} bar(s) filled from NSE because Yahoo lagged" if cc.get('filled') else '')))
 
     # --- ledger reconciliation and event chain (P0-B)

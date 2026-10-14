@@ -21,6 +21,7 @@ import tradeplan
 import selection
 import corpevents
 import bhavcopy
+import angelone
 import dataquality
 import provenance
 
@@ -486,6 +487,12 @@ def main():
 
     # 1b. independent check against NSE's own end-of-day file; fills sessions Yahoo has not published (guarded)
     nse = bhavcopy.fetch(expected)
+    alt = None
+    if nse['status'] != 'ok':                  # NSE's file is unavailable: try the second independent source
+        alt = angelone.fetch(expected, [used for _, (_, used) in resolved.items()])
+        if alt['status'] == 'ok':
+            nse = alt
+        print(f"Angel One data: {alt['status']}" + (f" ({alt.get('note')})" if alt.get('note') else ''))
     resolved, crosscheck = bhavcopy.reconcile(resolved, nse, expected)
     print(f"NSE bhavcopy: {crosscheck['status']}" + (f" | compared {crosscheck['compared']}, close mismatches {len(crosscheck['close_mismatch'])}, "
           f"adjustment mismatches {len(crosscheck['adjustment_mismatch'])}, filled {len(crosscheck['filled'])}" if crosscheck['status'] == 'ok' else f" ({crosscheck.get('note')})"))
@@ -495,7 +502,10 @@ def main():
     bhavcopy.flag(per_symbol, crosscheck)
     nifty_df = extract_df(bulk, BENCH)
     nifty_idx = bhavcopy.fetch_index(expected)
+    if nifty_idx['status'] != 'ok' and alt is not None and alt.get('status') == 'ok' and alt.get('nifty_bar'):
+        nifty_idx = {'status': 'ok', 'bar': alt['nifty_bar'], 'source': 'angel one smartapi'}
     nifty_df, nifty_filled = bhavcopy.fill_index(nifty_df, nifty_idx, expected)
+    crosscheck['angelone'] = {'status': alt['status'], 'note': alt.get('note')} if alt else None
     crosscheck['nifty'] = {'status': nifty_idx['status'], 'filled': nifty_filled, 'note': nifty_idx.get('note')}
     nifty_last = nifty_df.index[-1].date() if nifty_df is not None else None
     dq = dataquality.assess(per_symbol, expected, nifty_last)
