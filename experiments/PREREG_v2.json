@@ -1,0 +1,40 @@
+{
+ "id": "PREREG_v2",
+ "registered_on": "2026-10-14",
+ "registered_before_any_result": true,
+ "control": "C0",
+ "universe_version": "U159_v2",
+ "purpose": "Test stock-selection and risk-reduction layers on top of C0. Retain C0 unless a layer improves NET risk-adjusted performance after realistic costs.",
+ "previously_tested_and_failed_not_retested": [
+  {"idea": "admit same-day candidates in momentum-rank order", "where": "reports/benchmarks.md (H2)", "result": "failed: Calmar 0.21 design / 0.42 hold-out vs baseline 0.67 / 0.42; CI includes zero", "live_default": "display the rank only; allocation order stays C0's"},
+  {"idea": "halve risk when the Nifty is below its EMA200", "where": "reports/benchmarks.md (H3)", "result": "failed: Calmar 0.03 design / 0.29 hold-out; CI includes zero", "live_default": "off"}
+ ],
+ "execution_model": "same as PREREG_v1 (itemised costs, 10 bps slippage, 5% volume and 2% ADV caps). Decisions use this model only.",
+ "windows": {
+  "design_end": "2024-12-31",
+  "walk_forward_blocks": "calendar years 2017-2024 by entry date; parameters are fixed, nothing is fitted",
+  "holdout_start": "2025-01-01",
+  "holdout_rule": "opened once per (hypothesis, prereg hash), only for variants that pass every walk-forward criterion; logged in experiments/holdout_log.jsonl",
+  "contamination_note": "The 2025+ window is also the hold-out of PREREG_v1; opening it for several families is a form of repeated looking, which is why the family below counts every test."
+ },
+ "multiple_testing": {"family": "PREREG_v1 H1-H8 (8) + benchmarks.md H2,H3 (2) + V2-1..V2-3 (3)", "n_tests": 13, "method": "Bonferroni", "alpha_family": 0.05, "alpha_per_test": 0.003846153846153846,
+                      "note": "Counting the earlier benchmark tests and the v1 family makes this deliberately harder to pass."},
+ "hypotheses": [
+  {"id": "V2-1", "name": "sector cap", "change": "at most 2 open positions per sector group (universe/sectors.json); a third same-sector entry is skipped", "param": {"max_per_sector": 2}},
+  {"id": "V2-2", "name": "preferred-tier stack", "change": "keep only trades that meet ALL of: momentum rank in the top 30% of the universe, close within 10% of the 52-week high, 20-day average traded value >= INR 5 crore, ATR/close <= 4%, Nifty above its EMA200 on the signal date", "param": {"min_rank": 0.70, "min_from_52h_pct": -10.0, "min_adv20_value": 50000000, "max_atr_pct": 4.0, "regime": "bull"}},
+  {"id": "V2-3", "name": "volatility-scaled risk", "change": "risk 0.375% per trade (0.75x) when ATR/close > 4%, otherwise 0.5%; the open-risk cap is unchanged", "param": {"atr_pct_threshold": 4.0, "risk_multiplier": 0.75}}
+ ],
+ "walk_forward_pass_criteria": {
+  "P1_sample": "at least 100 trades AND entries in at least 40 distinct calendar months in the design window",
+  "P2_net_edge_vs_C0": "paired daily NET portfolio return difference (variant minus C0, design window) has a month-clustered bootstrap CI at alpha_per_test whose LOWER bound is above 0",
+  "P3_consistency": "variant net return exceeds C0 net return in at least 5 of the 8 yearly blocks",
+  "P4_absolute": "variant design-window net CAGR > 0 after the execution model"
+ },
+ "holdout_pass_criteria": {
+  "O1": "hold-out net Calmar >= C0 hold-out net Calmar",
+  "O2": "hold-out net CAGR > 0",
+  "O3": "hold-out max drawdown no worse than C0's by more than 2 percentage points"
+ },
+ "risk_reduction_rule": "V2-1 and V2-3 reduce risk by construction, so P2 (a proven return edge) may be too strict for them. They are ALSO judged on risk: they pass the risk test if design AND hold-out max drawdown are no worse than C0's and net Calmar is not lower. This second route is registered now, before results, and counts as part of the same test.",
+ "adoption_rule": "A passing variant becomes a CANDIDATE needing forward validation. C0 is never edited or replaced by this study."
+}
