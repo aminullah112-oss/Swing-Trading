@@ -382,6 +382,56 @@ def forward_returns(ledger):
     return np.array(rs, dtype=float), np.array(months)
 
 
+OUTCOME_LABELS = {
+    'won': 'Won: closed in profit', 'stopped': 'Lost: stop hit', 'exited_loss': 'Lost: exited at a loss (trend/time exit)',
+    'open_profit': 'Open, in profit (mark-to-market)', 'open_loss': 'Open, at a loss (mark-to-market)',
+    'never_triggered': 'Never triggered (buy-stop not reached)', 'waiting': 'Waiting for entry session',
+    'not_tradable': 'Not tradable (rejected, cancelled or void)',
+}
+
+
+def classify_outcome(rec):
+    """One outcome class per signal. C0 has no fixed take-profit: a winner is a trade closed above its entry (trend exit or
+    time exit), so 'won' means profit realised by the rules, not a target hit."""
+    st = rec['status']
+    if st == 'closed':
+        if rec.get('r', 0) > 0:
+            return 'won'
+        return 'stopped' if str(rec.get('exit_reason', '')).endswith(('stop', 'trail')) else 'exited_loss'
+    if st == 'open':
+        return 'open_profit' if rec.get('unrealized_r', 0.0) >= 0 else 'open_loss'
+    return {'expired': 'never_triggered', 'pending': 'waiting'}.get(st, 'not_tradable')
+
+
+def outcomes(ledger):
+    """Tally of how the screened stocks fared, evidence-eligible signals only (legacy records are counted separately)."""
+    elig = [r for r in ledger['signals'] if r.get('evidence_eligible') is not False]
+    by = {k: {'n': 0, 'r': []} for k in OUTCOME_LABELS}
+    setups = {}
+    for r in elig:
+        c = classify_outcome(r)
+        by[c]['n'] += 1
+        rv = r.get('r') if r['status'] == 'closed' else r.get('unrealized_r') if r['status'] == 'open' else None
+        if rv is not None:
+            by[c]['r'].append(float(rv))
+        if c in ('won', 'stopped', 'exited_loss', 'open_profit', 'open_loss'):
+            d = setups.setdefault(r.get('setup') or 'unknown', {'entered': 0, 'good': 0})
+            d['entered'] += 1
+            d['good'] += c in ('won', 'open_profit')
+    entered = sum(by[k]['n'] for k in ('won', 'stopped', 'exited_loss', 'open_profit', 'open_loss'))
+    closed = sum(by[k]['n'] for k in ('won', 'stopped', 'exited_loss'))
+    return {
+        'classes': {k: {'label': OUTCOME_LABELS[k], 'n': v['n'], 'avg_r': round(sum(v['r']) / len(v['r']), 3) if v['r'] else None} for k, v in by.items()},
+        'entered': entered, 'closed': closed,
+        'closed_win_rate': round(by['won']['n'] / closed, 3) if closed else None,
+        'entered_in_profit_rate': round((by['won']['n'] + by['open_profit']['n']) / entered, 3) if entered else None,
+        'trigger_rate': round(entered / (entered + by['never_triggered']['n']), 3) if entered + by['never_triggered']['n'] else None,
+        'by_setup': {k: dict(v, hit_rate=round(v['good'] / v['entered'], 3)) for k, v in setups.items()},
+        'legacy_excluded': len(ledger['signals']) - len(elig),
+        'note': 'Win/loss counts are descriptive. Below ~100 closed signals they say little about the criteria; winners run under a slow exit, so early closed-only results skew to stops.',
+    }
+
+
 def summarize(ledger):
     sigs = ledger['signals']
     closed = [r for r in sigs if r['status'] == 'closed']
@@ -411,6 +461,7 @@ def summarize(ledger):
     if len(rs) >= 30:
         se = rs.std(ddof=1) / math.sqrt(len(rs))
         out['avg_r_ci95'] = [round(float(rs.mean() - 1.96 * se), 3), round(float(rs.mean() + 1.96 * se), 3)]
+    out['outcomes'] = outcomes(ledger)
     out['note'] = ('Signal-level R includes every signal, taken or not. Closed-only averages are biased toward losers '
                    'for months, because stops hit fast while winners stay open under the slow exit; read the figure '
                    'that includes open trades (marked to the last close) alongside it. Interval is naive (signals '

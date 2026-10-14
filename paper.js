@@ -19,6 +19,15 @@ function renderLedger(led) {
         `incl. open ${signed(sum.avg_r_incl_open)}R (${sum.total_r_incl_open ?? 0}R total)${ci}` +
         (led.last_update_ok === false ? ' · ⚠ last price update failed' : ''));
 
+    const oc = sum.outcomes;
+    if (oc) {
+        const pct = v => v == null ? '—' : Math.round(v * 100) + '%';
+        setText('outcome-meta', `triggered ${pct(oc.trigger_rate)} · closed win rate ${pct(oc.closed_win_rate)} · entered in profit ${pct(oc.entered_in_profit_rate)}` +
+            (oc.legacy_excluded ? ` · ${oc.legacy_excluded} legacy excluded` : ''));
+        document.getElementById('outcome-body').innerHTML = Object.values(oc.classes).map(c =>
+            `<tr class="stock-row"><td>${esc(c.label)}</td><td>${esc(c.n)}</td><td>${c.avg_r != null ? signed(c.avg_r) : '—'}</td></tr>`).join('');
+    }
+
     const order = {open: 0, pending: 1, closed: 2, expired: 3, void: 4};
     const rows = (led.signals || []).slice().sort((a, b) =>
         (order[a.status] - order[b.status]) || String(b.signal_date).localeCompare(String(a.signal_date))).slice(0, 80);
