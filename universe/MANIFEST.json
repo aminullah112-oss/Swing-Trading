@@ -1,0 +1,7 @@
+{
+ "_README": "SHA-256 of each frozen universe file. A version must never change; add a new version instead. tests/test_universe.py enforces this.",
+ "hashes": {
+  "U160_legacy": "6c799b9b9d4f5c7cf76dc159bb3a976e4c3670dedabc7cbacde04065f980637e",
+  "U159_v2": "eabf9b89a8291de06e9588fb872c4af3168a13e9d2da1f238d51c7d4a3321ae8"
+ }
+}

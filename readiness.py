@@ -25,7 +25,9 @@ from datetime import datetime, timezone
 import numpy as np
 
 import ledger as lg
+import provenance as provn
 import research as rs
+import settings
 import strategy
 
 LIVE_LABEL = f'{strategy.TRIGGER}/{strategy.EXIT_MODE}/h{strategy.MAX_HOLD}'
@@ -54,10 +56,66 @@ GATES = [
 assert abs(sum(g[2] for g in GATES) - 10.0) < 1e-9
 
 
+# Why a gate has not passed. Used by the remediation matrix; it never changes a score.
+#   passed          evidence satisfies the pre-registered criterion
+#   failed          evidence exists and does not satisfy it
+#   blocked_defect  cannot be evaluated because of an engineering/ops defect or stale evidence: fixable by us
+#   pending_time    needs calendar time or more observations: cannot be accelerated
+#   unverifiable    needs a human attestation or an external event the code cannot observe
+TIME_GATES = ('F1', 'F2', 'F3', 'F4', 'E1')
+
+
+def evidence_state(gid, status):
+    if status == 'pass':
+        return 'passed'
+    if status == 'fail':
+        return 'pending_time' if gid in ('F1', 'F2') else 'failed'
+    if status == 'manual':
+        return 'unverifiable'
+    if status in ('stale', 'blocked'):
+        return 'blocked_defect'
+    return 'pending_time' if gid in TIME_GATES else 'blocked_defect'     # 'insufficient'
+
+
 def _g(gid, status, value=None, threshold=None, detail=''):
     _, label, pts, crit = next(g for g in GATES if g[0] == gid)
     return {'id': gid, 'label': label, 'points': pts, 'critical': crit, 'status': status,
-            'earned': pts if status == 'pass' else 0.0, 'value': value, 'threshold': threshold, 'detail': detail}
+            'earned': pts if status == 'pass' else 0.0, 'value': value, 'threshold': threshold, 'detail': detail,
+            'evidence_state': evidence_state(gid, status)}
+
+
+def stale_evidence(ctx):
+    """Reasons the backtest-derived reports (grid, benchmarks, universe) cannot be credited. Empty = current.
+    Requires reports/provenance.json (written by stamp_reports.py) to match the current evidence_hash and universe, to be
+    recent, and every covered report to still have the content id recorded when it was stamped."""
+    rp = ctx.get('report_provenance')
+    why = list(provn.problems(rp, 'backtest', ctx.get('now')))
+    if rp and ctx.get('report_ids') is not None:
+        for name, rid in (rp.get('source_ids') or {}).items():
+            if ctx['report_ids'].get(name) != rid:
+                why.append(f'report {name} changed since it was stamped ({rid} -> {ctx["report_ids"].get(name)})')
+    return why
+
+
+def consistency(ctx):
+    """Cross-artefact consistency (health / ledger / scan / readiness inputs). Empty = consistent."""
+    ids, res, led, health = ctx.get('artifact_ids'), ctx.get('results') or {}, ctx.get('ledger') or {}, ctx.get('health') or {}
+    if ids is None:
+        return []
+    out = []
+    lp = (led.get('provenance') or {})
+    hp = (health.get('provenance') or {})
+    if led.get('signals') and not lp:
+        out.append('ledger.json has no provenance block')
+    if lp.get('source_ids', {}).get('results') not in (None, ids.get('results')) :
+        out.append('ledger.json was built from a different results.json than the current one')
+    if hp and hp.get('source_ids', {}).get('results') != ids.get('results'):
+        out.append('health.json was computed from a different results.json than the current one')
+    if hp and hp.get('source_ids', {}).get('ledger') != ids.get('ledger'):
+        out.append('health.json was computed from a different ledger.json than the current one')
+    if res.get('provenance') and res['provenance'].get('universe_hash') != provn.universe_info()['hash']:
+        out.append('results.json was produced for a different universe than the current one')
+    return out
 
 
 def live_variant(grid):
@@ -100,11 +158,16 @@ def evaluate(ctx):
     now = ctx.get('now') or datetime.now(timezone.utc)
     out = []
 
-    # --- backtest evidence
+    # --- backtest evidence (only if the reports are current for this code, config and universe)
+    stale = stale_evidence(ctx)
     row = live_variant(grid)
-    out.append(_g('B1', 'pass' if row and row.get('promising') else ('fail' if row else 'insufficient'),
+    if stale:
+        grid, row, uni = None, None, None
+        ctx = dict(ctx, benchmarks={})
+    out.append(_g('B1', 'stale' if stale else ('pass' if row and row.get('promising') else ('fail' if row else 'insufficient')),
                   value=f"G1/G2/G3 = {row['G1']}/{row['G2']}/{row['G3']}" if row else None, threshold='all three gates',
-                  detail=f'variant {LIVE_LABEL}' + ('' if row else ' not found in reports/grid.json')))
+                  detail=('STALE EVIDENCE, no credit: ' + stale[0] + ' (rerun the Backtest workflow)') if stale
+                  else f'variant {LIVE_LABEL}' + ('' if row else ' not found in reports/grid.json')))
 
     bm = ctx.get('benchmarks') or {}
     hold = (bm.get('periods') or {}).get('holdout') or {}
@@ -127,17 +190,30 @@ def evaluate(ctx):
                       detail=f"hold-out CAGR {row['holdout_port_cagr']}% / DD {row['holdout_port_maxdd']}% vs universe "
                              f"{u['cagr_pct']}% / {u['max_drawdown_pct']}% (run Backtest to add the momentum benchmark)"))
     else:
-        out.append(_g('U1', 'insufficient', detail='reports/benchmarks.json and universe.json missing: rerun the Backtest workflow'))
+        out.append(_g('U1', 'stale' if stale else 'insufficient',
+                      detail=('STALE EVIDENCE, no credit: ' + stale[0]) if stale else 'reports/benchmarks.json and universe.json missing: rerun the Backtest workflow'))
 
-    ok = bool(att.get('survivorship_free_backtest_passed'))
-    out.append(_g('B2', 'pass' if ok else 'manual', detail='attestations.json: survivorship_free_backtest_passed'))
+    # B2 needs the attestation AND the machine-checked point-in-time acceptance (reports/pit_acceptance.json): delisted names with
+    # prices, >=95% coverage. A tightening of the original attestation-only gate; it can only withhold credit.
+    pit_res = ctx.get('pit')
+    pit_ok = bool(pit_res and pit_res.get('passed') and not stale)
+    ok = bool(att.get('survivorship_free_backtest_passed')) and pit_ok
+    if ok:
+        out.append(_g('B2', 'pass', detail='attested and reports/pit_acceptance.json passed'))
+    elif att.get('survivorship_free_backtest_passed') and not pit_ok:
+        out.append(_g('B2', 'fail', detail='attested, but the point-in-time acceptance test did not pass: ' + '; '.join((pit_res or {}).get('reasons', ['reports/pit_acceptance.json missing or stale']))))
+    else:
+        out.append(_g('B2', 'manual', detail='survivorship bias remains: ' + '; '.join((pit_res or {}).get('reasons', ['no point-in-time universe tested'])[:2])
+                      + ' (attestations.json: survivorship_free_backtest_passed also required)'))
 
     # --- forward evidence
     summ = led.get('summary') or {}
-    closed = summ.get('closed', 0)
-    out.append(_g('F1', 'pass' if closed >= MIN_CLOSED else 'fail', value=closed, threshold=MIN_CLOSED))
-    started = led.get('started')
-    days = max(0, (now.date() - datetime.fromisoformat(started).date()).days) if started else 0
+    # Only evidence-eligible signals count: legacy records pre-date the fail-closed data gate and are excluded.
+    closed = summ.get('closed_eligible', summ.get('closed', 0))
+    out.append(_g('F1', 'pass' if closed >= MIN_CLOSED else 'fail', value=closed, threshold=MIN_CLOSED,
+                  detail=f"{summ.get('closed', 0) - closed} legacy closed signal(s) excluded" if summ.get('closed', 0) > closed else ''))
+    started = summ.get('first_eligible_signal', led.get('started')) if 'closed_eligible' in summ else led.get('started')
+    days = max(0, (now.date() - datetime.fromisoformat(str(started)[:10]).date()).days) if started else 0
     out.append(_g('F2', 'pass' if days >= MIN_DAYS else 'fail', value=days, threshold=MIN_DAYS))
 
     ci, rs_, months = forward_ci(led)
@@ -167,11 +243,19 @@ def evaluate(ctx):
     # --- operations and risk
     hs = health.get('status')
     lagging = any(c.get('id') == 'H1b' for c in health.get('checks', []))
-    if lagging:
+    incons = consistency(ctx)
+    dq = res.get('data_quality') or {}
+    if incons:
+        out.append(_g('O1', 'blocked', value=hs, threshold='artefacts consistent', detail='inconsistent artefacts, regenerate: ' + '; '.join(incons[:3])))
+    elif res and dq.get('status') == 'UNTRUSTED':
+        out.append(_g('O1', 'fail', value=hs, threshold='trusted data',
+                      detail='latest scan data UNTRUSTED (no actionable signals): ' + '; '.join(dq.get('reasons', [])[:2])))
+    elif lagging:
         out.append(_g('O1', 'fail', value=hs, threshold='no data lag',
                       detail='market data is behind the expected session; a system that buys the session after a signal cannot be traded on stale bars'))
     else:
-        out.append(_g('O1', 'pass' if hs in ('OK', 'WARN') else ('fail' if hs == 'FAIL' else 'insufficient'), value=hs, threshold='OK/WARN'))
+        out.append(_g('O1', 'pass' if hs in ('OK', 'WARN') else ('fail' if hs in ('FAIL', 'DEGRADED') else 'insufficient'), value=hs, threshold='OK/WARN',
+                      detail='health DEGRADED/FAIL earns no operations credit' if hs in ('FAIL', 'DEGRADED') else ''))
     cfg = res.get('risk_config') or {}
     safe = bool(cfg) and cfg.get('risk_pct', 99) <= 1.0 and cfg.get('max_open_risk_pct', 99) <= 3.0 and cfg.get('max_pos_pct', 99) <= 25.0
     out.append(_g('R1', 'pass' if safe else ('fail' if cfg else 'insufficient'), value=cfg or None))
@@ -201,8 +285,9 @@ def policy(gates, att, health, fills=None, capital=None):
     allowed = 0.0
     mode = 'PAPER ONLY'
     budget = live_budget(fills, capital)
-    if health.get('status') == 'FAIL':
-        reasons.append('health FAIL (kill switch or stale/broken pipeline)')
+    if health.get('status') in ('FAIL', 'DEGRADED') or settings.LIVE_EXECUTION_ENABLED:
+        reasons.append(f"health {health.get('status')} (data/ledger untrusted, kill switch or broken pipeline)" if health.get('status') in ('FAIL', 'DEGRADED')
+                       else 'LIVE_EXECUTION_ENABLED is True without authorisation')
     elif budget['exhausted']:
         reasons.append(f"live-loss budget used up: net {budget['net_pnl_inr']} INR vs limit -{budget['loss_budget_inr']} INR; review before resuming")
     elif not att.get('capital_confirmed'):
@@ -244,7 +329,7 @@ def markdown(res):
     L = [f"# Readiness scorecard: {res['policy']['score']}/10 — {res['policy']['mode']}", '',
          f"Generated {res['generated']}. Live risk allowed: **{res['policy']['live_risk_pct_allowed']}%** per trade.", '',
          '| Gate | Points | Status | Value / detail |', '|---|---|---|---|']
-    sym = {'pass': '✅ pass', 'fail': '❌ fail', 'insufficient': '⏳ not enough data', 'manual': '🖐 not attested'}
+    sym = {'pass': '✅ pass', 'fail': '❌ fail', 'insufficient': '⏳ not enough data', 'manual': '🖐 not attested', 'stale': '♻️ stale evidence', 'blocked': '🛠 blocked'}
     for g in res['gates']:
         d = g['value'] if g['value'] not in (None, '') else g['detail']
         if g['value'] not in (None, '') and g['detail']:
@@ -256,14 +341,24 @@ def markdown(res):
     return '\n'.join(L)
 
 
+ARTEFACTS = {'results': 'results.json', 'ledger': 'ledger.json', 'health': 'health.json', 'grid': 'reports/grid.json',
+             'benchmarks': 'reports/benchmarks.json', 'universe': 'reports/universe.json', 'attestations': 'attestations.json',
+             'report_provenance': 'reports/provenance.json'}
+
+
 def main():
     health = _load('health.json', {})
     ctx = {'ledger': _load('ledger.json', lg.empty()), 'results': _load('results.json', {}),
            'grid': _load('reports/grid.json'), 'universe': _load('reports/universe.json'), 'benchmarks': _load('reports/benchmarks.json'),
-           'attest': _load('attestations.json', {}), 'fills': load_fills(), 'health': health}
+           'attest': _load('attestations.json', {}), 'fills': load_fills(), 'health': health,
+           'report_provenance': _load('reports/provenance.json'), 'pit': _load('reports/pit_acceptance.json'),
+           'report_ids': {k: provn.file_id(p) for k, p in __import__('stamp_reports').REPORTS.items()},
+           'artifact_ids': {k: provn.file_id(p) for k, p in ARTEFACTS.items()}}
     gates = evaluate(ctx)
     pol = policy(gates, ctx['attest'], health, ctx['fills'], (ctx['results'].get('risk_config') or {}).get('capital'))
-    res = {'generated': datetime.now(timezone.utc).isoformat(timespec='seconds'), 'policy': pol, 'gates': gates}
+    res = {'generated': datetime.now(timezone.utc).isoformat(timespec='seconds'), 'policy': pol, 'gates': gates,
+           'inputs': ctx['artifact_ids'], 'stale_evidence': stale_evidence(ctx), 'inconsistencies': consistency(ctx),
+           'provenance': provn.make('readiness', data_cutoff=ctx['results'].get('data_cutoff'), sources=ARTEFACTS)}
     with open('readiness.json.tmp', 'w') as f:
         json.dump(res, f, indent=2, default=str)
     os.replace('readiness.json.tmp', 'readiness.json')

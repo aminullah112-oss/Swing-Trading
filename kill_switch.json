@@ -1,0 +1,1 @@
+{"engaged": true, "note": "Live trading is not authorised. Entries stay halted until the operator sets engaged=false after the live-trial gates are met and approval is given. A missing or unreadable file also halts entries."}

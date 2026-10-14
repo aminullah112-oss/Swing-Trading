@@ -1,6 +1,11 @@
 {
-  "status": "WARN",
-  "generated": "2026-10-13T20:21:40+00:00",
+  "status": "DEGRADED",
+  "permits": {
+    "new_entries": false,
+    "manage_exits": true,
+    "ops_credit": false
+  },
+  "generated": "2026-10-13T20:57:03+00:00",
   "checks": [
     {
       "id": "H1",
@@ -38,9 +43,56 @@
       "msg": "taken-signal equity drawdown 0.0% of capital (now +0.0%)"
     },
     {
+      "id": "H10",
+      "level": "degraded",
+      "msg": "results.json has no data_quality verdict (produced before the fail-closed scanner): rerun the Daily Stock Screen"
+    },
+    {
+      "id": "H11",
+      "level": "warn",
+      "msg": "ledger has not been reconciled yet"
+    },
+    {
+      "id": "H12",
+      "level": "ok",
+      "msg": "event log verified (0 events)"
+    },
+    {
+      "id": "H13",
+      "level": "warn",
+      "msg": "scan report provenance: report has no provenance block (produced before provenance existed): rerun it"
+    },
+    {
+      "id": "H13b",
+      "level": "warn",
+      "msg": "backtest evidence stale: report has no provenance block (produced before provenance existed): rerun it"
+    },
+    {
+      "id": "H14",
+      "level": "ok",
+      "msg": "live execution disabled (paper only)"
+    },
+    {
       "id": "H9",
       "level": "ok",
       "msg": "risk limits within bounds"
     }
-  ]
+  ],
+  "provenance": {
+    "kind": "health",
+    "generated_at": "2026-10-13T20:57:03+00:00",
+    "commit_sha": "393fa300399bc7ad7901d198f078e0bb361cfc4d",
+    "config_hash": "1aedd80e21d2bbbf",
+    "evidence_hash": "4ac547ca5af30df9",
+    "c0_hash": "5e7924a41b0ee220",
+    "universe_version": "U159_v2",
+    "universe_hash": "d02dc26765b272aa",
+    "universe_count": 159,
+    "data_cutoff": "2026-10-13",
+    "source_ids": {
+      "results": "8a65e6e12ba8",
+      "ledger": "ff5a17f04c1f",
+      "events": "e3b0c44298fc"
+    }
+  }
 }

@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
 """Pipeline and edge health monitoring. Runs daily after the scan and ledger update.
 
-Levels: ok < warn < fail. Overall status is the worst level. A FAIL exits non-zero so the GitHub
+Levels: ok < warn < degraded < fail. Overall status is the worst level, reported as OK / WARN / DEGRADED / FAIL.
+What each state permits (PERMITS below; readiness and the risk gate honour it):
+  OK        new entries allowed; full operations credit
+  WARN      new entries allowed; full operations credit; look at the warnings
+  DEGRADED  data or bookkeeping cannot be trusted: NO new entries (existing positions are managed and exited by their
+            rules), no operations credit, no live readiness
+  FAIL      broken integrity, tampering, kill switch or an enabled live switch: nothing may trade; non-zero exit
+ A FAIL exits non-zero so the GitHub
 Actions run goes red (GitHub emails you) and the workflow opens an issue. The kill-switch
 thresholds are fixed here, in advance, so they can't be argued away during a drawdown.
 
@@ -12,9 +19,12 @@ from datetime import datetime, timezone
 
 import numpy as np
 
+import events as evlog
 import ledger as lg
+import provenance as provn
 import readiness as rd
 import research as rs
+import settings
 
 FRESH_WARN_DAYS = 4         # calendar days since the last market bar (covers weekend + one holiday)
 FRESH_FAIL_DAYS = 7
@@ -28,6 +38,19 @@ KILL_DD_WARN = 5.0          # % of capital, taken-signal paper/live equity (clos
 KILL_DD_FAIL = 8.0
 DECAY_MIN_CLOSED_WARN = 30
 DECAY_MIN_CLOSED_FAIL = 60
+
+
+PERMITS = {
+    'OK': {'new_entries': True, 'manage_exits': True, 'ops_credit': True},
+    'WARN': {'new_entries': True, 'manage_exits': True, 'ops_credit': True},
+    'DEGRADED': {'new_entries': False, 'manage_exits': True, 'ops_credit': False},
+    'FAIL': {'new_entries': False, 'manage_exits': False, 'ops_credit': False},
+}
+
+
+def permits(status):
+    """Unknown or missing status is treated as FAIL (fail closed)."""
+    return PERMITS.get(status, PERMITS['FAIL'])
 
 
 def _c(cid, level, msg):
@@ -150,6 +173,46 @@ def run_checks(ctx):
             msg += f' >= {KILL_DD_FAIL:g}% kill switch: STOP trading and review before resuming'
         out.append(_c('H8', lvl, msg))
 
+    # --- data trust verdict from the scanner (P0-A)
+    dq = res.get('data_quality')
+    if res:
+        if not dq:
+            out.append(_c('H10', 'degraded', 'results.json has no data_quality verdict (produced before the fail-closed scanner): rerun the Daily Stock Screen'))
+        elif dq.get('status') != 'TRUSTED':
+            out.append(_c('H10', 'degraded', 'market data UNTRUSTED, no actionable signals: ' + '; '.join(dq.get('reasons', [])[:3])))
+        else:
+            q = dq.get('quarantined') or {}
+            out.append(_c('H10', 'warn' if q else 'ok', f"data trusted: {dq.get('official_coverage', 0):.0%} official-bar coverage"
+                          + (f"; {len(q)} symbol(s) quarantined ({', '.join(sorted(q)[:6])})" if q else '')))
+
+    # --- ledger reconciliation and event chain (P0-B)
+    rec = led.get('reconciliation')
+    if rec is None:
+        if sigs:
+            out.append(_c('H11', 'warn', 'ledger has not been reconciled yet'))
+    elif not rec.get('ok'):
+        kinds = sorted({i['kind'] for i in rec.get('issues', [])})
+        out.append(_c('H11', 'degraded', f"ledger reconciliation found {len(rec.get('issues', []))} issue(s): {', '.join(kinds)}"))
+    else:
+        out.append(_c('H11', 'ok', 'ledger reconciles with the event log and the calendar'))
+    ev_ok = ctx.get('events')
+    if ev_ok is not None:
+        out.append(_c('H12', 'ok' if ev_ok[0] else 'fail',
+                      f'event log verified ({ev_ok[1]} events)' if ev_ok[0] else f'EVENT LOG TAMPERED OR CORRUPT: {ev_ok[2]}'))
+
+    # --- stale evidence (does not stop operations, but earns no readiness credit)
+    stale = provn.problems(res.get('provenance'), 'scan', now) if res else []
+    if stale:
+        out.append(_c('H13', 'warn', 'scan report provenance: ' + stale[0]))
+    rp = ctx.get('report_provenance', 'unset')
+    if rp != 'unset':
+        bp = provn.problems(rp, 'backtest', now)
+        out.append(_c('H13b', 'warn' if bp else 'ok', ('backtest evidence stale: ' + bp[0]) if bp else 'backtest evidence provenance current'))
+
+    # --- the live switch must be off
+    out.append(_c('H14', 'fail' if settings.LIVE_EXECUTION_ENABLED else 'ok',
+                  'LIVE_EXECUTION_ENABLED is True: live trading is not authorised' if settings.LIVE_EXECUTION_ENABLED else 'live execution disabled (paper only)'))
+
     # --- config sanity
     cfg = res.get('risk_config') or {}
     if cfg:
@@ -159,9 +222,9 @@ def run_checks(ctx):
 
 
 def overall(checks):
-    order = {'ok': 0, 'warn': 1, 'fail': 2}
+    order = {'ok': 0, 'warn': 1, 'degraded': 2, 'fail': 3}
     worst = max((order[c['level']] for c in checks), default=0)
-    return {0: 'OK', 1: 'WARN', 2: 'FAIL'}[worst]
+    return {0: 'OK', 1: 'WARN', 2: 'DEGRADED', 3: 'FAIL'}[worst]
 
 
 def _load(path, default=None):
@@ -173,15 +236,18 @@ def _load(path, default=None):
 
 
 def main():
-    ctx = {'ledger': _load('ledger.json', lg.empty()), 'results': _load('results.json', {}), 'grid': _load('reports/grid.json')}
+    ctx = {'ledger': _load('ledger.json', lg.empty()), 'results': _load('results.json', {}), 'grid': _load('reports/grid.json'),
+           'events': evlog.verify('events.jsonl'), 'report_provenance': _load('reports/provenance.json')}
     checks = run_checks(ctx)
     status = overall(checks)
-    rep = {'status': status, 'generated': datetime.now(timezone.utc).isoformat(timespec='seconds'), 'checks': checks}
+    rep = {'status': status, 'permits': permits(status), 'generated': datetime.now(timezone.utc).isoformat(timespec='seconds'), 'checks': checks,
+           'provenance': provn.make('health', data_cutoff=ctx['results'].get('data_cutoff'),
+                                   sources={'results': 'results.json', 'ledger': 'ledger.json', 'events': 'events.jsonl'})}
     with open('health.json.tmp', 'w') as f:
         json.dump(rep, f, indent=2)
     os.replace('health.json.tmp', 'health.json')
-    icon = {'ok': '✅', 'warn': '⚠️', 'fail': '❌'}
-    print(f'HEALTH: {status}')
+    icon = {'ok': '✅', 'warn': '⚠️', 'degraded': '🟠', 'fail': '❌'}
+    print(f'HEALTH: {status}  permits {permits(status)}')
     for c in checks:
         print(f"  {icon[c['level']]} {c['id']}: {c['msg']}")
     if status == 'FAIL':

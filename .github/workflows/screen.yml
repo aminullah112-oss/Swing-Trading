@@ -2,7 +2,8 @@ name: Daily Stock Screen
 
 on:
   schedule:
-    - cron: '30 3 * * 1-5'
+    - cron: '30 12 * * 1-5'   # 18:00 IST, ninety minutes after the close, when official daily bars exist
+    - cron: '30 15 * * 1-5'   # 21:00 IST retry for a lagging vendor; ingestion is idempotent so a second run is safe
   workflow_dispatch:
 
 permissions:
@@ -48,16 +49,26 @@ jobs:
       continue-on-error: true
       run: python health.py
 
+    - name: Forward-validation report
+      if: always()
+      continue-on-error: true
+      run: python forward_report.py
+
     - name: Readiness scorecard
       if: always()
       run: python readiness.py
+
+    - name: Remediation matrix
+      if: always()
+      continue-on-error: true
+      run: python remediation.py
 
     - name: Commit results
       if: always()
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
-        for f in results.json ledger.json health.json readiness.json reports/readiness.md provisional_bars.json provisional_audit.json; do git add -A -- "$f" 2>/dev/null || true; done
+        for f in results.json ledger.json events.jsonl health.json readiness.json reports/readiness.md reports/forward.md reports/forward.json reports/remediation.md reports/remediation.json provisional_bars.json provisional_audit.json; do git add -A -- "$f" 2>/dev/null || true; done
         git commit -m "Scan update $(date -u +'%Y-%m-%d %H:%M UTC')" || { echo "No changes"; exit 0; }
         git pull --rebase origin main
         git push origin main

@@ -23,6 +23,17 @@ def backtest_config(**overrides):
     return bt.Config(min_score=MIN_SCORE, trigger=TRIGGER, exit_mode=EXIT_MODE, max_hold=MAX_HOLD, **overrides)
 
 
+def realistic_config(**overrides):
+    """C0 under the itemised execution model (statutory costs, 10 bps slippage, liquidity caps). Used for forward paper
+    results and for every experiment decision; backtest_config() stays the legacy-cost definition C0 was frozen with."""
+    import dataclasses
+    import settings
+    cfg = backtest_config(cost_buy_bps=settings.COST_BUY_BPS, cost_sell_bps=settings.COST_SELL_BPS,
+                          slippage_bps=settings.SLIPPAGE_BPS_PER_SIDE, participation_cap=settings.LIQUIDITY_PARTICIPATION_CAP,
+                          adv_cap=settings.ADV_ORDER_CAP)
+    return dataclasses.replace(cfg, **overrides) if overrides else cfg
+
+
 def describe():
     return {'name': NAME, 'min_score': MIN_SCORE, 'trigger': TRIGGER, 'exit_mode': EXIT_MODE, 'max_hold': MAX_HOLD,
             'entry_rule': 'Buy-stop at the signal-day high, valid for the next session only.',

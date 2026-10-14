@@ -1,0 +1,44 @@
+{
+ "id": "PREREG_v1",
+ "registered_on": "2026-10-13",
+ "registered_before_any_result": true,
+ "control": "C0",
+ "universe_version": "U159_v2",
+ "purpose": "Test whether any simple, pre-specified modification of C0 improves NET risk-adjusted performance after realistic costs. Retain C0 if none does. Failing every variant is a valid and expected outcome.",
+ "execution_model": "itemised statutory costs (settings.COST_BUY_BPS/COST_SELL_BPS), slippage 10 bps/side, 5% volume participation cap, 2% of 20-day ADV order cap. Decisions use this model only; the legacy flat-cost run is reported for continuity.",
+ "windows": {
+  "design_end": "2024-12-31",
+  "walk_forward_blocks": "one block per calendar year of entry dates from 2017 to 2024; variants have fixed parameters (nothing is fitted), so each block is an out-of-sample test of the same rule",
+  "holdout_start": "2025-01-01",
+  "holdout_rule": "opened ONCE per (hypothesis, prereg hash), only for variants that pass every walk-forward criterion; logged in experiments/holdout_log.jsonl; never used to adjust parameters",
+  "contamination_note": "C0 was selected as best-of-12 variants using data that included 2023-2026, so no historical window is clean for C0 itself. The 2025+ hold-out is untouched by selection of these NEW variants only. Only forward paper data can validate C0."
+ },
+ "multiple_testing": {"family": "H1..H8", "n_tests": 8, "method": "Bonferroni", "alpha_family": 0.05, "alpha_per_test": 0.00625,
+                      "note": "C0 itself already survived a 12-variant search; its own selection bias is not corrected by this family."},
+ "hypotheses": [
+  {"id": "H1", "name": "relative-strength filter", "change": "keep trades whose volatility-adjusted momentum (indicator 'mom') ranks in the top 30% of the universe on the signal date", "param": {"min_rank": 0.70}},
+  {"id": "H2", "name": "near 52-week high", "change": "keep trades with close within 10% of the 52-week high", "param": {"min_from_52h_pct": -10.0}},
+  {"id": "H3", "name": "liquidity floor", "change": "keep trades with 20-day average traded value >= INR 5 crore", "param": {"min_adv20_value": 50000000}},
+  {"id": "H4", "name": "volatility cap", "change": "keep trades with ATR/close <= 4%", "param": {"max_atr_pct": 4.0}},
+  {"id": "H5", "name": "higher score bar", "change": "keep trades with score >= 80 instead of 72", "param": {"min_score": 80}},
+  {"id": "H6", "name": "bull-regime only", "change": "skip entries when the Nifty 50 is below its EMA200 on the signal date", "param": {"regime": "bull"}},
+  {"id": "H7", "name": "smaller positions, more of them", "change": "risk 0.25% per trade with the same 1.5% open-risk cap (up to 6 positions)", "param": {"risk_pct": 0.0025}},
+  {"id": "H8", "name": "shorter maximum hold", "change": "max hold 60 sessions instead of 120", "param": {"max_hold": 60}}
+ ],
+ "walk_forward_pass_criteria": {
+  "P1_sample": "at least 100 trades AND entries in at least 40 distinct calendar months in the design window (a proxy for effective independent observations; trades inside a month are correlated)",
+  "P2_net_edge_vs_C0": "paired daily NET portfolio return difference (variant minus C0, design window) has a month-clustered bootstrap CI at alpha_per_test whose LOWER bound is above 0",
+  "P3_consistency": "variant net return exceeds C0 net return in at least 5 of the 8 yearly blocks",
+  "P4_absolute": "variant design-window net CAGR > 0 after the execution model"
+ },
+ "holdout_pass_criteria": {
+  "O1": "hold-out net Calmar >= C0 hold-out net Calmar",
+  "O2": "hold-out net CAGR > 0",
+  "O3": "hold-out max drawdown no worse than C0's by more than 2 percentage points"
+ },
+ "adoption_rule": "A variant that passes everything becomes a CANDIDATE (new strategy id), still needing the full forward-validation programme. C0 is never edited or replaced by this study.",
+ "diagnostics_not_tests": [
+  "score predictiveness: Spearman(score, R) and top-minus-bottom tercile gap with month-clustered CIs on the design window; if the lower bounds do not exceed 0 the score is recorded as non-predictive. This does not change C0.",
+  "C0 versus same-universe equal-weight, momentum-30 replica and Nifty 50, including exposure-matched and volatility-matched versions"
+ ]
+}

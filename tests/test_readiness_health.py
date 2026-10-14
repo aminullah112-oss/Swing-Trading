@@ -5,6 +5,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 import ledger as lg
 import readiness as rd
 import health as hl
+import provenance as provn
 
 NOW = datetime(2027, 6, 1, tzinfo=timezone.utc)
 GRID = [{'label': rd.LIVE_LABEL, 'promising': True, 'G1': True, 'G2': True, 'G3': True, 'design_avg_r': 0.2,
@@ -36,8 +37,8 @@ def led_with(n_closed, mean_r, months=9, n_open=0, started='2026-10-14', taken=F
     return led
 
 
-def ctx(led, att=ATT_NO, uni=UNI_WINS, fills=(), health='OK', res=RES):
-    return {'ledger': led, 'results': res, 'grid': GRID, 'universe': uni, 'attest': att, 'fills': list(fills),
+def ctx(led, att=ATT_NO, uni=UNI_WINS, fills=(), health='OK', res=RES, rprov='current', pit={'passed': True, 'status': 'pass', 'reasons': []}):
+    return {'pit': pit, 'report_provenance': dict(provn.make('backtest'), generated_at=NOW.isoformat()) if rprov == 'current' else rprov, 'report_ids': None, 'ledger': led, 'results': res, 'grid': GRID, 'universe': uni, 'attest': att, 'fills': list(fills),
             'health': {'status': health}, 'now': NOW}
 
 

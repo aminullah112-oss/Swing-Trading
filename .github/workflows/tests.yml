@@ -11,8 +11,13 @@ jobs:
     timeout-minutes: 10
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - uses: actions/setup-python@v4
       with:
         python-version: '3.11'
     - run: pip install -r requirements.txt pytest
     - run: python -m pytest -q tests
+    - name: Event log is append-only
+      run: |
+        if [ -n "$GITHUB_BASE_REF" ]; then python check_events.py "origin/$GITHUB_BASE_REF"; else python check_events.py; fi

@@ -1,0 +1,28 @@
+{
+ "_README": "Control C0. This is the strategy that was the default when the evidence programme started. It is never replaced or edited: new variants are separate experiments with their own IDs, compared against C0. Changing any field here must change c0_hash, which the regression test pins.",
+ "id": "C0",
+ "name": "slow-exit v4 (paper-trading candidate)",
+ "c0_hash": "5e7924a41b0ee220",
+ "spec": {
+  "name": "slow-exit v4 (paper-trading candidate)",
+  "min_score": 72,
+  "trigger": "prior_high",
+  "exit_mode": "ema50",
+  "max_hold": 120,
+  "entry_rule": "Buy-stop at the signal-day high, valid for the next session only.",
+  "exit_rule": "Exit at the next open after a daily close below EMA50, or after 120 trading days.",
+  "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
+ },
+ "identity": {
+  "min_score": 72,
+  "trigger": "prior_high",
+  "exit_mode": "ema50",
+  "max_hold": 120,
+  "stop_atr_mult": 1.5
+ },
+ "frozen_on": "2026-10-13",
+ "frozen_at_commit": "f1ac90c1f8c2c2e28e02df7fd447c8eb91bf1f0c",
+ "signal_rule": "stage==2 AND supertrend up AND scanner filters (RSI 33-80, price >= 0.95*EMA50, price >= 20) AND score >= 72",
+ "cost_model_for_reproduction": "legacy flat: 15 bps costs + 10 bps slippage per side (settings.LEGACY_*); C0 is also reported under the itemised model",
+ "universe_for_reproduction": "U159_v2 (current) and U160_legacy (original); results are never mixed across versions"
+}

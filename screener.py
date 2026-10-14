@@ -17,66 +17,26 @@ from risk import size_position, stop_distance
 import strategy
 import analysis
 import intraday
+import dataquality
+import provenance
 
 warnings.filterwarnings('ignore')
 
 IST = ZoneInfo('Asia/Kolkata')
 
-def _env_float(name, default):
-    try:    return float(os.environ.get(name, default))
-    except ValueError: return default
+# Risk, capital and execution settings: single source of truth in settings.py (re-exported here for compatibility)
+from settings import (CAPITAL, RISK_PCT, MAX_POS_PCT, MAX_OPEN_RISK, MIN_DATA_RATIO, _env_float)  # noqa: E402,F401
+import universe as _universe  # noqa: E402
 
-# Override via workflow env / repo variables. Defaults are deliberately conservative.
-CAPITAL        = _env_float('EDGE_CAPITAL', 565000)    # actual available INR equity
-RISK_PCT       = _env_float('EDGE_RISK_PCT', 0.5) / 100
-MAX_POS_PCT    = _env_float('EDGE_MAX_POS_PCT', 25) / 100     # per-position value cap
-MAX_OPEN_RISK  = _env_float('EDGE_MAX_OPEN_RISK_PCT', 1.5) / 100  # across all signals
-MIN_DATA_RATIO = 0.8    # fail the scan if fewer than 80% of symbols have usable data
-
-# Corrected Yahoo Finance ticker symbols for NSE
-NSE_STOCKS = [
-    'RELIANCE','TCS','HDFCBANK','INFY','HINDUNILVR',
-    'ICICIBANK','SBIN','BHARTIARTL','KOTAKBANK','LT',
-    'AXISBANK','WIPRO','MARUTI','BAJFINANCE','HCLTECH',
-    'ASIANPAINT','ULTRACEMCO','TITAN','SUNPHARMA','NESTLEIND',
-    'TECHM','TATAMOTORS','INDUSINDBK','POWERGRID','NTPC',
-    'BAJAJFINSV','ONGC','JSWSTEEL','TATASTEEL','COALINDIA',
-    'ADANIENT','ADANIPORTS','CIPLA','DRREDDY','DIVISLAB',
-    'BRITANNIA','EICHERMOT','GRASIM','HEROMOTOCO','ITC',
-    'M&M','BPCL','IOC','TATACONSUM','APOLLOHOSP',
-    'BAJAJ-AUTO','UPL','SBILIFE','HDFCLIFE','HINDALCO',
-    'DMART','SIEMENS','HAVELLS','PIDILITIND','DABUR',
-    'MARICO','COLPAL','BERGEPAINT','GODREJCP','MUTHOOTFIN',
-    'LUPIN','BIOCON','TORNTPHARM','ALKEM','AUROPHARMA',
-    'GLENMARK','AMBUJACEM','ACC','SHREECEM','INDIGO',
-    'TATAPOWER','TRENT','NAUKRI','IRCTC','CONCOR',
-    'SAIL','NMDC','VEDL','GAIL','PETRONET',
-    'IGL','BANKBARODA','PNB','CANBK','FEDERALBNK',
-    'IDFCFIRSTB','RBLBANK','AUBANK','CHOLAFIN','LICHSGFIN',
-    'MANAPPURAM','SUNDARMFIN','SHRIRAMFIN','PIIND','PERSISTENT',
-    'COFORGE','MPHASIS','LTTS','KPITTECH','TATAELXSI',
-    'CYIENT','DEEPAKNTR','NAVINFLUOR','TATACHEM','APOLLOTYRE',
-    'BALKRISIND','CEATLTD','MRF','MOTHERSON','BHARATFORG',
-    'BOSCHLTD','VOLTAS','KAJARIACER','SUPREMEIND','ASTRAL',
-    'POLYCAB','KEI','PAGEIND','RADICO','LAURUSLABS',
-    'GRANULES','AJANTPHARM','ERIS','METROPOLIS','MAXHEALTH',
-    'FORTIS','NH','SYNGENE','BRIGADE','SOBHA',
-    'PRESTIGE','GODREJPROP','PHOENIXLTD','OBEROIRLTY','THERMAX',
-    'CUMMINSIND','EMAMILTD','BEL','HAL','IRFC',
-    'RVNL','PFC','RECLTD','SJVN','NHPC',       # REC.NS → RECLTD.NS
-    'SUZLON','TRIDENT','RAYMOND','COROMANDEL','CHAMBLFERT',
-    'RALLIS','DHANUKA','ATUL','NOCIL','APLAPOLLO',
-    'ZOMATO','AARTIIND','TVSMOTOR','PRAJIND',   # Fixed tickers
-]
-NSE_STOCKS = list(dict.fromkeys(NSE_STOCKS))
+# The stock universe is a frozen, versioned file (universe/*.json); see universe.py
+_U = _universe.load()
+UNIVERSE_VERSION = _U['version']
+NSE_STOCKS = _U['symbols']
 YF_TICKERS = [f"{s}.NS" for s in NSE_STOCKS]
 BENCH = '^NSEI'
 # Renamed / restructured tickers. The modern symbol is tried first, then the original. A series that
 # stops more than STALE_DAYS before the latest bar is treated as missing (delisted or renamed).
-SYMBOL_ALIASES = {
-    'ZOMATO': ['ETERNAL'],          # renamed Eternal Ltd in 2025
-    'TATAMOTORS': ['TMPV'],         # demerger: passenger-vehicle company
-}
+SYMBOL_ALIASES = _U['aliases']
 ALIAS_TICKERS = [f'{a}.NS' for v in SYMBOL_ALIASES.values() for a in v]
 STALE_DAYS = 7
 PROV_MIN_COVERAGE = 0.8      # use provisional bars only if intraday data covers most of the universe
@@ -441,11 +401,23 @@ def arbitrary_order(scan_date, symbol):
     return hashlib.sha1(f'{scan_date}|{symbol}'.encode()).hexdigest()
 
 
+def vendor_metadata(bulk, retrieved_at, last_bars):
+    """Where the data came from and exactly what the vendor returned."""
+    last_row = bulk.iloc[-1]
+    return {
+        'vendor': 'yahoo-finance via yfinance', 'vendor_version': getattr(yf, '__version__', 'unknown'),
+        'interval': '1d', 'period': '1y', 'auto_adjust': True, 'retrieved_at': retrieved_at.isoformat(timespec='seconds'),
+        'frame_last_row': str(bulk.index.max().date()), 'rows': int(len(bulk)),
+        'non_null_closes_on_last_row': int(last_row.xs('Close', level=1).notna().sum()) if hasattr(last_row.index, 'levels') else None,
+        'last_bar_counts': {str(k): int(v) for k, v in sorted(__import__('collections').Counter(d.date() for d in last_bars).items(), reverse=True)[:4]},
+    }
+
+
 def main():
     print("\n" + "=" * 70)
     print(f"EDGE PROTOCOL — {strategy.NAME}")
     print(f"Capital: Rs{CAPITAL:,.0f} | Risk/trade {RISK_PCT:.2%} | Pos cap {MAX_POS_PCT:.0%} | "
-          f"Open-risk cap {MAX_OPEN_RISK:.2%} | Universe: {len(NSE_STOCKS)}")
+          f"Open-risk cap {MAX_OPEN_RISK:.2%} | Universe {UNIVERSE_VERSION}: {len(NSE_STOCKS)}")
     print(f"Scan: {datetime.now(IST).strftime('%A %Y-%m-%d %H:%M:%S')} IST")
     print("=" * 70 + "\n")
 
@@ -459,38 +431,15 @@ def main():
         sys.exit(1)
 
     now_utc = datetime.now(timezone.utc)
-    last_bars = []
-    results = []; stats = {'data': 0, 'stage': 0, 'st': 0, 'rsi': 0, 'price': 0, 'score': 0}
-    missing = []
-
-    print(f"\n{'Symbol':<14}{'Setup':<20}{'Close':>10}{'Buy>':>10}{'Stop':>10}")
-    print("-" * 70)
-    frame_last = bulk.index.max()
-    aliases_used = {}
     now_ist = now_utc.astimezone(IST)
     holidays = analysis.load_holidays()
     expected = analysis.expected_last_session(now_ist, holidays=holidays)
     latest_audit = audit_previous_provisional(bulk)
+    frame_last = bulk.index.max()
+    stats = {'data': 0, 'stage': 0, 'st': 0, 'rsi': 0, 'price': 0, 'score': 0}
+    missing, aliases_used = [], {}
 
-    def handle(sym, df, used, prov=None):
-        if used != sym:
-            aliases_used[sym] = used
-        last_bars.append(df.index[-1])
-        rec, why = evaluate(df, (sym in se) or (used in se))
-        if rec is None:
-            stats[why] += 1
-            return
-        rec['symbol'] = used
-        rec['timestamp'] = now_utc.isoformat()
-        if prov:
-            rec['provisional'] = True
-            rec['checks'].append({'id': 'provisional', 'status': 'warn',
-                                  'text': f"Provisional bar: built from 5-minute data ({prov}) because the official daily bar "
-                                          f"is not published yet; the official close may differ slightly"})
-        results.append(rec)
-        print(f"{sym:<14}{rec['setup_type']:<20}{rec['price']:>10.2f}{rec['trigger']:>10.2f}{rec['stop_loss']:>10.2f}"
-              f"{'  (provisional)' if prov else ''}")
-
+    # 1. resolve every symbol to OFFICIAL daily bars (rows with a real close)
     resolved = {}
     for sym in NSE_STOCKS:
         try:
@@ -499,11 +448,11 @@ def main():
                 missing.append(sym)
             else:
                 resolved[sym] = (df, used)
+                if used != sym:
+                    aliases_used[sym] = used
         except Exception as e:
             print(f"{sym}: {str(e)[:50]}")
-
-    recovered = []
-    again = None
+    recovered, again = [], None
     if missing:                        # second chance before declaring anything missing
         print(f"Retrying {len(missing)} symbols individually: {', '.join(missing)}")
         again = retry_download(missing)
@@ -514,60 +463,88 @@ def main():
                 df, used, _ = resolve_symbol(again, sym, frame_last)
                 if df is not None:
                     resolved[sym] = (df, used); missing.remove(sym); recovered.append(sym)
+                    if used != sym:
+                        aliases_used[sym] = used
             except Exception as e:
                 print(f"{sym} (retry): {str(e)[:50]}")
     missing_detail = {sym: diagnose_symbol(again if again is not None else bulk, sym) for sym in missing}
     stats['data'] = len(missing)
-    if recovered:
-        print(f"Recovered on retry: {', '.join(recovered)}")
-
-    # The vendor's daily bar for the latest session can lag while its 5-minute bars are complete.
-    prov_bars, prov_method, intr, nifty_bar = {}, None, None, None
-    if resolved:
-        data_last = max(df.index[-1] for df, _ in resolved.values()).date()
-        if data_last < expected:
-            tick_map = {used: f'{used}.NS' for _, used in resolved.values()}
-            intr = fetch_intraday(list(tick_map.values()) + [BENCH])
-            prov_bars = intraday.build_bars(intr, tick_map, expected)
-            if len(prov_bars) < PROV_MIN_COVERAGE * len(resolved):
-                print(f"Intraday data covers only {len(prov_bars)}/{len(resolved)} symbols; not using provisional bars.")
-                prov_bars = {}
-            else:
-                prov_method = intraday.choose_method(intraday.load_json(intraday.AUDIT_FILE, []))
-                nb = intraday.build_bars(intr, {BENCH: BENCH}, expected).get(BENCH)
-                nifty_bar = nb
-                print(f"Using provisional {expected} bars for {len(prov_bars)} symbols (close = {prov_method}).")
-
-    for sym, (df, used) in resolved.items():
-        try:
-            prov = None
-            if used in prov_bars:
-                df = intraday.append_provisional(df, prov_bars[used], prov_method)
-                prov = prov_method
-            handle(sym, df, used, prov)
-        except Exception as e:
-            print(f"{sym}: {str(e)[:50]}")
-    if prov_bars:
-        intraday.save_json({'date': str(expected), 'method': prov_method, 'created': intraday.stamp(), 'bars': prov_bars},
-                           intraday.BARS_BAND)
-
-    processed = len(NSE_STOCKS) - stats['data']
-    if processed < MIN_DATA_RATIO * len(NSE_STOCKS) or not last_bars:
+    processed = len(NSE_STOCKS) - len(missing)
+    if processed < MIN_DATA_RATIO * len(NSE_STOCKS) or not resolved:
         print(f"FATAL: only {processed}/{len(NSE_STOCKS)} symbols had usable data. Keeping previous results.json.")
         sys.exit(1)
-
-    data_cutoff = max(last_bars).strftime('%Y-%m-%d')
     if missing:
         print(f"No usable data for {len(missing)} symbols: {', '.join(missing)}")
     if aliases_used:
         print(f"Resolved renamed tickers: {aliases_used}")
-    try:
-        nifty = extract_df(bulk, BENCH)
-        if nifty is not None and nifty_bar:
-            nifty = intraday.append_provisional(nifty, nifty_bar, prov_method)
-        nifty_close = nifty['Close'] if nifty is not None else None
-    except Exception:
-        nifty_close = None
+
+    # 2. validate, then decide whether ANY signal may be actionable (fail closed)
+    per_symbol = {used: dataquality.summarize_symbol(df, expected, holidays) for _, (df, used) in resolved.items()}
+    nifty_df = extract_df(bulk, BENCH)
+    nifty_last = nifty_df.index[-1].date() if nifty_df is not None else None
+    dq = dataquality.assess(per_symbol, expected, nifty_last)
+    trusted = dq['status'] == 'TRUSTED'
+    allowed = dataquality.actionable_symbols(per_symbol, expected) if trusted else set()
+    last_bars = [df.index[-1] for df, _ in resolved.values()]
+    vendor = vendor_metadata(bulk, now_utc, last_bars)
+    data_cutoff = str(max(last_bars).date())
+    print(f"Data quality: {dq['status']} | official coverage {dq['official_coverage']:.0%} for {expected}"
+          + ('' if trusted else f" | reasons: {'; '.join(dq['reasons'])}"))
+
+    results, previews = [], []
+
+    def handle(sym, df, used, into, preview=False):
+        rec, why = evaluate(df, (sym in se) or (used in se))
+        if rec is None:
+            stats[why] += 1
+            return
+        rec['symbol'] = used
+        rec['timestamp'] = now_utc.isoformat()
+        if preview:
+            rec.update({'actionable': False, 'provisional': True, 'execution_ok': False, 'position': None})
+            rec['checks'].append({'id': 'provisional', 'status': 'block',
+                                  'text': 'PREVIEW ONLY: built from provisional 5-minute data. Never an entry or exit instruction.'})
+        else:
+            rec['actionable'] = True
+        into.append(rec)
+        print(f"{sym:<14}{rec['setup_type']:<20}{rec['price']:>10.2f}{rec['trigger']:>10.2f}{rec['stop_loss']:>10.2f}"
+              f"{'  (PREVIEW, not actionable)' if preview else ''}")
+
+    print(f"\n{'Symbol':<14}{'Setup':<20}{'Close':>10}{'Buy>':>10}{'Stop':>10}")
+    print("-" * 70)
+    prov_bars, prov_method, nifty_bar = {}, None, None
+    if trusted:
+        for sym, (df, used) in resolved.items():
+            if used not in allowed:
+                continue                                            # quarantined: never actionable
+            try:
+                handle(sym, df, used, results)
+            except Exception as e:
+                print(f"{sym}: {str(e)[:50]}")
+    else:
+        # Not trustworthy: nothing is actionable. A preview from intraday data may be shown, labelled as such.
+        tick_map = {used: f'{used}.NS' for _, used in resolved.values()}
+        intr = fetch_intraday(list(tick_map.values()) + [BENCH])
+        prov_bars = intraday.build_bars(intr, tick_map, expected)
+        if len(prov_bars) >= PROV_MIN_COVERAGE * len(resolved):
+            prov_method = intraday.choose_method(intraday.load_json(intraday.AUDIT_FILE, []))
+            nifty_bar = intraday.build_bars(intr, {BENCH: BENCH}, expected).get(BENCH)
+            for sym, (df, used) in resolved.items():
+                if used in prov_bars:
+                    try:
+                        handle(sym, intraday.append_provisional(df, prov_bars[used], prov_method), used, previews, preview=True)
+                    except Exception as e:
+                        print(f"{sym}: {str(e)[:50]}")
+            intraday.save_json({'date': str(expected), 'method': prov_method, 'created': intraday.stamp(), 'bars': prov_bars}, intraday.BARS_BAND)
+        else:
+            print(f"Intraday data covers only {len(prov_bars)}/{len(resolved)} symbols: no preview.")
+            prov_bars = {}
+        vendor['probe'] = probe_vendor()
+
+    nifty_close = None
+    if nifty_df is not None:
+        nd = intraday.append_provisional(nifty_df, nifty_bar, prov_method) if (nifty_bar and not trusted) else nifty_df
+        nifty_close = nd['Close']
     results.sort(key=lambda r: arbitrary_order(data_cutoff, r['symbol']))
     open_risk = 0.0
     for r in results:
@@ -575,29 +552,14 @@ def main():
         if r['position'] and r['position']['within_risk_budget']:
             open_risk += r['position']['risk_amount']
 
-    print("\n" + "=" * 70)
-    print(f"DONE | Signals: {len(results)} | Filtered -> Stage:{stats['stage']} ST:{stats['st']} RSI:{stats['rsi']} "
-          f"Price:{stats['price']} Score<{strategy.MIN_SCORE}:{stats['score']} Data:{stats['data']}")
-    print("=" * 70)
-
     behind = analysis.sessions_behind(max(last_bars).date(), expected, holidays)
-    # What the vendor actually returned, so a lag can be diagnosed instead of guessed at
-    last_row = bulk.iloc[-1]
-    vendor = {'frame_last_row': str(bulk.index.max().date()), 'rows': int(len(bulk)),
-              'non_null_closes_on_last_row': int(last_row.xs('Close', level=1).notna().sum()) if hasattr(last_row.index, 'levels') else None,
-              'last_bar_counts': {str(k): int(v) for k, v in
-                                  sorted(__import__('collections').Counter(d.date() for d in last_bars).items(), reverse=True)[:4]}}
-    print(f"Vendor last row {vendor['frame_last_row']}; last-bar counts {vendor['last_bar_counts']}; "
-          f"non-null closes on last row: {vendor['non_null_closes_on_last_row']}")
-    if behind > 0:
-        vendor['probe'] = probe_vendor()
-        print(f"Vendor probe: {vendor['probe']}")
-    if behind > 0:   # the buy-stop session after the signal has already traded: not actionable
-        for r in results:
-            r['checks'].append({'id': 'freshness', 'status': 'block',
-                                'text': f"Stale: data ends {data_cutoff} but the last completed session is {expected}; "
-                                        f"the session this buy-stop applies to has already traded"})
-            r['execution_ok'] = False
+    print("\n" + "=" * 70)
+    print(f"DONE | Actionable signals: {len(results)} | Previews: {len(previews)} | Filtered -> Stage:{stats['stage']} ST:{stats['st']} "
+          f"RSI:{stats['rsi']} Price:{stats['price']} Score<{strategy.MIN_SCORE}:{stats['score']} Data:{stats['data']}")
+    print("=" * 70)
+    market = analysis.market_context(nifty_close, processed - stats['stage'], processed, len(results) or len(previews))
+    if market.get('nifty') and not trusted and nifty_bar:
+        market['nifty']['provisional'] = True
     out = {
         'scan_id':           uuid.uuid4().hex[:12],
         'timestamp':         now_utc.isoformat(),           # UTC, machine-readable
@@ -606,31 +568,37 @@ def main():
         'data_cutoff':       data_cutoff,
         'expected_session':  str(expected),
         'sessions_behind':   behind,
+        'actionable':        trusted,
+        'data_quality':      dq,
         'missing_symbols':   missing,
         'missing_detail':    missing_detail,
         'recovered_on_retry': recovered,
         'aliases_used':      aliases_used,
-        'provisional':       ({'used': True, 'date': str(expected), 'method': prov_method, 'symbols': len(prov_bars)} if prov_bars else {'used': False}),
+        'provisional':       ({'used': True, 'date': str(expected), 'method': prov_method, 'symbols': len(prov_bars), 'actionable': False}
+                              if prov_bars else {'used': False}),
         'provisional_audit': latest_audit or (intraday.load_json(intraday.AUDIT_FILE, []) or [None])[-1],
         'vendor':            vendor,
         'symbols_processed': processed,
         'total_scanned':     len(NSE_STOCKS),
         'total_passed':      len(results),
+        'universe':          {'version': UNIVERSE_VERSION, 'count': len(NSE_STOCKS)},
         'capital':           CAPITAL,
         'strategy':          strategy.describe(),
         'risk_config': {
             'capital': CAPITAL, 'risk_pct': RISK_PCT * 100,
             'max_pos_pct': MAX_POS_PCT * 100, 'max_open_risk_pct': MAX_OPEN_RISK * 100,
         },
-        'summary':           {'signals': len(results), 'tradeable': sum(1 for r in results if r['execution_ok'])},
-        'market':            analysis.market_context(nifty_close, processed - stats['stage'], processed, len(results)),
+        'summary':           {'signals': len(results), 'tradeable': sum(1 for r in results if r['execution_ok']), 'preview': len(previews)},
+        'market':            market,
         'stocks':            results,
+        'preview':           previews,
+        'provenance':        provenance.make('scan', data_cutoff=data_cutoff),
     }
     # write-then-rename so a crash never leaves a half-written results.json
     with open('results.json.tmp', 'w') as f:
-        json.dump(out, f, indent=2)
+        json.dump(out, f, indent=2, default=str)
     os.replace('results.json.tmp', 'results.json')
-    print(f"Saved {len(results)} signals. Data cutoff {data_cutoff}.")
+    print(f"Saved {len(results)} actionable signals ({len(previews)} previews). Data cutoff {data_cutoff}. Data quality {dq['status']}.")
 
 
 if __name__ == '__main__':

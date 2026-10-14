@@ -1,14 +1,15 @@
 {
-  "generated": "2026-10-13T20:21:41+00:00",
+  "generated": "2026-10-13T21:10:08+00:00",
   "policy": {
-    "score": 1.5,
+    "score": 0.5,
     "mode": "PAPER ONLY",
     "live_risk_pct_allowed": 0.0,
     "reasons": [
-      "capital not confirmed in attestations.json"
+      "health DEGRADED (data/ledger untrusted, kill switch or broken pipeline)"
     ],
     "critical_gates_passed": false,
     "unmet": [
+      "B1 Live variant passes the pre-registered backtest gates",
       "U1 Beats buy-and-hold of the same universe AND a momentum-30 replica per unit of drawdown (hold-out)",
       "B2 Survivorship-free backtest passes the same gates (attested)",
       "F1 At least 100 closed forward signals",
@@ -16,7 +17,8 @@
       "F3 Forward expectancy (closed + open) has a 95% CI lower bound above 0",
       "F4 Forward expectancy is not clearly below the backtest design-period figure",
       "E1 At least 30 live fills with slippage within 2x the model",
-      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)"
+      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)",
+      "O1 Operations healthy: no health FAIL and no data lag"
     ],
     "live_budget": {
       "closed_live_trades": 0,
@@ -31,22 +33,24 @@
       "label": "Live variant passes the pre-registered backtest gates",
       "points": 0.5,
       "critical": false,
-      "status": "pass",
-      "earned": 0.5,
-      "value": "G1/G2/G3 = True/True/True",
+      "status": "stale",
+      "earned": 0.0,
+      "value": null,
       "threshold": "all three gates",
-      "detail": "variant prior_high/ema50/h120"
+      "detail": "STALE EVIDENCE, no credit: report has no provenance block (produced before provenance existed): rerun it (rerun the Backtest workflow)",
+      "evidence_state": "blocked_defect"
     },
     {
       "id": "U1",
       "label": "Beats buy-and-hold of the same universe AND a momentum-30 replica per unit of drawdown (hold-out)",
       "points": 1.0,
       "critical": true,
-      "status": "fail",
+      "status": "stale",
       "earned": 0.0,
-      "value": "strategy 0.51 vs universe 0.83",
-      "threshold": "CAGR/|maxDD| >= universe",
-      "detail": "hold-out CAGR 7.5% / DD -14.8% vs universe 17.1% / -20.7% (run Backtest to add the momentum benchmark)"
+      "value": null,
+      "threshold": null,
+      "detail": "STALE EVIDENCE, no credit: report has no provenance block (produced before provenance existed): rerun it",
+      "evidence_state": "blocked_defect"
     },
     {
       "id": "B2",
@@ -57,7 +61,8 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "attestations.json: survivorship_free_backtest_passed"
+      "detail": "survivorship bias remains: no point-in-time universe tested (attestations.json: survivorship_free_backtest_passed also required)",
+      "evidence_state": "unverifiable"
     },
     {
       "id": "F1",
@@ -68,7 +73,8 @@
       "earned": 0.0,
       "value": 0,
       "threshold": 100,
-      "detail": ""
+      "detail": "",
+      "evidence_state": "pending_time"
     },
     {
       "id": "F2",
@@ -79,7 +85,8 @@
       "earned": 0.0,
       "value": 0,
       "threshold": 182,
-      "detail": ""
+      "detail": "",
+      "evidence_state": "pending_time"
     },
     {
       "id": "F3",
@@ -90,7 +97,8 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 0, 0)"
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, 0)",
+      "evidence_state": "pending_time"
     },
     {
       "id": "F4",
@@ -101,7 +109,8 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 0, 0)"
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, 0)",
+      "evidence_state": "pending_time"
     },
     {
       "id": "E1",
@@ -117,7 +126,8 @@
         "exit_slip_bps": null
       },
       "threshold": "30+ fills in live_fills.csv",
-      "detail": ""
+      "detail": "",
+      "evidence_state": "pending_time"
     },
     {
       "id": "S1",
@@ -128,18 +138,20 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "attestations.json: market_stress_observed"
+      "detail": "attestations.json: market_stress_observed",
+      "evidence_state": "unverifiable"
     },
     {
       "id": "O1",
       "label": "Operations healthy: no health FAIL and no data lag",
       "points": 0.5,
       "critical": false,
-      "status": "pass",
-      "earned": 0.5,
-      "value": "WARN",
-      "threshold": "OK/WARN",
-      "detail": ""
+      "status": "blocked",
+      "earned": 0.0,
+      "value": "DEGRADED",
+      "threshold": "artefacts consistent",
+      "detail": "inconsistent artefacts, regenerate: ledger.json has no provenance block",
+      "evidence_state": "blocked_defect"
     },
     {
       "id": "R1",
@@ -155,7 +167,46 @@
         "max_open_risk_pct": 1.5
       },
       "threshold": null,
-      "detail": ""
+      "detail": "",
+      "evidence_state": "passed"
     }
-  ]
+  ],
+  "inputs": {
+    "results": "8a65e6e12ba8",
+    "ledger": "ff5a17f04c1f",
+    "health": "7f3e1e2e581c",
+    "grid": "ba2286b4d2b0",
+    "benchmarks": "07507b88585d",
+    "universe": "204b5b06f773",
+    "attestations": "66ee1ecfcc82",
+    "report_provenance": null
+  },
+  "stale_evidence": [
+    "report has no provenance block (produced before provenance existed): rerun it"
+  ],
+  "inconsistencies": [
+    "ledger.json has no provenance block"
+  ],
+  "provenance": {
+    "kind": "readiness",
+    "generated_at": "2026-10-13T21:10:08+00:00",
+    "commit_sha": "820fe3a1d35e5214f4c1dfce64be867f1f799301",
+    "config_hash": "1aedd80e21d2bbbf",
+    "evidence_hash": "4ac547ca5af30df9",
+    "c0_hash": "5e7924a41b0ee220",
+    "universe_version": "U159_v2",
+    "universe_hash": "d02dc26765b272aa",
+    "universe_count": 159,
+    "data_cutoff": "2026-10-13",
+    "source_ids": {
+      "results": "8a65e6e12ba8",
+      "ledger": "ff5a17f04c1f",
+      "health": "7f3e1e2e581c",
+      "grid": "ba2286b4d2b0",
+      "benchmarks": "07507b88585d",
+      "universe": "204b5b06f773",
+      "attestations": "66ee1ecfcc82",
+      "report_provenance": null
+    }
+  }
 }

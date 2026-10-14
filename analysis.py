@@ -100,6 +100,14 @@ def expected_last_session(now_ist, close_hhmm=(16, 30), holidays=frozenset()):
     return d
 
 
+def next_session(d, holidays=frozenset()):
+    """First trading session strictly after date d (weekends and known holidays skipped)."""
+    d += timedelta(days=1)
+    while not _is_session(d, holidays):
+        d += timedelta(days=1)
+    return d
+
+
 def sessions_behind(cutoff, expected, holidays=frozenset()):
     """Sessions between the last bar we have and the session we expected (0 = up to date)."""
     if cutoff >= expected:

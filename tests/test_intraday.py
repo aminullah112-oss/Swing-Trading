@@ -91,27 +91,47 @@ def _signal_case():
     raise AssertionError('no synthetic signal')
 
 
-def test_ledger_verifies_or_voids_provisional_signals_against_the_official_bar():
+def _stock(df, rec, t, **kw):
+    return dict({'symbol': 'AAA', 'signal_date': str(df.index[t].date()), 'setup_type': rec['setup_type'], 'score': rec['score'],
+                 'price': rec['price'], 'trigger': rec['trigger'], 'stop_loss': rec['stop_loss'], 'plan_risk': rec['plan_risk'],
+                 'position': {'shares': 10, 'risk_amount': 100.0}}, **kw)
+
+
+def test_ingestion_rejects_provisional_signals_and_untrusted_scans():
+    df, t, rec = _signal_case()
+    cut = str(df.index[t].date())
+    led = lg.empty()
+    res = {'scan_id': 'x', 'scan_date': cut, 'actionable': True, 'data_cutoff': cut, 'stocks': [_stock(df, rec, t, provisional=True)]}
+    assert lg.add_signals(led, res) == 0
+    s = led['signals'][0]
+    assert s['status'] == 'rejected' and 'provisional' in s['reject_reason'] and s['shares'] == 0
+    assert lg.summarize(led)['rejected'] == 1 and lg.forward_returns(led)[0].size == 0
+    # an untrusted scan adds nothing at all, even with plausible-looking stocks
+    led2 = lg.empty()
+    assert lg.add_signals(led2, dict(res, scan_id='y', actionable=False, stocks=[_stock(df, rec, t)])) == 0
+    assert led2['signals'] == [] and 'not trusted' in led2['last_ingest']['blocked']
+    # a scan with no actionable flag at all is treated as untrusted
+    bare = {'scan_id': 'z', 'stocks': [_stock(df, rec, t)]}
+    assert lg.add_signals(lg.empty(), bare) == 0
+
+
+def test_legacy_provisional_records_are_verified_or_voided_against_the_official_bar():
     df, t, rec = _signal_case()
     led = lg.empty()
-    res = {'scan_id': 'x', 'scan_date': '2026-10-14', 'stocks': [{
-        'symbol': 'AAA', 'signal_date': str(df.index[t].date()), 'setup_type': rec['setup_type'], 'score': rec['score'],
-        'price': rec['price'], 'trigger': rec['trigger'], 'stop_loss': rec['stop_loss'], 'plan_risk': rec['plan_risk'],
-        'provisional': True, 'position': {'shares': 10, 'risk_amount': 100.0}}]}
-    lg.add_signals(led, res)
-    assert led['signals'][0]['provisional'] is True
+    led['signals'].append(dict(id=f"AAA|{df.index[t].date()}", symbol='AAA', signal_date=str(df.index[t].date()), setup=rec['setup_type'],
+                               score=rec['score'], trigger=rec['trigger'], stop=rec['stop_loss'], plan_risk=rec['plan_risk'],
+                               shares=10, risk_amount=100.0, status='pending', provisional=True))
     lg.update_status(led, {'AAA': df})
     s = led['signals'][0]
     assert s['status'] != 'void' and s['verified'] is True and s['trigger_official'] == rec['trigger']
-    # a provisional "signal" on a date that is not a signal on the official bar is voided and excluded from stats
     bad = None
     for u in range(300, 619):
         r2, _ = sc.evaluate(df.iloc[:u + 1])
         if r2 is None:
             bad = u; break
     led2 = lg.empty()
-    res2 = {'scan_id': 'x', 'scan_date': 'd', 'stocks': [dict(res['stocks'][0], signal_date=str(df.index[bad].date()))]}
-    lg.add_signals(led2, res2)
+    led2['signals'].append(dict(led['signals'][0], id=f"AAA|{df.index[bad].date()}", signal_date=str(df.index[bad].date()),
+                                status='pending', verified=False))
     lg.update_status(led2, {'AAA': df})
     assert led2['signals'][0]['status'] == 'void' and 'official' in led2['signals'][0]['void_reason']
     summ = lg.summarize(led2)

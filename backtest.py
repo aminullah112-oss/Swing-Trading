@@ -21,6 +21,7 @@ KNOWN LIMITATIONS (printed in every report):
 """
 import argparse, json, math, os, sys
 from dataclasses import dataclass, asdict
+from typing import Optional
 import numpy as np
 import pandas as pd
 
@@ -45,6 +46,11 @@ class Config:
     max_pos_pct: float = 0.25
     max_open_risk: float = 0.015
     split_date: str = '2023-01-01' # entries before = design period, on/after = hold-out
+    # Optional realistic execution model. None = legacy behaviour (flat cost_bps both sides, no liquidity limit).
+    cost_buy_bps: Optional[float] = None      # itemised statutory costs, buy side (settings.COST_BUY_BPS)
+    cost_sell_bps: Optional[float] = None     # itemised statutory costs, sell side (settings.COST_SELL_BPS)
+    participation_cap: Optional[float] = None # max share of the entry day's volume that can be filled
+    adv_cap: Optional[float] = None           # max order value as a share of 20-day average traded value
 
 
 # --------------------------------------------------------------------------------------
@@ -119,7 +125,8 @@ def prepare(frames):
             'dates': df.index, 'ind': ind, 'sig': sig,
             'a': {'open': df['Open'].astype(float).values, 'high': df['High'].astype(float).values,
                   'low': df['Low'].astype(float).values, 'close': df['Close'].astype(float).values,
-                  'ema20': ind['ema_20'].values, 'ema50': ind['ema_50'].values, 'atr': ind['atr'].values},
+                  'ema20': ind['ema_20'].values, 'ema50': ind['ema_50'].values, 'atr': ind['atr'].values,
+                  'volume': df['Volume'].astype(float).values},
         }
     return out
 
@@ -177,13 +184,19 @@ def simulate_trade(a, s, cfg, setup='', score=0):
 def _finish(a, s, e, d_exit, fill, stop, exit_raw, reason, cfg, setup, score, plan_risk):
     slip = cfg.slippage_bps / 1e4
     exit_px = exit_raw * (1 - slip)
-    cost = cfg.cost_bps / 1e4 * (fill + exit_px)
+    if cfg.cost_buy_bps is not None and cfg.cost_sell_bps is not None:
+        cost = (cfg.cost_buy_bps * fill + cfg.cost_sell_bps * exit_px) / 1e4
+    else:
+        cost = cfg.cost_bps / 1e4 * (fill + exit_px)
     pnl = exit_px - fill - cost
+    raw_fill = fill / (1 + slip)
+    gross = exit_raw - raw_fill                       # before slippage and statutory costs
     # R is measured against the stop distance a trader sees on the signal day (what sizing uses)
     return {
         'signal_idx': s, 'entry_idx': e, 'exit_idx': d_exit,
         'entry': round(fill, 4), 'stop': round(stop, 4), 'exit': round(exit_px, 4),
         'plan_risk': plan_risk, 'pnl_per_share': pnl, 'r': pnl / plan_risk,
+        'gross_pnl_per_share': gross, 'cost_per_share': cost, 'slippage_per_share': (fill - raw_fill) + (exit_raw - exit_px),
         'reason': reason, 'hold': d_exit - e + 1, 'setup': setup, 'score': int(score),
     }
 
@@ -220,6 +233,9 @@ def generate_trades(frames, cfg, bench=None, prepared=None, membership=None):
                     t['entry_date'] = dates[t['entry_idx']]
                     t['exit_date'] = dates[t['exit_idx']]
                     t.update(_features(ind.iloc[i]))
+                    V = a['volume']; Cc = a['close']
+                    t['entry_volume'] = float(V[t['entry_idx']])
+                    t['adv20_value'] = float((Cc[max(0, i - 19):i + 1] * V[max(0, i - 19):i + 1]).mean())     # known at signal time
                     if bench_up is not None:
                         k = bench_up.index.searchsorted(t['signal_date'], side='right') - 1
                         t['regime'] = ('bull' if bench_up.iat[k] else 'bear') if k >= 0 else 'unknown'
@@ -230,7 +246,8 @@ def generate_trades(frames, cfg, bench=None, prepared=None, membership=None):
                     continue
             i += 1
     cols = ['symbol', 'signal_date', 'entry_date', 'exit_date', 'entry', 'stop', 'exit', 'plan_risk', 'r', 'pnl_per_share',
-            'reason', 'hold', 'setup', 'score', 'regime'] + FEATURES
+            'reason', 'hold', 'setup', 'score', 'regime', 'gross_pnl_per_share', 'cost_per_share', 'slippage_per_share',
+            'entry_volume', 'adv20_value'] + FEATURES
     df = pd.DataFrame(trades)
     return df[cols] if len(df) else pd.DataFrame(columns=cols)
 
@@ -278,11 +295,11 @@ def split_in_out_of_sample(trades, split_date):
 # --------------------------------------------------------------------------------------
 # Portfolio simulation (mark-to-market)
 # --------------------------------------------------------------------------------------
-def portfolio(frames, trades, cfg, order_col='score', risk_scale=None):
+def portfolio(frames, trades, cfg, order_col='score', risk_scale=None, detail=False):
     """order_col: which trade column ranks same-day candidates (descending).
     risk_scale: optional callable date -> multiplier applied to per-trade risk and to the open-risk cap."""
     if trades.empty:
-        return {'accepted': 0}, pd.Series(dtype=float)
+        return ({'accepted': 0}, pd.Series(dtype=float), []) if detail else ({'accepted': 0}, pd.Series(dtype=float))
     dates = sorted(set().union(*[set(df.index) for df in frames.values()]))
     dates = [d for d in dates if trades['entry_date'].min() <= d <= trades['exit_date'].max()]
     closes = {s: df['Close'].astype(float) for s, df in frames.items()}
@@ -291,6 +308,8 @@ def portfolio(frames, trades, cfg, order_col='score', risk_scale=None):
     realized = cfg.capital
     open_pos = []   # dicts: symbol, shares, entry, stop, exit_date, pnl_per_share
     equity, accepted, rejected = {}, 0, 0
+    exposure, npos = {}, {}
+    liq_limited, taken = 0, []
     for d in dates:
         eq_now = realized + sum(p['shares'] * (_px(closes[p['symbol']], d, p['entry']) - p['entry']) for p in open_pos)
         for _, t in by_entry.get(d, pd.DataFrame()).iterrows():
@@ -299,10 +318,21 @@ def portfolio(frames, trades, cfg, order_col='score', risk_scale=None):
             mult = risk_scale(d) if risk_scale else 1.0
             risk_open = sum(p['shares'] * p['plan_risk'] for p in open_pos)
             sz = size_position(eq_now, cfg.risk_pct * mult, t['entry'], t['plan_risk'], cfg.max_pos_pct)
-            if sz['shares'] < 1 or risk_open + sz['risk_amount'] > eq_now * cfg.max_open_risk * mult:
+            shares = sz['shares']
+            if cfg.participation_cap is not None and t.get('entry_volume') is not None:
+                shares = min(shares, int(cfg.participation_cap * float(t['entry_volume'])))       # fill at most this share of the day's volume
+            if cfg.adv_cap is not None and t.get('adv20_value'):
+                shares = min(shares, int(cfg.adv_cap * float(t['adv20_value']) / t['entry']))
+            if shares < sz['shares']:
+                liq_limited += 1
+            if shares < 1 or risk_open + shares * t['plan_risk'] > eq_now * cfg.max_open_risk * mult:
                 rejected += 1; continue
+            sz = dict(sz, shares=shares, risk_amount=shares * t['plan_risk'])
             open_pos.append({'symbol': t['symbol'], 'shares': sz['shares'], 'entry': t['entry'], 'plan_risk': t['plan_risk'],
                              'exit_date': t['exit_date'], 'pnl_per_share': t['pnl_per_share']})
+            taken.append({'symbol': t['symbol'], 'shares': shares, 'entry': t['entry'], 'entry_date': d, 'exit_date': t['exit_date'],
+                          'pnl': shares * t['pnl_per_share'], 'cost': shares * t.get('cost_per_share', 0.0),
+                          'slippage': shares * t.get('slippage_per_share', 0.0), 'gross': shares * t.get('gross_pnl_per_share', t['pnl_per_share'])})
             accepted += 1
         still = []
         for p in open_pos:
@@ -312,8 +342,20 @@ def portfolio(frames, trades, cfg, order_col='score', risk_scale=None):
                 still.append(p)
         open_pos = still
         equity[d] = realized + sum(p['shares'] * (_px(closes[p['symbol']], d, p['entry']) - p['entry']) for p in open_pos)
+        invested = sum(p['shares'] * _px(closes[p['symbol']], d, p['entry']) for p in open_pos)
+        exposure[d] = invested / equity[d] if equity[d] > 0 else 0.0
+        npos[d] = len(open_pos)
     eq = pd.Series(equity)
-    return _equity_stats(eq, cfg.capital, accepted, rejected), eq
+    stats = _equity_stats(eq, cfg.capital, accepted, rejected)
+    stats['liquidity_limited_orders'] = liq_limited
+    ex = pd.Series(exposure)
+    if len(ex):
+        stats.update({'avg_exposure_pct': round(float(ex.mean()) * 100, 1), 'max_exposure_pct': round(float(ex.max()) * 100, 1),
+                      'time_in_cash_pct': round(float((pd.Series(npos) == 0).mean()) * 100, 1),
+                      'avg_positions': round(float(pd.Series(npos).mean()), 2)})
+    if detail:
+        return stats, eq, taken
+    return stats, eq
 
 
 def _px(series, d, default):
