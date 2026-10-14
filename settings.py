@@ -52,5 +52,14 @@ MAX_PER_CLUSTER = 2                   # open positions per correlation cluster /
 CASH_BUFFER = 0.02                    # keep 2% headroom over the order value for costs and slippage
 KILL_SWITCH_FILE = 'kill_switch.json'  # {"engaged": true} halts all new entries; absent or unreadable file = engaged
 
+# ---------------------------------------------------------------- selection and event overlays (all only ever REMOVE or SHRINK entries)
+EVENT_BLOCK_ENABLED = True            # a known event inside the window blocks a new entry (earnings, ex-date, F&O ban, ASM/GSM)
+EVENT_WINDOW_SESSIONS = 5             # sessions after the signal that count as 'inside the window'
+MAX_PER_SECTOR = 2                    # open positions per sector group (universe/sectors.json)
+VOL_SCALE_ENABLED = True              # smaller size for volatile stocks; PREREG_v2 V2-3 tests it, until then it only lowers risk
+VOL_SCALE_ATR_PCT = 4.0
+VOL_SCALE_MULT = 0.75
+REGIME_HALVING_ENABLED = False        # OFF: tested in reports/benchmarks.md (H3) and failed
+
 # ---------------------------------------------------------------- live trading: hard-disabled
 LIVE_EXECUTION_ENABLED = False        # requires a code change plus the operator's separate written approval

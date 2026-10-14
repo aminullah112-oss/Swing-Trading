@@ -295,9 +295,11 @@ def split_in_out_of_sample(trades, split_date):
 # --------------------------------------------------------------------------------------
 # Portfolio simulation (mark-to-market)
 # --------------------------------------------------------------------------------------
-def portfolio(frames, trades, cfg, order_col='score', risk_scale=None, detail=False):
+def portfolio(frames, trades, cfg, order_col='score', risk_scale=None, detail=False, group_col=None, max_per_group=None, risk_col=None):
     """order_col: which trade column ranks same-day candidates (descending).
-    risk_scale: optional callable date -> multiplier applied to per-trade risk and to the open-risk cap."""
+    risk_scale: optional callable date -> multiplier applied to per-trade risk and to the open-risk cap.
+    group_col/max_per_group: skip an entry when that many open positions already share its group (e.g. sector). Off by default.
+    risk_col: trade column that multiplies this trade's risk (not the open-risk cap). Off by default."""
     if trades.empty:
         return ({'accepted': 0}, pd.Series(dtype=float), []) if detail else ({'accepted': 0}, pd.Series(dtype=float))
     dates = sorted(set().union(*[set(df.index) for df in frames.values()]))
@@ -315,9 +317,12 @@ def portfolio(frames, trades, cfg, order_col='score', risk_scale=None, detail=Fa
         for _, t in by_entry.get(d, pd.DataFrame()).iterrows():
             if any(p['symbol'] == t['symbol'] for p in open_pos):
                 rejected += 1; continue
+            if group_col and max_per_group and sum(1 for p in open_pos if p.get('group') == t[group_col]) >= max_per_group:
+                rejected += 1; continue
             mult = risk_scale(d) if risk_scale else 1.0
+            tmult = float(t[risk_col]) if risk_col else 1.0
             risk_open = sum(p['shares'] * p['plan_risk'] for p in open_pos)
-            sz = size_position(eq_now, cfg.risk_pct * mult, t['entry'], t['plan_risk'], cfg.max_pos_pct)
+            sz = size_position(eq_now, cfg.risk_pct * mult * tmult, t['entry'], t['plan_risk'], cfg.max_pos_pct)
             shares = sz['shares']
             if cfg.participation_cap is not None and t.get('entry_volume') is not None:
                 shares = min(shares, int(cfg.participation_cap * float(t['entry_volume'])))       # fill at most this share of the day's volume
@@ -328,7 +333,7 @@ def portfolio(frames, trades, cfg, order_col='score', risk_scale=None, detail=Fa
             if shares < 1 or risk_open + shares * t['plan_risk'] > eq_now * cfg.max_open_risk * mult:
                 rejected += 1; continue
             sz = dict(sz, shares=shares, risk_amount=shares * t['plan_risk'])
-            open_pos.append({'symbol': t['symbol'], 'shares': sz['shares'], 'entry': t['entry'], 'plan_risk': t['plan_risk'],
+            open_pos.append({'symbol': t['symbol'], 'group': t[group_col] if group_col else None, 'shares': sz['shares'], 'entry': t['entry'], 'plan_risk': t['plan_risk'],
                              'exit_date': t['exit_date'], 'pnl_per_share': t['pnl_per_share']})
             taken.append({'symbol': t['symbol'], 'shares': shares, 'entry': t['entry'], 'entry_date': d, 'exit_date': t['exit_date'],
                           'pnl': shares * t['pnl_per_share'], 'cost': shares * t.get('cost_per_share', 0.0),

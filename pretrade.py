@@ -17,6 +17,7 @@ import ledger as lg
 import prereg
 import provenance as provn
 import riskgate
+import selection
 import settings
 
 
@@ -74,6 +75,8 @@ def screen_signals(ctx):
     cap = res.get('capital') or (res.get('risk_config') or {}).get('capital') or settings.CAPITAL
     active = {s['symbol'] for s in led.get('signals', []) if s['status'] in lg.ACTIVE}
     open_risk = sum(lg.eff_risk(s) for s in led.get('signals', []) if s['status'] == 'open' and s.get('taken'))
+    sectors = selection.load_sectors()
+    held = [s['symbol'] for s in led.get('signals', []) if s['status'] in lg.ACTIVE]
     tradable, rejected = [], []
     for r in res.get('stocks', []):
         why = []
@@ -96,12 +99,15 @@ def screen_signals(ctx):
                 why.append('position above the 25% cap')
             if open_risk + risk > cap * settings.MAX_OPEN_RISK * (1 + 1e-9):
                 why.append('aggregate open-risk budget would be exceeded')
+        ok_sec, grp, n_open = selection.sector_ok(r['symbol'], held + [t['symbol'] for t in tradable], sectors)
+        if not ok_sec:
+            why.append(f'sector cap: {n_open} open positions already in {grp} (limit {settings.MAX_PER_SECTOR})')
         if why:
             rejected.append({'symbol': r['symbol'], 'reasons': why})
         else:
             open_risk += risk
             tradable.append({'symbol': r['symbol'], 'buy_stop': r['trigger'], 'stop': r['stop_loss'], 'shares': sh, 'risk_inr': risk,
-                             'valid_for': str(analysis.next_session(datetime.fromisoformat(str(r['signal_date'])[:10]).date(), ctx['holidays']))})
+                             'tier': (r.get('selection') or {}).get('tier'), 'sector': (r.get('selection') or {}).get('sector'), 'valid_for': str(analysis.next_session(datetime.fromisoformat(str(r['signal_date'])[:10]).date(), ctx['holidays']))})
     return tradable, rejected
 
 
@@ -119,7 +125,7 @@ def markdown(rep):
     for c in rep['checks']:
         L.append(f"| {c['id']} {c['level']} | {'✅' if c['ok'] else ('❌' if c['level'] == 'block' else '⚠️')} | {c['msg']} |")
     L += ['', '## Entries allowed (valid for the next session only; buy-stop, then stop)' if rep['tradable'] else '## No entries allowed today', '']
-    L += [f"- {t['symbol']}: buy-stop {t['buy_stop']}, stop {t['stop']}, {t['shares']} shares, risk ₹{t['risk_inr']:.0f}, valid {t['valid_for']}" for t in rep['tradable']]
+    L += [f"- {t['symbol']} [{t.get('tier') or 'n/a'} · {t.get('sector') or 'sector n/a'}]: buy-stop {t['buy_stop']}, stop {t['stop']}, {t['shares']} shares, risk ₹{t['risk_inr']:.0f}, valid {t['valid_for']}" for t in rep['tradable']]
     if rep['rejected']:
         L += ['', '## Rejected', ''] + [f"- {r['symbol']}: {'; '.join(r['reasons'])}" for r in rep['rejected']]
     L += ['', 'A GO means the checks passed, not that the trade is wise. Paper only: no order is sent anywhere.']
