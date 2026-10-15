@@ -13,7 +13,7 @@ import provenance as prov
 
 REQUIRED = {'grid': 'reports/grid.json', 'benchmarks': 'reports/benchmarks.json', 'universe': 'reports/universe.json',
             'regime': 'reports/regime.json', 'baseline': 'reports/backtest_baseline.json', 'trigger': 'reports/backtest_trigger.json'}
-OPTIONAL = {'pit': 'reports/pit_acceptance.json', 'experiments': 'reports/experiments.json', 'experiments_v2': 'reports/experiments_v2.json'}     # stamped when present
+OPTIONAL = {'pit': 'reports/pit_acceptance.json', 'experiments': 'reports/experiments.json', 'experiments_v2': 'reports/experiments_v2.json', 'robustness': 'reports/robustness.json'}     # stamped when present
 REPORTS = {**REQUIRED, **OPTIONAL}
 
 

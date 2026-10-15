@@ -19,7 +19,7 @@ concurrency:
 jobs:
   backtest:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v4
@@ -44,6 +44,9 @@ jobs:
     - name: Pre-registered selection experiments (C0 versus V2-1..V2-3, hold-out opened once)
       continue-on-error: true
       run: python experiments_v2.py --years 12 --cache history_cache_12y.pkl
+    - name: Robustness battery for C0 (PREREG_v3, hold-out opened only if everything else passes)
+      continue-on-error: true
+      run: python robustness.py --years 12 --cache history_cache_12y.pkl
     - name: Point-in-time universe acceptance test
       continue-on-error: true
       run: python pit_report.py --years ${{ inputs.years || '10' }} --cache history_cache.pkl
@@ -55,7 +58,7 @@ jobs:
         python readiness.py
         python remediation.py
     - name: Publish summary
-      run: cat reports/experiments.md reports/experiments_v2.md reports/benchmarks.md reports/universe.md reports/regime.md reports/grid.md reports/diagnosis.md reports/backtest_baseline.md reports/backtest_trigger.md >> "$GITHUB_STEP_SUMMARY"
+      run: cat reports/experiments.md reports/experiments_v2.md reports/robustness.md reports/benchmarks.md reports/universe.md reports/regime.md reports/grid.md reports/diagnosis.md reports/backtest_baseline.md reports/backtest_trigger.md 2>/dev/null >> "$GITHUB_STEP_SUMMARY" || true
     - name: Commit reports
       run: |
         git config --local user.email "action@github.com"

@@ -38,3 +38,10 @@ Used only when NSE's own files cannot be fetched. Read-only market data; no orde
 3. In the GitHub repo: Settings, Secrets and variables, Actions, add four secrets: `ANGEL_API_KEY`, `ANGEL_CLIENT_CODE`, `ANGEL_PIN`, `ANGEL_TOTP_SECRET`.
 4. After the next scan, health H15 names the source used. Anything but `ok` in `data_quality.crosscheck.angelone` means a login or data problem; the scan still runs.
 Treat these four secrets like a bank password: never paste them in chat, issues or commits. Rotate them if exposed.
+
+## Robustness battery (after each Backtest run)
+`reports/robustness.md` (PREREG_v3) tests control C0 against random entries with the same exits, a Monte Carlo drawdown range, year/regime concentration, parameter neighbours, harsher execution, a synthetic survivorship haircut and the exposure-matched Nifty.
+- Read the failures first. A failed gate is a finding about C0, not something to tune away; the registered file is never edited after a run.
+- The 2025+ hold-out is only opened when every other test passed, and only once per registered hash.
+- "Passed" means no registered test rejected C0. It is not proof of a live edge and does not change the readiness score.
+- Related: `docs/DRILLS.md` (failure drills), `docs/PIT_DATA_REQUEST.md` (survivorship data still missing), `docs/AUDIT_PACKET.md` (for an outside reviewer).
