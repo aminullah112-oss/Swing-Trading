@@ -5,8 +5,12 @@
  "control": "C0",
  "universe_version": "U159_v2",
  "purpose": "Robustness battery for control C0 (no new strategy variant). Questions: does C0's entry selection beat random entries with the same exits; how bad can drawdowns plausibly get; is the result concentrated in one year or regime; does it sit on a parameter plateau; does it survive harsher execution, a survivorship haircut and a benchmark comparison. C0 itself is never changed by this file.",
- "previously_registered": ["PREREG_v1 (8 tests)", "benchmarks.md H2,H3 (2 tests)", "PREREG_v2 (3 tests)"],
- "execution_model": "same as PREREG_v1/v2 (strategy.realistic_config). Stress scenarios are stated below and are applied on top of it.",
+ "previously_registered": [
+  "PREREG_v1 (8 tests)",
+  "benchmarks.md H2,H3 (2 tests)",
+  "PREREG_v2 (3 tests)"
+ ],
+ "execution_model": "strategy.research_config(): realistic costs, 10 bps slippage, 5% volume and 2% ADV caps (as PREREG_v1/v2), plus two accounting corrections: risk per share and the R unit are measured from the planned buy-stop to the stop (the live screener's sizing), and entries are sized on equity known before the entry session. Design-window numbers are computed on data truncated at design_end so no design trade uses 2025+ prices. Stress scenarios are applied on top.",
  "windows": {
   "design_end": "2024-12-31",
   "holdout_start": "2025-01-01",
@@ -14,19 +18,20 @@
   "contamination_note": "2025+ is also the hold-out of PREREG_v1 and v2, so it has been looked at for other hypotheses. R-HO therefore counts as a confirmation, not a fresh test."
  },
  "multiple_testing": {
-  "family": "PREREG_v1 H1-H8 (8) + benchmarks.md H2,H3 (2) + V2-1..V2-3 (3) + R-NULL-A, R-NULL-B, R-CI, R-BENCH (4)",
-  "n_tests": 17,
+  "family": "PREREG_v1 H1-H8 (8) + benchmarks.md H2,H3 (2) + V2-1..V2-3 (3) + the 12-variant exit/entry grid C0 was selected from (12) + R-NULL-A, R-NULL-B, R-CI, R-BENCH (4)",
+  "n_tests": 29,
   "method": "Bonferroni",
   "alpha_family": 0.05,
-  "alpha_per_test": 0.0029411764705882353,
-  "note": "Only the four inferential tests carry an alpha. The tolerance gates below are not statistical tests."
+  "alpha_per_test": 0.001724137931034483,
+  "note": "Only the four inferential tests carry an alpha. The 12 grid trials are counted because C0 was selected from them (selection bias); counting them does not remove the in-sample selection effect, which stays a stated limit."
  },
  "inferential_tests": [
   {
    "id": "R-NULL-A",
    "name": "C0 versus random entries (any bar)",
    "method": "For every signal date, draw as many random (symbol, date) entries as C0 took on that date, from bars of the universe that C0 did NOT signal and whose buy-stop would trigger. Same entry rule, stop, exit, hold limit and realistic costs. Statistic: mean net R per trade. 2000 draws, seed 20261015. One-sided p = (1 + draws with mean >= C0) / (1 + draws).",
-   "pass": "p <= alpha_per_test (design window)"
+   "pass": "p <= alpha_per_test (design window)",
+   "note": "Pool A includes non-uptrend bars where a breakout buy-stop does worse, so A is easy to pass. R-NULL-B is the informative one; the verdict needs both."
   },
   {
    "id": "R-NULL-B",
@@ -37,13 +42,13 @@
   {
    "id": "R-CI",
    "name": "C0 expectancy is positive",
-   "method": "Month-clustered bootstrap CI (2000 resamples, seed 0) of the mean net R per trade, at confidence 1 - alpha_per_test.",
+   "method": "Quarter-clustered bootstrap CI (2000 resamples, seed 0) of the mean net R per trade, at confidence 1 - alpha_per_test. Quarters, not months, because positions are held for months and adjacent months overlap.",
    "pass": "lower bound > 0 (design window)"
   },
   {
    "id": "R-BENCH",
    "name": "C0 beats exposure-matched Nifty",
-   "method": "Paired daily net return of C0 minus the Nifty held at C0's average invested fraction (rest in cash at 0%). Month-clustered bootstrap CI of the mean at alpha_per_test.",
+   "method": "Paired daily net return of C0 minus the Nifty held at C0's average invested fraction (rest in cash at 0%). The Nifty price index excludes dividends that the adjusted stock series include, so an assumed 1.3%/yr dividend yield is added back. No beta adjustment is made (the traded universe is higher-beta than the Nifty), which still favours C0 slightly. Quarter-clustered bootstrap CI of the mean at alpha_per_test.",
    "pass": "lower bound > 0 (design window)"
   }
  ],
@@ -51,7 +56,7 @@
   {
    "id": "R-MC",
    "name": "Monte Carlo drawdown tolerance",
-   "method": "Stationary block bootstrap (mean block 21 trading days, 5000 paths, seed 20261015) of C0's design-window daily net portfolio returns; path length equals the design window.",
+   "method": "Stationary block bootstrap (mean block 63 trading days, 5000 paths, seed 20261015) of C0's design-window daily net portfolio returns; path length equals the design window. A second set of paths as short as the hold-out is used for R-HO.",
    "pass": "95th percentile max drawdown no deeper than 35% AND probability of a max drawdown of 25% or more is at most 25%",
    "note": "These are risk tolerances chosen before results, not statistical claims. They can be tightened by the user, never loosened after a run."
   },
@@ -70,21 +75,23 @@
   {
    "id": "R-EXEC",
    "name": "Execution stress",
-   "method": "Design-window net CAGR under: slippage x2 and x3; statutory costs x2; +25 bps extra slippage on stop exits; liquidity caps halved; 20% of entries missed at random (5 draws); and a combined harsh case (slippage x2, costs x2, +25 bps stop slippage, caps halved). After-tax CAGR (20% on positive yearly net realised gains) is reported, not gated.",
-   "pass": "net CAGR > 0 in every single scenario and in the combined harsh case"
+   "method": "Design-window net CAGR under: slippage x2 and x3; statutory costs x2; +25 bps extra slippage on stop exits; liquidity caps halved; 20% of entries missed at random (5 draws); the 20% of fills with the largest gap above the buy-stop missed; and a combined harsh case (slippage x2, costs x2, +25 bps stop slippage, caps halved). After-tax CAGR (20% on positive yearly net realised gains) is reported, not gated.",
+   "pass": "net CAGR > 0 in every scenario AND the combined harsh case keeps at least half of the base-case CAGR"
   },
   {
    "id": "R-SURV",
    "name": "Survivorship haircut (synthetic sensitivity)",
-   "method": "With probability q per trade (0.5%, 1%, 2%, 3%) the trade ends in a 40% gap-down loss instead of its simulated exit (8 draws each, seed 20261015). This is NOT evidence about survivorship and does not clear gate B2; it shows how much hidden delisting risk the result can absorb. A real point-in-time universe is still required.",
-   "pass": "design net CAGR > 0 at q = 1%; the break-even q is reported"
+   "method": "With probability q per trade (0.5%, 1%, 2%, 3%) the trade ends in a 40% gap-down loss instead of its simulated exit (8 draws each, seed 20261015). This is NOT evidence about survivorship and does not clear gate B2; it shows how much hidden delisting risk the result can absorb. A real point-in-time universe is still required. A second sensitivity subtracts a uniform average R per trade (0.05, 0.10, 0.20, 0.30) to mimic inclusion bias (today's constituents were partly chosen because they rose); the break-even R is reported.",
+   "pass": "design net CAGR > 0 at q = 1% AND with 0.10R removed from every trade; both break-evens are reported"
   },
   {
    "id": "R-HO",
    "name": "Hold-out confirmation (opened once)",
    "method": "C0's realistic net portfolio over 2025-01-01 onward. The hold-out is opened only when every other test and gate has already passed (if any has failed, the verdict is already negative and the hold-out is not spent).",
-   "pass": "net CAGR > 0 AND max drawdown no deeper than the R-MC 95th percentile"
+   "pass": "net CAGR > 0 AND max drawdown no deeper than the 95th percentile drawdown of Monte Carlo paths as short as the hold-out"
   }
  ],
- "verdict_rule": "robustness_passed = every inferential test and every tolerance gate passes. A failure is reported, not repaired: nothing in this file is edited after a run. Passing means only that no registered robustness test rejected C0; it does not establish a live edge, does not change any readiness weight, and does not authorise live trading."
+ "verdict_rule": "robustness_passed = every inferential test and every tolerance gate passes. A failure is reported, not repaired: nothing in this file is edited after a run. Passing means only that no registered robustness test rejected C0; it does not establish a live edge, does not change any readiness weight, and does not authorise live trading.",
+ "amended_on": "2026-10-15",
+ "amendment_note": "Amended the same day it was written, before any result existed, after an independent review of the code (findings F1-F9, see experiments/AMENDMENTS.md). The hash below is of this amended text."
 }

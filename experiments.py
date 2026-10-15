@@ -33,7 +33,7 @@ MIN_TRADES, MIN_MONTHS, N_BLOCKS, MIN_BLOCKS_WON = 100, 40, 8, 5
 
 
 def realistic_cfg(**kw):
-    return strategy.realistic_config(**kw)
+    return strategy.research_config(**kw)
 
 
 def momentum_rank(prepared):
@@ -58,6 +58,15 @@ def apply_filter(h, trades, rank):
     if h['id'] == 'H6':
         return trades[trades['regime'] == p['regime']]
     return trades
+
+
+def design_view(frames, bench, prepared, design_end):
+    """(frames, bench, prepared) cut at design_end. Open trades are closed at the last design bar ('end_of_data'), never using later prices."""
+    end = pd.Timestamp(design_end)
+    fd = {s: df[df.index <= end] for s, df in frames.items()}
+    fd = {s: df for s, df in fd.items() if len(df) > 0}
+    bd = bench[bench.index <= end] if bench is not None else None
+    return fd, bd, bt.prepare(fd)
 
 
 def window(trades, lo=None, hi=None):
@@ -158,35 +167,41 @@ def run(frames, bench, prepared=None, spec=None, holdout_log=None, data_cutoff=N
     prepared = prepared if prepared is not None else bt.prepare(frames)
     cutoff = data_cutoff or str(max(df.index[-1] for df in frames.values()).date())
     cfg = realistic_cfg()
+    # Design-window numbers are computed on data truncated at design_end, so a trade entered late in the design window cannot
+    # use 2025+ prices to exit (independent review F6). The hold-out uses the full history.
+    fd, bd, pd_ = design_view(frames, bench, prepared, design_end)
+    base_d = bt.generate_trades(fd, cfg, bd, pd_)
     base = bt.generate_trades(frames, cfg, bench, prepared)
-    rank = momentum_rank(prepared)
+    rank_d, rank = momentum_rank(pd_), momentum_rank(prepared)
 
-    c0_design = window(base, None, design_end)
-    _, c0_dret, c0_dm = run_port(frames, c0_design, cfg)
+    c0_design = window(base_d, None, design_end)
+    _, c0_dret, c0_dm = run_port(fd, c0_design, cfg)
     c0_ho = window(base, ho_start)
     _, c0_hret, c0_hm = run_port(frames, c0_ho, cfg)
     legacy_cfg = strategy.backtest_config()
-    legacy = bt.generate_trades(frames, legacy_cfg, bench, prepared)
-    _, _, c0_legacy_m = run_port(frames, window(legacy, None, design_end), legacy_cfg)
+    legacy = bt.generate_trades(fd, legacy_cfg, bd, pd_)
+    _, _, c0_legacy_m = run_port(fd, window(legacy, None, design_end), legacy_cfg)
+
+    def variant(h, fr, be, prep, b, rk):
+        if h['id'] == 'H7':
+            return realistic_cfg(risk_pct=h['param']['risk_pct']), b
+        if h['id'] == 'H8':
+            vc = realistic_cfg(max_hold=h['param']['max_hold'])
+            return vc, bt.generate_trades(fr, vc, be, prep)
+        return cfg, apply_filter(h, b, rk)
 
     results = []
     for h in spec['hypotheses']:
-        vcfg, v_all = cfg, None
-        if h['id'] == 'H7':
-            vcfg, v_all = realistic_cfg(risk_pct=h['param']['risk_pct']), base
-        elif h['id'] == 'H8':
-            vcfg = realistic_cfg(max_hold=h['param']['max_hold'])
-            v_all = bt.generate_trades(frames, vcfg, bench, prepared)
-        else:
-            v_all = apply_filter(h, base, rank)
-        v_design = window(v_all, None, design_end)
-        _, v_ret, v_m = run_port(frames, v_design, vcfg)
+        vcfg, v_all_d = variant(h, fd, bd, pd_, base_d, rank_d)
+        v_design = window(v_all_d, None, design_end)
+        _, v_ret, v_m = run_port(fd, v_design, vcfg)
         passed, detail = evaluate_design(h, v_design, v_ret, c0_dret, alpha, v_m)
         rec = {'id': h['id'], 'name': h['name'], 'change': h['change'], 'param': h['param'], 'design': v_m,
                'design_criteria': detail, 'design_passed': passed, 'holdout_opened': False, 'holdout_passed': None, 'adopted_as_candidate': False}
         if passed:
             hg.open_once(h['id'], spec['_hash'], cutoff, holdout_log, ts)              # logged BEFORE any hold-out number is computed
-            _, _, v_hm = run_port(frames, window(v_all, ho_start), vcfg)
+            vcfg_f, v_all = variant(h, frames, bench, prepared, base, rank)
+            _, _, v_hm = run_port(frames, window(v_all, ho_start), vcfg_f)
             ho_ok, ho_detail = evaluate_holdout(v_hm, c0_hm)
             hg.record_result(h['id'], spec['_hash'], ho_ok, ho_detail, holdout_log, ts)
             rec.update({'holdout_opened': True, 'holdout': v_hm, 'holdout_criteria': ho_detail, 'holdout_passed': ho_ok, 'adopted_as_candidate': ho_ok})
@@ -201,7 +216,7 @@ def run(frames, bench, prepared=None, spec=None, holdout_log=None, data_cutoff=N
         'adopted_candidates': [r['id'] for r in results if r['adopted_as_candidate']],
         'c0_retained': not any(r['adopted_as_candidate'] for r in results),
         'score_diagnostics': score_diagnostics(c0_design),
-        'benchmarks_design': benchmark_block(frames, bench, c0_dret, c0_dm, '2000-01-01', design_end),
+        'benchmarks_design': benchmark_block(fd, bd, c0_dret, c0_dm, '2000-01-01', design_end),
         'benchmarks_holdout_reference_only': benchmark_block(frames, bench, c0_hret, c0_hm, ho_start, None) if len(c0_hret) > 20 else None,
         'universe': {'version': provenance.universe_info()['version'], 'symbols_with_data': len(frames), 'survivorship_bias': True},
     }

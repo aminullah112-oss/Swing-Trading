@@ -34,6 +34,13 @@ def realistic_config(**overrides):
     return dataclasses.replace(cfg, **overrides) if overrides else cfg
 
 
+def research_config(**overrides):
+    """realistic_config plus two accounting corrections found in the independent review (2026-10-15): risk and R are measured from the
+    planned buy-stop (as the live screener sizes), and entries are sized on equity known before the entry session. Used by every
+    pre-registered experiment and the robustness battery. The forward paper ledger keeps realistic_config (see experiments/AMENDMENTS.md)."""
+    return realistic_config(**{'risk_basis': 'entry', 'sizing_equity': 'prior_day', **overrides})
+
+
 def describe():
     return {'name': NAME, 'min_score': MIN_SCORE, 'trigger': TRIGGER, 'exit_mode': EXIT_MODE, 'max_hold': MAX_HOLD,
             'entry_rule': 'Buy-stop at the signal-day high, valid for the next session only.',

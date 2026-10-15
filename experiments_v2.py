@@ -78,16 +78,18 @@ def run(frames, bench, prepared=None, spec=None, holdout_log=None, data_cutoff=N
     prepared = prepared if prepared is not None else bt.prepare(frames)
     cutoff = data_cutoff or str(max(df.index[-1] for df in frames.values()).date())
     cfg = ex.realistic_cfg()
+    fd, bd, pd_ = ex.design_view(frames, bench, prepared, design_end)          # design numbers never see post-design prices (review F6)
+    base_d = bt.generate_trades(fd, cfg, bd, pd_)
     base = bt.generate_trades(frames, cfg, bench, prepared)
-    rank, sectors = ex.momentum_rank(prepared), selection.load_sectors()
-    _, c0_dret, c0_dm = run_port(frames, ex.window(base, None, design_end), cfg)
+    rank_d, rank, sectors = ex.momentum_rank(pd_), ex.momentum_rank(prepared), selection.load_sectors()
+    _, c0_dret, c0_dm = run_port(fd, ex.window(base_d, None, design_end), cfg)
     _, _, c0_hm = run_port(frames, ex.window(base, ho_start), cfg)
     out_h = []
     for h in spec['hypotheses']:
-        t_all, kw = trade_set(h, base, prepared, sectors, rank)
+        t_all_d, kw = trade_set(h, base_d, pd_, sectors, rank_d)
         vcfg = cfg
-        t_design = ex.window(t_all, None, design_end)
-        _, v_ret, v_m = run_port(frames, t_design, vcfg, **kw)
+        t_design = ex.window(t_all_d, None, design_end)
+        _, v_ret, v_m = run_port(fd, t_design, vcfg, **kw)
         main_ok, detail = ex.evaluate_design(h, t_design, v_ret, c0_dret, alpha, v_m)
         risk_reducing = h['id'] in ('V2-1', 'V2-3')
         route_ok, route = (False, None)
@@ -99,6 +101,7 @@ def run(frames, bench, prepared=None, spec=None, holdout_log=None, data_cutoff=N
                'holdout_opened': False, 'holdout_passed': None, 'adopted_as_candidate': False}
         if passed:
             hg.open_once(h['id'], spec['_hash'], cutoff, holdout_log, ts)
+            t_all, kw = trade_set(h, base, prepared, sectors, rank)
             _, _, v_hm = run_port(frames, ex.window(t_all, ho_start), vcfg, **kw)
             ho_ok, ho_detail = ex.evaluate_holdout(v_hm, c0_hm)
             if rec['passed_via'] == 'risk route':

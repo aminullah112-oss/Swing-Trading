@@ -24,7 +24,7 @@ def small_spec():
 
 def test_prereg_v3_is_pinned_and_counts_the_whole_family():
     s = prereg.load('PREREG_v3')
-    assert s['multiple_testing']['n_tests'] == 17 and abs(prereg.alpha_per_test(s) - 0.05 / 17) < 1e-12
+    assert s['multiple_testing']['n_tests'] == 29 and abs(prereg.alpha_per_test(s) - 0.05 / 29) < 1e-12
     assert [t['id'] for t in s['inferential_tests']] == ['R-NULL-A', 'R-NULL-B', 'R-CI', 'R-BENCH']
     assert {g['id'] for g in s['tolerance_gates']} == {'R-MC', 'R-REGIME', 'R-SENS', 'R-EXEC', 'R-SURV', 'R-HO'}
     assert 1 / (rb.N_DRAWS + 1) < prereg.alpha_per_test(s)          # the null test can reach the registered alpha at all
@@ -35,7 +35,7 @@ def test_editing_the_preregistration_is_detected(tmp_path):
     import shutil
     for ext in ('json', 'sha256'):
         shutil.copy(f'experiments/PREREG_v3.{ext}', tmp_path / f'PREREG_v3.{ext}')
-    (tmp_path / 'PREREG_v3.json').write_text((tmp_path / 'PREREG_v3.json').read_text().replace('0.35', '0.45').replace('35%', '45%'))
+    (tmp_path / 'PREREG_v3.json').write_text((tmp_path / 'PREREG_v3.json').read_text().replace('63 trading days', '21 trading days'))
     with pytest.raises(prereg.PreregMismatch):
         prereg.load('PREREG_v3', directory=str(tmp_path))
 
@@ -179,3 +179,89 @@ def test_a_failed_gate_never_opens_the_holdout(tmp_path):
     log = str(tmp_path / 'holdout.jsonl')
     rep = rb.run(frames, bench, spec=small_spec(), holdout_log=log, draws=20, mc_paths_n=20, skip_slow=True)
     assert rep['robustness_passed'] is False and rep['results']['R-HO']['status'] == 'not_opened' and not hg.opened(log)
+
+
+# ---------------------------------------------------------------- fixes from the independent review (experiments/AMENDMENTS.md)
+def _arrays(o, h, l, c, atr=1.0):
+    n = len(c)
+    return {'open': np.array(o, float), 'high': np.array(h, float), 'low': np.array(l, float), 'close': np.array(c, float),
+            'ema20': np.zeros(n), 'ema50': np.zeros(n), 'atr': np.full(n, float(atr))}
+
+
+def test_entry_basis_risk_is_measured_from_the_buy_stop_like_the_live_screener():
+    # signal close 100, ATR 1 -> stop distance 3 -> stop 97. Signal-day high 102 is the buy-stop.
+    a = _arrays(o=[100, 103, 105], h=[102, 106, 107], l=[99, 102, 104], c=[100, 105, 106])
+    legacy = bt.simulate_trade(a, 0, bt.Config(trigger='prior_high', slippage_bps=0, cost_bps=0, exit_mode='none', max_hold=2))
+    new = bt.simulate_trade(a, 0, bt.Config(trigger='prior_high', slippage_bps=0, cost_bps=0, exit_mode='none', max_hold=2, risk_basis='entry'))
+    assert legacy['plan_risk'] == pytest.approx(3.0) and new['plan_risk'] == pytest.approx(5.0)      # 102 - 97
+    assert new['pnl_per_share'] == pytest.approx(legacy['pnl_per_share']) and new['r'] == pytest.approx(legacy['r'] * 3 / 5)
+
+
+def test_research_config_differs_from_the_frozen_and_ledger_configs_only_in_the_two_corrections():
+    import strategy, dataclasses
+    r, l = strategy.research_config(), strategy.realistic_config()
+    diff = {k for k, v in dataclasses.asdict(r).items() if dataclasses.asdict(l)[k] != v}
+    assert diff == {'risk_basis', 'sizing_equity'}
+    assert strategy.backtest_config().risk_basis == 'signal' and l.risk_basis == 'signal'
+    assert ex.realistic_cfg().risk_basis == 'entry'
+
+
+def test_prior_day_equity_sizing_ignores_the_entry_day_close():
+    dates = pd.bdate_range('2024-01-01', periods=6)
+    def frame(close):
+        return pd.DataFrame({'Open': close, 'High': close, 'Low': close, 'Close': close, 'Volume': 1e9}, index=dates)
+    frames = {'A': frame([100.0, 100, 100, 100, 100, 100]), 'B': frame([50.0, 50, 50, 50, 50, 50])}
+    t = pd.DataFrame([{'symbol': 'A', 'entry_date': dates[1], 'exit_date': dates[4], 'entry': 100.0, 'plan_risk': 5.0, 'pnl_per_share': 10.0, 'r': 2.0, 'score': 80},
+                      {'symbol': 'B', 'entry_date': dates[3], 'exit_date': dates[5], 'entry': 50.0, 'plan_risk': 2.5, 'pnl_per_share': 1.0, 'r': 0.4, 'score': 80}])
+    frames['A'].loc[dates[3], ['Close']] = 140.0          # A jumps on B's entry day: same-day equity would size B bigger
+    cfg_same = bt.Config(capital=100000, cost_bps=0, slippage_bps=0)
+    cfg_prior = bt.Config(capital=100000, cost_bps=0, slippage_bps=0, sizing_equity='prior_day')
+    _, _, ts = bt.portfolio(frames, t, cfg_same, detail=True)
+    _, _, tp = bt.portfolio(frames, t, cfg_prior, detail=True)
+    assert [x['symbol'] for x in ts] == [x['symbol'] for x in tp] == ['A', 'B']
+    assert tp[1]['shares'] < ts[1]['shares']
+
+
+def test_design_view_never_lets_a_late_design_trade_use_later_prices():
+    frames = {f'S{i}': synth(n=1500, seed=i, drift=0.001) for i in range(8)}
+    cfg = ex.realistic_cfg()
+    end = frames['S0'].index[1100]
+    fd, bd, pd_ = ex.design_view(frames, None, bt.prepare(frames), end)
+    assert all(df.index.max() <= end for df in fd.values()) and bd is None
+    t = bt.generate_trades(fd, cfg, None, pd_)
+    assert len(t) > 0 and (t['exit_date'] <= end).all()
+    crazy = {s: df.copy() for s, df in frames.items()}
+    for df in crazy.values():
+        df.loc[df.index > end, ['Open', 'High', 'Low', 'Close']] *= 10.0
+    fd2, _, pd2 = ex.design_view(crazy, None, bt.prepare(crazy), end)
+    t2 = bt.generate_trades(fd2, cfg, None, pd2)
+    key = ['symbol', 'signal_date', 'entry_date', 'exit_date', 'entry', 'exit', 'r']
+    assert t[key].reset_index(drop=True).equals(t2[key].reset_index(drop=True))
+
+
+def test_mc_paths_can_be_shorter_than_the_source_and_holdout_length_gate_is_reported():
+    r = pd.Series(np.random.default_rng(2).normal(0.0005, 0.012, 2000), index=pd.bdate_range('2015-01-01', periods=2000))
+    short = rb.mc_paths(r, 300, length=250, seed=3)[0]
+    full = rb.mc_paths(r, 300, seed=3)[0]
+    assert np.median(short) < np.median(full)            # a short window shows shallower drawdowns: why the gate must be length-matched
+    mc = rb.monte_carlo(r, np.array([1.0, -1.0] * 30), n_paths=300, holdout_days=250)
+    assert mc['holdout_length_p95_depth_pct'] < mc['p95_depth_pct'] and mc['holdout_days'] == 250
+
+
+def test_benchmark_gets_dividends_and_quarter_clusters():
+    idx = pd.bdate_range('2020-01-01', periods=800)
+    bench = pd.Series(100.0, index=idx)                  # flat price index
+    c0 = pd.Series(0.0, index=idx)                       # strategy that earns nothing
+    out = rb.bench_test(c0, bench, 100.0, 0.05)
+    assert out['assumed_nifty_dividend_yield'] == rb.NIFTY_DIV_YIELD
+    assert out['mean_daily_excess_pct'] < 0              # fully invested in a flat index still earns the dividend, the idle strategy does not
+    assert set(rb.quarter_labels(idx[:70])) == {'2020Q1', '2020Q2'}
+
+
+def test_survivorship_reports_both_the_delisting_and_the_inclusion_haircut():
+    frames, bench = fixture()
+    cfg = ex.realistic_cfg()
+    trades = bt.generate_trades(frames, cfg, bench)
+    out = rb.survivorship_haircut(frames, trades, cfg, '2099-01-01', qs=(0.05,), draws=2)
+    v = out['cagr_pct_by_r_haircut']
+    assert v['0.00'] >= v['0.10'] >= v['0.30'] and 'break_even_r_haircut' in out

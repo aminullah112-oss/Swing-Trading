@@ -51,6 +51,8 @@ class Config:
     cost_sell_bps: Optional[float] = None     # itemised statutory costs, sell side (settings.COST_SELL_BPS)
     participation_cap: Optional[float] = None # max share of the entry day's volume that can be filled
     adv_cap: Optional[float] = None           # max order value as a share of 20-day average traded value
+    risk_basis: str = 'signal'                # 'signal' (legacy, frozen C0 baseline) | 'entry' (risk measured from the planned buy-stop, as the live screener sizes)
+    sizing_equity: str = 'same_day'           # 'same_day' (legacy) | 'prior_day' (size on equity known before the entry session)
 
 
 # --------------------------------------------------------------------------------------
@@ -143,6 +145,9 @@ def simulate_trade(a, s, cfg, setup='', score=0):
         return None
     sd = stop_distance(C[s], a['atr'][s])
     stop = C[s] - sd
+    # Risk per share used for sizing and for the R unit. 'signal' (legacy) = distance from the signal close to the stop. 'entry' = distance
+    # from the PLANNED entry (the buy-stop, as the live screener sizes it) to the stop; a gap-up fill then risks more than 1R, as in life.
+    pr = (H[s] if cfg.trigger == 'prior_high' else C[s]) - stop if cfg.risk_basis == 'entry' else sd
     slip = cfg.slippage_bps / 1e4
     if cfg.trigger == 'prior_high':
         if H[e] < H[s]:
@@ -153,7 +158,7 @@ def simulate_trade(a, s, cfg, setup='', score=0):
     fill = raw_fill * (1 + slip)
     if fill <= stop:
         # gapped open below the planned stop: still taken at the open, as a loss
-        return _finish(a, s, e, e, fill, stop, O[e], 'gap_stop', cfg, setup, score, sd)
+        return _finish(a, s, e, e, fill, stop, O[e], 'gap_stop', cfg, setup, score, pr)
     target = fill + cfg.target_r * sd if cfg.target_r > 0 else None
     cur_stop, hh = stop, H[e]
     ref = a['ema50'] if cfg.exit_mode == 'ema50' else E20
@@ -161,24 +166,24 @@ def simulate_trade(a, s, cfg, setup='', score=0):
     for d in range(e, n):
         why = 'trail' if cur_stop > stop else 'stop'
         if d > e and O[d] <= cur_stop:
-            return _finish(a, s, e, d, fill, stop, O[d], 'gap_' + why, cfg, setup, score, sd)
+            return _finish(a, s, e, d, fill, stop, O[d], 'gap_' + why, cfg, setup, score, pr)
         if L[d] <= cur_stop:
-            return _finish(a, s, e, d, fill, stop, min(cur_stop, O[d]) if d > e else cur_stop, why, cfg, setup, score, sd)
+            return _finish(a, s, e, d, fill, stop, min(cur_stop, O[d]) if d > e else cur_stop, why, cfg, setup, score, pr)
         if target is not None and d > e and O[d] >= target:
-            return _finish(a, s, e, d, fill, stop, O[d], 'target_gap', cfg, setup, score, sd)
+            return _finish(a, s, e, d, fill, stop, O[d], 'target_gap', cfg, setup, score, pr)
         if target is not None and H[d] >= target:
-            return _finish(a, s, e, d, fill, stop, target, 'target', cfg, setup, score, sd)
+            return _finish(a, s, e, d, fill, stop, target, 'target', cfg, setup, score, pr)
         if d - e + 1 >= cfg.max_hold:
-            return _finish(a, s, e, d, fill, stop, C[d], 'time', cfg, setup, score, sd)
+            return _finish(a, s, e, d, fill, stop, C[d], 'time', cfg, setup, score, pr)
         if cfg.exit_mode in ('ema20', 'ema50') and C[d] < ref[d]:
             if d + 1 < n:
-                return _finish(a, s, e, d + 1, fill, stop, O[d + 1], cfg.exit_mode, cfg, setup, score, sd)
+                return _finish(a, s, e, d + 1, fill, stop, O[d + 1], cfg.exit_mode, cfg, setup, score, pr)
             # exit signal on the final bar: the real exit is tomorrow's open, which we don't have yet
-            return _finish(a, s, e, d, fill, stop, C[d], cfg.exit_mode + '_pending', cfg, setup, score, sd)
+            return _finish(a, s, e, d, fill, stop, C[d], cfg.exit_mode + '_pending', cfg, setup, score, pr)
         if cfg.exit_mode == 'chandelier':      # trail set at today's close, active from tomorrow
             hh = max(hh, H[d])
             cur_stop = max(cur_stop, hh - cfg.trail_k * a['atr'][d])
-    return _finish(a, s, e, n - 1, fill, stop, C[n - 1], 'end_of_data', cfg, setup, score, sd)
+    return _finish(a, s, e, n - 1, fill, stop, C[n - 1], 'end_of_data', cfg, setup, score, pr)
 
 
 def _finish(a, s, e, d_exit, fill, stop, exit_raw, reason, cfg, setup, score, plan_risk):
@@ -312,8 +317,11 @@ def portfolio(frames, trades, cfg, order_col='score', risk_scale=None, detail=Fa
     equity, accepted, rejected = {}, 0, 0
     exposure, npos = {}, {}
     liq_limited, taken = 0, []
+    prev_eq = None
     for d in dates:
         eq_now = realized + sum(p['shares'] * (_px(closes[p['symbol']], d, p['entry']) - p['entry']) for p in open_pos)
+        if cfg.sizing_equity == 'prior_day':
+            eq_now = prev_eq if prev_eq is not None else cfg.capital      # an order placed before the session cannot see that day's close
         for _, t in by_entry.get(d, pd.DataFrame()).iterrows():
             if any(p['symbol'] == t['symbol'] for p in open_pos):
                 rejected += 1; continue
@@ -347,6 +355,7 @@ def portfolio(frames, trades, cfg, order_col='score', risk_scale=None, detail=Fa
                 still.append(p)
         open_pos = still
         equity[d] = realized + sum(p['shares'] * (_px(closes[p['symbol']], d, p['entry']) - p['entry']) for p in open_pos)
+        prev_eq = equity[d]
         invested = sum(p['shares'] * _px(closes[p['symbol']], d, p['entry']) for p in open_pos)
         exposure[d] = invested / equity[d] if equity[d] > 0 else 0.0
         npos[d] = len(open_pos)
