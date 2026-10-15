@@ -485,6 +485,13 @@ def main():
     if aliases_used:
         print(f"Resolved renamed tickers: {aliases_used}")
 
+    # 1a. drop the live, unfinished session: only bars up to the expected session are official
+    in_progress = [used for _, (df, used) in resolved.items() if len(df) and df.index[-1].date() > expected]
+    resolved = {sym: (dataquality.through(df, expected), used) for sym, (df, used) in resolved.items()}
+    resolved = {sym: v for sym, v in resolved.items() if len(v[0])}
+    if in_progress:
+        print(f"Ignored the unfinished live session (bars dated after {expected}) for {len(in_progress)} symbols; using official bars through {expected}")
+
     # 1b. independent check against NSE's own end-of-day file; fills sessions Yahoo has not published (guarded)
     nse = bhavcopy.fetch(expected)
     alt = None
@@ -500,7 +507,7 @@ def main():
     # 2. validate, then decide whether ANY signal may be actionable (fail closed)
     per_symbol = {used: dataquality.summarize_symbol(df, expected, holidays) for _, (df, used) in resolved.items()}
     bhavcopy.flag(per_symbol, crosscheck)
-    nifty_df = extract_df(bulk, BENCH)
+    nifty_df = dataquality.through(extract_df(bulk, BENCH), expected)
     nifty_idx = bhavcopy.fetch_index(expected)
     if nifty_idx['status'] != 'ok' and alt is not None and alt.get('status') == 'ok' and alt.get('nifty_bar'):
         nifty_idx = {'status': 'ok', 'bar': alt['nifty_bar'], 'source': 'angel one smartapi'}

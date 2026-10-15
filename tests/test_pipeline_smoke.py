@@ -73,3 +73,17 @@ def test_untrusted_scan_adds_nothing_and_health_degrades(workdir, monkeypatch):
     remediation.main()
     assert os.path.exists('reports/forward.md') and os.path.exists('reports/remediation.md')
     assert json.load(open('reports/remediation.json'))['ceiling_after_reruns'] < 7
+
+
+def test_paper_never_simulates_fills_on_the_unfinished_session(workdir, monkeypatch):
+    """A partial bar dated after the expected session must not trigger or stop out a pending signal."""
+    import pandas as pd
+    import analysis
+    df = flat([(100.5, 102, 100, 101.5)])                                        # a real entry-day bar for the signal
+    live = df.index[-1] + pd.offsets.BDay(1)
+    df.loc[live] = (101.5, 140, 80, 90, 1e6)                                      # wild partial 'today' bar
+    monkeypatch.setattr(analysis, 'expected_last_session', lambda now_ist, close_hhmm=(16, 30), holidays=frozenset(): df.index[-2].date())
+    res = dict(results_for(sig('AAA', flat([]))), data_cutoff=str(df.index[100].date()))
+    led = run_pipeline(df, res, monkeypatch)
+    rec = led['signals'][0]
+    assert rec['status'] == 'open' and rec.get('exit_reason') is None and rec['entry_date'] == str(df.index[-2].date())     # not stopped by the 80 low

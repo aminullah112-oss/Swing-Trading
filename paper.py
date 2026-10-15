@@ -57,6 +57,9 @@ def main():
     added0 = lg.add_signals(ledger, results, EVENTS, ts, holidays)      # idempotent; shows what is active before fetching
     need = sorted({r['symbol'] for r in ledger['signals'] if r['status'] in lg.ACTIVE})
     frames = fetch_frames(need)
+    if frames:
+        import dataquality
+        frames = {k: dataquality.through(df, expected) for k, df in frames.items()}      # never simulate fills on the unfinished session
     ok = frames is not None
     if frames is None:
         print('WARNING: price download failed; signals logged but statuses not advanced.')
