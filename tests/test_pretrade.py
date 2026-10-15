@@ -78,3 +78,13 @@ def test_aggregate_open_risk_and_active_symbols_limit_entries():
     assert [t['symbol'] for t in rep['tradable']] == ['A', 'B', 'C']             # 3 x 2500 = 7500 <= 8475; a fourth would reach 10000
     why = {r['symbol']: r['reasons'][0] for r in rep['rejected']}
     assert 'active signal' in why['D'] and 'open-risk budget' in why['E']
+
+
+def test_todays_own_pending_signals_are_candidates_not_competition():
+    c = ctx([stock('A', signal_date='2026-10-14'), stock('B', signal_date='2026-10-14')])
+    c['ledger']['signals'] = [{'id': 'A|2026-10-13', 'symbol': 'A', 'signal_date': '2026-10-13', 'status': 'pending', 'shares': 1, 'risk_amount': 1}]      # older pending: stands
+    c['ledger']['signals'] += [{'id': 'B|2026-10-14', 'symbol': 'B', 'signal_date': '2026-10-14', 'status': 'pending', 'shares': 1, 'risk_amount': 1}]      # today's own record
+    c['results'].update(data_cutoff='2026-10-14', expected_session='2026-10-14')
+    rep = pt.evaluate(c)
+    assert [t['symbol'] for t in rep['tradable']] == ['B']
+    assert 'active signal' in ' '.join(next(r for r in rep['rejected'] if r['symbol'] == 'A')['reasons'])

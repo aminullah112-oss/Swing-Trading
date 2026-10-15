@@ -206,6 +206,14 @@ def update_status(ledger, frames, cfg=None, events=None, ts=None, expected_sessi
     liq = settings.LIQUIDITY_PARTICIPATION_CAP
     changed = 0
     for rec in ledger['signals']:
+        if rec['status'] == 'expired' and rec.get('expired_reason') == 'trigger_not_hit' and expected_session \
+                and str(rec.get('expires_on') or '') > str(expected_session):
+            # Expiry was decided on a bar of a session that was still open (an earlier, pre-fix run): the entry session is not over, so reopen it.
+            rec['status'] = 'pending'
+            rec.pop('expired_reason', None)
+            rec.setdefault('history', []).append({'from': 'expired', 'to': 'pending', 'reason': 'reinstated: expiry was decided on an unfinished session', 'ts': ts})
+            _log(events, 'expiry_reversed', rec['id'], {'reason': 'expiry was decided on an unfinished session', 'expires_on': rec.get('expires_on')}, ts)
+            changed += 1
         if rec['status'] not in ACTIVE:
             continue
         df = frames.get(rec['symbol'])
@@ -249,6 +257,8 @@ def update_status(ledger, frames, cfg=None, events=None, ts=None, expected_sessi
         a = _arrays(df)
         t = bt.simulate_trade(a, s, cfg, rec['setup'], rec['score'])
         before = rec['status']
+        if t is None and expected_session and str(rec.get('expires_on') or '') > str(expected_session):
+            continue                                   # the entry session is not complete yet: it may still trigger
         if t is None:
             transition(rec, 'expired', 'entry session passed without the buy-stop triggering', events, ts)
             rec['expired_reason'] = 'trigger_not_hit'
@@ -325,7 +335,7 @@ def replay_statuses(event_list):
             st[e['ref']] = 'pending'
         elif e['type'] == 'signal_rejected':
             st[e['ref']] = 'rejected'
-        elif e['type'] == 'signal_reinstated':
+        elif e['type'] in ('signal_reinstated', 'expiry_reversed'):
             st[e['ref']] = 'pending'
         elif e['type'] == 'fill_voided':
             st[e['ref']] = 'void'
@@ -360,7 +370,7 @@ def reconcile(ledger, event_list=None, expected_session=None, holidays=frozenset
             if expected_session and s.get('expires_on') and str(expected_session) > s['expires_on'] and not s.get('needs_data'):
                 add('overdue_pending', s['id'], f"still pending although the entry session {s['expires_on']} has passed (expected session {expected_session})")
         for h in s.get('history', []):
-            if h['from'] is not None and h['to'] not in TRANSITIONS.get(h['from'], ()) and not (h['from'] == 'rejected' and str(h.get('reason', '')).startswith('reinstated')) \
+            if h['from'] is not None and h['to'] not in TRANSITIONS.get(h['from'], ()) and not (h['from'] in ('rejected', 'expired') and str(h.get('reason', '')).startswith('reinstated')) \
                     and not (h['from'] == 'open' and h['to'] == 'void'):
                 add('illegal_history', s['id'], f"{h['from']} -> {h['to']}")
     for sym, lst in per_symbol.items():
