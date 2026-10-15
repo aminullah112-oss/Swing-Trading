@@ -5,7 +5,7 @@
     "manage_exits": true,
     "ops_credit": true
   },
-  "generated": "2026-10-15T06:28:33+00:00",
+  "generated": "2026-10-15T06:37:34+00:00",
   "checks": [
     {
       "id": "H1",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (59 events)"
+      "msg": "event log verified (60 events)"
     },
     {
       "id": "H13b",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-15T06:28:33+00:00",
-    "commit_sha": "5287d9ba696d4b9aefb3b4ee0569c6a819879b5b",
+    "generated_at": "2026-10-15T06:37:34+00:00",
+    "commit_sha": "9c9b5bc1856a41d32cda84c364b03561f7f53679",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -85,9 +85,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-14",
     "source_ids": {
-      "results": "b09b279c7dcd",
-      "ledger": "e62237335f89",
-      "events": "ab212720c189"
+      "results": "87ac6eb43304",
+      "ledger": "7d8624d53e89",
+      "events": "f081270ff35c"
     }
   }
 }

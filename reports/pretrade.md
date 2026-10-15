@@ -1,6 +1,6 @@
 # Pre-trade checklist: **GO** (paper only)
 
-Generated 2026-10-15T06:28:35+00:00.
+Generated 2026-10-15T06:37:35+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
@@ -8,7 +8,7 @@ Generated 2026-10-15T06:28:35+00:00.
 | P2 block | ✅ | scan provenance current |
 | P3 block | ✅ | data quality TRUSTED |
 | P4 block | ✅ | health WARN: new entries allowed |
-| P5 block | ✅ | event log verified (59 events) |
+| P5 block | ✅ | event log verified (60 events) |
 | P6 block | ✅ | ledger reconciles |
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |
@@ -18,19 +18,19 @@ Generated 2026-10-15T06:28:35+00:00.
 
 ## Entries allowed (valid for the next session only; buy-stop, then stop)
 
-- MOTHERSON [standard · Autos & ancillaries]: buy-stop 162.69, stop 152.42, 275 shares, risk ₹2824, valid 2026-10-15
+- DIVISLAB [standard · Pharma & healthcare]: buy-stop 9315.0, stop 8683.95, 4 shares, risk ₹2524, valid 2026-10-15
+- COFORGE [standard · IT]: buy-stop 1964.9, stop 1834.21, 21 shares, risk ₹2744, valid 2026-10-15
+- HAL [standard · Capital goods & defence]: buy-stop 4948.7, stop 4757.18, 14 shares, risk ₹2681, valid 2026-10-15
 
 ## Rejected
 
-- DIVISLAB: symbol already has an active signal; sector cap: 2 open positions already in Pharma & healthcare (limit 2)
-- COFORGE: symbol already has an active signal
-- ETERNAL: execution checks blocked it; symbol already has an active signal; sector cap: 2 open positions already in FMCG & consumer (limit 2)
-- KAJARIACER: execution checks blocked it; symbol already has an active signal
-- HAL: symbol already has an active signal
-- RADICO: symbol already has an active signal; sector cap: 2 open positions already in FMCG & consumer (limit 2)
-- NAVINFLUOR: symbol already has an active signal
-- RAYMOND: symbol already has an active signal
-- AUROPHARMA: symbol already has an active signal; sector cap: 2 open positions already in Pharma & healthcare (limit 2)
-- PNB: execution checks blocked it; symbol already has an active signal
+- ETERNAL: execution checks blocked it
+- KAJARIACER: execution checks blocked it
+- RADICO: aggregate open-risk budget would be exceeded
+- NAVINFLUOR: aggregate open-risk budget would be exceeded
+- RAYMOND: aggregate open-risk budget would be exceeded
+- AUROPHARMA: aggregate open-risk budget would be exceeded
+- PNB: execution checks blocked it; aggregate open-risk budget would be exceeded
+- MOTHERSON: aggregate open-risk budget would be exceeded
 
 A GO means the checks passed, not that the trade is wise. Paper only: no order is sent anywhere.

@@ -4,16 +4,14 @@
   "evidence_eligible": 13,
   "legacy_excluded": 13,
   "by_status": {
-    "pending": 10,
+    "pending": 11,
     "void": 1,
-    "rejected": 1,
-    "expired": 1
+    "rejected": 1
   },
   "not_taken_reasons": {
-    "not yet triggered": 10,
+    "not yet triggered": 11,
     "entry was simulated on an unfinished session bar; the official bar decides": 1,
-    "symbol already has an active signal": 1,
-    "entry session passed without a trigger": 1
+    "symbol already has an active signal": 1
   },
   "closed": 0,
   "forward_avg_r_incl_open": null,
@@ -59,12 +57,12 @@
       },
       "never_triggered": {
         "label": "Never triggered (buy-stop not reached)",
-        "n": 1,
+        "n": 0,
         "avg_r": null
       },
       "waiting": {
         "label": "Waiting for entry session",
-        "n": 10,
+        "n": 11,
         "avg_r": null
       },
       "not_tradable": {
@@ -77,19 +75,19 @@
     "closed": 0,
     "closed_win_rate": null,
     "entered_in_profit_rate": null,
-    "trigger_rate": 0.0,
+    "trigger_rate": null,
     "by_setup": {},
     "legacy_excluded": 13,
     "note": "Win/loss counts are descriptive. Below ~100 closed signals they say little about the criteria; winners run under a slow exit, so early closed-only results skew to stops."
   },
   "event_log": {
     "verified": true,
-    "events": 59,
+    "events": 60,
     "problem": null
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-15T06:28:32+00:00"
+    "checked": "2026-10-15T06:37:31+00:00"
   }
 }

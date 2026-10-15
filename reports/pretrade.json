@@ -1,6 +1,6 @@
 {
   "verdict": "GO",
-  "generated": "2026-10-15T06:28:35+00:00",
+  "generated": "2026-10-15T06:37:35+00:00",
   "checks": [
     {
       "id": "P1",
@@ -30,7 +30,7 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (59 events)"
+      "msg": "event log verified (60 events)"
     },
     {
       "id": "P6",
@@ -71,82 +71,84 @@
   ],
   "tradable": [
     {
-      "symbol": "MOTHERSON",
-      "buy_stop": 162.69,
-      "stop": 152.42,
-      "shares": 275,
-      "risk_inr": 2824.25,
+      "symbol": "DIVISLAB",
+      "buy_stop": 9315.0,
+      "stop": 8683.95,
+      "shares": 4,
+      "risk_inr": 2524.2,
       "tier": "standard",
-      "sector": "Autos & ancillaries",
+      "sector": "Pharma & healthcare",
+      "valid_for": "2026-10-15"
+    },
+    {
+      "symbol": "COFORGE",
+      "buy_stop": 1964.9,
+      "stop": 1834.21,
+      "shares": 21,
+      "risk_inr": 2744.49,
+      "tier": "standard",
+      "sector": "IT",
+      "valid_for": "2026-10-15"
+    },
+    {
+      "symbol": "HAL",
+      "buy_stop": 4948.7,
+      "stop": 4757.18,
+      "shares": 14,
+      "risk_inr": 2681.28,
+      "tier": "standard",
+      "sector": "Capital goods & defence",
       "valid_for": "2026-10-15"
     }
   ],
   "rejected": [
     {
-      "symbol": "DIVISLAB",
-      "reasons": [
-        "symbol already has an active signal",
-        "sector cap: 2 open positions already in Pharma & healthcare (limit 2)"
-      ]
-    },
-    {
-      "symbol": "COFORGE",
-      "reasons": [
-        "symbol already has an active signal"
-      ]
-    },
-    {
       "symbol": "ETERNAL",
       "reasons": [
-        "execution checks blocked it",
-        "symbol already has an active signal",
-        "sector cap: 2 open positions already in FMCG & consumer (limit 2)"
+        "execution checks blocked it"
       ]
     },
     {
       "symbol": "KAJARIACER",
       "reasons": [
-        "execution checks blocked it",
-        "symbol already has an active signal"
-      ]
-    },
-    {
-      "symbol": "HAL",
-      "reasons": [
-        "symbol already has an active signal"
+        "execution checks blocked it"
       ]
     },
     {
       "symbol": "RADICO",
       "reasons": [
-        "symbol already has an active signal",
-        "sector cap: 2 open positions already in FMCG & consumer (limit 2)"
+        "aggregate open-risk budget would be exceeded"
       ]
     },
     {
       "symbol": "NAVINFLUOR",
       "reasons": [
-        "symbol already has an active signal"
+        "aggregate open-risk budget would be exceeded"
       ]
     },
     {
       "symbol": "RAYMOND",
       "reasons": [
-        "symbol already has an active signal"
+        "aggregate open-risk budget would be exceeded"
       ]
     },
     {
       "symbol": "AUROPHARMA",
       "reasons": [
-        "symbol already has an active signal",
-        "sector cap: 2 open positions already in Pharma & healthcare (limit 2)"
+        "aggregate open-risk budget would be exceeded"
       ]
     },
     {
       "symbol": "PNB",
       "reasons": [
         "execution checks blocked it",
-        "symbol already has an active signal"
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "MOTHERSON",
+      "reasons": [
+        "aggregate open-risk budget would be exceeded"
       ]
     }
   ],

@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-15T06:28:32+00:00",
+  "updated": "2026-10-15T06:37:31+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -967,7 +967,7 @@
       "plan_risk": 7.3789,
       "shares": 275,
       "risk_amount": 2824.25,
-      "status": "expired",
+      "status": "pending",
       "scan_id": "5eb1afb687f8",
       "provisional": false,
       "expires_on": "2026-10-15",
@@ -984,21 +984,27 @@
           "to": "expired",
           "reason": "entry session passed without the buy-stop triggering",
           "ts": "2026-10-15T05:37:34+00:00"
+        },
+        {
+          "from": "expired",
+          "to": "pending",
+          "reason": "reinstated: expiry was decided on an unfinished session",
+          "ts": "2026-10-15T06:37:31+00:00"
         }
       ],
       "taken": false,
-      "expired_reason": "trigger_not_hit",
-      "not_taken_reason": "entry session passed without a trigger"
+      "needs_data": false,
+      "not_taken_reason": "not yet triggered"
     }
   ],
   "summary": {
     "closed_eligible": 0,
     "first_eligible_signal": "2026-10-14",
     "signals": 26,
-    "pending": 10,
+    "pending": 11,
     "open": 4,
     "closed": 1,
-    "expired": 8,
+    "expired": 7,
     "void": 2,
     "cancelled": 0,
     "rejected": 1,
@@ -1040,12 +1046,12 @@
         },
         "never_triggered": {
           "label": "Never triggered (buy-stop not reached)",
-          "n": 1,
+          "n": 0,
           "avg_r": null
         },
         "waiting": {
           "label": "Waiting for entry session",
-          "n": 10,
+          "n": 11,
           "avg_r": null
         },
         "not_tradable": {
@@ -1058,7 +1064,7 @@
       "closed": 0,
       "closed_win_rate": null,
       "entered_in_profit_rate": null,
-      "trigger_rate": 0.0,
+      "trigger_rate": null,
       "by_setup": {},
       "legacy_excluded": 13,
       "note": "Win/loss counts are descriptive. Below ~100 closed signals they say little about the criteria; winners run under a slow exit, so early closed-only results skew to stops."
@@ -1072,11 +1078,12 @@
     "5eb1afb687f8",
     "42fa074a4a40",
     "3910f054bd4c",
-    "63f34b34290a"
+    "63f34b34290a",
+    "bee4e4326868"
   ],
   "last_cutoff": "2026-10-14",
   "last_ingest": {
-    "scan_id": "63f34b34290a",
+    "scan_id": "bee4e4326868",
     "accepted": 0,
     "rejected": 0,
     "blocked": null
@@ -1084,12 +1091,12 @@
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-15T06:28:32+00:00"
+    "checked": "2026-10-15T06:37:31+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-15T06:28:33+00:00",
-    "commit_sha": "5287d9ba696d4b9aefb3b4ee0569c6a819879b5b",
+    "generated_at": "2026-10-15T06:37:33+00:00",
+    "commit_sha": "9c9b5bc1856a41d32cda84c364b03561f7f53679",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -1098,9 +1105,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-14",
     "source_ids": {
-      "results": "b09b279c7dcd"
+      "results": "87ac6eb43304"
     },
-    "scan_id": "63f34b34290a"
+    "scan_id": "bee4e4326868"
   },
-  "duplicates_skipped": 23
+  "duplicates_skipped": 34
 }
