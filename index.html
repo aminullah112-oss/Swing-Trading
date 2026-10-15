@@ -47,6 +47,9 @@
 
     <div class="capital-note" id="missing-note" hidden></div>
 
+    <div id="sizing-panel"></div>
+    <div id="alloc-panel"></div>
+
     <h2 class="section-title">Trade plans</h2>
     <div id="watchlist" hidden>
         <h2 class="section-title">Watchlist, preview only <span class="muted"><span id="watchlist-count">0</span> candidates on provisional data, not entries</span></h2>
@@ -57,7 +60,7 @@
     <div class="plans" id="plans"><div class="empty-note"><div class="spinner"></div>Loading trade plans…</div></div>
     <div class="capital-note" id="capital-note"></div>
     <div class="capital-note">
-        Signals are not ranked: the old 0–100 score did not predict returns in testing. Choose among them with your own chart read and the checks on each card,
+        Signals are shown strongest first by a checklist (conviction high, medium or low: how many of five selection conditions hold). It is not a probability of profit: the old 0–100 score did not predict returns in testing, and the checklist itself is still being tested. Choose among them with your own chart read and the checks on each card,
         and avoid several names from one sector. Execution checks were not part of the backtested rules and do not add expected return.
     </div>
 
@@ -77,6 +80,7 @@
     </footer>
 </div>
 <script src="common.js"></script>
-<script src="desk.js"></script>
+<script src="plan_math.js"></script>
+    <script src="desk.js"></script>
 </body>
 </html>
