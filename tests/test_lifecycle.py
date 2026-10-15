@@ -244,3 +244,13 @@ def test_fill_on_an_unfinished_session_is_voided_with_an_audit_trail(tmp_path):
     rec = led['signals'][0]
     assert rec['status'] == 'void' and 'unfinished' in rec['void_reason']
     assert [e['type'] for e in ev.read(p)][-1] == 'fill_voided' and lg.replay_statuses(ev.read(p))[rec['id']] == 'void'
+
+
+def test_reconcile_does_not_flag_a_legacy_position_overlapping_a_current_signal():
+    df = flat([])
+    led = fresh(df)
+    legacy = dict(led['signals'][0], id='AAA|2020-01-01', signal_date='2020-01-01', legacy=True, evidence_eligible=False, status='open')
+    led['signals'].append(legacy)
+    assert 'duplicate_active' not in {i['kind'] for i in lg.reconcile(led)['issues']}
+    led['signals'].append(dict(led['signals'][0], id='AAA|2020-02-02', signal_date='2020-02-02'))          # two CURRENT active ones is still a defect
+    assert 'duplicate_active' in {i['kind'] for i in lg.reconcile(led)['issues']}

@@ -348,7 +348,7 @@ def reconcile(ledger, event_list=None, expected_session=None, holidays=frozenset
     for s in ledger['signals']:
         if s['id'] != f"{s['symbol']}|{s['signal_date']}":
             add('bad_id', s['id'], 'id does not match symbol|signal_date')
-        if s['status'] in ACTIVE:
+        if s['status'] in ACTIVE and counts_toward_limits(s):          # legacy history may overlap a current signal
             per_symbol.setdefault(s['symbol'], []).append(s['id'])
         if s['status'] not in TRANSITIONS:
             add('unknown_status', s['id'], s['status'])
