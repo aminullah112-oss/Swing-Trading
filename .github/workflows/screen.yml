@@ -2,9 +2,9 @@ name: Daily Stock Screen
 
 on:
   schedule:
-    - cron: '0 3 * * 1-5'     # 08:30 IST pre-market: Yahoo has published yesterday's official bars by now; signals are valid for today's session
-    - cron: '30 12 * * 1-5'   # 18:00 IST, ninety minutes after the close, when official daily bars exist
-    - cron: '30 15 * * 1-5'   # 21:00 IST retry for a lagging vendor; ingestion is idempotent so a second run is safe
+    - cron: '17 3 * * 1-5'     # 08:30 IST pre-market: Yahoo has published yesterday's official bars by now; signals are valid for today's session
+    - cron: '47 12 * * 1-5'   # 18:00 IST, ninety minutes after the close, when official daily bars exist
+    - cron: '47 15 * * 1-5'   # 21:00 IST retry for a lagging vendor; ingestion is idempotent so a second run is safe
   workflow_dispatch:
 
 permissions:
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   screen:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 75
 
     steps:
     - uses: actions/checkout@v4
@@ -44,7 +44,17 @@ jobs:
         # Set repo variables (Settings > Secrets and variables > Actions > Variables) to override.
         EDGE_CAPITAL: ${{ vars.EDGE_CAPITAL || '565000' }}
         EDGE_RISK_PCT: ${{ vars.EDGE_RISK_PCT || '0.5' }}
-      run: python screener.py
+      run: |
+        # Yahoo and NSE sometimes publish late. Re-scan every 7 minutes (up to 6 tries) until the data is TRUSTED,
+        # so one run catches the moment official bars appear instead of waiting for the next scheduled run.
+        for i in 1 2 3 4 5 6; do
+          python screener.py || exit 1
+          status=$(python -c "import json; print((json.load(open('results.json')).get('data_quality') or {}).get('status'))")
+          echo "attempt $i: data quality $status"
+          [ "$status" = "TRUSTED" ] && break
+          [ "$i" -lt 6 ] && sleep 420
+        done
+        exit 0
 
     - name: Update paper-trade ledger
       env:
