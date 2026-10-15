@@ -5,7 +5,7 @@
     "manage_exits": true,
     "ops_credit": true
   },
-  "generated": "2026-10-15T11:25:26+00:00",
+  "generated": "2026-10-15T17:24:34+00:00",
   "checks": [
     {
       "id": "H1",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-15T11:25:26+00:00",
-    "commit_sha": "7ebd5aa1fb13c7c87adad086eccedc70165182a8",
+    "generated_at": "2026-10-15T17:24:34+00:00",
+    "commit_sha": "42f24656e14b91060ec9b59b6c2e044af4c700e9",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -85,8 +85,8 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-15",
     "source_ids": {
-      "results": "a4833cd53a19",
-      "ledger": "6f87bce748e2",
+      "results": "d896f74652fa",
+      "ledger": "9e19883eb207",
       "events": "faf0c1125006"
     }
   }

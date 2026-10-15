@@ -1,8 +1,8 @@
 {
-  "scan_id": "6c5760044caa",
-  "timestamp": "2026-10-15T11:25:17.418401+00:00",
+  "scan_id": "7cbf10df1ba8",
+  "timestamp": "2026-10-15T17:24:25.416815+00:00",
   "scan_date": "2026-10-15",
-  "scan_time": "16:55:17 IST",
+  "scan_time": "22:54:25 IST",
   "data_cutoff": "2026-10-15",
   "expected_session": "2026-10-15",
   "sessions_behind": 0,
@@ -26,7 +26,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-10-15",
-      "retrieved_at": "2026-10-15T11:25:17+00:00",
+      "retrieved_at": "2026-10-15T17:24:25+00:00",
       "compared": 159,
       "filled": [],
       "cannot_fill": [],
@@ -35,9 +35,9 @@
       "note": null,
       "angelone": null,
       "nifty": {
-        "status": "unavailable",
+        "status": "ok",
         "filled": false,
-        "note": "HTTPError: HTTP Error 404: Not Found"
+        "note": null
       },
       "close_mismatch": {},
       "adjustment_mismatch": {}
@@ -80,7 +80,7 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-10-15T11:25:17+00:00",
+    "retrieved_at": "2026-10-15T17:24:25+00:00",
     "frame_last_row": "2026-10-15",
     "rows": 497,
     "non_null_closes_on_last_row": 160,
@@ -407,7 +407,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -777,7 +777,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -1149,7 +1149,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1521,7 +1521,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1893,7 +1893,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2263,7 +2263,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2633,7 +2633,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3003,7 +3003,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -3375,7 +3375,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3745,7 +3745,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -4117,7 +4117,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4487,7 +4487,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T11:25:17.418401+00:00",
+      "timestamp": "2026-10-15T17:24:25.416815+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4586,8 +4586,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-10-15T11:25:24+00:00",
-    "commit_sha": "7ebd5aa1fb13c7c87adad086eccedc70165182a8",
+    "generated_at": "2026-10-15T17:24:31+00:00",
+    "commit_sha": "42f24656e14b91060ec9b59b6c2e044af4c700e9",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",

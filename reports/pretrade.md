@@ -1,6 +1,6 @@
 # Pre-trade checklist: **GO (no qualifying signals)** (paper only)
 
-Generated 2026-10-15T11:25:28+00:00.
+Generated 2026-10-15T17:24:35+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
