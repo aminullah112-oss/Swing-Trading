@@ -74,10 +74,13 @@ def screen_signals(ctx):
     res, led = ctx['results'], ctx['ledger']
     cap = res.get('capital') or (res.get('risk_config') or {}).get('capital') or settings.CAPITAL
     live = [s for s in led.get('signals', []) if lg.counts_toward_limits(s)]          # legacy records hold no budget and block nothing
-    active = {s['symbol'] for s in live if s['status'] in lg.ACTIVE}
+    cut = str(res.get('data_cutoff'))
+    # A pending record dated on today's scan IS today's candidate, not a competing position. Only filled positions and OLDER pending signals count.
+    standing = [s for s in live if s['status'] == 'open' or (s['status'] == 'pending' and str(s.get('signal_date')) != cut)]
+    active = {s['symbol'] for s in standing}
     open_risk = sum(lg.eff_risk(s) for s in live if s['status'] == 'open' and s.get('taken'))
     sectors = selection.load_sectors()
-    held = [s['symbol'] for s in live if s['status'] in lg.ACTIVE]
+    held = [s['symbol'] for s in standing]
     tradable, rejected = [], []
     for r in res.get('stocks', []):
         why = []

@@ -254,3 +254,24 @@ def test_reconcile_does_not_flag_a_legacy_position_overlapping_a_current_signal(
     assert 'duplicate_active' not in {i['kind'] for i in lg.reconcile(led)['issues']}
     led['signals'].append(dict(led['signals'][0], id='AAA|2020-02-02', signal_date='2020-02-02'))          # two CURRENT active ones is still a defect
     assert 'duplicate_active' in {i['kind'] for i in lg.reconcile(led)['issues']}
+
+
+def test_expiry_decided_on_an_unfinished_session_is_reversed_and_not_repeated(tmp_path):
+    p = str(tmp_path / 'e.jsonl')
+    df = flat([(100, 100.8, 99.5, 100.2)])                                       # a bar for the entry session exists, buy-stop not reached
+    led = fresh(df)
+    exp = led['signals'][0]['expires_on']
+    # pre-fix behaviour: the signal was expired while that session was still open
+    lg.transition(led['signals'][0], 'expired', 'trigger not hit', p)
+    led['signals'][0]['expired_reason'] = 'trigger_not_hit'
+    before = pd.Timestamp(exp).date() - pd.Timedelta(days=1)
+    lg.update_status(led, {'AAA': df.iloc[:-1]}, events=p, ts='t', expected_session=before)
+    rec = led['signals'][0]
+    assert rec['status'] == 'pending' and rec['history'][-1]['reason'].startswith('reinstated')
+    assert [e['type'] for e in ev.read(p)][-1] == 'expiry_reversed' and lg.reconcile(led, ev.read(p))['ok']
+    # while the session is still open, even a bar that did not reach the trigger must not expire it
+    lg.update_status(led, {'AAA': df}, expected_session=before)
+    assert led['signals'][0]['status'] == 'pending'
+    # once the session is complete it expires normally
+    lg.update_status(led, {'AAA': df}, expected_session=pd.Timestamp(exp).date())
+    assert led['signals'][0]['status'] == 'expired'
