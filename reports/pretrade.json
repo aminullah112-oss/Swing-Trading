@@ -1,12 +1,12 @@
 {
-  "verdict": "NO-GO",
-  "generated": "2026-10-15T05:37:37+00:00",
+  "verdict": "GO (no qualifying signals)",
+  "generated": "2026-10-15T05:50:22+00:00",
   "checks": [
     {
       "id": "P1",
       "level": "block",
-      "ok": false,
-      "msg": "scan data cutoff 2026-10-15 vs expected session 2026-10-14 (0 behind)"
+      "ok": true,
+      "msg": "scan data cutoff 2026-10-14 vs expected session 2026-10-14 (0 behind)"
     },
     {
       "id": "P2",
@@ -17,20 +17,20 @@
     {
       "id": "P3",
       "level": "block",
-      "ok": false,
-      "msg": "data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-15': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-15)"
+      "ok": true,
+      "msg": "data quality TRUSTED"
     },
     {
       "id": "P4",
       "level": "block",
-      "ok": false,
-      "msg": "health DEGRADED: new entries NOT allowed"
+      "ok": true,
+      "msg": "health WARN: new entries allowed"
     },
     {
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (47 events)"
+      "msg": "event log verified (48 events)"
     },
     {
       "id": "P6",
@@ -72,9 +72,75 @@
   "tradable": [],
   "rejected": [
     {
-      "symbol": "*",
+      "symbol": "DIVISLAB",
       "reasons": [
-        "entries blocked: scan data cutoff 2026-10-15 vs expected session 2026-10-14 (0 behind); data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-15': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-15); health DEGRADED: new entries NOT allowed"
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "COFORGE",
+      "reasons": [
+        "symbol already has an active signal",
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "ETERNAL",
+      "reasons": [
+        "execution checks blocked it",
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "KAJARIACER",
+      "reasons": [
+        "execution checks blocked it",
+        "symbol already has an active signal",
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "HAL",
+      "reasons": [
+        "symbol already has an active signal",
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "RADICO",
+      "reasons": [
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "NAVINFLUOR",
+      "reasons": [
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "RAYMOND",
+      "reasons": [
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "AUROPHARMA",
+      "reasons": [
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "PNB",
+      "reasons": [
+        "execution checks blocked it",
+        "aggregate open-risk budget would be exceeded"
+      ]
+    },
+    {
+      "symbol": "MOTHERSON",
+      "reasons": [
+        "aggregate open-risk budget would be exceeded"
       ]
     }
   ],

@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-15T05:37:36+00:00",
+  "generated": "2026-10-15T05:50:22+00:00",
   "policy": {
     "score": 0.5,
     "mode": "PAPER ONLY",
     "live_risk_pct_allowed": 0.0,
     "reasons": [
-      "health DEGRADED (data/ledger untrusted, kill switch or broken pipeline)"
+      "capital not confirmed in attestations.json"
     ],
     "critical_gates_passed": false,
     "unmet": [
@@ -146,12 +146,12 @@
       "label": "Operations healthy: no health FAIL and no data lag",
       "points": 0.5,
       "critical": false,
-      "status": "fail",
+      "status": "blocked",
       "earned": 0.0,
-      "value": "DEGRADED",
-      "threshold": "trusted data",
-      "detail": "latest scan data UNTRUSTED (no actionable signals): only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-15': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-15)",
-      "evidence_state": "failed"
+      "value": "WARN",
+      "threshold": "artefacts consistent",
+      "detail": "inconsistent artefacts, regenerate: ledger.json was built from a different results.json than the current one",
+      "evidence_state": "blocked_defect"
     },
     {
       "id": "R1",
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "df5b705375f2",
+    "results": "5be00c8e138c",
     "ledger": "d1d6ef725dc1",
-    "health": "f518aa22a7e5",
+    "health": "1c2744682dc8",
     "grid": "ba2286b4d2b0",
     "benchmarks": "07507b88585d",
     "universe": "204b5b06f773",
@@ -184,22 +184,24 @@
   "stale_evidence": [
     "report has no provenance block (produced before provenance existed): rerun it"
   ],
-  "inconsistencies": [],
+  "inconsistencies": [
+    "ledger.json was built from a different results.json than the current one"
+  ],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-15T05:37:36+00:00",
-    "commit_sha": "25fea65b245145722981a9ed6347039557077a91",
+    "generated_at": "2026-10-15T05:50:22+00:00",
+    "commit_sha": "58ce247b1b3e2abc2ae3408ed2137dd5e83d0de7",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-15",
+    "data_cutoff": "2026-10-14",
     "source_ids": {
-      "results": "df5b705375f2",
+      "results": "5be00c8e138c",
       "ledger": "d1d6ef725dc1",
-      "health": "f518aa22a7e5",
+      "health": "1c2744682dc8",
       "grid": "ba2286b4d2b0",
       "benchmarks": "07507b88585d",
       "universe": "204b5b06f773",
