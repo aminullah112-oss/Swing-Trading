@@ -1,6 +1,6 @@
 # Pre-trade checklist: **GO** (paper only)
 
-Generated 2026-10-15T06:20:34+00:00.
+Generated 2026-10-15T06:28:35+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
