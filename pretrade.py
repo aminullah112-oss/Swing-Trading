@@ -73,10 +73,11 @@ def screen_signals(ctx):
     """Per-signal checks against the same limits the risk gate uses. Returns (tradable, rejected[{symbol, reasons}])."""
     res, led = ctx['results'], ctx['ledger']
     cap = res.get('capital') or (res.get('risk_config') or {}).get('capital') or settings.CAPITAL
-    active = {s['symbol'] for s in led.get('signals', []) if s['status'] in lg.ACTIVE}
-    open_risk = sum(lg.eff_risk(s) for s in led.get('signals', []) if s['status'] == 'open' and s.get('taken'))
+    live = [s for s in led.get('signals', []) if lg.counts_toward_limits(s)]          # legacy records hold no budget and block nothing
+    active = {s['symbol'] for s in live if s['status'] in lg.ACTIVE}
+    open_risk = sum(lg.eff_risk(s) for s in live if s['status'] == 'open' and s.get('taken'))
     sectors = selection.load_sectors()
-    held = [s['symbol'] for s in led.get('signals', []) if s['status'] in lg.ACTIVE]
+    held = [s['symbol'] for s in live if s['status'] in lg.ACTIVE]
     tradable, rejected = [], []
     for r in res.get('stocks', []):
         why = []

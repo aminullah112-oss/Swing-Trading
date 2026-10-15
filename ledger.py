@@ -76,11 +76,16 @@ def save(ledger, path):
     os.replace(path + '.tmp', path)
 
 
-def _reject(ledger, r, reason, events, ts, results):
+def _reject(ledger, r, reason, events, ts, results, holidays=frozenset()):
     sid = f"{r['symbol']}|{r['signal_date']}"
     rec = {'id': sid, 'symbol': r['symbol'], 'signal_date': r['signal_date'], 'setup': r.get('setup_type'),
            'score': r.get('score'), 'status': 'rejected', 'reject_reason': reason, 'scan_id': results.get('scan_id'),
            'shares': 0, 'risk_amount': 0.0, 'history': [{'from': None, 'to': 'rejected', 'reason': reason, 'ts': ts}]}
+    try:
+        import analysis
+        rec['expires_on'] = str(analysis.next_session(pd.Timestamp(r['signal_date']).date(), holidays))
+    except Exception:
+        pass
     ledger['signals'].append(rec)
     _log(events, 'signal_rejected', sid, {'reason': reason, 'scan_id': results.get('scan_id')}, ts)
     return rec
@@ -112,20 +117,38 @@ def add_signals(ledger, results, events=None, ts=None, holidays=frozenset()):
         _log(events, 'ingest_blocked', str(sid_scan), {'reason': why}, ts)
         return 0
     have = {s['id'] for s in ledger['signals']}
-    busy = {s['symbol'] for s in ledger['signals'] if s['status'] in ACTIVE}
+    busy = {s['symbol'] for s in ledger['signals'] if s['status'] in ACTIVE and counts_toward_limits(s)}
+    by_id = {s['id']: s for s in ledger['signals']}
+    exp_session = str(results.get('expected_session') or '')
     added = rejected = 0
     for r in results.get('stocks', []):
         sid = f"{r['symbol']}|{r['signal_date']}"
+        old = by_id.get(sid)
+        old_exp = (old.get('expires_on') or str(analysis.next_session(pd.Timestamp(r['signal_date']).date(), holidays))) if old else ''
+        if old is not None and old['status'] == 'rejected' and str(old.get('reject_reason', '')).startswith('symbol already has an active signal') \
+                and r['symbol'] not in busy and exp_session and exp_session < old_exp and not r.get('provisional'):
+            # A rejection caused by stale bookkeeping (an earlier signal not yet advanced), while the entry session is still ahead: reinstate it, audited.
+            old['status'] = 'pending'
+            old['expires_on'] = old_exp
+            old.pop('reject_reason', None)
+            old.update({'shares': (r.get('position') or {}).get('shares', 0), 'risk_amount': (r.get('position') or {}).get('risk_amount', 0.0),
+                        'trigger': r['trigger'], 'stop': r['stop_loss'], 'plan_risk': r['plan_risk'], 'close': r['price'], 'setup': r['setup_type'],
+                        'score': r['score'], 'scan_id': sid_scan, 'simulated': True, 'provisional': False})
+            old.setdefault('history', []).append({'from': 'rejected', 'to': 'pending', 'reason': 'reinstated: rejection was caused by stale bookkeeping, entry session still ahead', 'ts': ts})
+            _log(events, 'signal_reinstated', sid, {'scan_id': sid_scan, 'reason': 'rejection caused by an earlier signal not yet advanced; entry session still ahead',
+                                                       'trigger': old['trigger'], 'stop': old['stop'], 'shares': old['shares'], 'expires_on': old.get('expires_on')}, ts)
+            busy.add(r['symbol']); added += 1
+            continue
         if sid in have:
             ledger['duplicates_skipped'] = ledger.get('duplicates_skipped', 0) + 1
             continue
         have.add(sid)
         if r.get('provisional') or r.get('actionable') is False:
-            _reject(ledger, r, 'provisional or non-actionable bar', events, ts, results); rejected += 1; continue
+            _reject(ledger, r, 'provisional or non-actionable bar', events, ts, results, holidays); rejected += 1; continue
         if cutoff and str(r['signal_date']) != str(cutoff):
-            _reject(ledger, r, f"stale signal: dated {r['signal_date']}, scan cutoff {cutoff}", events, ts, results); rejected += 1; continue
+            _reject(ledger, r, f"stale signal: dated {r['signal_date']}, scan cutoff {cutoff}", events, ts, results, holidays); rejected += 1; continue
         if r['symbol'] in busy:
-            _reject(ledger, r, 'symbol already has an active signal', events, ts, results); rejected += 1; continue
+            _reject(ledger, r, 'symbol already has an active signal', events, ts, results, holidays); rejected += 1; continue
         pos = r.get('position') or {}
         sdate = pd.Timestamp(r['signal_date']).date()
         rec = {
@@ -156,6 +179,12 @@ def _arrays(df):
     return {'open': df['Open'].astype(float).values, 'high': df['High'].astype(float).values,
             'low': df['Low'].astype(float).values, 'close': df['Close'].astype(float).values,
             'ema20': ind['ema_20'].values, 'ema50': ind['ema_50'].values, 'atr': ind['atr'].values}
+
+
+def counts_toward_limits(rec):
+    """Legacy records (pre-dating the fail-closed data gate) stay in the ledger as history but do not hold risk budget, occupy a
+    symbol or a sector slot, or block new signals: they were produced by a pipeline the system no longer trusts."""
+    return rec.get('evidence_eligible') is not False
 
 
 def eff_shares(rec):
@@ -199,6 +228,14 @@ def update_status(ledger, frames, cfg=None, events=None, ts=None, expected_sessi
             rec['trigger_official'] = official['trigger']
             rec['stop_official'] = official['stop_loss']
         n = len(df)
+        if rec['status'] == 'open' and rec.get('entry_date') and pd.Timestamp(rec['entry_date']) not in df.index:
+            # The fill was simulated on a bar that is not in the official data (an unfinished session). Correct it, with an audit trail.
+            rec['status'] = 'void'
+            rec['void_reason'] = 'entry was simulated on an unfinished session bar; the official bar decides'
+            rec.setdefault('history', []).append({'from': 'open', 'to': 'void', 'reason': rec['void_reason'], 'ts': ts})
+            _log(events, 'fill_voided', rec['id'], {'reason': rec['void_reason'], 'entry_date': rec['entry_date']}, ts)
+            changed += 1
+            continue
         if rec['status'] == 'pending':
             exp = rec.get('expires_on') or str(analysis.next_session(sdate.date(), holidays))
             rec['expires_on'] = exp
@@ -288,6 +325,10 @@ def replay_statuses(event_list):
             st[e['ref']] = 'pending'
         elif e['type'] == 'signal_rejected':
             st[e['ref']] = 'rejected'
+        elif e['type'] == 'signal_reinstated':
+            st[e['ref']] = 'pending'
+        elif e['type'] == 'fill_voided':
+            st[e['ref']] = 'void'
         elif e['type'] == 'transition':
             st[e['ref']] = e['data']['to']
     return st
@@ -319,7 +360,8 @@ def reconcile(ledger, event_list=None, expected_session=None, holidays=frozenset
             if expected_session and s.get('expires_on') and str(expected_session) > s['expires_on'] and not s.get('needs_data'):
                 add('overdue_pending', s['id'], f"still pending although the entry session {s['expires_on']} has passed (expected session {expected_session})")
         for h in s.get('history', []):
-            if h['from'] is not None and h['to'] not in TRANSITIONS.get(h['from'], ()):
+            if h['from'] is not None and h['to'] not in TRANSITIONS.get(h['from'], ()) and not (h['from'] == 'rejected' and str(h.get('reason', '')).startswith('reinstated')) \
+                    and not (h['from'] == 'open' and h['to'] == 'void'):
                 add('illegal_history', s['id'], f"{h['from']} -> {h['to']}")
     for sym, lst in per_symbol.items():
         if len(lst) > 1:
@@ -344,11 +386,13 @@ def _order_key(rec):
 def mark_taken(ledger, capital, max_open_risk):
     """Replay which signals a trader following the risk budget would actually have taken."""
     cap = capital * max_open_risk
-    entered = [r for r in ledger['signals'] if r.get('entry_date')]
+    entered = [r for r in ledger['signals'] if r.get('entry_date') and counts_toward_limits(r)]
     for r in ledger['signals']:
         r['taken'] = False
         r.pop('not_taken_reason', None)
-        if r['status'] in ('expired', 'cancelled', 'void', 'rejected'):
+        if not counts_toward_limits(r):
+            r['not_taken_reason'] = 'legacy record: kept as history, holds no risk budget'
+        elif r['status'] in ('expired', 'cancelled', 'void', 'rejected'):
             r['not_taken_reason'] = {'expired': 'entry session passed without a trigger', 'cancelled': r.get('cancel_reason', 'cancelled'),
                                      'void': r.get('void_reason', 'void'), 'rejected': r.get('reject_reason', 'rejected')}[r['status']]
         elif r['status'] == 'pending':
@@ -469,8 +513,8 @@ def summarize(ledger):
     return out
 
 
-def refresh(ledger, results, frames, capital, max_open_risk, cfg=None, events=None, ts=None, expected_session=None, holidays=frozenset()):
-    added = add_signals(ledger, results, events, ts, holidays)
+def refresh(ledger, results, frames, capital, max_open_risk, cfg=None, events=None, ts=None, expected_session=None, holidays=frozenset(), ingest=True):
+    added = add_signals(ledger, results, events, ts, holidays) if ingest else 0
     changed = update_status(ledger, frames, cfg, events, ts, expected_session, holidays) if frames else 0
     mark_taken(ledger, capital, max_open_risk)
     ledger['summary'] = summarize(ledger)

@@ -189,3 +189,58 @@ def test_legacy_records_are_migrated_once_kept_and_excluded_from_evidence(tmp_pa
     r = led['signals'][0]
     assert r['legacy'] and r['evidence_eligible'] is False and r['expires_on'] == '2026-10-13' and led['version'] == lg.VERSION
     assert ev.verify(p) == (True, 1, None) and lg.reconcile(led, ev.read(p))['ok']
+
+
+# ------------------------------------------------------------ legacy records, stale bookkeeping and unfinished-session fills
+def test_legacy_records_hold_no_budget_block_no_symbol_and_are_not_taken():
+    df = flat([(100.5, 102, 100, 101.5), (101.5, 103, 101, 102.5)])
+    led = fresh(df)
+    lg.update_status(led, {'AAA': df})
+    rec = led['signals'][0]
+    assert rec['status'] == 'open'
+    rec.update(legacy=True, evidence_eligible=False)
+    lg.mark_taken(led, 565000, 0.015)
+    assert rec['taken'] is False and 'legacy' in rec['not_taken_reason']
+    # the same symbol can get a fresh signal while the legacy position is still open
+    res = dict(results_for(dict(sig('AAA', df), signal_date='2024-06-03')), scan_id='n2', data_cutoff='2024-06-03')
+    assert lg.add_signals(led, res) == 1 and led['signals'][1]['status'] == 'pending'
+
+
+def test_stale_bookkeeping_rejection_is_reinstated_while_the_entry_session_is_ahead():
+    df = flat([])
+    led = lg.empty()
+    old = dict(sig('AAA', df))
+    first = dict(results_for(sig('BBB', df)), expected_session='2024-06-03')          # BBB active
+    lg.add_signals(led, first)
+    again = dict(results_for(dict(old, symbol='BBB')), scan_id='s2', expected_session='2024-06-03')
+    again['stocks'] = [dict(old, symbol='BBB', signal_date='2024-06-03')]
+    again['data_cutoff'] = '2024-06-03'
+    lg.add_signals(led, again)                                                         # rejected: BBB already active
+    rej = [s for s in led['signals'] if s['status'] == 'rejected'][0]
+    assert 'already has an active signal' in rej['reject_reason'] and rej['expires_on'] == '2024-06-04'
+    rej_id = rej['id']
+    led['signals'][0]['status'] = 'expired'                                            # the earlier BBB signal has since expired
+    p = dict(again, scan_id='s3', expected_session='2024-06-03')
+    assert lg.add_signals(led, p) == 1
+    back = [s for s in led['signals'] if s['id'] == rej_id][0]
+    assert back['status'] == 'pending' and back['history'][-1]['reason'].startswith('reinstated') and 'reject_reason' not in back
+    assert lg.reconcile(led)['ok']
+    # once the entry session has passed it must NOT be reinstated
+    led2 = lg.empty()
+    led2['signals'] = [dict(rej, status='rejected', reject_reason='symbol already has an active signal')]
+    late = dict(again, scan_id='s9', expected_session='2024-06-04')
+    assert lg.add_signals(led2, late) == 0 and led2['signals'][0]['status'] == 'rejected'
+
+
+def test_fill_on_an_unfinished_session_is_voided_with_an_audit_trail(tmp_path):
+    p = str(tmp_path / 'e.jsonl')
+    df = flat([(100.5, 102, 100, 101.5), (101.5, 103, 101, 102.5)])
+    led = fresh(df)
+    lg.update_status(led, {'AAA': df}, events=p)
+    assert led['signals'][0]['status'] == 'open'
+    official = df.iloc[:-1]                                                            # the last bar was the unfinished session
+    led['signals'][0]['entry_date'] = str(df.index[-1].date())
+    lg.update_status(led, {'AAA': official}, events=p, ts='t')
+    rec = led['signals'][0]
+    assert rec['status'] == 'void' and 'unfinished' in rec['void_reason']
+    assert [e['type'] for e in ev.read(p)][-1] == 'fill_voided' and lg.replay_statuses(ev.read(p))[rec['id']] == 'void'

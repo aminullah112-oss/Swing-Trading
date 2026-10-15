@@ -54,19 +54,29 @@ def main():
     migrated = lg.migrate(ledger, EVENTS, ts, holidays)
     if migrated:
         print(f'Migrated {migrated} legacy ledger records (kept, flagged evidence_eligible=False).')
-    added0 = lg.add_signals(ledger, results, EVENTS, ts, holidays)      # idempotent; shows what is active before fetching
+    # 1. advance what is already tracked BEFORE ingesting today's scan, so stale statuses cannot cause false 'symbol already active' rejections
     need = sorted({r['symbol'] for r in ledger['signals'] if r['status'] in lg.ACTIVE})
     frames = fetch_frames(need)
-    if frames:
-        import dataquality
-        frames = {k: dataquality.through(df, expected) for k, df in frames.items()}      # never simulate fills on the unfinished session
     ok = frames is not None
     if frames is None:
         print('WARNING: price download failed; signals logged but statuses not advanced.')
         frames = {}
-    _, changed = lg.refresh(ledger, results, frames, sc.CAPITAL, sc.MAX_OPEN_RISK, events=EVENTS, ts=ts,
-                            expected_session=expected, holidays=holidays)
-    added = added0
+    if frames:
+        import dataquality
+        frames = {k: dataquality.through(df, expected) for k, df in frames.items()}      # never simulate fills on the unfinished session
+    cfg_changed = lg.update_status(ledger, frames, events=EVENTS, ts=ts, expected_session=expected, holidays=holidays) if frames else 0
+    # 2. ingest today's scan, then recompute 'taken' and the summary
+    added = lg.add_signals(ledger, results, EVENTS, ts, holidays)
+    more = sorted({r['symbol'] for r in ledger['signals'] if r['status'] in lg.ACTIVE} - set(frames))
+    if more:                                                   # symbols that became active just now need their history too
+        extra = fetch_frames(more)
+        if extra:
+            import dataquality
+            frames.update({k: dataquality.through(df, expected) for k, df in extra.items()})
+        elif extra is None:
+            ok = False
+    _, changed = lg.refresh(ledger, results, frames, sc.CAPITAL, sc.MAX_OPEN_RISK, events=EVENTS, ts=ts, expected_session=expected, holidays=holidays, ingest=False)
+    changed += cfg_changed
     rec = lg.reconcile(ledger, evlog.read(EVENTS), expected, holidays)
     ledger['reconciliation'] = {'ok': rec['ok'], 'issues': rec['issues'][:50], 'checked': ts}
     ledger['updated'] = ts
