@@ -92,3 +92,12 @@ def sector_ok(symbol, active_symbols, sectors, cap=None):
     g = sector_of(symbol, sectors)
     n = sector_counts(active_symbols, sectors).get(g, 0)
     return n < cap, g, n
+
+
+def conviction(cond, blocked):
+    """Checklist-based conviction, NOT a probability of profit. high = all five selection conditions hold (the PREREG_v2 stack),
+    medium = three or four, low = two or fewer, avoid = a known event blocks the entry. No backtest has shown that any of these
+    levels predicts returns; they only describe how many of the stack's conditions a signal meets."""
+    met = sum(bool(v) for v in cond.values())
+    level = 'avoid' if blocked else 'high' if met == len(cond) else 'medium' if met >= 3 else 'low'
+    return {'level': level, 'met': met, 'of': len(cond)}

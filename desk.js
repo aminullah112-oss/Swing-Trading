@@ -13,7 +13,7 @@ const MANUAL_CHECKS = [
     'Your own chart read: is there a clean base, or heavy supply just overhead?',
 ];
 
-let desk = {data: null, rd: null, showFiltered: false};
+let desk = {data: null, rd: null, showFiltered: false, ledger: null, picked: null, manual: false};
 
 function sparkSVG(sp, trigger, stop) {
     if (!sp || !sp.close || sp.close.length < 5) return '';
@@ -32,18 +32,29 @@ function sparkSVG(sp, trigger, stop) {
         hline(trigger, '#69f0ae', 'buy') + hline(stop, '#ff5252', 'stop') + `</svg>`;
 }
 
-// Size at the live risk the readiness policy allows; otherwise at the scanner's reference (paper) risk.
+// ---- user preferences (this browser only). Risk can be lowered, never raised above the audited limit in the scan.
+const PREF_KEY = 'edge_desk_prefs_v1';
+function loadPrefs() {
+    try { return Object.assign({capital: '', riskPct: '', tierScale: false}, JSON.parse(localStorage.getItem(PREF_KEY) || '{}')); }
+    catch (e) { return {capital: '', riskPct: '', tierScale: false}; }
+}
+function savePrefs(p) { try { localStorage.setItem(PREF_KEY, JSON.stringify(p)); } catch (e) { /* private mode: keep in memory only */ } }
+let prefs = loadPrefs();
+const effCapital = cfg => (Number(prefs.capital) > 0 ? Number(prefs.capital) : cfg.capital);
+const effRiskPct = (cfg, liveRisk) => liveRisk > 0 ? Math.min(liveRisk, cfg.risk_pct) : PlanMath.effectiveRisk(prefs.riskPct, cfg.risk_pct);
+function riskMult(s) {
+    const sel = s.selection || {};
+    return (prefs.tierScale ? (PlanMath.TIER_MULT[(sel.conviction || {}).level] ?? 1) : 1) * (sel.risk_mult ?? 1);
+}
+
+// Size from capital and the risk rule: shares = capital x risk% / (buy-stop - stop), capped at max position % of capital.
 function plan(s, cfg, liveRisk) {
-    const rps = s.trigger - s.stop_loss;
-    if (liveRisk > 0 && rps > 0) {
-        let sh = Math.floor(cfg.capital * liveRisk / 100 / rps);
-        sh = Math.min(sh, Math.floor(cfg.capital * cfg.max_pos_pct / 100 / s.trigger));
-        return {shares: sh, invested: sh * s.trigger, risk: sh * rps, live: true,
-                label: sh === 0 ? `0: one share risks more than the ${liveRisk}% live limit` : `live size (≤${liveRisk}% risk)`};
-    }
-    const p = s.position || {};
-    return {shares: p.shares ?? 0, invested: p.invested ?? 0, risk: p.risk_amount ?? 0,
-            label: `reference size (${cfg.risk_pct}% risk, paper)`, live: false};
+    const capital = effCapital(cfg), pct = effRiskPct(cfg, liveRisk), mult = riskMult(s), stopDist = s.trigger - s.stop_loss;
+    const sh = PlanMath.sizeShares(capital, pct * mult, s.trigger, stopDist, cfg.max_pos_pct);
+    const custom = Number(prefs.capital) > 0 || Number(prefs.riskPct) > 0 || prefs.tierScale;
+    const label = sh === 0 ? `0: one share risks more than ${(pct * mult).toFixed(2)}% of ${inr0(capital)}`
+        : `${liveRisk > 0 ? 'live' : (custom ? 'your' : 'reference')} size: ${(pct * mult).toFixed(2)}% of ${inr0(capital)}`;
+    return {shares: sh, invested: sh * s.trigger, risk: sh * stopDist, label, live: liveRisk > 0};
 }
 
 const BASIS = {rule: 'C0 rule (backtested)', reference: 'reference level', empirical: 'past C0 trades', untested: 'untested idea'};
@@ -68,17 +79,19 @@ function planBlock(s) {
             <small>${esc(add.note)}. Never: ${esc(add.never_add)}.</small></li></ul></details>`;
 }
 
-const TIER = {preferred: ['⭐ Preferred', 'meets every selection condition'], standard: ['Standard', 'a C0 signal that misses one or more selection conditions'], avoid: ['⛔ Avoid', 'known event risk']};
+const CONV = {high: ['⭐ High conviction', 'meets all five selection conditions'], medium: ['Medium conviction', 'meets three or four of the five conditions'],
+              low: ['Low conviction', 'meets two or fewer of the five conditions'], avoid: ['⛔ Avoid', 'a known event blocks this entry']};
 function selectionBlock(s) {
     const x = s.selection;
     if (!x) return '';
-    const t = TIER[x.tier] || [x.tier, ''];
+    const cv = x.conviction || {level: x.tier === 'preferred' ? 'high' : x.tier, met: 0, of: 5};
+    const t = CONV[cv.level] || [cv.level, ''];
     const conds = Object.entries(x.conditions).map(([k, v]) => `<li class="chk-${v ? 'ok' : 'warn'}">${v ? '✅' : '⚠️'} ${esc(k)}</li>`).join('');
     const ev = x.events.reasons.map(r => `<li class="chk-block">⛔ ${esc(r)}</li>`).join('') +
         x.events.unverified.map(r => `<li class="chk-warn">❔ ${esc(r)}</li>`).join('');
-    return `<details class="selection"><summary><b>${esc(t[0])}</b> · RS rank ${x.rs_rank_pct != null ? esc(x.rs_rank_pct) + 'th pct' : 'n/a'} · ${esc(x.sector)} · Nifty ${esc(x.regime)}</summary>
+    return `<details class="selection"><summary><b>${esc(t[0])}</b> (${esc(cv.met)} of ${esc(cv.of)} conditions) · RS rank ${x.rs_rank_pct != null ? esc(x.rs_rank_pct) + 'th pct' : 'n/a'} · ${esc(x.sector)} · Nifty ${esc(x.regime)}</summary>
         <ul class="checks">${conds}${ev}${x.size_notes.map(n => `<li class="chk-warn">📉 ${esc(n)}</li>`).join('')}</ul>
-        <div class="setup-label">${esc(t[1])}. Hypothesis, not proven: C0 trades every signal; the tiers are tested in PREREG_v2. Rank order was tested for admission and did not help.</div></details>`;
+        <div class="setup-label">${esc(t[1])}. This is a checklist count, <b>not a probability of profit</b>: no test has shown that a higher level wins more often. C0 trades every signal; the levels are tested in PREREG_v2.</div></details>`;
 }
 
 function card(s, cfg, liveRisk) {
@@ -155,21 +168,98 @@ function renderDataNotes(data) {
     }
 }
 
+function heldFromLedger(led) {
+    const open = ((led && led.signals) || []).filter(r => r.status === 'open' && r.evidence_eligible !== false);
+    const risk = open.reduce((t, r) => t + (r.shares ? (r.risk_amount || 0) * ((r.filled_shares ?? r.shares) / r.shares) : 0), 0);
+    return {symbols: open.map(r => r.symbol), risk};
+}
+
+function renderSettings(cfg) {
+    const el = document.getElementById('sizing-panel');
+    if (!el) return;
+    const cap = effCapital(cfg), rp = PlanMath.effectiveRisk(prefs.riskPct, cfg.risk_pct);
+    el.innerHTML = `<details class="settings" ${Number(prefs.capital) > 0 || Number(prefs.riskPct) > 0 || prefs.tierScale ? 'open' : ''}>
+        <summary><b>Capital and sizing</b>: ${esc(inr0(cap))} · risk ${esc(rp.toFixed(2))}% per trade${prefs.tierScale ? ' · scaled by conviction' : ''}</summary>
+        <div class="settings-grid">
+            <label>Capital (₹)<input id="pref-capital" type="number" min="0" step="1000" inputmode="numeric" placeholder="${esc(cfg.capital)}" value="${esc(prefs.capital)}"></label>
+            <label>Risk per trade (%) <small>max ${esc(cfg.risk_pct)}</small><input id="pref-risk" type="number" min="0.05" max="${esc(cfg.risk_pct)}" step="0.05" inputmode="decimal" placeholder="${esc(cfg.risk_pct)}" value="${esc(prefs.riskPct)}"></label>
+            <label class="inline"><input id="pref-tier" type="checkbox" ${prefs.tierScale ? 'checked' : ''}> Size smaller for lower conviction (high 100%, medium 75%, low 50% of the risk budget)</label>
+            <button id="pref-reset" type="button">Reset to defaults</button>
+        </div>
+        <div class="setup-label">Saved in this browser only. Change capital when your cash flow changes; share counts update at once. The risk per trade can be lowered but never raised above ${esc(cfg.risk_pct)}%, and the ${esc(cfg.max_pos_pct)}% position cap and ${esc(cfg.max_open_risk_pct)}% total open-risk cap always apply.</div>
+    </details>`;
+    const upd = () => {
+        prefs = {capital: document.getElementById('pref-capital').value, riskPct: document.getElementById('pref-risk').value, tierScale: document.getElementById('pref-tier').checked};
+        savePrefs(prefs); desk.manual = false; render();
+    };
+    ['pref-capital', 'pref-risk'].forEach(id => document.getElementById(id).addEventListener('change', upd));
+    document.getElementById('pref-tier').addEventListener('change', upd);
+    document.getElementById('pref-reset').addEventListener('click', () => { prefs = {capital: '', riskPct: '', tierScale: false}; savePrefs(prefs); desk.manual = false; render(); });
+}
+
+function renderAlloc(ok, cfg, liveRisk) {
+    const el = document.getElementById('alloc-panel');
+    if (!el) return;
+    if (!ok.length) { el.innerHTML = ''; return; }
+    const capital = effCapital(cfg), pct = effRiskPct(cfg, liveRisk), held = heldFromLedger(desk.ledger);
+    const cands = ok.map(s => {
+        const sel = s.selection || {};
+        return {symbol: s.symbol, sector: sel.sector || s.symbol, level: (sel.conviction || {}).level || 'medium', rs: sel.rs_rank_pct, entry: s.trigger,
+                stopDist: s.trigger - s.stop_loss, riskMult: riskMult(s)};
+    });
+    if (!desk.manual || !desk.picked) {
+        desk.picked = new Set(PlanMath.autoSelect(cands, {capital, riskPct: pct, maxOpenRiskPct: cfg.max_open_risk_pct, maxPosPct: cfg.max_pos_pct,
+            maxPerSector: cfg.max_per_sector || 2, existingRisk: held.risk, held: held.symbols}));
+    }
+    const rows = PlanMath.rank(cands).map(c => {
+        const sh = PlanMath.sizeShares(capital, pct * c.riskMult, c.entry, c.stopDist, cfg.max_pos_pct);
+        const on = desk.picked.has(c.symbol), heldNow = held.symbols.includes(c.symbol);
+        return {c, sh, on, heldNow, value: sh * c.entry, risk: sh * c.stopDist};
+    });
+    const chosen = rows.filter(r => r.on && r.sh > 0);
+    const totRisk = held.risk + chosen.reduce((t, r) => t + r.risk, 0), totVal = chosen.reduce((t, r) => t + r.value, 0);
+    const budget = capital * cfg.max_open_risk_pct / 100;
+    const sectors = {}; chosen.forEach(r => { sectors[r.c.sector] = (sectors[r.c.sector] || 0) + 1; });
+    const warns = [];
+    if (totRisk > budget * 1.0000001) warns.push(`total open risk ${inr0(totRisk)} is above the ${cfg.max_open_risk_pct}% limit (${inr0(budget)})`);
+    Object.entries(sectors).forEach(([g, n]) => { if (n > (cfg.max_per_sector || 2)) warns.push(`${n} positions in ${g} (limit ${cfg.max_per_sector || 2})`); });
+    chosen.forEach(r => { if (r.value > capital * cfg.max_pos_pct / 100 * 1.0000001) warns.push(`${r.c.symbol} is above the ${cfg.max_pos_pct}% position cap`); });
+    el.innerHTML = `<h2 class="section-title">Position plan <span class="muted">concentrate or diversify, within the risk limits</span></h2>
+        <div class="table-container"><table><thead><tr><th></th><th>Stock</th><th>Conviction</th><th>Sector</th><th>Shares</th><th>Invested</th><th>Risk</th></tr></thead><tbody>` +
+        rows.map(r => `<tr class="stock-row"><td><input type="checkbox" data-sym="${esc(r.c.symbol)}" ${r.on ? 'checked' : ''} ${r.sh < 1 || r.heldNow ? 'disabled' : ''}></td>
+            <td><strong>${esc(r.c.symbol)}</strong>${r.heldNow ? ' <small>(already held)</small>' : ''}</td><td>${esc((CONV[r.c.level] || [r.c.level])[0])}</td><td>${esc(r.c.sector)}</td>
+            <td>${esc(r.sh)}</td><td>${r.sh ? inr0(r.value) : '—'}</td><td>${r.sh ? inr0(r.risk) : '—'}</td></tr>`).join('') + `</tbody></table></div>
+        <div class="capital-note"><b>${esc(chosen.length)} position${chosen.length === 1 ? '' : 's'}</b> · invested ${inr0(totVal)} (${(totVal / capital * 100).toFixed(0)}% of capital, ${inr0(capital - totVal)} left) ·
+            total open risk ${inr0(totRisk)} = ${(totRisk / capital * 100).toFixed(2)}% of capital (limit ${esc(cfg.max_open_risk_pct)}%)${held.risk ? ` including ${inr0(held.risk)} already open` : ''}.
+            ${warns.length ? `<br><span class="chk-block">⛔ ${warns.map(esc).join('; ')}</span>` : ''}
+            <br><small>Boxes are pre-ticked strongest first (conviction, then relative strength) until the risk budget, the sector limit or the stocks run out. Untick or tick to change it.
+            Each trade risks the same rupee amount whatever you pick, so putting everything into one stock does not raise the amount at stake on that trade; it removes the protection of other positions,
+            and a gap through its stop would hit your whole plan at once. Conviction is a checklist count, not a probability.</small></div>`;
+    el.querySelectorAll('input[data-sym]').forEach(cb => cb.addEventListener('change', () => {
+        const set = new Set(rows.filter(r => r.on).map(r => r.c.symbol));
+        cb.checked ? set.add(cb.dataset.sym) : set.delete(cb.dataset.sym);
+        desk.picked = set; desk.manual = true; renderAlloc(ok, cfg, liveRisk);
+    }));
+}
+
 function render() {
     const {data, rd} = desk;
     const cfg = data.risk_config;
     const liveRisk = rd ? (rd.policy.live_risk_pct_allowed || 0) : 0;
     const stocks = data.stocks || [];
-    const ok = stocks.filter(s => s.execution_ok), out = stocks.filter(s => !s.execution_ok);
+    const level = s => ((s.selection || {}).conviction || {}).level || 'medium';
+    const ok = stocks.filter(s => s.execution_ok).sort((a, b) => ({high: 0, medium: 1, low: 2, avoid: 3}[level(a)] - {high: 0, medium: 1, low: 2, avoid: 3}[level(b)]) || (((b.selection || {}).rs_rank_pct ?? -1) - ((a.selection || {}).rs_rank_pct ?? -1))), out = stocks.filter(s => !s.execution_ok);
     renderDataNotes(data);
+    renderSettings(cfg);
+    renderAlloc(ok, cfg, liveRisk);
     setText('count-signals', stocks.length);
     setText('count-tradeable', ok.length);
     setText('count-scanned', data.total_scanned || '—');
     document.getElementById('market-row').innerHTML = marketCards(data.market);
     document.getElementById('capital-note').innerHTML =
-        `<strong>Capital:</strong> ${esc(inr0(cfg.capital))} &nbsp;|&nbsp; <strong>Reference risk/trade:</strong> ${esc(cfg.risk_pct)}% &nbsp;|&nbsp; ` +
+        `<strong>Capital:</strong> ${esc(inr0(effCapital(cfg)))} &nbsp;|&nbsp; <strong>Risk/trade:</strong> ${esc(effRiskPct(cfg, liveRisk).toFixed(2))}% (limit ${esc(cfg.risk_pct)}%) &nbsp;|&nbsp; ` +
         `<strong>Max position:</strong> ${esc(cfg.max_pos_pct)}% &nbsp;|&nbsp; <strong>Open-risk cap:</strong> ${esc(cfg.max_open_risk_pct)}% ` +
-        `(about ${Math.max(1, Math.floor(cfg.max_open_risk_pct / cfg.risk_pct))} positions at once). Gaps can push real losses past the stop.`;
+        `(about ${Math.max(1, Math.floor(cfg.max_open_risk_pct / effRiskPct(cfg, liveRisk)))} positions at once). Gaps can push real losses past the stop.`;
 
     const grid = document.getElementById('plans');
     grid.innerHTML = ok.length ? ok.map(s => card(s, cfg, liveRisk)).join('') :
@@ -194,7 +284,7 @@ function render() {
 }
 
 async function init() {
-    const [data, rd, hl] = await Promise.all([getJSON('results.json'), getJSON('readiness.json'), getJSON('health.json')]);
+    const [data, rd, hl, led] = await Promise.all([getJSON('results.json'), getJSON('readiness.json'), getJSON('health.json'), getJSON('ledger.json')]);
     renderFreshness(data);
     renderLiveGate(rd, hl);
     const grid = document.getElementById('plans');
@@ -204,7 +294,7 @@ async function init() {
         return;
     }
     setText('scan-time', data.scan_date + ' ' + data.scan_time);
-    desk = {data, rd};
+    desk = Object.assign(desk, {data, rd, ledger: led});
     render();
 }
 document.addEventListener('DOMContentLoaded', init);

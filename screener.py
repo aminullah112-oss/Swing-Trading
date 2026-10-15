@@ -556,7 +556,7 @@ def main():
             rank = ranks.get(used)
             tr, cond = selection.tier(rec, rank, reg, ev['blocked'] and settings.EVENT_BLOCK_ENABLED)
             mult, size_notes = selection.size_multiplier(rec, reg)
-            rec['selection'] = {'tier': tr, 'conditions': cond, 'rs_rank_pct': round(rank * 100) if rank == rank and rank is not None else None,
+            rec['selection'] = {'tier': tr, 'conviction': selection.conviction(cond, ev['blocked'] and settings.EVENT_BLOCK_ENABLED), 'conditions': cond, 'rs_rank_pct': round(rank * 100) if rank == rank and rank is not None else None,
                                 'sector': selection.sector_of(used, sectors), 'regime': reg, 'events': ev, 'risk_mult': mult, 'size_notes': size_notes,
                                 'status': 'hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2'}
             if ev['blocked'] and settings.EVENT_BLOCK_ENABLED:
@@ -647,7 +647,7 @@ def main():
         'strategy':          strategy.describe(),
         'risk_config': {
             'capital': CAPITAL, 'risk_pct': RISK_PCT * 100,
-            'max_pos_pct': MAX_POS_PCT * 100, 'max_open_risk_pct': MAX_OPEN_RISK * 100,
+            'max_pos_pct': MAX_POS_PCT * 100, 'max_open_risk_pct': MAX_OPEN_RISK * 100, 'max_per_sector': settings.MAX_PER_SECTOR,
         },
         'summary':           {'signals': len(results), 'tradeable': sum(1 for r in results if r['execution_ok']), 'preview': len(previews)},
         'market':            market,
