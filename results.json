@@ -1,8 +1,8 @@
 {
-  "scan_id": "a519e44e5d5f",
-  "timestamp": "2026-10-15T05:50:14.128401+00:00",
+  "scan_id": "42fa074a4a40",
+  "timestamp": "2026-10-15T06:08:55.532825+00:00",
   "scan_date": "2026-10-15",
-  "scan_time": "11:20:14 IST",
+  "scan_time": "11:38:55 IST",
   "data_cutoff": "2026-10-14",
   "expected_session": "2026-10-14",
   "sessions_behind": 0,
@@ -27,7 +27,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-10-14",
-      "retrieved_at": "2026-10-15T05:50:14+00:00",
+      "retrieved_at": "2026-10-15T06:08:55+00:00",
       "compared": 114,
       "filled": [
         "BAJFINANCE",
@@ -129,7 +129,7 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-10-15T05:50:14+00:00",
+    "retrieved_at": "2026-10-15T06:08:55+00:00",
     "frame_last_row": "2026-10-15",
     "rows": 497,
     "non_null_closes_on_last_row": 160,
@@ -455,7 +455,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -820,7 +820,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1185,7 +1185,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -1552,7 +1552,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -1919,7 +1919,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2284,7 +2284,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2649,7 +2649,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3016,7 +3016,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3384,7 +3384,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3749,7 +3749,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -4116,7 +4116,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-15T05:50:14.128401+00:00",
+      "timestamp": "2026-10-15T06:08:55.532825+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4210,8 +4210,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-10-15T05:50:19+00:00",
-    "commit_sha": "58ce247b1b3e2abc2ae3408ed2137dd5e83d0de7",
+    "generated_at": "2026-10-15T06:09:01+00:00",
+    "commit_sha": "26e726cd24a94c0afd071d98276ef504a0d59b46",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",

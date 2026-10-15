@@ -1,11 +1,11 @@
 {
-  "status": "WARN",
+  "status": "DEGRADED",
   "permits": {
-    "new_entries": true,
+    "new_entries": false,
     "manage_exits": true,
-    "ops_credit": true
+    "ops_credit": false
   },
-  "generated": "2026-10-15T05:50:21+00:00",
+  "generated": "2026-10-15T06:09:04+00:00",
   "checks": [
     {
       "id": "H1",
@@ -35,7 +35,7 @@
     {
       "id": "H8",
       "level": "ok",
-      "msg": "taken-signal equity drawdown 0.0% of capital (now +0.2%)"
+      "msg": "taken-signal equity drawdown 0.0% of capital (now +0.0%)"
     },
     {
       "id": "H10",
@@ -49,13 +49,13 @@
     },
     {
       "id": "H11",
-      "level": "ok",
-      "msg": "ledger reconciles with the event log and the calendar"
+      "level": "degraded",
+      "msg": "ledger reconciliation found 3 issue(s): duplicate_active"
     },
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (48 events)"
+      "msg": "event log verified (59 events)"
     },
     {
       "id": "H13b",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-15T05:50:21+00:00",
-    "commit_sha": "58ce247b1b3e2abc2ae3408ed2137dd5e83d0de7",
+    "generated_at": "2026-10-15T06:09:04+00:00",
+    "commit_sha": "26e726cd24a94c0afd071d98276ef504a0d59b46",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -85,9 +85,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-14",
     "source_ids": {
-      "results": "5be00c8e138c",
-      "ledger": "d1d6ef725dc1",
-      "events": "1e87c3ca0459"
+      "results": "fbfdd029f09e",
+      "ledger": "b440790f69be",
+      "events": "ab212720c189"
     }
   }
 }

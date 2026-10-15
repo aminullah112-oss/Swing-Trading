@@ -1,6 +1,6 @@
 {
-  "verdict": "GO (no qualifying signals)",
-  "generated": "2026-10-15T05:50:22+00:00",
+  "verdict": "NO-GO",
+  "generated": "2026-10-15T06:09:06+00:00",
   "checks": [
     {
       "id": "P1",
@@ -23,20 +23,20 @@
     {
       "id": "P4",
       "level": "block",
-      "ok": true,
-      "msg": "health WARN: new entries allowed"
+      "ok": false,
+      "msg": "health DEGRADED: new entries NOT allowed"
     },
     {
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (48 events)"
+      "msg": "event log verified (59 events)"
     },
     {
       "id": "P6",
       "level": "block",
-      "ok": true,
-      "msg": "ledger reconciles"
+      "ok": false,
+      "msg": "ledger reconciliation 3 issue(s): duplicate_active"
     },
     {
       "id": "P7",
@@ -72,75 +72,9 @@
   "tradable": [],
   "rejected": [
     {
-      "symbol": "DIVISLAB",
+      "symbol": "*",
       "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "COFORGE",
-      "reasons": [
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "ETERNAL",
-      "reasons": [
-        "execution checks blocked it",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "KAJARIACER",
-      "reasons": [
-        "execution checks blocked it",
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "HAL",
-      "reasons": [
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "RADICO",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "NAVINFLUOR",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "RAYMOND",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "AUROPHARMA",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "PNB",
-      "reasons": [
-        "execution checks blocked it",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "MOTHERSON",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
+        "entries blocked: health DEGRADED: new entries NOT allowed; ledger reconciliation 3 issue(s): duplicate_active"
       ]
     }
   ],

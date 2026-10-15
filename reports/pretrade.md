@@ -1,15 +1,15 @@
-# Pre-trade checklist: **GO (no qualifying signals)** (paper only)
+# Pre-trade checklist: **NO-GO** (paper only)
 
-Generated 2026-10-15T05:50:22+00:00.
+Generated 2026-10-15T06:09:06+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
 | P1 block | ✅ | scan data cutoff 2026-10-14 vs expected session 2026-10-14 (0 behind) |
 | P2 block | ✅ | scan provenance current |
 | P3 block | ✅ | data quality TRUSTED |
-| P4 block | ✅ | health WARN: new entries allowed |
-| P5 block | ✅ | event log verified (48 events) |
-| P6 block | ✅ | ledger reconciles |
+| P4 block | ❌ | health DEGRADED: new entries NOT allowed |
+| P5 block | ✅ | event log verified (59 events) |
+| P6 block | ❌ | ledger reconciliation 3 issue(s): duplicate_active |
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |
 | P9 warn | ⚠️ | holiday calendar has 0 entries for 2026: add exchange holidays to market_holidays.json |
@@ -21,16 +21,6 @@ Generated 2026-10-15T05:50:22+00:00.
 
 ## Rejected
 
-- DIVISLAB: aggregate open-risk budget would be exceeded
-- COFORGE: symbol already has an active signal; aggregate open-risk budget would be exceeded
-- ETERNAL: execution checks blocked it; aggregate open-risk budget would be exceeded
-- KAJARIACER: execution checks blocked it; symbol already has an active signal; aggregate open-risk budget would be exceeded
-- HAL: symbol already has an active signal; aggregate open-risk budget would be exceeded
-- RADICO: aggregate open-risk budget would be exceeded
-- NAVINFLUOR: aggregate open-risk budget would be exceeded
-- RAYMOND: aggregate open-risk budget would be exceeded
-- AUROPHARMA: aggregate open-risk budget would be exceeded
-- PNB: execution checks blocked it; aggregate open-risk budget would be exceeded
-- MOTHERSON: aggregate open-risk budget would be exceeded
+- *: entries blocked: health DEGRADED: new entries NOT allowed; ledger reconciliation 3 issue(s): duplicate_active
 
 A GO means the checks passed, not that the trade is wise. Paper only: no order is sent anywhere.
