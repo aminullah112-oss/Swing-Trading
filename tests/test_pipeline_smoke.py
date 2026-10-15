@@ -87,3 +87,22 @@ def test_paper_never_simulates_fills_on_the_unfinished_session(workdir, monkeypa
     led = run_pipeline(df, res, monkeypatch)
     rec = led['signals'][0]
     assert rec['status'] == 'open' and rec.get('exit_reason') is None and rec['entry_date'] == str(df.index[-2].date())     # not stopped by the 80 low
+
+
+def test_paper_advances_old_signals_before_ingesting_todays_scan(workdir, monkeypatch):
+    """An old pending signal whose entry session has passed must be expired BEFORE the new scan is ingested, so the same
+    symbol's new signal is accepted instead of being rejected as 'already active'."""
+    import analysis
+    df = flat([(100, 100.8, 99.5, 100.2), (100.2, 100.6, 99.8, 100.4)])                 # old signal expires; a later bar exists
+    old = dict(results_for(sig('AAA', df)), data_cutoff=str(df.index[100].date()), scan_id='old')
+    json.dump(old, open('results.json', 'w'))
+    monkeypatch.setattr(paper, 'fetch_frames', lambda syms: {s: df for s in syms})
+    monkeypatch.setattr(analysis, 'expected_last_session', lambda now_ist, close_hhmm=(16, 30), holidays=frozenset(): df.index[-1].date())
+    paper.main()
+    assert json.load(open('ledger.json'))['signals'][0]['status'] == 'expired'
+    nxt = dict(sig('AAA', df), signal_date=str(df.index[-1].date()))
+    new = dict(results_for(nxt), scan_id='new', data_cutoff=str(df.index[-1].date()), expected_session=str(df.index[-1].date()))
+    json.dump(new, open('results.json', 'w'))
+    paper.main()
+    sigs = json.load(open('ledger.json'))['signals']
+    assert [s['status'] for s in sigs][-1] == 'pending' and sigs[-1]['signal_date'] == str(df.index[-1].date())
