@@ -34,6 +34,14 @@ def _dates(idx):
     return i.tz_localize(None) if i.tz is not None else i
 
 
+def through(df, session):
+    """Bars up to and including `session`. A bar dated after the expected session is the live, unfinished session (or a vendor
+    placeholder): it is not an official daily bar, so it is dropped before validation instead of poisoning the whole scan."""
+    if df is None or len(df) == 0:
+        return df
+    return df[_dates(df.index).date <= session]
+
+
 def validate_bars(df, expected_session=None, holidays=frozenset(), lookback=LOOKBACK):
     """Issues found in one symbol's daily OHLCV frame (list of dicts; severity 'error' quarantines the symbol)."""
     out = []

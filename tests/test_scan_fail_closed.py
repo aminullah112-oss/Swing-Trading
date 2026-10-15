@@ -146,3 +146,12 @@ def test_actionable_signals_carry_a_trade_plan(run_scan):
         assert [l['r'] for l in p['profit_review_levels']['levels']] == [1, 2, 3]
         assert p['sell_trigger']['ema50_now'] == s['ema_50'] and p['add_more']['default'] == 'do not add'
         assert p['expected_duration']['basis'] == 'empirical'
+
+
+def test_unfinished_live_session_is_ignored_not_treated_as_an_error(run_scan):
+    """Mid-session the vendor adds today's partial bar. The scan must use the expected session's official bar, not reject everything."""
+    bulk = make_bulk(end='2026-10-14')                       # rows through 10-14; the expected session (patched) is 10-13
+    r = run_scan(bulk, with_intraday=False)
+    assert r['data_quality']['status'] == 'TRUSTED' and r['actionable'] is True and r['data_quality']['official_coverage'] == 1.0
+    assert r['data_cutoff'] == '2026-10-13' and {s['signal_date'] for s in r['stocks']} == {'2026-10-13'}
+    assert r['summary']['signals'] > 0 and r['data_quality']['quarantined'] == {}

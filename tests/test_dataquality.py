@@ -93,3 +93,14 @@ def test_assess_fails_closed_on_coverage_cutoff_nifty_and_critical_errors():
     stale = {f'S{i}': (EXP if i >= 2 else old) for i in range(100)}
     a2 = dq.assess(per(stale, {'S0': ['stale_bar'], 'S1': ['stale_bar']}), EXP, EXP)
     assert a2['status'] == 'TRUSTED' and a2['critical_issue_share'] == 0.0
+
+
+def test_through_drops_bars_after_the_expected_session_only():
+    f = frame(end='2026-10-14')
+    t = dq.through(f, EXP)
+    assert t.index[-1].date() == EXP and len(t) == len(f) - 1
+    assert dq.through(frame(end='2026-10-13'), EXP).index[-1].date() == EXP and len(dq.through(frame(end='2026-10-13'), EXP)) == len(frame(end='2026-10-13'))
+    assert dq.through(None, EXP) is None and dq.through(pd.DataFrame(), EXP).empty
+    tz = frame(end='2026-10-14'); tz.index = tz.index.tz_localize('Asia/Kolkata')
+    assert dq.through(tz, EXP).index[-1].date() == EXP
+    assert not [i for i in dq.validate_bars(dq.through(f, EXP), EXP) if i['severity'] == 'error']
