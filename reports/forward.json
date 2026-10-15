@@ -5,19 +5,21 @@
   "legacy_excluded": 13,
   "by_status": {
     "rejected": 11,
-    "pending": 2
+    "open": 1,
+    "expired": 1
   },
   "not_taken_reasons": {
     "symbol already has an active signal": 11,
-    "not yet triggered": 2
+    "aggregate open-risk budget 1.5% of capital would be exceeded": 1,
+    "entry session passed without a trigger": 1
   },
   "closed": 0,
-  "forward_avg_r_incl_open": null,
+  "forward_avg_r_incl_open": -0.117,
   "forward_avg_r_ci95_clustered": null,
-  "effective_independent_months": 0,
+  "effective_independent_months": 1,
   "rolling_expectancy_last_closed": {},
   "taken_equity_drawdown_pct": 0.0,
-  "taken_equity_now_pct": 0.16,
+  "taken_equity_now_pct": 0.17,
   "gap_through_stop_exits": 0,
   "partial_fills": 0,
   "readiness_distance": {
@@ -50,17 +52,17 @@
       },
       "open_loss": {
         "label": "Open, at a loss (mark-to-market)",
-        "n": 0,
-        "avg_r": null
+        "n": 1,
+        "avg_r": -0.117
       },
       "never_triggered": {
         "label": "Never triggered (buy-stop not reached)",
-        "n": 0,
+        "n": 1,
         "avg_r": null
       },
       "waiting": {
         "label": "Waiting for entry session",
-        "n": 2,
+        "n": 0,
         "avg_r": null
       },
       "not_tradable": {
@@ -69,23 +71,29 @@
         "avg_r": null
       }
     },
-    "entered": 0,
+    "entered": 1,
     "closed": 0,
     "closed_win_rate": null,
-    "entered_in_profit_rate": null,
-    "trigger_rate": null,
-    "by_setup": {},
+    "entered_in_profit_rate": 0.0,
+    "trigger_rate": 0.5,
+    "by_setup": {
+      "TRENDING": {
+        "entered": 1,
+        "good": 0,
+        "hit_rate": 0.0
+      }
+    },
     "legacy_excluded": 13,
     "note": "Win/loss counts are descriptive. Below ~100 closed signals they say little about the criteria; winners run under a slow exit, so early closed-only results skew to stops."
   },
   "event_log": {
     "verified": true,
-    "events": 42,
+    "events": 47,
     "problem": null
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-14T19:36:16+00:00"
+    "checked": "2026-10-15T05:37:34+00:00"
   }
 }

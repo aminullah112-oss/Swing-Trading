@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-14T19:36:18+00:00",
+  "generated": "2026-10-15T05:37:36+00:00",
   "policy": {
     "score": 0.5,
     "mode": "PAPER ONLY",
@@ -73,7 +73,7 @@
       "earned": 0.0,
       "value": 0,
       "threshold": 100,
-      "detail": "",
+      "detail": "1 legacy closed signal(s) excluded",
       "evidence_state": "pending_time"
     },
     {
@@ -83,7 +83,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 0,
+      "value": 1,
       "threshold": 182,
       "detail": "",
       "evidence_state": "pending_time"
@@ -97,7 +97,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 0, 0)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, 1)",
       "evidence_state": "pending_time"
     },
     {
@@ -109,7 +109,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 0, 0)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, 1)",
       "evidence_state": "pending_time"
     },
     {
@@ -150,7 +150,7 @@
       "earned": 0.0,
       "value": "DEGRADED",
       "threshold": "trusted data",
-      "detail": "latest scan data UNTRUSTED (no actionable signals): only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-13': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-13)",
+      "detail": "latest scan data UNTRUSTED (no actionable signals): only 0% of symbols have an official daily bar for the expected session 2026-10-14 (need 95%); last-bar dates: {'2026-10-15': 159}; the Nifty 50 has no official bar for 2026-10-14 (last: 2026-10-15)",
       "evidence_state": "failed"
     },
     {
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "124482babc1d",
-    "ledger": "32188956a8d7",
-    "health": "e524e9cc9790",
+    "results": "df5b705375f2",
+    "ledger": "d1d6ef725dc1",
+    "health": "f518aa22a7e5",
     "grid": "ba2286b4d2b0",
     "benchmarks": "07507b88585d",
     "universe": "204b5b06f773",
@@ -187,19 +187,19 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-14T19:36:18+00:00",
-    "commit_sha": "c209d711d5377077633dc5646d78b51a2dfd1304",
+    "generated_at": "2026-10-15T05:37:36+00:00",
+    "commit_sha": "25fea65b245145722981a9ed6347039557077a91",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-13",
+    "data_cutoff": "2026-10-15",
     "source_ids": {
-      "results": "124482babc1d",
-      "ledger": "32188956a8d7",
-      "health": "e524e9cc9790",
+      "results": "df5b705375f2",
+      "ledger": "d1d6ef725dc1",
+      "health": "f518aa22a7e5",
       "grid": "ba2286b4d2b0",
       "benchmarks": "07507b88585d",
       "universe": "204b5b06f773",
