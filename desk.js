@@ -94,15 +94,18 @@ function selectionBlock(s) {
         <div class="setup-label">${esc(t[1])}. This is a checklist count, <b>not a probability of profit</b>: no test has shown that a higher level wins more often. C0 trades every signal; the levels are tested in PREREG_v2.</div></details>`;
 }
 
-function card(s, cfg, liveRisk) {
+function card(s, cfg, liveRisk, idx, total) {
     const pl = plan(s, cfg, liveRisk);
+    const cv = ((s.selection || {}).conviction || {});
+    const badge = cv.level ? `<span class="conv conv-${esc(cv.level)}" title="Checklist count, not a probability of profit">${esc((CONV[cv.level] || [cv.level])[0].replace(' conviction', ''))} · ${esc(cv.met)}/${esc(cv.of)}</span>` : '';
+    const rankTxt = idx != null ? `<span class="conv-rank">#${idx + 1} of ${total}</span>` : '';
     const warns = s.checks.filter(c => c.status !== 'ok');
     const checks = s.checks.map(c => `<li class="chk-${esc(c.status)}">${ICON[c.status] || ''} ${esc(c.text)}</li>`).join('');
     const manual = MANUAL_CHECKS.map(t => `<li>☐ ${esc(t)}</li>`).join('');
     return `
     <article class="plan-card">
         <header class="plan-head">
-            <div><strong class="plan-sym">${esc(s.symbol)}</strong><div class="setup-label">${esc(SETUP_LABELS[s.setup_type] || s.setup_type)}</div></div>
+            <div><strong class="plan-sym">${esc(s.symbol)}</strong> ${badge} ${rankTxt}<div class="setup-label">${esc(SETUP_LABELS[s.setup_type] || s.setup_type)}</div></div>
             <div class="plan-px">${inr2(s.price)}<div class="setup-label">signal-day close</div></div>
         </header>
         ${sparkSVG(s.spark, s.trigger, s.stop_loss)}
@@ -262,7 +265,7 @@ function render() {
         `(about ${Math.max(1, Math.floor(cfg.max_open_risk_pct / effRiskPct(cfg, liveRisk)))} positions at once). Gaps can push real losses past the stop.`;
 
     const grid = document.getElementById('plans');
-    grid.innerHTML = ok.length ? ok.map(s => card(s, cfg, liveRisk)).join('') :
+    grid.innerHTML = ok.length ? ok.map((s, i) => card(s, cfg, liveRisk, i, ok.length)).join('') :
         `<div class="empty-note">📊 No tradeable signals right now.<br><small>${(data.data_quality && data.data_quality.status !== 'TRUSTED') ? 'The data is not confirmed, so no entries are allowed. Any provisional candidates are listed under Watchlist below.' : (stocks.length ? 'Every signal failed an execution check (see below).' : 'No stock met the entry conditions. That is normal: the system trades selectively.')}</small></div>`;
 
     const wl = document.getElementById('watchlist');

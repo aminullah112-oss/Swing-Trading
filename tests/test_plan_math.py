@@ -94,6 +94,7 @@ def test_desk_sorts_by_conviction_sizes_from_capital_and_builds_a_position_plan(
     r = render_with(stocks)
     assert r['plans'].index('HIGHX') < r['plans'].index('MEDX') < r['plans'].index('LOWX')
     assert 'High conviction' in r['plans'] and 'not a probability of profit' in r['plans']
+    assert 'class="conv conv-high"' in r['plans'] and 'class="conv conv-low"' in r['plans'] and '#1 of 3' in r['plans'] and '#3 of 3' in r['plans']       # visible badge and rank on every card
     # 565000 x 0.5% / 5 = 565 shares; position value 56,500 (10%) is under the 25% cap
     assert '<b>565</b>' in r['plans'] and 'reference size' in r['plans']
     assert 'Position plan' in r['alloc'] and '3 positions' in r['alloc'] and 'does not raise the amount at stake' in r['alloc']
