@@ -1,6 +1,6 @@
-# Pre-trade checklist: **GO (no qualifying signals)** (paper only)
+# Pre-trade checklist: **GO** (paper only)
 
-Generated 2026-10-15T17:24:35+00:00.
+Generated 2026-10-15T19:24:44+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
@@ -8,7 +8,7 @@ Generated 2026-10-15T17:24:35+00:00.
 | P2 block | ✅ | scan provenance current |
 | P3 block | ✅ | data quality TRUSTED |
 | P4 block | ✅ | health WARN: new entries allowed |
-| P5 block | ✅ | event log verified (83 events) |
+| P5 block | ✅ | event log verified (89 events) |
 | P6 block | ✅ | ledger reconciles |
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |
@@ -16,18 +16,18 @@ Generated 2026-10-15T17:24:35+00:00.
 | P10 warn | ⚠️ | backtest evidence stale: report has no provenance block (produced before provenance existed): rerun it |
 | P11 info | ✅ | kill switch ENGAGED (no real orders possible; paper tracking continues) |
 
-## No entries allowed today
+## Entries allowed (valid for the next session only; buy-stop, then stop)
 
+- COFORGE [standard · IT]: buy-stop 1970.0, stop 1840.51, 21 shares, risk ₹2719, valid 2026-10-16
+- AUROPHARMA [standard · Pharma & healthcare]: buy-stop 1684.3, stop 1622.23, 45 shares, risk ₹2793, valid 2026-10-16
+- RAYMOND [standard · Textiles]: buy-stop 1188.4, stop 1035.69, 13 shares, risk ₹1985, valid 2026-10-16
 
 ## Rejected
 
-- COFORGE: symbol already has an active signal; aggregate open-risk budget would be exceeded
-- ETERNAL: execution checks blocked it; symbol already has an active signal; aggregate open-risk budget would be exceeded
-- AUROPHARMA: aggregate open-risk budget would be exceeded
-- RAYMOND: aggregate open-risk budget would be exceeded
+- ETERNAL: execution checks blocked it
 - LAURUSLABS: aggregate open-risk budget would be exceeded
 - DIVISLAB: aggregate open-risk budget would be exceeded
-- HAL: symbol already has an active signal; aggregate open-risk budget would be exceeded
+- HAL: aggregate open-risk budget would be exceeded
 - PNB: execution checks blocked it; aggregate open-risk budget would be exceeded
 - RADICO: aggregate open-risk budget would be exceeded
 - KAJARIACER: execution checks blocked it; aggregate open-risk budget would be exceeded

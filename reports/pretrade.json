@@ -1,6 +1,6 @@
 {
-  "verdict": "GO (no qualifying signals)",
-  "generated": "2026-10-15T17:24:35+00:00",
+  "verdict": "GO",
+  "generated": "2026-10-15T19:24:44+00:00",
   "checks": [
     {
       "id": "P1",
@@ -30,7 +30,7 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (83 events)"
+      "msg": "event log verified (89 events)"
     },
     {
       "id": "P6",
@@ -69,33 +69,43 @@
       "msg": "kill switch ENGAGED (no real orders possible; paper tracking continues)"
     }
   ],
-  "tradable": [],
-  "rejected": [
+  "tradable": [
     {
       "symbol": "COFORGE",
-      "reasons": [
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "ETERNAL",
-      "reasons": [
-        "execution checks blocked it",
-        "symbol already has an active signal",
-        "aggregate open-risk budget would be exceeded"
-      ]
+      "buy_stop": 1970.0,
+      "stop": 1840.51,
+      "shares": 21,
+      "risk_inr": 2719.29,
+      "tier": "standard",
+      "sector": "IT",
+      "valid_for": "2026-10-16"
     },
     {
       "symbol": "AUROPHARMA",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
+      "buy_stop": 1684.3,
+      "stop": 1622.23,
+      "shares": 45,
+      "risk_inr": 2793.15,
+      "tier": "standard",
+      "sector": "Pharma & healthcare",
+      "valid_for": "2026-10-16"
     },
     {
       "symbol": "RAYMOND",
+      "buy_stop": 1188.4,
+      "stop": 1035.69,
+      "shares": 13,
+      "risk_inr": 1985.23,
+      "tier": "standard",
+      "sector": "Textiles",
+      "valid_for": "2026-10-16"
+    }
+  ],
+  "rejected": [
+    {
+      "symbol": "ETERNAL",
       "reasons": [
-        "aggregate open-risk budget would be exceeded"
+        "execution checks blocked it"
       ]
     },
     {
@@ -113,7 +123,6 @@
     {
       "symbol": "HAL",
       "reasons": [
-        "symbol already has an active signal",
         "aggregate open-risk budget would be exceeded"
       ]
     },

@@ -5,7 +5,7 @@
     "manage_exits": true,
     "ops_credit": true
   },
-  "generated": "2026-10-15T17:24:34+00:00",
+  "generated": "2026-10-15T19:24:43+00:00",
   "checks": [
     {
       "id": "H1",
@@ -35,7 +35,7 @@
     {
       "id": "H8",
       "level": "ok",
-      "msg": "taken-signal equity drawdown 0.3% of capital (now -0.3%)"
+      "msg": "taken-signal equity drawdown 0.0% of capital (now +0.0%)"
     },
     {
       "id": "H10",
@@ -44,8 +44,8 @@
     },
     {
       "id": "H15",
-      "level": "ok",
-      "msg": "nse bhavcopy (udiff): compared 159, 0 close and 0 adjustment mismatches"
+      "level": "warn",
+      "msg": "nse bhavcopy (udiff): compared 0, 0 close and 0 adjustment mismatches, 159 bar(s) filled from NSE because Yahoo lagged"
     },
     {
       "id": "H11",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (83 events)"
+      "msg": "event log verified (89 events)"
     },
     {
       "id": "H13b",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-15T17:24:34+00:00",
-    "commit_sha": "42f24656e14b91060ec9b59b6c2e044af4c700e9",
+    "generated_at": "2026-10-15T19:24:43+00:00",
+    "commit_sha": "2f54884aba6be424c6132d62d37ce29669bc2226",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -85,9 +85,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-15",
     "source_ids": {
-      "results": "d896f74652fa",
-      "ledger": "9e19883eb207",
-      "events": "faf0c1125006"
+      "results": "398bb1399073",
+      "ledger": "e941e1c51a6c",
+      "events": "5adc95158f65"
     }
   }
 }
