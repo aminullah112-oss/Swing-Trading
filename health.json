@@ -5,12 +5,12 @@
     "manage_exits": true,
     "ops_credit": true
   },
-  "generated": "2026-10-15T06:37:34+00:00",
+  "generated": "2026-10-15T11:25:26+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-14 (1 days old)"
+      "msg": "market data through 2026-10-15 (0 days old)"
     },
     {
       "id": "H2",
@@ -25,7 +25,7 @@
     {
       "id": "H4",
       "level": "ok",
-      "msg": "26 signals, integrity ok"
+      "msg": "38 signals, integrity ok"
     },
     {
       "id": "H7",
@@ -35,7 +35,7 @@
     {
       "id": "H8",
       "level": "ok",
-      "msg": "taken-signal equity drawdown 0.0% of capital (now +0.0%)"
+      "msg": "taken-signal equity drawdown 0.3% of capital (now -0.3%)"
     },
     {
       "id": "H10",
@@ -44,8 +44,8 @@
     },
     {
       "id": "H15",
-      "level": "warn",
-      "msg": "nse bhavcopy (udiff): compared 114, 0 close and 1 adjustment mismatches, 45 bar(s) filled from NSE because Yahoo lagged"
+      "level": "ok",
+      "msg": "nse bhavcopy (udiff): compared 159, 0 close and 0 adjustment mismatches"
     },
     {
       "id": "H11",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (60 events)"
+      "msg": "event log verified (83 events)"
     },
     {
       "id": "H13b",
@@ -75,19 +75,19 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-15T06:37:34+00:00",
-    "commit_sha": "9c9b5bc1856a41d32cda84c364b03561f7f53679",
+    "generated_at": "2026-10-15T11:25:26+00:00",
+    "commit_sha": "7ebd5aa1fb13c7c87adad086eccedc70165182a8",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-14",
+    "data_cutoff": "2026-10-15",
     "source_ids": {
-      "results": "87ac6eb43304",
-      "ledger": "7d8624d53e89",
-      "events": "f081270ff35c"
+      "results": "a4833cd53a19",
+      "ledger": "6f87bce748e2",
+      "events": "faf0c1125006"
     }
   }
 }
