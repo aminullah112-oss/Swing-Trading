@@ -1,11 +1,11 @@
 {
-  "status": "DEGRADED",
+  "status": "WARN",
   "permits": {
-    "new_entries": false,
+    "new_entries": true,
     "manage_exits": true,
-    "ops_credit": false
+    "ops_credit": true
   },
-  "generated": "2026-10-15T06:09:04+00:00",
+  "generated": "2026-10-15T06:20:33+00:00",
   "checks": [
     {
       "id": "H1",
@@ -49,8 +49,8 @@
     },
     {
       "id": "H11",
-      "level": "degraded",
-      "msg": "ledger reconciliation found 3 issue(s): duplicate_active"
+      "level": "ok",
+      "msg": "ledger reconciles with the event log and the calendar"
     },
     {
       "id": "H12",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-15T06:09:04+00:00",
-    "commit_sha": "26e726cd24a94c0afd071d98276ef504a0d59b46",
+    "generated_at": "2026-10-15T06:20:33+00:00",
+    "commit_sha": "791085f6d8e5d9ea9d7b74751a7dfe3b7ef38c21",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -85,8 +85,8 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-14",
     "source_ids": {
-      "results": "fbfdd029f09e",
-      "ledger": "b440790f69be",
+      "results": "d3e7344a79fe",
+      "ledger": "f8baa65a315c",
       "events": "ab212720c189"
     }
   }

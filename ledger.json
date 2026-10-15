@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-15T06:09:02+00:00",
+  "updated": "2026-10-15T06:20:32+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -1070,40 +1070,25 @@
     "6cea34aa4007",
     "844361f61331",
     "5eb1afb687f8",
-    "42fa074a4a40"
+    "42fa074a4a40",
+    "3910f054bd4c"
   ],
   "last_cutoff": "2026-10-14",
   "last_ingest": {
-    "scan_id": "42fa074a4a40",
-    "accepted": 10,
+    "scan_id": "3910f054bd4c",
+    "accepted": 0,
     "rejected": 0,
     "blocked": null
   },
   "reconciliation": {
-    "ok": false,
-    "issues": [
-      {
-        "kind": "duplicate_active",
-        "ref": "KAJARIACER",
-        "detail": "2 active signals for one symbol: ['KAJARIACER|2026-10-12', 'KAJARIACER|2026-10-14']"
-      },
-      {
-        "kind": "duplicate_active",
-        "ref": "COFORGE",
-        "detail": "2 active signals for one symbol: ['COFORGE|2026-10-12', 'COFORGE|2026-10-14']"
-      },
-      {
-        "kind": "duplicate_active",
-        "ref": "HAL",
-        "detail": "2 active signals for one symbol: ['HAL|2026-10-12', 'HAL|2026-10-14']"
-      }
-    ],
-    "checked": "2026-10-15T06:09:02+00:00"
+    "ok": true,
+    "issues": [],
+    "checked": "2026-10-15T06:20:32+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-15T06:09:03+00:00",
-    "commit_sha": "26e726cd24a94c0afd071d98276ef504a0d59b46",
+    "generated_at": "2026-10-15T06:20:32+00:00",
+    "commit_sha": "791085f6d8e5d9ea9d7b74751a7dfe3b7ef38c21",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -1112,9 +1097,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-14",
     "source_ids": {
-      "results": "fbfdd029f09e"
+      "results": "d3e7344a79fe"
     },
-    "scan_id": "42fa074a4a40"
+    "scan_id": "3910f054bd4c"
   },
-  "duplicates_skipped": 1
+  "duplicates_skipped": 12
 }

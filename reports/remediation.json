@@ -122,13 +122,13 @@
       "label": "Operations healthy: no health FAIL and no data lag",
       "weight": 0.5,
       "critical": false,
-      "status": "fail",
-      "state": "failed",
-      "owner": "Strategy research (evidence says no)",
+      "status": "pass",
+      "state": "passed",
+      "owner": "\u2014",
       "action": "Run the Daily Stock Screen on a day the vendor has published the official bars; health must be OK/WARN with trusted data and consistent artefacts.",
       "depends_on": "Vendor publishes daily bars; Yahoo reachable from Actions.",
       "acceptance": "health OK/WARN, data_quality TRUSTED, no inconsistencies.",
-      "detail": "health DEGRADED/FAIL earns no operations credit"
+      "detail": ""
     },
     {
       "id": "R1",
@@ -144,7 +144,7 @@
       "detail": ""
     }
   ],
-  "score_now": 0.5,
-  "ceiling_after_reruns": 1.0,
+  "score_now": 1.0,
+  "ceiling_after_reruns": 1.5,
   "u1_note": "U1 excluded from the near-term ceiling: the frozen hold-out comparison shows C0 below momentum-30 and equal-weight on Calmar."
 }

@@ -1,6 +1,6 @@
 {
-  "verdict": "NO-GO",
-  "generated": "2026-10-15T06:09:06+00:00",
+  "verdict": "GO",
+  "generated": "2026-10-15T06:20:34+00:00",
   "checks": [
     {
       "id": "P1",
@@ -23,8 +23,8 @@
     {
       "id": "P4",
       "level": "block",
-      "ok": false,
-      "msg": "health DEGRADED: new entries NOT allowed"
+      "ok": true,
+      "msg": "health WARN: new entries allowed"
     },
     {
       "id": "P5",
@@ -35,8 +35,8 @@
     {
       "id": "P6",
       "level": "block",
-      "ok": false,
-      "msg": "ledger reconciliation 3 issue(s): duplicate_active"
+      "ok": true,
+      "msg": "ledger reconciles"
     },
     {
       "id": "P7",
@@ -69,12 +69,84 @@
       "msg": "kill switch ENGAGED (no real orders possible; paper tracking continues)"
     }
   ],
-  "tradable": [],
+  "tradable": [
+    {
+      "symbol": "MOTHERSON",
+      "buy_stop": 162.69,
+      "stop": 152.42,
+      "shares": 275,
+      "risk_inr": 2824.25,
+      "tier": "standard",
+      "sector": "Autos & ancillaries",
+      "valid_for": "2026-10-15"
+    }
+  ],
   "rejected": [
     {
-      "symbol": "*",
+      "symbol": "DIVISLAB",
       "reasons": [
-        "entries blocked: health DEGRADED: new entries NOT allowed; ledger reconciliation 3 issue(s): duplicate_active"
+        "symbol already has an active signal",
+        "sector cap: 2 open positions already in Pharma & healthcare (limit 2)"
+      ]
+    },
+    {
+      "symbol": "COFORGE",
+      "reasons": [
+        "symbol already has an active signal"
+      ]
+    },
+    {
+      "symbol": "ETERNAL",
+      "reasons": [
+        "execution checks blocked it",
+        "symbol already has an active signal",
+        "sector cap: 2 open positions already in FMCG & consumer (limit 2)"
+      ]
+    },
+    {
+      "symbol": "KAJARIACER",
+      "reasons": [
+        "execution checks blocked it",
+        "symbol already has an active signal"
+      ]
+    },
+    {
+      "symbol": "HAL",
+      "reasons": [
+        "symbol already has an active signal"
+      ]
+    },
+    {
+      "symbol": "RADICO",
+      "reasons": [
+        "symbol already has an active signal",
+        "sector cap: 2 open positions already in FMCG & consumer (limit 2)"
+      ]
+    },
+    {
+      "symbol": "NAVINFLUOR",
+      "reasons": [
+        "symbol already has an active signal"
+      ]
+    },
+    {
+      "symbol": "RAYMOND",
+      "reasons": [
+        "symbol already has an active signal"
+      ]
+    },
+    {
+      "symbol": "AUROPHARMA",
+      "reasons": [
+        "symbol already has an active signal",
+        "sector cap: 2 open positions already in Pharma & healthcare (limit 2)"
+      ]
+    },
+    {
+      "symbol": "PNB",
+      "reasons": [
+        "execution checks blocked it",
+        "symbol already has an active signal"
       ]
     }
   ],

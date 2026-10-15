@@ -88,24 +88,8 @@
     "problem": null
   },
   "reconciliation": {
-    "ok": false,
-    "issues": [
-      {
-        "kind": "duplicate_active",
-        "ref": "KAJARIACER",
-        "detail": "2 active signals for one symbol: ['KAJARIACER|2026-10-12', 'KAJARIACER|2026-10-14']"
-      },
-      {
-        "kind": "duplicate_active",
-        "ref": "COFORGE",
-        "detail": "2 active signals for one symbol: ['COFORGE|2026-10-12', 'COFORGE|2026-10-14']"
-      },
-      {
-        "kind": "duplicate_active",
-        "ref": "HAL",
-        "detail": "2 active signals for one symbol: ['HAL|2026-10-12', 'HAL|2026-10-14']"
-      }
-    ],
-    "checked": "2026-10-15T06:09:02+00:00"
+    "ok": true,
+    "issues": [],
+    "checked": "2026-10-15T06:20:32+00:00"
   }
 }

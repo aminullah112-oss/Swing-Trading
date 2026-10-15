@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-15T06:09:05+00:00",
+  "generated": "2026-10-15T06:20:34+00:00",
   "policy": {
-    "score": 0.5,
+    "score": 1.0,
     "mode": "PAPER ONLY",
     "live_risk_pct_allowed": 0.0,
     "reasons": [
-      "health DEGRADED (data/ledger untrusted, kill switch or broken pipeline)"
+      "capital not confirmed in attestations.json"
     ],
     "critical_gates_passed": false,
     "unmet": [
@@ -17,8 +17,7 @@
       "F3 Forward expectancy (closed + open) has a 95% CI lower bound above 0",
       "F4 Forward expectancy is not clearly below the backtest design-period figure",
       "E1 At least 30 live fills with slippage within 2x the model",
-      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)",
-      "O1 Operations healthy: no health FAIL and no data lag"
+      "S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested)"
     ],
     "live_budget": {
       "closed_live_trades": 0,
@@ -146,12 +145,12 @@
       "label": "Operations healthy: no health FAIL and no data lag",
       "points": 0.5,
       "critical": false,
-      "status": "fail",
-      "earned": 0.0,
-      "value": "DEGRADED",
+      "status": "pass",
+      "earned": 0.5,
+      "value": "WARN",
       "threshold": "OK/WARN",
-      "detail": "health DEGRADED/FAIL earns no operations credit",
-      "evidence_state": "failed"
+      "detail": "",
+      "evidence_state": "passed"
     },
     {
       "id": "R1",
@@ -172,9 +171,9 @@
     }
   ],
   "inputs": {
-    "results": "fbfdd029f09e",
-    "ledger": "b440790f69be",
-    "health": "fed076ba7b0f",
+    "results": "d3e7344a79fe",
+    "ledger": "f8baa65a315c",
+    "health": "68f71488793e",
     "grid": "ba2286b4d2b0",
     "benchmarks": "07507b88585d",
     "universe": "204b5b06f773",
@@ -187,8 +186,8 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-15T06:09:05+00:00",
-    "commit_sha": "26e726cd24a94c0afd071d98276ef504a0d59b46",
+    "generated_at": "2026-10-15T06:20:34+00:00",
+    "commit_sha": "791085f6d8e5d9ea9d7b74751a7dfe3b7ef38c21",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -197,9 +196,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-14",
     "source_ids": {
-      "results": "fbfdd029f09e",
-      "ledger": "b440790f69be",
-      "health": "fed076ba7b0f",
+      "results": "d3e7344a79fe",
+      "ledger": "f8baa65a315c",
+      "health": "68f71488793e",
       "grid": "ba2286b4d2b0",
       "benchmarks": "07507b88585d",
       "universe": "204b5b06f773",
