@@ -1,12 +1,12 @@
 {
   "verdict": "GO",
-  "generated": "2026-10-16T08:08:41+00:00",
+  "generated": "2026-10-16T17:00:45+00:00",
   "checks": [
     {
       "id": "P1",
       "level": "block",
       "ok": true,
-      "msg": "scan data cutoff 2026-10-15 vs expected session 2026-10-15 (0 behind)"
+      "msg": "scan data cutoff 2026-10-16 vs expected session 2026-10-16 (0 behind)"
     },
     {
       "id": "P2",
@@ -30,7 +30,7 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (89 events)"
+      "msg": "event log verified (113 events)"
     },
     {
       "id": "P6",
@@ -71,89 +71,91 @@
   ],
   "tradable": [
     {
-      "symbol": "COFORGE",
-      "buy_stop": 1970.0,
-      "stop": 1840.51,
-      "shares": 21,
-      "risk_inr": 2719.29,
+      "symbol": "NAVINFLUOR",
+      "buy_stop": 8274.5,
+      "stop": 7824.09,
+      "shares": 6,
+      "risk_inr": 2702.46,
       "tier": "standard",
-      "sector": "IT",
-      "valid_for": "2026-10-16"
+      "sector": "Chemicals & agri",
+      "valid_for": "2026-10-19"
     },
     {
-      "symbol": "AUROPHARMA",
-      "buy_stop": 1684.3,
-      "stop": 1622.23,
-      "shares": 45,
-      "risk_inr": 2793.15,
+      "symbol": "BOSCHLTD",
+      "buy_stop": 45885.0,
+      "stop": 43769.64,
+      "shares": 1,
+      "risk_inr": 2115.36,
       "tier": "standard",
-      "sector": "Pharma & healthcare",
-      "valid_for": "2026-10-16"
+      "sector": "Autos & ancillaries",
+      "valid_for": "2026-10-19"
     },
     {
       "symbol": "RAYMOND",
-      "buy_stop": 1188.4,
-      "stop": 1035.69,
-      "shares": 13,
-      "risk_inr": 1985.23,
+      "buy_stop": 1171.4,
+      "stop": 1027.65,
+      "shares": 14,
+      "risk_inr": 2012.5,
       "tier": "standard",
       "sector": "Textiles",
-      "valid_for": "2026-10-16"
+      "valid_for": "2026-10-19"
     }
   ],
   "rejected": [
     {
-      "symbol": "ETERNAL",
+      "symbol": "PNB",
       "reasons": [
         "execution checks blocked it"
       ]
     },
     {
-      "symbol": "LAURUSLABS",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "DIVISLAB",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
       "symbol": "HAL",
       "reasons": [
-        "aggregate open-risk budget would be exceeded"
+        "symbol already has an active signal"
       ]
     },
     {
-      "symbol": "PNB",
+      "symbol": "MOTHERSON",
       "reasons": [
-        "execution checks blocked it",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "RADICO",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
+        "symbol already has an active signal"
       ]
     },
     {
       "symbol": "KAJARIACER",
       "reasons": [
-        "execution checks blocked it",
-        "aggregate open-risk budget would be exceeded"
+        "execution checks blocked it"
       ]
     },
     {
-      "symbol": "NAVINFLUOR",
+      "symbol": "COFORGE",
       "reasons": [
+        "execution checks blocked it"
+      ]
+    },
+    {
+      "symbol": "DIVISLAB",
+      "reasons": [
+        "symbol already has an active signal",
+        "sector cap: 2 open positions already in Pharma & healthcare (limit 2)"
+      ]
+    },
+    {
+      "symbol": "ETERNAL",
+      "reasons": [
+        "execution checks blocked it",
+        "symbol already has an active signal",
         "aggregate open-risk budget would be exceeded"
       ]
     },
     {
-      "symbol": "MOTHERSON",
+      "symbol": "AUROPHARMA",
+      "reasons": [
+        "aggregate open-risk budget would be exceeded",
+        "sector cap: 2 open positions already in Pharma & healthcare (limit 2)"
+      ]
+    },
+    {
+      "symbol": "RADICO",
       "reasons": [
         "aggregate open-risk budget would be exceeded"
       ]
