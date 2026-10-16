@@ -1,8 +1,8 @@
 {
-  "scan_id": "cb0d8e7b9117",
-  "timestamp": "2026-10-16T17:00:36.012813+00:00",
-  "scan_date": "2026-10-16",
-  "scan_time": "22:30:36 IST",
+  "scan_id": "5d6403c4292b",
+  "timestamp": "2026-10-16T19:02:38.975627+00:00",
+  "scan_date": "2026-10-17",
+  "scan_time": "00:32:38 IST",
   "data_cutoff": "2026-10-16",
   "expected_session": "2026-10-16",
   "sessions_behind": 0,
@@ -11,11 +11,15 @@
     "status": "TRUSTED",
     "reasons": [],
     "symbols": 159,
-    "official_coverage": 1.0,
+    "official_coverage": 0.9937,
     "cutoff_counts": {
-      "2026-10-16": 159
+      "2026-10-16": 158,
+      "2026-10-15": 1
     },
     "quarantined": {
+      "HCLTECH": [
+        "stale_bar"
+      ],
       "VEDL": [
         "suspect_corporate_action"
       ]
@@ -26,17 +30,178 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-10-16",
-      "retrieved_at": "2026-10-16T17:00:36+00:00",
-      "compared": 159,
-      "filled": [],
-      "cannot_fill": [],
+      "retrieved_at": "2026-10-16T19:02:39+00:00",
+      "compared": 0,
+      "filled": [
+        "RELIANCE",
+        "TCS",
+        "HDFCBANK",
+        "INFY",
+        "HINDUNILVR",
+        "ICICIBANK",
+        "SBIN",
+        "BHARTIARTL",
+        "KOTAKBANK",
+        "LT",
+        "AXISBANK",
+        "WIPRO",
+        "MARUTI",
+        "BAJFINANCE",
+        "ASIANPAINT",
+        "ULTRACEMCO",
+        "TITAN",
+        "SUNPHARMA",
+        "NESTLEIND",
+        "TECHM",
+        "TMPV",
+        "INDUSINDBK",
+        "POWERGRID",
+        "NTPC",
+        "BAJAJFINSV",
+        "ONGC",
+        "JSWSTEEL",
+        "TATASTEEL",
+        "COALINDIA",
+        "ADANIENT",
+        "ADANIPORTS",
+        "CIPLA",
+        "DRREDDY",
+        "DIVISLAB",
+        "BRITANNIA",
+        "EICHERMOT",
+        "GRASIM",
+        "HEROMOTOCO",
+        "ITC",
+        "M&M",
+        "BPCL",
+        "IOC",
+        "TATACONSUM",
+        "APOLLOHOSP",
+        "BAJAJ-AUTO",
+        "UPL",
+        "SBILIFE",
+        "HDFCLIFE",
+        "HINDALCO",
+        "DMART",
+        "SIEMENS",
+        "HAVELLS",
+        "PIDILITIND",
+        "DABUR",
+        "MARICO",
+        "COLPAL",
+        "BERGEPAINT",
+        "GODREJCP",
+        "MUTHOOTFIN",
+        "LUPIN",
+        "BIOCON",
+        "TORNTPHARM",
+        "ALKEM",
+        "AUROPHARMA",
+        "GLENMARK",
+        "AMBUJACEM",
+        "ACC",
+        "SHREECEM",
+        "INDIGO",
+        "TATAPOWER",
+        "TRENT",
+        "NAUKRI",
+        "IRCTC",
+        "CONCOR",
+        "SAIL",
+        "NMDC",
+        "VEDL",
+        "GAIL",
+        "PETRONET",
+        "IGL",
+        "BANKBARODA",
+        "PNB",
+        "CANBK",
+        "FEDERALBNK",
+        "IDFCFIRSTB",
+        "RBLBANK",
+        "AUBANK",
+        "CHOLAFIN",
+        "LICHSGFIN",
+        "MANAPPURAM",
+        "SUNDARMFIN",
+        "SHRIRAMFIN",
+        "PIIND",
+        "PERSISTENT",
+        "COFORGE",
+        "MPHASIS",
+        "LTTS",
+        "KPITTECH",
+        "TATAELXSI",
+        "CYIENT",
+        "DEEPAKNTR",
+        "NAVINFLUOR",
+        "TATACHEM",
+        "APOLLOTYRE",
+        "BALKRISIND",
+        "CEATLTD",
+        "MRF",
+        "MOTHERSON",
+        "BHARATFORG",
+        "BOSCHLTD",
+        "VOLTAS",
+        "KAJARIACER",
+        "SUPREMEIND",
+        "ASTRAL",
+        "POLYCAB",
+        "KEI",
+        "PAGEIND",
+        "RADICO",
+        "LAURUSLABS",
+        "GRANULES",
+        "AJANTPHARM",
+        "ERIS",
+        "METROPOLIS",
+        "MAXHEALTH",
+        "FORTIS",
+        "NH",
+        "SYNGENE",
+        "BRIGADE",
+        "SOBHA",
+        "PRESTIGE",
+        "GODREJPROP",
+        "PHOENIXLTD",
+        "OBEROIRLTY",
+        "THERMAX",
+        "CUMMINSIND",
+        "EMAMILTD",
+        "BEL",
+        "HAL",
+        "IRFC",
+        "RVNL",
+        "PFC",
+        "RECLTD",
+        "SJVN",
+        "NHPC",
+        "SUZLON",
+        "TRIDENT",
+        "RAYMOND",
+        "COROMANDEL",
+        "CHAMBLFERT",
+        "RALLIS",
+        "DHANUKA",
+        "ATUL",
+        "NOCIL",
+        "APLAPOLLO",
+        "ETERNAL",
+        "AARTIIND",
+        "TVSMOTOR",
+        "PRAJIND"
+      ],
+      "cannot_fill": [
+        "HCLTECH"
+      ],
       "not_in_bhavcopy": [],
       "mismatch_share": 0.0,
       "note": null,
       "angelone": null,
       "nifty": {
         "status": "ok",
-        "filled": false,
+        "filled": true,
         "note": null
       },
       "close_mismatch": {},
@@ -80,12 +245,13 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-10-16T17:00:36+00:00",
+    "retrieved_at": "2026-10-16T19:02:38+00:00",
     "frame_last_row": "2026-10-16",
     "rows": 497,
-    "non_null_closes_on_last_row": 160,
+    "non_null_closes_on_last_row": 0,
     "last_bar_counts": {
-      "2026-10-16": 159
+      "2026-10-16": 158,
+      "2026-10-15": 1
     }
   },
   "symbols_processed": 159,
@@ -119,7 +285,7 @@
     "preview": 0
   },
   "market": {
-    "breadth_stage2_pct": 11.9,
+    "breadth_stage2_pct": 12.6,
     "signals": 12,
     "nifty": {
       "close": 23146.2,
@@ -133,7 +299,7 @@
   },
   "stocks": [
     {
-      "avg_value_cr": 160.53,
+      "avg_value_cr": 160.54,
       "close_in_range": 0.957,
       "stop_pct": 4.45,
       "trigger_gap_pct": 0.09,
@@ -381,7 +547,7 @@
       "ema_200": 111.59,
       "rsi": 52.49,
       "vol_ratio": 1.1,
-      "vol_5d_ratio": 1.09,
+      "vol_5d_ratio": 1.1,
       "ema_dist_pct": 0.76,
       "from_52w_high": -11.45,
       "atr_pct": 2.91,
@@ -407,7 +573,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -505,7 +671,7 @@
       }
     },
     {
-      "avg_value_cr": 331.6,
+      "avg_value_cr": 331.61,
       "close_in_range": 1.0,
       "stop_pct": 3.6,
       "trigger_gap_pct": 0.0,
@@ -779,7 +945,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1149,7 +1315,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1519,7 +1685,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1889,7 +2055,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -1990,7 +2156,7 @@
       "avg_value_cr": 386.6,
       "close_in_range": 1.0,
       "stop_pct": 4.94,
-      "trigger_gap_pct": -0.0,
+      "trigger_gap_pct": 0.0,
       "checks": [
         {
           "id": "liquidity",
@@ -2005,7 +2171,7 @@
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop -0.0% above the close"
+          "text": "Buy-stop 0.0% above the close"
         },
         {
           "id": "close_strength",
@@ -2261,7 +2427,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -2359,7 +2525,7 @@
       }
     },
     {
-      "avg_value_cr": 487.22,
+      "avg_value_cr": 487.23,
       "close_in_range": 0.606,
       "stop_pct": 4.9,
       "trigger_gap_pct": 1.13,
@@ -2633,7 +2799,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3003,7 +3169,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3375,7 +3541,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3748,7 +3914,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -4120,7 +4286,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4490,7 +4656,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-16T17:00:36.012813+00:00",
+      "timestamp": "2026-10-16T19:02:38.975627+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4589,8 +4755,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-10-16T17:00:40+00:00",
-    "commit_sha": "4285c8877ae8cf4523c1be8c539ceff2fb81717c",
+    "generated_at": "2026-10-16T19:02:45+00:00",
+    "commit_sha": "3d43b101459ec53a355e3923cac24126cff97151",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
