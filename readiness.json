@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-16T19:02:48+00:00",
+  "generated": "2026-10-18T07:05:17+00:00",
   "policy": {
-    "score": 1.0,
+    "score": 1.5,
     "mode": "PAPER ONLY",
     "live_risk_pct_allowed": 0.0,
     "reasons": [
@@ -9,7 +9,6 @@
     ],
     "critical_gates_passed": false,
     "unmet": [
-      "B1 Live variant passes the pre-registered backtest gates",
       "U1 Beats buy-and-hold of the same universe AND a momentum-30 replica per unit of drawdown (hold-out)",
       "B2 Survivorship-free backtest passes the same gates (attested)",
       "F1 At least 100 closed forward signals",
@@ -32,24 +31,24 @@
       "label": "Live variant passes the pre-registered backtest gates",
       "points": 0.5,
       "critical": false,
-      "status": "stale",
-      "earned": 0.0,
-      "value": null,
+      "status": "pass",
+      "earned": 0.5,
+      "value": "G1/G2/G3 = True/True/True",
       "threshold": "all three gates",
-      "detail": "STALE EVIDENCE, no credit: report has no provenance block (produced before provenance existed): rerun it (rerun the Backtest workflow)",
-      "evidence_state": "blocked_defect"
+      "detail": "variant prior_high/ema50/h120",
+      "evidence_state": "passed"
     },
     {
       "id": "U1",
       "label": "Beats buy-and-hold of the same universe AND a momentum-30 replica per unit of drawdown (hold-out)",
       "points": 1.0,
       "critical": true,
-      "status": "stale",
+      "status": "fail",
       "earned": 0.0,
-      "value": null,
-      "threshold": null,
-      "detail": "STALE EVIDENCE, no credit: report has no provenance block (produced before provenance existed): rerun it",
-      "evidence_state": "blocked_defect"
+      "value": "strategy 0.49 vs universe buy-and-hold 0.85, momentum-30 replica 1.05",
+      "threshold": "Calmar >= every same-universe benchmark (hold-out)",
+      "detail": "hold-out CAGR 7.2% / DD -14.8% (reports/benchmarks.md)",
+      "evidence_state": "failed"
     },
     {
       "id": "B2",
@@ -60,7 +59,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "survivorship bias remains: no point-in-time universe tested (attestations.json: survivorship_free_backtest_passed also required)",
+      "detail": "survivorship bias remains: no point-in-time membership file (EDGE_PIT_UNIVERSE); results are survivorship-biased (attestations.json: survivorship_free_backtest_passed also required)",
       "evidence_state": "unverifiable"
     },
     {
@@ -82,7 +81,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 2,
+      "value": 4,
       "threshold": 182,
       "detail": "",
       "evidence_state": "pending_time"
@@ -96,7 +95,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 0, 2)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, 4)",
       "evidence_state": "pending_time"
     },
     {
@@ -108,7 +107,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 0, 2)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, 4)",
       "evidence_state": "pending_time"
     },
     {
@@ -174,21 +173,19 @@
   "inputs": {
     "results": "f38954e4a2ff",
     "ledger": "b7dedc4daf6b",
-    "health": "75bec46e98a6",
-    "grid": "ba2286b4d2b0",
-    "benchmarks": "07507b88585d",
-    "universe": "204b5b06f773",
+    "health": "b2689b0fc660",
+    "grid": "c6c89f12fdcb",
+    "benchmarks": "14fc1a1ae5e9",
+    "universe": "abd6d49b47c4",
     "attestations": "66ee1ecfcc82",
-    "report_provenance": null
+    "report_provenance": "d36972d1d1b7"
   },
-  "stale_evidence": [
-    "report has no provenance block (produced before provenance existed): rerun it"
-  ],
+  "stale_evidence": [],
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-16T19:02:48+00:00",
-    "commit_sha": "3d43b101459ec53a355e3923cac24126cff97151",
+    "generated_at": "2026-10-18T07:05:17+00:00",
+    "commit_sha": "feec4c33d03cbd48e6901b82e66039459745cb79",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -199,12 +196,12 @@
     "source_ids": {
       "results": "f38954e4a2ff",
       "ledger": "b7dedc4daf6b",
-      "health": "75bec46e98a6",
-      "grid": "ba2286b4d2b0",
-      "benchmarks": "07507b88585d",
-      "universe": "204b5b06f773",
+      "health": "b2689b0fc660",
+      "grid": "c6c89f12fdcb",
+      "benchmarks": "14fc1a1ae5e9",
+      "universe": "abd6d49b47c4",
       "attestations": "66ee1ecfcc82",
-      "report_provenance": null
+      "report_provenance": "d36972d1d1b7"
     }
   }
 }

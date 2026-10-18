@@ -1,0 +1,187 @@
+{
+  "overall": {
+    "n": 5071,
+    "win_rate": 0.266,
+    "days_winners": {
+      "p25": 33.0,
+      "p50": 49.0,
+      "p75": 73.0
+    },
+    "days_losers": {
+      "p25": 3.0,
+      "p50": 5.0,
+      "p75": 12.0
+    },
+    "days_all": {
+      "p25": 3.0,
+      "p50": 9.0,
+      "p75": 28.0
+    },
+    "r_winners": {
+      "p50": 1.63,
+      "p75": 4.08,
+      "p90": 8.34
+    },
+    "r_losers": {
+      "p10": -1.38,
+      "p50": -0.68
+    }
+  },
+  "by_setup": {
+    "BREAKOUT_CONT": {
+      "n": 230,
+      "win_rate": 0.283,
+      "days_winners": {
+        "p25": 47.0,
+        "p50": 64.0,
+        "p75": 78.0
+      },
+      "days_losers": {
+        "p25": 4.0,
+        "p50": 9.0,
+        "p75": 20.0
+      },
+      "days_all": {
+        "p25": 6.0,
+        "p50": 18.0,
+        "p75": 42.75
+      },
+      "r_winners": {
+        "p50": 3.54,
+        "p75": 6.36,
+        "p90": 9.29
+      },
+      "r_losers": {
+        "p10": -1.5,
+        "p50": -1.26
+      }
+    },
+    "COMPRESSION": {
+      "n": 84,
+      "win_rate": 0.369,
+      "days_winners": {
+        "p25": 41.5,
+        "p50": 56.0,
+        "p75": 73.0
+      },
+      "days_losers": {
+        "p25": 6.0,
+        "p50": 10.0,
+        "p75": 23.0
+      },
+      "days_all": {
+        "p25": 8.75,
+        "p50": 24.0,
+        "p75": 46.25
+      },
+      "r_winners": {
+        "p50": 2.11,
+        "p75": 4.0,
+        "p90": 7.63
+      },
+      "r_losers": {
+        "p10": -1.5,
+        "p50": -1.26
+      }
+    },
+    "PULLBACK_EMA20": {
+      "n": 2135,
+      "win_rate": 0.247,
+      "days_winners": {
+        "p25": 29.0,
+        "p50": 47.0,
+        "p75": 71.0
+      },
+      "days_losers": {
+        "p25": 2.0,
+        "p50": 5.0,
+        "p75": 10.25
+      },
+      "days_all": {
+        "p25": 3.0,
+        "p50": 8.0,
+        "p75": 23.0
+      },
+      "r_winners": {
+        "p50": 1.52,
+        "p75": 3.75,
+        "p90": 8.01
+      },
+      "r_losers": {
+        "p10": -1.34,
+        "p50": -0.61
+      }
+    },
+    "PULLBACK_EMA50": {
+      "n": 1832,
+      "win_rate": 0.253,
+      "days_winners": {
+        "p25": 28.0,
+        "p50": 43.0,
+        "p75": 67.0
+      },
+      "days_losers": {
+        "p25": 2.0,
+        "p50": 4.0,
+        "p75": 9.0
+      },
+      "days_all": {
+        "p25": 3.0,
+        "p50": 7.0,
+        "p75": 21.0
+      },
+      "r_winners": {
+        "p50": 1.27,
+        "p75": 3.47,
+        "p90": 8.31
+      },
+      "r_losers": {
+        "p10": -1.27,
+        "p50": -0.57
+      }
+    },
+    "TRENDING": {
+      "n": 790,
+      "win_rate": 0.333,
+      "days_winners": {
+        "p25": 44.0,
+        "p50": 58.0,
+        "p75": 83.0
+      },
+      "days_losers": {
+        "p25": 5.0,
+        "p50": 10.0,
+        "p75": 19.0
+      },
+      "days_all": {
+        "p25": 7.0,
+        "p50": 18.0,
+        "p75": 45.0
+      },
+      "r_winners": {
+        "p50": 2.14,
+        "p75": 5.08,
+        "p90": 9.61
+      },
+      "r_losers": {
+        "p10": -1.48,
+        "p50": -1.23
+      }
+    }
+  },
+  "provenance": {
+    "kind": "hold_stats",
+    "generated_at": "2026-10-18T07:02:43+00:00",
+    "commit_sha": "feec4c33d03cbd48e6901b82e66039459745cb79",
+    "config_hash": "1aedd80e21d2bbbf",
+    "evidence_hash": "4ac547ca5af30df9",
+    "c0_hash": "5e7924a41b0ee220",
+    "universe_version": "U159_v2",
+    "universe_hash": "d02dc26765b272aa",
+    "universe_count": 159,
+    "data_cutoff": null,
+    "source_ids": {},
+    "trades": 5071,
+    "note": "C0 backtest trades, survivor-biased"
+  }
+}

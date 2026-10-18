@@ -1,0 +1,92 @@
+{
+  "provenance": {
+    "kind": "c0_baseline",
+    "generated_at": "2026-10-18T07:01:58+00:00",
+    "commit_sha": "feec4c33d03cbd48e6901b82e66039459745cb79",
+    "config_hash": "1aedd80e21d2bbbf",
+    "evidence_hash": "4ac547ca5af30df9",
+    "c0_hash": "5e7924a41b0ee220",
+    "universe_version": "U159_v2",
+    "universe_hash": "d02dc26765b272aa",
+    "universe_count": 159,
+    "data_cutoff": "2026-10-16",
+    "source_ids": {}
+  },
+  "control": {
+    "id": "C0",
+    "c0_hash": "5e7924a41b0ee220"
+  },
+  "trades": 5071,
+  "trades_digest": "8683d3288fe82da7",
+  "all_trades": {
+    "trades": 5071,
+    "win_rate": 0.266,
+    "avg_r": 0.365,
+    "avg_r_ci95": [
+      0.269,
+      0.461
+    ],
+    "avg_win_r": 3.47,
+    "avg_loss_r": -0.761,
+    "profit_factor": 1.65,
+    "worst_r": -3.34
+  },
+  "design": {
+    "trades": 3295,
+    "win_rate": 0.251,
+    "avg_r": 0.223,
+    "avg_r_ci95": [
+      0.126,
+      0.319
+    ],
+    "avg_win_r": 3.126,
+    "avg_loss_r": -0.749,
+    "profit_factor": 1.4,
+    "worst_r": -3.34
+  },
+  "holdout": {
+    "trades": 1776,
+    "win_rate": 0.295,
+    "avg_r": 0.63,
+    "avg_r_ci95": [
+      0.422,
+      0.837
+    ],
+    "avg_win_r": 4.011,
+    "avg_loss_r": -0.786,
+    "profit_factor": 2.14,
+    "worst_r": -3.01
+  },
+  "portfolio_full": {
+    "accepted": 321,
+    "rejected_by_limits": 4750,
+    "final_equity": 835274.0,
+    "total_return_pct": 47.8,
+    "cagr_pct": 4.4,
+    "max_drawdown_pct": -13.9,
+    "longest_drawdown_days": 589,
+    "years": 8.99,
+    "liquidity_limited_orders": 0,
+    "avg_exposure_pct": 34.0,
+    "max_exposure_pct": 56.6,
+    "time_in_cash_pct": 0.9,
+    "avg_positions": 2.78
+  },
+  "portfolio_holdout": {
+    "accepted": 139,
+    "rejected_by_limits": 1637,
+    "final_equity": 737608.0,
+    "total_return_pct": 30.6,
+    "cagr_pct": 7.3,
+    "max_drawdown_pct": -14.8,
+    "longest_drawdown_days": 589,
+    "years": 3.79,
+    "liquidity_limited_orders": 0,
+    "avg_exposure_pct": 36.8,
+    "max_exposure_pct": 56.6,
+    "time_in_cash_pct": 0.3,
+    "avg_positions": 2.78
+  },
+  "symbols_with_data": 158,
+  "drift_vs_frozen": []
+}

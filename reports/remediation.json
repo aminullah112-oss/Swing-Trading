@@ -5,26 +5,26 @@
       "label": "Live variant passes the pre-registered backtest gates",
       "weight": 0.5,
       "critical": false,
-      "status": "stale",
-      "state": "blocked_defect",
-      "owner": "Engineering / operator (rerun workflow)",
+      "status": "pass",
+      "state": "passed",
+      "owner": "\u2014",
       "action": "Run the Backtest workflow so reports are stamped with the current evidence_hash.",
       "depends_on": "Workflow run; universe U159_v2 unchanged.",
       "acceptance": "reports/provenance.json matches evidence_hash, is < 45 days old, and the live variant passes G1-G3.",
-      "detail": "STALE EVIDENCE, no credit: report has no provenance block (produced before provenance existed): rerun it (rerun the Backtest workflow)"
+      "detail": "variant prior_high/ema50/h120"
     },
     {
       "id": "U1",
       "label": "Beats buy-and-hold of the same universe AND a momentum-30 replica per unit of drawdown (hold-out)",
       "weight": 1.0,
       "critical": true,
-      "status": "stale",
-      "state": "blocked_defect",
-      "owner": "Engineering / operator (rerun workflow)",
+      "status": "fail",
+      "state": "failed",
+      "owner": "Strategy research (evidence says no)",
       "action": "Rerun the Backtest workflow, then judge the hold-out. Frozen numbers show C0 Calmar 0.42 against momentum-30 1.05 and equal-weight 0.83.",
       "depends_on": "Fresh stamped benchmarks.json.",
       "acceptance": "C0 hold-out Calmar >= every same-universe benchmark. On the frozen numbers it is not: do not expect these points.",
-      "detail": "STALE EVIDENCE, no credit: report has no provenance block (produced before provenance existed): rerun it"
+      "detail": "hold-out CAGR 7.2% / DD -14.8% (reports/benchmarks.md)"
     },
     {
       "id": "B2",
@@ -37,7 +37,7 @@
       "action": "Build a point-in-time membership file (index reconstitution notices) and delisted-stock prices; set EDGE_PIT_UNIVERSE; rerun Backtest; then attest.",
       "depends_on": "External data (NSE index notices, bhavcopy for delisted names) that this environment cannot fetch.",
       "acceptance": "reports/pit_acceptance.json passes (coverage >= 95%, departed stocks with prices) AND the rerun passes the same gates AND attestations.json is set by the operator.",
-      "detail": "survivorship bias remains: no point-in-time universe tested (attestations.json: survivorship_free_backtest_passed also required)"
+      "detail": "survivorship bias remains: no point-in-time membership file (EDGE_PIT_UNIVERSE); results are survivorship-biased (attestations.json: survivorship_free_backtest_passed also required)"
     },
     {
       "id": "F1",
@@ -76,7 +76,7 @@
       "action": "Accumulate forward data after F1/F2.",
       "depends_on": "F1, F2.",
       "acceptance": "Month-clustered 95% CI lower bound of forward expectancy (closed + open) > 0.",
-      "detail": "needs 100+ closed signals and 182+ days first (have 0, 2)"
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, 4)"
     },
     {
       "id": "F4",
@@ -89,7 +89,7 @@
       "action": "Accumulate forward data after F1/F2.",
       "depends_on": "F1, F2, B1.",
       "acceptance": "Forward CI upper bound >= backtest design-period average R.",
-      "detail": "needs 100+ closed signals and 182+ days first (have 0, 2)"
+      "detail": "needs 100+ closed signals and 182+ days first (have 0, 4)"
     },
     {
       "id": "E1",
@@ -144,7 +144,7 @@
       "detail": ""
     }
   ],
-  "score_now": 1.0,
+  "score_now": 1.5,
   "ceiling_after_reruns": 1.5,
   "u1_note": "U1 excluded from the near-term ceiling: the frozen hold-out comparison shows C0 below momentum-30 and equal-weight on Calmar."
 }

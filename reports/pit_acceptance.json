@@ -1,0 +1,23 @@
+{
+  "passed": false,
+  "status": "no_pit_universe",
+  "reasons": [
+    "no point-in-time membership file (EDGE_PIT_UNIVERSE); results are survivorship-biased"
+  ],
+  "coverage": null,
+  "delisted_with_prices": 0,
+  "delisted_total": 0,
+  "provenance": {
+    "kind": "pit_acceptance",
+    "generated_at": "2026-10-18T07:05:16+00:00",
+    "commit_sha": "feec4c33d03cbd48e6901b82e66039459745cb79",
+    "config_hash": "1aedd80e21d2bbbf",
+    "evidence_hash": "4ac547ca5af30df9",
+    "c0_hash": "5e7924a41b0ee220",
+    "universe_version": "U159_v2",
+    "universe_hash": "d02dc26765b272aa",
+    "universe_count": 159,
+    "data_cutoff": null,
+    "source_ids": {}
+  }
+}

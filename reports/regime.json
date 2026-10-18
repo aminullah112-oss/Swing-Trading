@@ -2,69 +2,69 @@
   "live_variant": "slow-exit v4 (paper-trading candidate)",
   "rows": {
     "uptrend": {
-      "trades": 3279,
+      "trades": 3259,
       "months": 81,
       "win_rate": 0.267,
-      "avg_r": 0.345,
+      "avg_r": 0.351,
       "ci95": [
-        0.116,
-        0.595
+        0.119,
+        0.596
       ],
-      "profit_factor": 1.6
+      "profit_factor": 1.61
     },
     "pullback_in_uptrend": {
-      "trades": 1123,
+      "trades": 1121,
       "months": 64,
-      "win_rate": 0.25,
-      "avg_r": 0.391,
+      "win_rate": 0.246,
+      "avg_r": 0.382,
       "ci95": [
-        -0.077,
-        0.952
+        -0.083,
+        0.94
       ],
-      "profit_factor": 1.73
+      "profit_factor": 1.71
     },
     "bounce_below_ema200": {
-      "trades": 101,
+      "trades": 103,
       "months": 12,
-      "win_rate": 0.307,
-      "avg_r": 0.276,
+      "win_rate": 0.301,
+      "avg_r": 0.24,
       "ci95": [
-        -0.187,
-        0.962
+        -0.205,
+        0.907
       ],
-      "profit_factor": 1.43
+      "profit_factor": 1.37
     },
     "downtrend": {
-      "trades": 585,
+      "trades": 588,
       "months": 40,
-      "win_rate": 0.289,
-      "avg_r": 0.433,
+      "win_rate": 0.293,
+      "avg_r": 0.434,
       "ci95": [
-        0.087,
-        0.789
+        0.08,
+        0.788
       ],
       "profit_factor": 1.87
     }
   },
-  "n_trades": 5088,
+  "n_trades": 5071,
   "downtrend_minus_rest": [
-    0.0772468309876218,
-    -0.3499314448993376,
-    0.5080280559280378
+    0.07817663317360812,
+    -0.34173171465643926,
+    0.5026687932822531
   ],
   "downtrend_minus_rest_design": [
-    0.30867902405199976,
-    -0.14746730218057372,
-    0.8193045308443944
+    0.3197984505836655,
+    -0.139333833572729,
+    0.8225150744285035
   ],
   "downtrend_minus_rest_holdout": [
-    -0.3395530747231192,
-    -1.1243379581441781,
-    0.46421524968113076
+    -0.35201902597892637,
+    -1.1391787329946552,
+    0.4521560694203174
   ],
   "today": {
     "regime": "downtrend",
     "label": "Downtrend (below both)",
-    "date": "2026-10-12"
+    "date": "2026-10-16"
   }
 }

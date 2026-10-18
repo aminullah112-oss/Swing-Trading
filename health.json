@@ -5,12 +5,12 @@
     "manage_exits": true,
     "ops_credit": true
   },
-  "generated": "2026-10-16T19:02:47+00:00",
+  "generated": "2026-10-18T07:05:17+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-16 (0 days old)"
+      "msg": "market data through 2026-10-16 (2 days old)"
     },
     {
       "id": "H2",
@@ -20,7 +20,7 @@
     {
       "id": "H3",
       "level": "ok",
-      "msg": "ledger updated 0 days ago; last price update ok"
+      "msg": "ledger updated 2 days ago; last price update ok"
     },
     {
       "id": "H4",
@@ -59,8 +59,8 @@
     },
     {
       "id": "H13b",
-      "level": "warn",
-      "msg": "backtest evidence stale: report has no provenance block (produced before provenance existed): rerun it"
+      "level": "ok",
+      "msg": "backtest evidence provenance current"
     },
     {
       "id": "H14",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-16T19:02:47+00:00",
-    "commit_sha": "3d43b101459ec53a355e3923cac24126cff97151",
+    "generated_at": "2026-10-18T07:05:17+00:00",
+    "commit_sha": "feec4c33d03cbd48e6901b82e66039459745cb79",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
