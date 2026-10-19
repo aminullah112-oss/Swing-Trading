@@ -1,12 +1,12 @@
 {
-  "verdict": "GO",
-  "generated": "2026-10-19T08:49:32+00:00",
+  "verdict": "GO (no qualifying signals)",
+  "generated": "2026-10-19T18:51:44+00:00",
   "checks": [
     {
       "id": "P1",
       "level": "block",
       "ok": true,
-      "msg": "scan data cutoff 2026-10-16 vs expected session 2026-10-16 (0 behind)"
+      "msg": "scan data cutoff 2026-10-19 vs expected session 2026-10-19 (0 behind)"
     },
     {
       "id": "P2",
@@ -30,7 +30,7 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (122 events)"
+      "msg": "event log verified (131 events)"
     },
     {
       "id": "P6",
@@ -69,94 +69,67 @@
       "msg": "kill switch ENGAGED (no real orders possible; paper tracking continues)"
     }
   ],
-  "tradable": [
+  "tradable": [],
+  "rejected": [
     {
-      "symbol": "HAL",
-      "buy_stop": 4989.0,
-      "stop": 4809.4,
-      "shares": 15,
-      "risk_inr": 2694.0,
-      "tier": "standard",
-      "sector": "Capital goods & defence",
-      "valid_for": "2026-10-19"
+      "symbol": "RAYMOND",
+      "reasons": [
+        "symbol already has an active signal"
+      ]
+    },
+    {
+      "symbol": "RADICO",
+      "reasons": [
+        "symbol already has an active signal",
+        "sector cap: 2 open positions already in FMCG & consumer (limit 2)"
+      ]
     },
     {
       "symbol": "MOTHERSON",
-      "buy_stop": 162.77,
-      "stop": 152.72,
-      "shares": 281,
-      "risk_inr": 2824.05,
-      "tier": "standard",
-      "sector": "Autos & ancillaries",
-      "valid_for": "2026-10-19"
+      "reasons": [
+        "symbol already has an active signal",
+        "sector cap: 2 open positions already in Autos & ancillaries (limit 2)"
+      ]
     },
     {
-      "symbol": "NAVINFLUOR",
-      "buy_stop": 8274.5,
-      "stop": 7824.09,
-      "shares": 6,
-      "risk_inr": 2702.46,
-      "tier": "standard",
-      "sector": "Chemicals & agri",
-      "valid_for": "2026-10-19"
-    }
-  ],
-  "rejected": [
-    {
-      "symbol": "PNB",
+      "symbol": "HAL",
       "reasons": [
-        "execution checks blocked it"
+        "symbol already has an active signal"
       ]
     },
     {
       "symbol": "KAJARIACER",
       "reasons": [
         "execution checks blocked it",
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "COFORGE",
-      "reasons": [
-        "execution checks blocked it",
-        "aggregate open-risk budget would be exceeded"
+        "symbol already has an active signal"
       ]
     },
     {
       "symbol": "DIVISLAB",
       "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "BOSCHLTD",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
-      ]
-    },
-    {
-      "symbol": "RAYMOND",
-      "reasons": [
-        "aggregate open-risk budget would be exceeded"
+        "symbol already has an active signal",
+        "sector cap: 2 open positions already in Pharma & healthcare (limit 2)"
       ]
     },
     {
       "symbol": "ETERNAL",
       "reasons": [
         "execution checks blocked it",
-        "aggregate open-risk budget would be exceeded"
+        "symbol already has an active signal",
+        "sector cap: 2 open positions already in FMCG & consumer (limit 2)"
       ]
     },
     {
-      "symbol": "AUROPHARMA",
+      "symbol": "COFORGE",
       "reasons": [
-        "aggregate open-risk budget would be exceeded"
+        "execution checks blocked it",
+        "symbol already has an active signal"
       ]
     },
     {
-      "symbol": "RADICO",
+      "symbol": "PNB",
       "reasons": [
-        "aggregate open-risk budget would be exceeded"
+        "symbol already has an active signal"
       ]
     }
   ],

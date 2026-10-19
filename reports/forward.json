@@ -1,19 +1,19 @@
 {
   "all_fills_simulated": true,
-  "signals_total": 50,
-  "evidence_eligible": 37,
+  "signals_total": 59,
+  "evidence_eligible": 46,
   "legacy_excluded": 13,
   "by_status": {
     "expired": 15,
     "void": 9,
-    "rejected": 1,
+    "rejected": 10,
     "pending": 12
   },
   "not_taken_reasons": {
     "entry session passed without a trigger": 15,
     "entry was simulated on an unfinished session bar; the official bar decides": 3,
     "aggregate open-risk budget 1.5% of capital would be exceeded": 6,
-    "symbol already has an active signal": 1,
+    "symbol already has an active signal": 10,
     "not yet triggered": 12
   },
   "closed": 0,
@@ -70,7 +70,7 @@
       },
       "not_tradable": {
         "label": "Not tradable (rejected, cancelled or void)",
-        "n": 10,
+        "n": 19,
         "avg_r": null
       }
     },
@@ -85,12 +85,12 @@
   },
   "event_log": {
     "verified": true,
-    "events": 122,
+    "events": 131,
     "problem": null
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-19T08:49:30+00:00"
+    "checked": "2026-10-19T18:51:41+00:00"
   }
 }

@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-19T08:49:30+00:00",
+  "updated": "2026-10-19T18:51:41+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -1984,19 +1984,226 @@
       "needs_data": false,
       "taken": false,
       "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "RAYMOND|2026-10-19",
+      "symbol": "RAYMOND",
+      "signal_date": "2026-10-19",
+      "setup": "PULLBACK_EMA20",
+      "score": 93,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "8afb1ab93118",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-19T18:51:41+00:00"
+        }
+      ],
+      "expires_on": "2026-10-20",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "RADICO|2026-10-19",
+      "symbol": "RADICO",
+      "signal_date": "2026-10-19",
+      "setup": "PULLBACK_EMA20",
+      "score": 89,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "8afb1ab93118",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-19T18:51:41+00:00"
+        }
+      ],
+      "expires_on": "2026-10-20",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "MOTHERSON|2026-10-19",
+      "symbol": "MOTHERSON",
+      "signal_date": "2026-10-19",
+      "setup": "PULLBACK_EMA50",
+      "score": 87,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "8afb1ab93118",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-19T18:51:41+00:00"
+        }
+      ],
+      "expires_on": "2026-10-20",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "HAL|2026-10-19",
+      "symbol": "HAL",
+      "signal_date": "2026-10-19",
+      "setup": "TRENDING",
+      "score": 79,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "8afb1ab93118",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-19T18:51:41+00:00"
+        }
+      ],
+      "expires_on": "2026-10-20",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "KAJARIACER|2026-10-19",
+      "symbol": "KAJARIACER",
+      "signal_date": "2026-10-19",
+      "setup": "PULLBACK_EMA20",
+      "score": 89,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "8afb1ab93118",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-19T18:51:41+00:00"
+        }
+      ],
+      "expires_on": "2026-10-20",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "DIVISLAB|2026-10-19",
+      "symbol": "DIVISLAB",
+      "signal_date": "2026-10-19",
+      "setup": "PULLBACK_EMA20",
+      "score": 88,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "8afb1ab93118",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-19T18:51:41+00:00"
+        }
+      ],
+      "expires_on": "2026-10-20",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "ETERNAL|2026-10-19",
+      "symbol": "ETERNAL",
+      "signal_date": "2026-10-19",
+      "setup": "PULLBACK_EMA20",
+      "score": 88,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "8afb1ab93118",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-19T18:51:41+00:00"
+        }
+      ],
+      "expires_on": "2026-10-20",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "COFORGE|2026-10-19",
+      "symbol": "COFORGE",
+      "signal_date": "2026-10-19",
+      "setup": "TRENDING",
+      "score": 75,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "8afb1ab93118",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-19T18:51:41+00:00"
+        }
+      ],
+      "expires_on": "2026-10-20",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "PNB|2026-10-19",
+      "symbol": "PNB",
+      "signal_date": "2026-10-19",
+      "setup": "BREAKOUT_CONT",
+      "score": 89,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "8afb1ab93118",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-19T18:51:41+00:00"
+        }
+      ],
+      "expires_on": "2026-10-20",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
     }
   ],
   "summary": {
     "closed_eligible": 0,
     "first_eligible_signal": "2026-10-14",
-    "signals": 50,
+    "signals": 59,
     "pending": 12,
     "open": 4,
     "closed": 1,
     "expired": 22,
     "void": 10,
     "cancelled": 0,
-    "rejected": 1,
+    "rejected": 10,
     "win_rate": 0.0,
     "avg_r": -1.026,
     "total_r": -1.03,
@@ -2045,7 +2252,7 @@
         },
         "not_tradable": {
           "label": "Not tradable (rejected, cancelled or void)",
-          "n": 10,
+          "n": 19,
           "avg_r": null
         }
       },
@@ -2075,35 +2282,36 @@
     "6f32aa980bdf",
     "cb0d8e7b9117",
     "5d6403c4292b",
-    "caed46103693"
+    "caed46103693",
+    "8afb1ab93118"
   ],
-  "last_cutoff": "2026-10-16",
+  "last_cutoff": "2026-10-19",
   "last_ingest": {
-    "scan_id": "caed46103693",
+    "scan_id": "8afb1ab93118",
     "accepted": 0,
-    "rejected": 0,
+    "rejected": 9,
     "blocked": null
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-19T08:49:30+00:00"
+    "checked": "2026-10-19T18:51:41+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-19T08:49:31+00:00",
-    "commit_sha": "2a96503dc8e33ebc4fc0ead994cb801cac78bb1d",
+    "generated_at": "2026-10-19T18:51:42+00:00",
+    "commit_sha": "f33391a6e8a7eb4c736cf0104e5b91c27f72b7ed",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-16",
+    "data_cutoff": "2026-10-19",
     "source_ids": {
-      "results": "3813d405cfcb"
+      "results": "4499c7295883"
     },
-    "scan_id": "caed46103693"
+    "scan_id": "8afb1ab93118"
   },
   "duplicates_skipped": 87
 }
