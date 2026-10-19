@@ -1,6 +1,6 @@
 # Pre-trade checklist: **GO** (paper only)
 
-Generated 2026-10-16T19:02:49+00:00.
+Generated 2026-10-19T08:49:32+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
@@ -13,7 +13,7 @@ Generated 2026-10-16T19:02:49+00:00.
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |
 | P9 warn | ⚠️ | holiday calendar has 0 entries for 2026: add exchange holidays to market_holidays.json |
-| P10 warn | ⚠️ | backtest evidence stale: report has no provenance block (produced before provenance existed): rerun it |
+| P10 warn | ✅ | backtest evidence current |
 | P11 info | ✅ | kill switch ENGAGED (no real orders possible; paper tracking continues) |
 
 ## Entries allowed (valid for the next session only; buy-stop, then stop)

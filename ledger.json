@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-16T19:02:46+00:00",
+  "updated": "2026-10-19T08:49:30+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -124,10 +124,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 1229.23,
-      "mark_price": 1215.0,
-      "unrealized_r": -0.32,
+      "mark_price": 1211.0,
+      "unrealized_r": -0.389,
       "exit_signal": false,
-      "days_held": 3,
+      "days_held": 4,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -203,10 +203,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 1886.78,
-      "mark_price": 1934.3,
-      "unrealized_r": 0.472,
+      "mark_price": 1951.9,
+      "unrealized_r": 0.674,
       "exit_signal": false,
-      "days_held": 3,
+      "days_held": 4,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -245,10 +245,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 4781.78,
-      "mark_price": 4910.0,
-      "unrealized_r": 0.666,
+      "mark_price": 4989.0,
+      "unrealized_r": 1.138,
       "exit_signal": false,
-      "days_held": 3,
+      "days_held": 4,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -361,10 +361,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 2172.17,
-      "mark_price": 2139.0,
-      "unrealized_r": -0.446,
+      "mark_price": 2152.7,
+      "unrealized_r": -0.296,
       "exit_signal": false,
-      "days_held": 3,
+      "days_held": 4,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -1667,6 +1667,7 @@
       "close": 4989.0,
       "simulated": true,
       "provisional": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -1701,6 +1702,7 @@
       "close": 160.0,
       "simulated": true,
       "provisional": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -1825,6 +1827,7 @@
       "close": 9144.5,
       "simulated": true,
       "provisional": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -1919,6 +1922,7 @@
       "close": 325.3,
       "simulated": true,
       "provisional": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -1996,12 +2000,12 @@
     "win_rate": 0.0,
     "avg_r": -1.026,
     "total_r": -1.03,
-    "open_unrealized_r": 0.37,
+    "open_unrealized_r": 1.13,
     "taken_closed": 0,
     "taken_pnl_inr": 0,
     "avg_r_ci95": null,
-    "avg_r_incl_open": -0.131,
-    "total_r_incl_open": -0.65,
+    "avg_r_incl_open": 0.02,
+    "total_r_incl_open": 0.1,
     "outcomes": {
       "classes": {
         "won": {
@@ -2070,24 +2074,25 @@
     "c241f921125b",
     "6f32aa980bdf",
     "cb0d8e7b9117",
-    "5d6403c4292b"
+    "5d6403c4292b",
+    "caed46103693"
   ],
   "last_cutoff": "2026-10-16",
   "last_ingest": {
-    "scan_id": "5d6403c4292b",
-    "accepted": 4,
+    "scan_id": "caed46103693",
+    "accepted": 0,
     "rejected": 0,
     "blocked": null
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-16T19:02:46+00:00"
+    "checked": "2026-10-19T08:49:30+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-16T19:02:47+00:00",
-    "commit_sha": "3d43b101459ec53a355e3923cac24126cff97151",
+    "generated_at": "2026-10-19T08:49:31+00:00",
+    "commit_sha": "2a96503dc8e33ebc4fc0ead994cb801cac78bb1d",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -2096,9 +2101,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-16",
     "source_ids": {
-      "results": "f38954e4a2ff"
+      "results": "3813d405cfcb"
     },
-    "scan_id": "5d6403c4292b"
+    "scan_id": "caed46103693"
   },
-  "duplicates_skipped": 75
+  "duplicates_skipped": 87
 }
