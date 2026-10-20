@@ -4,24 +4,24 @@
   "evidence_eligible": 46,
   "legacy_excluded": 13,
   "by_status": {
-    "expired": 19,
+    "expired": 21,
     "void": 9,
     "rejected": 7,
-    "open": 4,
-    "pending": 7
+    "open": 6,
+    "pending": 3
   },
   "not_taken_reasons": {
-    "entry session passed without a trigger": 19,
+    "entry session passed without a trigger": 21,
     "entry was simulated on an unfinished session bar; the official bar decides": 3,
-    "aggregate open-risk budget 1.5% of capital would be exceeded": 10,
+    "aggregate open-risk budget 1.5% of capital would be exceeded": 12,
     "symbol already has an active signal": 7,
-    "not yet triggered": 7
+    "not yet triggered": 3
   },
   "closed": 0,
-  "forward_avg_r_incl_open": -0.29874999999999996,
+  "forward_avg_r_incl_open": -0.3093333333333333,
   "forward_avg_r_ci95_clustered": [
-    -0.299,
-    -0.299
+    -0.309,
+    -0.309
   ],
   "effective_independent_months": 1,
   "rolling_expectancy_last_closed": {},
@@ -59,17 +59,17 @@
       },
       "open_loss": {
         "label": "Open, at a loss (mark-to-market)",
-        "n": 3,
-        "avg_r": -0.43
+        "n": 5,
+        "avg_r": -0.39
       },
       "never_triggered": {
         "label": "Never triggered (buy-stop not reached)",
-        "n": 19,
+        "n": 21,
         "avg_r": null
       },
       "waiting": {
         "label": "Waiting for entry session",
-        "n": 7,
+        "n": 3,
         "avg_r": null
       },
       "not_tradable": {
@@ -78,19 +78,19 @@
         "avg_r": null
       }
     },
-    "entered": 4,
+    "entered": 6,
     "closed": 0,
     "closed_win_rate": null,
-    "entered_in_profit_rate": 0.25,
-    "trigger_rate": 0.174,
+    "entered_in_profit_rate": 0.167,
+    "trigger_rate": 0.222,
     "by_setup": {
       "PULLBACK_EMA20": {
-        "entered": 3,
+        "entered": 4,
         "good": 1,
-        "hit_rate": 0.333
+        "hit_rate": 0.25
       },
       "TRENDING": {
-        "entered": 1,
+        "entered": 2,
         "good": 0,
         "hit_rate": 0.0
       }
@@ -100,12 +100,12 @@
   },
   "event_log": {
     "verified": true,
-    "events": 142,
+    "events": 147,
     "problem": null
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-20T08:29:38+00:00"
+    "checked": "2026-10-20T18:11:06+00:00"
   }
 }

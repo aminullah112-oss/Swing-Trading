@@ -1,6 +1,6 @@
 # Remediation matrix
 
-Score now: **1.5/10**. Ceiling reachable by reruns and operator action alone: **1.5/10**. U1 excluded from the near-term ceiling: the frozen hold-out comparison shows C0 below momentum-30 and equal-weight on Calmar.
+Score now: **1.0/10**. Ceiling reachable by reruns and operator action alone: **1.0/10**. U1 excluded from the near-term ceiling: the frozen hold-out comparison shows C0 below momentum-30 and equal-weight on Calmar.
 
 | Gate | Weight | State | Owner | Action | Depends on | Acceptance |
 |---|---|---|---|---|---|---|
@@ -13,7 +13,7 @@ Score now: **1.5/10**. Ceiling reachable by reruns and operator action alone: **
 | F4 ⚠ | 1 | pending_time | Calendar time (cannot be accelerated) | Accumulate forward data after F1/F2. | F1, F2, B1. | Forward CI upper bound >= backtest design-period average R. |
 | E1 ⚠ | 1 | pending_time | Calendar time (cannot be accelerated) | Needs real fills, therefore a live trial, which needs explicit operator authorisation and every safety gate. Not available in paper mode. | Operator authorisation; micro-live prerequisites. | >= 30 real fills in live_fills.csv with slippage within 2x the model. |
 | S1 | 0.5 | unverifiable | Operator attestation of a real-world fact | Needs a >= 10% Nifty drawdown to occur during the forward record, with the rules followed. Cannot be created or backdated. | Market event. | Operator attests market_stress_observed after it has actually happened. |
-| O1 | 0.5 | passed | — | Run the Daily Stock Screen on a day the vendor has published the official bars; health must be OK/WARN with trusted data and consistent artefacts. | Vendor publishes daily bars; Yahoo reachable from Actions. | health OK/WARN, data_quality TRUSTED, no inconsistencies. |
+| O1 | 0.5 | failed | Strategy research (evidence says no) | Run the Daily Stock Screen on a day the vendor has published the official bars; health must be OK/WARN with trusted data and consistent artefacts. | Vendor publishes daily bars; Yahoo reachable from Actions. | health OK/WARN, data_quality TRUSTED, no inconsistencies. |
 | R1 | 0.5 | passed | — | Already within bounds. | — | risk/trade <= 1%, open risk <= 3%, position <= 25%. |
 
 ⚠ = critical gate. States: passed, failed (evidence says no), blocked_defect (we can fix by rerunning or repairing), pending_time, unverifiable (needs a human fact).
