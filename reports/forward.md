@@ -1,31 +1,31 @@
 # Forward validation (paper, simulated fills)
 
-Signals recorded: 59 (46 evidence-eligible, 13 legacy excluded). Event log: verified (131 events). Every fill here is simulated; none is a broker fill.
+Signals recorded: 59 (46 evidence-eligible, 13 legacy excluded). Event log: verified (142 events). Every fill here is simulated; none is a broker fill.
 
-By status: {'expired': 15, 'void': 9, 'rejected': 10, 'pending': 12}.
+By status: {'expired': 19, 'void': 9, 'rejected': 7, 'open': 4, 'pending': 7}.
 
 Signals not taken, with reasons:
 
-- entry session passed without a trigger: 15
+- entry session passed without a trigger: 19
 - entry was simulated on an unfinished session bar; the official bar decides: 3
-- aggregate open-risk budget 1.5% of capital would be exceeded: 6
-- symbol already has an active signal: 10
-- not yet triggered: 12
+- aggregate open-risk budget 1.5% of capital would be exceeded: 10
+- symbol already has an active signal: 7
+- not yet triggered: 7
 
 How the filtered stocks fared:
 
 - Won: closed in profit: 0
 - Lost: stop hit: 0
 - Lost: exited at a loss (trend/time exit): 0
-- Open, in profit (mark-to-market): 0
-- Open, at a loss (mark-to-market): 0
-- Never triggered (buy-stop not reached): 15
-- Waiting for entry session: 12
-- Not tradable (rejected, cancelled or void): 19
+- Open, in profit (mark-to-market): 1 (avg +0.10R)
+- Open, at a loss (mark-to-market): 3 (avg -0.43R)
+- Never triggered (buy-stop not reached): 19
+- Waiting for entry session: 7
+- Not tradable (rejected, cancelled or void): 16
 
 Closed eligible signals: 0 of 100 needed; first eligible signal 2026-10-14; 182 days required.
 
-No entered, eligible signals yet: no expectancy can be stated.
+Average R including open trades: -0.299 over 1 entry months; month-clustered 95% CI [-0.299, -0.299]. Rolling expectancy (last closed): needs 30+ closed.
 
 Taken-signal equity drawdown 0.0% of capital (now +0.0%). Gap-through-stop exits: 0. Partial fills: 0.
 

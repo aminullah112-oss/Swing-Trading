@@ -5,12 +5,12 @@
     "manage_exits": true,
     "ops_credit": true
   },
-  "generated": "2026-10-19T20:44:14+00:00",
+  "generated": "2026-10-20T08:29:39+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-19 (0 days old)"
+      "msg": "market data through 2026-10-19 (1 days old)"
     },
     {
       "id": "H2",
@@ -45,7 +45,7 @@
     {
       "id": "H15",
       "level": "warn",
-      "msg": "nse bhavcopy (udiff): compared 0, 0 close and 0 adjustment mismatches, 159 bar(s) filled from NSE because Yahoo lagged"
+      "msg": "nse bhavcopy (udiff): compared 107, 0 close and 0 adjustment mismatches, 52 bar(s) filled from NSE because Yahoo lagged"
     },
     {
       "id": "H11",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (131 events)"
+      "msg": "event log verified (142 events)"
     },
     {
       "id": "H13b",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-19T20:44:14+00:00",
-    "commit_sha": "d4bc6d58b6f4d47487bac972f9f87819e15f6827",
+    "generated_at": "2026-10-20T08:29:39+00:00",
+    "commit_sha": "95bf41eb8a78eed80ba11e2c314bd780d5e675b4",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -85,9 +85,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-19",
     "source_ids": {
-      "results": "07fc8d2990f1",
-      "ledger": "f0a5c3d6aec5",
-      "events": "6c267094b783"
+      "results": "efe15bb35024",
+      "ledger": "b2c7d872a272",
+      "events": "ad7c5506e88b"
     }
   }
 }

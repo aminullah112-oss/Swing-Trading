@@ -1,6 +1,6 @@
 {
-  "verdict": "GO (no qualifying signals)",
-  "generated": "2026-10-19T20:44:15+00:00",
+  "verdict": "GO",
+  "generated": "2026-10-20T08:29:40+00:00",
   "checks": [
     {
       "id": "P1",
@@ -30,7 +30,7 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (131 events)"
+      "msg": "event log verified (142 events)"
     },
     {
       "id": "P6",
@@ -69,26 +69,33 @@
       "msg": "kill switch ENGAGED (no real orders possible; paper tracking continues)"
     }
   ],
-  "tradable": [],
-  "rejected": [
+  "tradable": [
     {
       "symbol": "RAYMOND",
-      "reasons": [
-        "symbol already has an active signal"
-      ]
-    },
-    {
-      "symbol": "RADICO",
-      "reasons": [
-        "symbol already has an active signal",
-        "sector cap: 2 open positions already in FMCG & consumer (limit 2)"
-      ]
+      "buy_stop": 1140.8,
+      "stop": 1029.01,
+      "shares": 18,
+      "risk_inr": 2012.22,
+      "tier": "standard",
+      "sector": "Textiles",
+      "valid_for": "2026-10-20"
     },
     {
       "symbol": "MOTHERSON",
+      "buy_stop": 161.22,
+      "stop": 150.96,
+      "shares": 275,
+      "risk_inr": 2821.5,
+      "tier": "standard",
+      "sector": "Autos & ancillaries",
+      "valid_for": "2026-10-20"
+    }
+  ],
+  "rejected": [
+    {
+      "symbol": "RADICO",
       "reasons": [
-        "symbol already has an active signal",
-        "sector cap: 2 open positions already in Autos & ancillaries (limit 2)"
+        "symbol already has an active signal"
       ]
     },
     {
@@ -114,9 +121,7 @@
     {
       "symbol": "ETERNAL",
       "reasons": [
-        "execution checks blocked it",
-        "symbol already has an active signal",
-        "sector cap: 2 open positions already in FMCG & consumer (limit 2)"
+        "execution checks blocked it"
       ]
     },
     {

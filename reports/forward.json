@@ -4,22 +4,26 @@
   "evidence_eligible": 46,
   "legacy_excluded": 13,
   "by_status": {
-    "expired": 15,
+    "expired": 19,
     "void": 9,
-    "rejected": 10,
-    "pending": 12
+    "rejected": 7,
+    "open": 4,
+    "pending": 7
   },
   "not_taken_reasons": {
-    "entry session passed without a trigger": 15,
+    "entry session passed without a trigger": 19,
     "entry was simulated on an unfinished session bar; the official bar decides": 3,
-    "aggregate open-risk budget 1.5% of capital would be exceeded": 6,
-    "symbol already has an active signal": 10,
-    "not yet triggered": 12
+    "aggregate open-risk budget 1.5% of capital would be exceeded": 10,
+    "symbol already has an active signal": 7,
+    "not yet triggered": 7
   },
   "closed": 0,
-  "forward_avg_r_incl_open": null,
-  "forward_avg_r_ci95_clustered": null,
-  "effective_independent_months": 0,
+  "forward_avg_r_incl_open": -0.29874999999999996,
+  "forward_avg_r_ci95_clustered": [
+    -0.299,
+    -0.299
+  ],
+  "effective_independent_months": 1,
   "rolling_expectancy_last_closed": {},
   "taken_equity_drawdown_pct": 0.0,
   "taken_equity_now_pct": 0.0,
@@ -50,47 +54,58 @@
       },
       "open_profit": {
         "label": "Open, in profit (mark-to-market)",
-        "n": 0,
-        "avg_r": null
+        "n": 1,
+        "avg_r": 0.096
       },
       "open_loss": {
         "label": "Open, at a loss (mark-to-market)",
-        "n": 0,
-        "avg_r": null
+        "n": 3,
+        "avg_r": -0.43
       },
       "never_triggered": {
         "label": "Never triggered (buy-stop not reached)",
-        "n": 15,
+        "n": 19,
         "avg_r": null
       },
       "waiting": {
         "label": "Waiting for entry session",
-        "n": 12,
+        "n": 7,
         "avg_r": null
       },
       "not_tradable": {
         "label": "Not tradable (rejected, cancelled or void)",
-        "n": 19,
+        "n": 16,
         "avg_r": null
       }
     },
-    "entered": 0,
+    "entered": 4,
     "closed": 0,
     "closed_win_rate": null,
-    "entered_in_profit_rate": null,
-    "trigger_rate": 0.0,
-    "by_setup": {},
+    "entered_in_profit_rate": 0.25,
+    "trigger_rate": 0.174,
+    "by_setup": {
+      "PULLBACK_EMA20": {
+        "entered": 3,
+        "good": 1,
+        "hit_rate": 0.333
+      },
+      "TRENDING": {
+        "entered": 1,
+        "good": 0,
+        "hit_rate": 0.0
+      }
+    },
     "legacy_excluded": 13,
     "note": "Win/loss counts are descriptive. Below ~100 closed signals they say little about the criteria; winners run under a slow exit, so early closed-only results skew to stops."
   },
   "event_log": {
     "verified": true,
-    "events": 131,
+    "events": 142,
     "problem": null
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-19T20:44:12+00:00"
+    "checked": "2026-10-20T08:29:38+00:00"
   }
 }
