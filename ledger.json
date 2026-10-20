@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-20T18:11:06+00:00",
+  "updated": "2026-10-20T20:14:29+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -2438,19 +2438,19 @@
   ],
   "last_cutoff": "2026-10-19",
   "last_ingest": {
-    "scan_id": "ecef4f7796c9",
+    "scan_id": "a8b0c5ebe353",
     "accepted": 0,
     "blocked": "scan data not trusted (not actionable): only 0% of symbols have an official daily bar for the expected session 2026-10-20 (need 95%); last-bar dates: {'2026-10-19': 159}; the Nifty 50 has no official bar for 2026-10-20 (last: 2026-10-19)"
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-20T18:11:06+00:00"
+    "checked": "2026-10-20T20:14:29+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-20T18:11:07+00:00",
-    "commit_sha": "22392075f8f89e485ff3bafc67782df1adb252f2",
+    "generated_at": "2026-10-20T20:14:30+00:00",
+    "commit_sha": "035e754acd9f4c7c93109c265b5ec290300477bb",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -2459,9 +2459,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-19",
     "source_ids": {
-      "results": "d3b2400362ff"
+      "results": "e2a4ca5db705"
     },
-    "scan_id": "ecef4f7796c9"
+    "scan_id": "a8b0c5ebe353"
   },
   "duplicates_skipped": 102
 }
