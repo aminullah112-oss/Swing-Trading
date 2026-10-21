@@ -1,12 +1,12 @@
 {
   "verdict": "NO-GO",
-  "generated": "2026-10-21T09:08:27+00:00",
+  "generated": "2026-10-21T17:42:29+00:00",
   "checks": [
     {
       "id": "P1",
       "level": "block",
-      "ok": false,
-      "msg": "scan data cutoff 2026-10-19 vs expected session 2026-10-20 (1 behind)"
+      "ok": true,
+      "msg": "scan data cutoff 2026-10-21 vs expected session 2026-10-21 (0 behind)"
     },
     {
       "id": "P2",
@@ -17,8 +17,8 @@
     {
       "id": "P3",
       "level": "block",
-      "ok": false,
-      "msg": "data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-20 (need 95%); last-bar dates: {'2026-10-19': 159}; the Nifty 50 has no official bar for 2026-10-20 (last: 2026-10-19)"
+      "ok": true,
+      "msg": "data quality TRUSTED"
     },
     {
       "id": "P4",
@@ -30,13 +30,13 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (149 events)"
+      "msg": "event log verified (161 events)"
     },
     {
       "id": "P6",
       "level": "block",
-      "ok": true,
-      "msg": "ledger reconciles"
+      "ok": false,
+      "msg": "ledger reconciliation 3 issue(s): needs_data"
     },
     {
       "id": "P7",
@@ -74,7 +74,7 @@
     {
       "symbol": "*",
       "reasons": [
-        "entries blocked: scan data cutoff 2026-10-19 vs expected session 2026-10-20 (1 behind); data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-20 (need 95%); last-bar dates: {'2026-10-19': 159}; the Nifty 50 has no official bar for 2026-10-20 (last: 2026-10-19); health DEGRADED: new entries NOT allowed"
+        "entries blocked: health DEGRADED: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data"
       ]
     }
   ],

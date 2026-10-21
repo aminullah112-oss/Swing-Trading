@@ -5,17 +5,12 @@
     "manage_exits": true,
     "ops_credit": false
   },
-  "generated": "2026-10-21T09:08:25+00:00",
+  "generated": "2026-10-21T17:42:28+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-19 (2 days old)"
-    },
-    {
-      "id": "H1b",
-      "level": "warn",
-      "msg": "data ends 2026-10-19 but the last completed session should be 2026-10-20 (1 session(s) behind). Unless it was an exchange holiday missing from market_holidays.json, the data vendor is lagging and 'valid for the next session' buy levels refer to a session that already traded"
+      "msg": "market data through 2026-10-21 (0 days old)"
     },
     {
       "id": "H2",
@@ -30,12 +25,12 @@
     {
       "id": "H4",
       "level": "ok",
-      "msg": "59 signals, integrity ok"
+      "msg": "67 signals, integrity ok"
     },
     {
       "id": "H7",
       "level": "ok",
-      "msg": "edge-decay check needs 30+ closed signals (have 1)"
+      "msg": "edge-decay check needs 30+ closed signals (have 5)"
     },
     {
       "id": "H8",
@@ -44,23 +39,23 @@
     },
     {
       "id": "H10",
-      "level": "degraded",
-      "msg": "market data UNTRUSTED, no actionable signals: only 0% of symbols have an official daily bar for the expected session 2026-10-20 (need 95%); last-bar dates: {'2026-10-19': 159}; the Nifty 50 has no official bar for 2026-10-20 (last: 2026-10-19)"
+      "level": "warn",
+      "msg": "data trusted: 100% official-bar coverage; 1 symbol(s) quarantined (VEDL)"
     },
     {
       "id": "H15",
-      "level": "warn",
-      "msg": "NSE bhavcopy cross-check unavailable: udiff: HTTPError: HTTP Error 404: Not Found; udiff: HTTPError: HTTP Error 404: Not Found; legacy: only 0 usable EQ rows for 2026-10-20; Yahoo bars are unverified against the exchange"
+      "level": "ok",
+      "msg": "nse bhavcopy (udiff): compared 159, 0 close and 0 adjustment mismatches"
     },
     {
       "id": "H11",
-      "level": "ok",
-      "msg": "ledger reconciles with the event log and the calendar"
+      "level": "degraded",
+      "msg": "ledger reconciliation found 3 issue(s): needs_data"
     },
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (149 events)"
+      "msg": "event log verified (161 events)"
     },
     {
       "id": "H13b",
@@ -80,19 +75,19 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-21T09:08:25+00:00",
-    "commit_sha": "903f08b5abdb710ce4766a3a64bd982d84f92359",
+    "generated_at": "2026-10-21T17:42:28+00:00",
+    "commit_sha": "37716c133294391f2addfc9b97f8290ccfb567c0",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-19",
+    "data_cutoff": "2026-10-21",
     "source_ids": {
-      "results": "65f5e48a38f5",
-      "ledger": "61f7239a0cde",
-      "events": "ec3a6e8fafb2"
+      "results": "f41ba02043de",
+      "ledger": "da783d11c7a2",
+      "events": "2529be87ce11"
     }
   }
 }

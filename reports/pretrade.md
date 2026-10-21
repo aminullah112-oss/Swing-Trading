@@ -1,15 +1,15 @@
 # Pre-trade checklist: **NO-GO** (paper only)
 
-Generated 2026-10-21T09:08:27+00:00.
+Generated 2026-10-21T17:42:29+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
-| P1 block | ❌ | scan data cutoff 2026-10-19 vs expected session 2026-10-20 (1 behind) |
+| P1 block | ✅ | scan data cutoff 2026-10-21 vs expected session 2026-10-21 (0 behind) |
 | P2 block | ✅ | scan provenance current |
-| P3 block | ❌ | data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-20 (need 95%); last-bar dates: {'2026-10-19': 159}; the Nifty 50 has no official bar for 2026-10-20 (last: 2026-10-19) |
+| P3 block | ✅ | data quality TRUSTED |
 | P4 block | ❌ | health DEGRADED: new entries NOT allowed |
-| P5 block | ✅ | event log verified (149 events) |
-| P6 block | ✅ | ledger reconciles |
+| P5 block | ✅ | event log verified (161 events) |
+| P6 block | ❌ | ledger reconciliation 3 issue(s): needs_data |
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |
 | P9 warn | ⚠️ | holiday calendar has 0 entries for 2026: add exchange holidays to market_holidays.json |
@@ -21,6 +21,6 @@ Generated 2026-10-21T09:08:27+00:00.
 
 ## Rejected
 
-- *: entries blocked: scan data cutoff 2026-10-19 vs expected session 2026-10-20 (1 behind); data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-20 (need 95%); last-bar dates: {'2026-10-19': 159}; the Nifty 50 has no official bar for 2026-10-20 (last: 2026-10-19); health DEGRADED: new entries NOT allowed
+- *: entries blocked: health DEGRADED: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data
 
 A GO means the checks passed, not that the trade is wise. Paper only: no order is sent anywhere.
