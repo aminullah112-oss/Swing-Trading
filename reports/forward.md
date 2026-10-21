@@ -1,6 +1,6 @@
 # Forward validation (paper, simulated fills)
 
-Signals recorded: 59 (46 evidence-eligible, 13 legacy excluded). Event log: verified (148 events). Every fill here is simulated; none is a broker fill.
+Signals recorded: 59 (46 evidence-eligible, 13 legacy excluded). Event log: verified (149 events). Every fill here is simulated; none is a broker fill.
 
 By status: {'expired': 21, 'void': 9, 'rejected': 7, 'open': 6, 'pending': 3}.
 

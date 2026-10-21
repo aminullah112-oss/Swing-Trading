@@ -100,12 +100,12 @@
   },
   "event_log": {
     "verified": true,
-    "events": 148,
+    "events": 149,
     "problem": null
   },
   "reconciliation": {
     "ok": true,
     "issues": [],
-    "checked": "2026-10-20T20:14:29+00:00"
+    "checked": "2026-10-21T09:08:24+00:00"
   }
 }

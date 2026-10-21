@@ -5,12 +5,12 @@
     "manage_exits": true,
     "ops_credit": false
   },
-  "generated": "2026-10-20T20:14:30+00:00",
+  "generated": "2026-10-21T09:08:25+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-19 (1 days old)"
+      "msg": "market data through 2026-10-19 (2 days old)"
     },
     {
       "id": "H1b",
@@ -60,7 +60,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (148 events)"
+      "msg": "event log verified (149 events)"
     },
     {
       "id": "H13b",
@@ -80,8 +80,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-20T20:14:30+00:00",
-    "commit_sha": "035e754acd9f4c7c93109c265b5ec290300477bb",
+    "generated_at": "2026-10-21T09:08:25+00:00",
+    "commit_sha": "903f08b5abdb710ce4766a3a64bd982d84f92359",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -90,9 +90,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-19",
     "source_ids": {
-      "results": "e2a4ca5db705",
-      "ledger": "1828fcebe116",
-      "events": "c095e3c8a518"
+      "results": "65f5e48a38f5",
+      "ledger": "61f7239a0cde",
+      "events": "ec3a6e8fafb2"
     }
   }
 }

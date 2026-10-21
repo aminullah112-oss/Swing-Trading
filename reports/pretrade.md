@@ -1,6 +1,6 @@
 # Pre-trade checklist: **NO-GO** (paper only)
 
-Generated 2026-10-20T20:14:32+00:00.
+Generated 2026-10-21T09:08:27+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
@@ -8,7 +8,7 @@ Generated 2026-10-20T20:14:32+00:00.
 | P2 block | ✅ | scan provenance current |
 | P3 block | ❌ | data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-10-20 (need 95%); last-bar dates: {'2026-10-19': 159}; the Nifty 50 has no official bar for 2026-10-20 (last: 2026-10-19) |
 | P4 block | ❌ | health DEGRADED: new entries NOT allowed |
-| P5 block | ✅ | event log verified (148 events) |
+| P5 block | ✅ | event log verified (149 events) |
 | P6 block | ✅ | ledger reconciles |
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |

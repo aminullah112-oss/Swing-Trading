@@ -1,8 +1,8 @@
 {
-  "scan_id": "a8b0c5ebe353",
-  "timestamp": "2026-10-20T20:14:17.681377+00:00",
+  "scan_id": "8d4c0906e223",
+  "timestamp": "2026-10-21T09:08:16.797926+00:00",
   "scan_date": "2026-10-21",
-  "scan_time": "01:44:17 IST",
+  "scan_time": "14:38:16 IST",
   "data_cutoff": "2026-10-19",
   "expected_session": "2026-10-20",
   "sessions_behind": 1,
@@ -504,7 +504,7 @@
       "status": "unavailable",
       "source": null,
       "session": "2026-10-20",
-      "retrieved_at": "2026-10-20T20:14:17+00:00",
+      "retrieved_at": "2026-10-21T09:08:17+00:00",
       "compared": 0,
       "filled": [],
       "cannot_fill": [],
@@ -561,22 +561,22 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-10-20T20:14:17+00:00",
-    "frame_last_row": "2026-10-19",
-    "rows": 495,
+    "retrieved_at": "2026-10-21T09:08:16+00:00",
+    "frame_last_row": "2026-10-21",
+    "rows": 496,
     "non_null_closes_on_last_row": 160,
     "last_bar_counts": {
       "2026-10-19": 159
     },
     "probe": {
       "daily_5d": {
-        "last_row": "2026-10-19 00:00:00",
+        "last_row": "2026-10-21 00:00:00",
         "rows": 5,
         "non_null_closes_on_last_row": 3
       },
       "intraday_5m_1d": {
-        "last_row": "2026-10-19 15:25:00+05:30",
-        "rows": 75,
+        "last_row": "2026-10-21 14:35:00+05:30",
+        "rows": 65,
         "non_null_closes_on_last_row": 3
       }
     }
@@ -628,8 +628,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-10-20T20:14:28+00:00",
-    "commit_sha": "035e754acd9f4c7c93109c265b5ec290300477bb",
+    "generated_at": "2026-10-21T09:08:23+00:00",
+    "commit_sha": "903f08b5abdb710ce4766a3a64bd982d84f92359",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
