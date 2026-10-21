@@ -1,6 +1,6 @@
 # Pre-trade checklist: **NO-GO** (paper only)
 
-Generated 2026-10-21T17:42:29+00:00.
+Generated 2026-10-21T19:39:48+00:00.
 
 | Check | Result | Detail |
 |---|---|---|

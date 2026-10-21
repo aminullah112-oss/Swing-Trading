@@ -19,10 +19,10 @@
     "not yet triggered": 4
   },
   "closed": 2,
-  "forward_avg_r_incl_open": -0.37650000000000006,
+  "forward_avg_r_incl_open": -0.393,
   "forward_avg_r_ci95_clustered": [
-    -0.377,
-    -0.377
+    -0.393,
+    -0.393
   ],
   "effective_independent_months": 1,
   "rolling_expectancy_last_closed": {},
@@ -56,12 +56,12 @@
       "open_profit": {
         "label": "Open, in profit (mark-to-market)",
         "n": 1,
-        "avg_r": 0.213
+        "avg_r": 0.096
       },
       "open_loss": {
         "label": "Open, at a loss (mark-to-market)",
         "n": 3,
-        "avg_r": -0.419
+        "avg_r": -0.413
       },
       "never_triggered": {
         "label": "Never triggered (buy-stop not reached)",
@@ -123,6 +123,6 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-21T17:42:26+00:00"
+    "checked": "2026-10-21T19:39:45+00:00"
   }
 }
