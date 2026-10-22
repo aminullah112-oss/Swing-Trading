@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22T08:34:38+00:00",
+  "generated": "2026-10-22T17:40:30+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -70,7 +70,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 2,
+      "value": 3,
       "threshold": 100,
       "detail": "3 legacy closed signal(s) excluded",
       "evidence_state": "pending_time"
@@ -96,7 +96,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 2, 8)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 3, 8)",
       "evidence_state": "pending_time"
     },
     {
@@ -108,7 +108,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 2, 8)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 3, 8)",
       "evidence_state": "pending_time"
     },
     {
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "92094db0b09c",
-    "ledger": "3b0e50e0a54a",
-    "health": "b8d57da78933",
+    "results": "232c3f7d5a29",
+    "ledger": "08ff59bb1c23",
+    "health": "5b1c9d117e4b",
     "grid": "c6c89f12fdcb",
     "benchmarks": "14fc1a1ae5e9",
     "universe": "abd6d49b47c4",
@@ -185,19 +185,19 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-22T08:34:38+00:00",
-    "commit_sha": "63146724c90b983f5d1d32242859409e8832c527",
+    "generated_at": "2026-10-22T17:40:30+00:00",
+    "commit_sha": "2f21611a1ce1712da62262dcb91751d476e3db74",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-21",
+    "data_cutoff": "2026-10-22",
     "source_ids": {
-      "results": "92094db0b09c",
-      "ledger": "3b0e50e0a54a",
-      "health": "b8d57da78933",
+      "results": "232c3f7d5a29",
+      "ledger": "08ff59bb1c23",
+      "health": "5b1c9d117e4b",
       "grid": "c6c89f12fdcb",
       "benchmarks": "14fc1a1ae5e9",
       "universe": "abd6d49b47c4",

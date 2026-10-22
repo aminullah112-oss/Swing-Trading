@@ -5,12 +5,12 @@
     "manage_exits": true,
     "ops_credit": false
   },
-  "generated": "2026-10-22T08:34:37+00:00",
+  "generated": "2026-10-22T17:40:29+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-21 (1 days old)"
+      "msg": "market data through 2026-10-22 (0 days old)"
     },
     {
       "id": "H2",
@@ -25,12 +25,12 @@
     {
       "id": "H4",
       "level": "ok",
-      "msg": "67 signals, integrity ok"
+      "msg": "72 signals, integrity ok"
     },
     {
       "id": "H7",
       "level": "ok",
-      "msg": "edge-decay check needs 30+ closed signals (have 5)"
+      "msg": "edge-decay check needs 30+ closed signals (have 6)"
     },
     {
       "id": "H8",
@@ -44,8 +44,8 @@
     },
     {
       "id": "H15",
-      "level": "warn",
-      "msg": "nse bhavcopy (udiff): compared 108, 0 close and 0 adjustment mismatches, 51 bar(s) filled from NSE because Yahoo lagged"
+      "level": "ok",
+      "msg": "nse bhavcopy (udiff): compared 159, 0 close and 0 adjustment mismatches"
     },
     {
       "id": "H11",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (161 events)"
+      "msg": "event log verified (168 events)"
     },
     {
       "id": "H13b",
@@ -75,19 +75,19 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-22T08:34:37+00:00",
-    "commit_sha": "63146724c90b983f5d1d32242859409e8832c527",
+    "generated_at": "2026-10-22T17:40:29+00:00",
+    "commit_sha": "2f21611a1ce1712da62262dcb91751d476e3db74",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-21",
+    "data_cutoff": "2026-10-22",
     "source_ids": {
-      "results": "92094db0b09c",
-      "ledger": "3b0e50e0a54a",
-      "events": "2529be87ce11"
+      "results": "232c3f7d5a29",
+      "ledger": "08ff59bb1c23",
+      "events": "79a4a981266e"
     }
   }
 }

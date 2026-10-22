@@ -76,7 +76,7 @@
       "action": "Accumulate forward data after F1/F2.",
       "depends_on": "F1, F2.",
       "acceptance": "Month-clustered 95% CI lower bound of forward expectancy (closed + open) > 0.",
-      "detail": "needs 100+ closed signals and 182+ days first (have 2, 8)"
+      "detail": "needs 100+ closed signals and 182+ days first (have 3, 8)"
     },
     {
       "id": "F4",
@@ -89,7 +89,7 @@
       "action": "Accumulate forward data after F1/F2.",
       "depends_on": "F1, F2, B1.",
       "acceptance": "Forward CI upper bound >= backtest design-period average R.",
-      "detail": "needs 100+ closed signals and 182+ days first (have 2, 8)"
+      "detail": "needs 100+ closed signals and 182+ days first (have 3, 8)"
     },
     {
       "id": "E1",
