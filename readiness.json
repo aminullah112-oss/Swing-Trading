@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21T19:39:47+00:00",
+  "generated": "2026-10-22T08:34:38+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -82,7 +82,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 7,
+      "value": 8,
       "threshold": 182,
       "detail": "",
       "evidence_state": "pending_time"
@@ -96,7 +96,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 2, 7)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 2, 8)",
       "evidence_state": "pending_time"
     },
     {
@@ -108,7 +108,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 2, 7)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 2, 8)",
       "evidence_state": "pending_time"
     },
     {
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "7c4930cb76ea",
-    "ledger": "56bf00213504",
-    "health": "3942bdb93a0b",
+    "results": "92094db0b09c",
+    "ledger": "3b0e50e0a54a",
+    "health": "b8d57da78933",
     "grid": "c6c89f12fdcb",
     "benchmarks": "14fc1a1ae5e9",
     "universe": "abd6d49b47c4",
@@ -185,8 +185,8 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-21T19:39:47+00:00",
-    "commit_sha": "9fcc8244115c99da6916a75d02581374e49f89f3",
+    "generated_at": "2026-10-22T08:34:38+00:00",
+    "commit_sha": "63146724c90b983f5d1d32242859409e8832c527",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -195,9 +195,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-21",
     "source_ids": {
-      "results": "7c4930cb76ea",
-      "ledger": "56bf00213504",
-      "health": "3942bdb93a0b",
+      "results": "92094db0b09c",
+      "ledger": "3b0e50e0a54a",
+      "health": "b8d57da78933",
       "grid": "c6c89f12fdcb",
       "benchmarks": "14fc1a1ae5e9",
       "universe": "abd6d49b47c4",
