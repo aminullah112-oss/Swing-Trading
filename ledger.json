@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-22T17:40:28+00:00",
+  "updated": "2026-10-22T19:32:30+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -212,10 +212,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 1886.78,
-      "mark_price": 1908.8,
-      "unrealized_r": 0.178,
+      "mark_price": 1951.0,
+      "unrealized_r": 0.664,
       "exit_signal": false,
-      "days_held": 7,
+      "days_held": 6,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -254,10 +254,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 4781.78,
-      "mark_price": 4875.0,
-      "unrealized_r": 0.457,
+      "mark_price": 4854.4,
+      "unrealized_r": 0.334,
       "exit_signal": false,
-      "days_held": 7,
+      "days_held": 6,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -1661,7 +1661,7 @@
       "mark_price": 122.5,
       "unrealized_r": 0.213,
       "exit_signal": false,
-      "days_held": 3,
+      "days_held": 2,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -1883,10 +1883,10 @@
       "taken": false,
       "entry_date": "2026-10-19",
       "entry": 1953.85,
-      "mark_price": 1908.8,
-      "unrealized_r": -0.537,
+      "mark_price": 1951.0,
+      "unrealized_r": -0.1,
       "exit_signal": false,
-      "days_held": 3,
+      "days_held": 2,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -1929,10 +1929,10 @@
       "provisional": false,
       "entry_date": "2026-10-19",
       "entry": 9257.25,
-      "mark_price": 9162.0,
-      "unrealized_r": -0.364,
+      "mark_price": 9190.0,
+      "unrealized_r": -0.284,
       "exit_signal": false,
-      "days_held": 3,
+      "days_held": 2,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -2718,12 +2718,12 @@
     "win_rate": 0.0,
     "avg_r": -0.81,
     "total_r": -4.86,
-    "open_unrealized_r": -0.05,
+    "open_unrealized_r": 0.83,
     "taken_closed": 0,
     "taken_pnl_inr": 0,
     "avg_r_ci95": null,
-    "avg_r_incl_open": -0.447,
-    "total_r_incl_open": -4.91,
+    "avg_r_incl_open": -0.367,
+    "total_r_incl_open": -4.03,
     "outcomes": {
       "classes": {
         "won": {
@@ -2749,7 +2749,7 @@
         "open_loss": {
           "label": "Open, at a loss (mark-to-market)",
           "n": 2,
-          "avg_r": -0.451
+          "avg_r": -0.192
         },
         "never_triggered": {
           "label": "Never triggered (buy-stop not reached)",
@@ -2811,13 +2811,14 @@
     "aa3a7163c8af",
     "58478e1ca394",
     "3780f3c379e5",
-    "cd29a27fd8ff"
+    "cd29a27fd8ff",
+    "41f53302dfdd"
   ],
   "last_cutoff": "2026-10-22",
   "last_ingest": {
-    "scan_id": "cd29a27fd8ff",
-    "accepted": 2,
-    "rejected": 3,
+    "scan_id": "41f53302dfdd",
+    "accepted": 0,
+    "rejected": 0,
     "blocked": null
   },
   "reconciliation": {
@@ -2839,12 +2840,12 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-22T17:40:28+00:00"
+    "checked": "2026-10-22T19:32:30+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-22T17:40:28+00:00",
-    "commit_sha": "2f21611a1ce1712da62262dcb91751d476e3db74",
+    "generated_at": "2026-10-22T19:32:31+00:00",
+    "commit_sha": "890c4761135cf6cc261fef835530e4bbbd4ad6aa",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -2853,9 +2854,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-22",
     "source_ids": {
-      "results": "232c3f7d5a29"
+      "results": "da28ef7f02f4"
     },
-    "scan_id": "cd29a27fd8ff"
+    "scan_id": "41f53302dfdd"
   },
-  "duplicates_skipped": 118
+  "duplicates_skipped": 123
 }
