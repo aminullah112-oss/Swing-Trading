@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23T19:33:44+00:00",
+  "generated": "2026-10-25T07:21:55+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -46,9 +46,9 @@
       "critical": true,
       "status": "fail",
       "earned": 0.0,
-      "value": "strategy 0.49 vs universe buy-and-hold 0.85, momentum-30 replica 1.05",
+      "value": "strategy 0.38 vs universe buy-and-hold 0.78, momentum-30 replica 0.99",
       "threshold": "Calmar >= every same-universe benchmark (hold-out)",
-      "detail": "hold-out CAGR 7.2% / DD -14.8% (reports/benchmarks.md)",
+      "detail": "hold-out CAGR 6.0% / DD -15.7% (reports/benchmarks.md)",
       "evidence_state": "failed"
     },
     {
@@ -82,7 +82,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 9,
+      "value": 11,
       "threshold": 182,
       "detail": "",
       "evidence_state": "pending_time"
@@ -96,7 +96,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 3, 9)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 3, 11)",
       "evidence_state": "pending_time"
     },
     {
@@ -108,7 +108,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 3, 9)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 3, 11)",
       "evidence_state": "pending_time"
     },
     {
@@ -174,19 +174,19 @@
   "inputs": {
     "results": "46cd97ac185a",
     "ledger": "70a4fb0e264b",
-    "health": "78985ec083cb",
-    "grid": "c6c89f12fdcb",
-    "benchmarks": "14fc1a1ae5e9",
-    "universe": "abd6d49b47c4",
+    "health": "370f87a0941e",
+    "grid": "da34195fa567",
+    "benchmarks": "3497ed346d45",
+    "universe": "5abb1e65293b",
     "attestations": "66ee1ecfcc82",
-    "report_provenance": "d36972d1d1b7"
+    "report_provenance": "3aff28859a77"
   },
   "stale_evidence": [],
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-23T19:33:44+00:00",
-    "commit_sha": "24d6464d63f3bb6b45cda34f3093ed0f1672e6e7",
+    "generated_at": "2026-10-25T07:21:55+00:00",
+    "commit_sha": "3b1d452473cf726bf7e3c35705104ed4d59b038b",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -197,12 +197,12 @@
     "source_ids": {
       "results": "46cd97ac185a",
       "ledger": "70a4fb0e264b",
-      "health": "78985ec083cb",
-      "grid": "c6c89f12fdcb",
-      "benchmarks": "14fc1a1ae5e9",
-      "universe": "abd6d49b47c4",
+      "health": "370f87a0941e",
+      "grid": "da34195fa567",
+      "benchmarks": "3497ed346d45",
+      "universe": "5abb1e65293b",
       "attestations": "66ee1ecfcc82",
-      "report_provenance": "d36972d1d1b7"
+      "report_provenance": "3aff28859a77"
     }
   }
 }

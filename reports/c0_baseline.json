@@ -1,92 +1,92 @@
 {
   "provenance": {
     "kind": "c0_baseline",
-    "generated_at": "2026-10-18T07:01:58+00:00",
-    "commit_sha": "feec4c33d03cbd48e6901b82e66039459745cb79",
+    "generated_at": "2026-10-25T07:18:56+00:00",
+    "commit_sha": "3b1d452473cf726bf7e3c35705104ed4d59b038b",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-16",
+    "data_cutoff": "2026-10-23",
     "source_ids": {}
   },
   "control": {
     "id": "C0",
     "c0_hash": "5e7924a41b0ee220"
   },
-  "trades": 5071,
-  "trades_digest": "8683d3288fe82da7",
+  "trades": 5094,
+  "trades_digest": "16905339bff19a4d",
   "all_trades": {
-    "trades": 5071,
+    "trades": 5094,
     "win_rate": 0.266,
-    "avg_r": 0.365,
+    "avg_r": 0.358,
     "avg_r_ci95": [
-      0.269,
-      0.461
+      0.263,
+      0.454
     ],
-    "avg_win_r": 3.47,
-    "avg_loss_r": -0.761,
-    "profit_factor": 1.65,
+    "avg_win_r": 3.465,
+    "avg_loss_r": -0.765,
+    "profit_factor": 1.64,
     "worst_r": -3.34
   },
   "design": {
-    "trades": 3295,
-    "win_rate": 0.251,
-    "avg_r": 0.223,
+    "trades": 3316,
+    "win_rate": 0.25,
+    "avg_r": 0.214,
     "avg_r_ci95": [
-      0.126,
-      0.319
+      0.118,
+      0.31
     ],
-    "avg_win_r": 3.126,
-    "avg_loss_r": -0.749,
-    "profit_factor": 1.4,
+    "avg_win_r": 3.12,
+    "avg_loss_r": -0.755,
+    "profit_factor": 1.38,
     "worst_r": -3.34
   },
   "holdout": {
-    "trades": 1776,
+    "trades": 1778,
     "win_rate": 0.295,
-    "avg_r": 0.63,
+    "avg_r": 0.627,
     "avg_r_ci95": [
-      0.422,
-      0.837
+      0.42,
+      0.834
     ],
-    "avg_win_r": 4.011,
+    "avg_win_r": 4.01,
     "avg_loss_r": -0.786,
-    "profit_factor": 2.14,
+    "profit_factor": 2.13,
     "worst_r": -3.01
   },
   "portfolio_full": {
-    "accepted": 321,
-    "rejected_by_limits": 4750,
-    "final_equity": 835274.0,
-    "total_return_pct": 47.8,
-    "cagr_pct": 4.4,
-    "max_drawdown_pct": -13.9,
-    "longest_drawdown_days": 589,
+    "accepted": 303,
+    "rejected_by_limits": 4791,
+    "final_equity": 817245.0,
+    "total_return_pct": 44.6,
+    "cagr_pct": 4.2,
+    "max_drawdown_pct": -14.4,
+    "longest_drawdown_days": 528,
     "years": 8.99,
     "liquidity_limited_orders": 0,
-    "avg_exposure_pct": 34.0,
-    "max_exposure_pct": 56.6,
-    "time_in_cash_pct": 0.9,
+    "avg_exposure_pct": 34.8,
+    "max_exposure_pct": 56.2,
+    "time_in_cash_pct": 0.6,
     "avg_positions": 2.78
   },
   "portfolio_holdout": {
-    "accepted": 139,
-    "rejected_by_limits": 1637,
-    "final_equity": 737608.0,
-    "total_return_pct": 30.6,
-    "cagr_pct": 7.3,
-    "max_drawdown_pct": -14.8,
-    "longest_drawdown_days": 589,
-    "years": 3.79,
+    "accepted": 140,
+    "rejected_by_limits": 1638,
+    "final_equity": 706249.0,
+    "total_return_pct": 25.0,
+    "cagr_pct": 6.0,
+    "max_drawdown_pct": -15.7,
+    "longest_drawdown_days": 593,
+    "years": 3.81,
     "liquidity_limited_orders": 0,
-    "avg_exposure_pct": 36.8,
+    "avg_exposure_pct": 36.6,
     "max_exposure_pct": 56.6,
-    "time_in_cash_pct": 0.3,
-    "avg_positions": 2.78
+    "time_in_cash_pct": 0.1,
+    "avg_positions": 2.77
   },
-  "symbols_with_data": 158,
+  "symbols_with_data": 159,
   "drift_vs_frozen": []
 }

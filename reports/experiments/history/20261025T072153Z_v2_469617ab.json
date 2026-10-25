@@ -1,0 +1,481 @@
+{
+  "provenance": {
+    "kind": "experiments_v2",
+    "generated_at": "2026-10-25T07:21:53+00:00",
+    "commit_sha": "3b1d452473cf726bf7e3c35705104ed4d59b038b",
+    "config_hash": "1aedd80e21d2bbbf",
+    "evidence_hash": "4ac547ca5af30df9",
+    "c0_hash": "5e7924a41b0ee220",
+    "universe_version": "U159_v2",
+    "universe_hash": "d02dc26765b272aa",
+    "universe_count": 159,
+    "data_cutoff": "2026-10-23",
+    "source_ids": {},
+    "prereg": "PREREG_v2",
+    "prereg_hash": "469617ab55541dbfc86c3b11bd5f1d1a396c508975cd6d72c3b78573183b4dd9"
+  },
+  "control": {
+    "id": "C0",
+    "design": {
+      "portfolio": {
+        "cagr_pct": 3.83,
+        "max_drawdown_pct": -13.09,
+        "calmar": 0.293,
+        "sharpe": 0.539,
+        "sortino": 0.75,
+        "vol_pct": 7.67,
+        "days": 2271,
+        "years": 9.2
+      },
+      "trades": {
+        "trades": 5461,
+        "win_rate": 0.273,
+        "expectancy_r": 0.443,
+        "profit_factor": 1.818,
+        "avg_win_r": 3.614,
+        "avg_loss_r": -0.745
+      },
+      "costs": {
+        "accepted": 339,
+        "gross_pnl": 333153.0,
+        "net_pnl": 229467.0,
+        "costs_inr": 57404.0,
+        "slippage_inr": 46282.0,
+        "cost_drag_pct_of_gross": 31.1,
+        "turnover_x_per_year": 8.1
+      },
+      "exposure": {
+        "avg_exposure_pct": 32.5,
+        "max_exposure_pct": 55.3,
+        "time_in_cash_pct": 1.1,
+        "avg_positions": 2.76,
+        "liquidity_limited_orders": 2,
+        "rejected_by_limits": 5122
+      }
+    },
+    "holdout": {
+      "portfolio": {
+        "cagr_pct": -0.53,
+        "max_drawdown_pct": -10.87,
+        "calmar": -0.049,
+        "sharpe": -0.041,
+        "sortino": -0.059,
+        "vol_pct": 7.05,
+        "days": 448,
+        "years": 1.8
+      },
+      "trades": {
+        "trades": 655,
+        "win_rate": 0.232,
+        "expectancy_r": -0.178,
+        "profit_factor": 0.712,
+        "avg_win_r": 1.898,
+        "avg_loss_r": -0.805
+      },
+      "costs": {
+        "accepted": 68,
+        "gross_pnl": 14280.0,
+        "net_pnl": -6982.0,
+        "costs_inr": 11770.0,
+        "slippage_inr": 9492.0,
+        "cost_drag_pct_of_gross": 148.9,
+        "turnover_x_per_year": 9.15
+      },
+      "exposure": {
+        "avg_exposure_pct": 37.2,
+        "max_exposure_pct": 52.5,
+        "time_in_cash_pct": 0.2,
+        "avg_positions": 2.73,
+        "liquidity_limited_orders": 0,
+        "rejected_by_limits": 587
+      }
+    }
+  },
+  "hypotheses": [
+    {
+      "id": "V2-1",
+      "name": "sector cap",
+      "change": "at most 2 open positions per sector group (universe/sectors.json); a third same-sector entry is skipped",
+      "param": {
+        "max_per_sector": 2
+      },
+      "design": {
+        "portfolio": {
+          "cagr_pct": 3.45,
+          "max_drawdown_pct": -14.74,
+          "calmar": 0.234,
+          "sharpe": 0.491,
+          "sortino": 0.682,
+          "vol_pct": 7.64,
+          "days": 2271,
+          "years": 9.2
+        },
+        "trades": {
+          "trades": 5461,
+          "win_rate": 0.273,
+          "expectancy_r": 0.443,
+          "profit_factor": 1.818,
+          "avg_win_r": 3.614,
+          "avg_loss_r": -0.745
+        },
+        "costs": {
+          "accepted": 342,
+          "gross_pnl": 304645.0,
+          "net_pnl": 202703.0,
+          "costs_inr": 56437.0,
+          "slippage_inr": 45504.0,
+          "cost_drag_pct_of_gross": 33.5,
+          "turnover_x_per_year": 8.18
+        },
+        "exposure": {
+          "avg_exposure_pct": 32.6,
+          "max_exposure_pct": 56.7,
+          "time_in_cash_pct": 1.1,
+          "avg_positions": 2.77,
+          "liquidity_limited_orders": 2,
+          "rejected_by_limits": 5119
+        }
+      },
+      "design_criteria": {
+        "P1_sample": {
+          "trades": 5461,
+          "months": 110,
+          "pass": true
+        },
+        "P2_net_edge_vs_C0": {
+          "mean_daily_diff_pct": -0.00152,
+          "ci_pct": [
+            -0.01507,
+            0.0106
+          ],
+          "alpha": 0.0038461538461538464,
+          "pass": false
+        },
+        "P3_consistency": {
+          "blocks": 8,
+          "variant_beats_C0": 5,
+          "by_year": {
+            "2017": [
+              10.7,
+              10.7
+            ],
+            "2018": [
+              -8.5,
+              -10.3
+            ],
+            "2019": [
+              1.3,
+              5.0
+            ],
+            "2020": [
+              8.3,
+              8.2
+            ],
+            "2021": [
+              2.0,
+              9.6
+            ],
+            "2022": [
+              -3.8,
+              -4.4
+            ],
+            "2023": [
+              19.9,
+              17.6
+            ],
+            "2024": [
+              10.0,
+              6.0
+            ]
+          },
+          "pass": true
+        },
+        "P4_absolute": {
+          "net_cagr_pct": 3.45,
+          "pass": true
+        }
+      },
+      "risk_route": {
+        "design_dd": [
+          -14.74,
+          -13.09
+        ],
+        "design_calmar": [
+          0.234,
+          0.293
+        ],
+        "pass": false
+      },
+      "design_passed": false,
+      "passed_via": null,
+      "holdout_opened": false,
+      "holdout_passed": null,
+      "adopted_as_candidate": false,
+      "failed_because": [
+        "P2_net_edge_vs_C0"
+      ]
+    },
+    {
+      "id": "V2-2",
+      "name": "preferred-tier stack",
+      "change": "keep only trades that meet ALL of: momentum rank in the top 30% of the universe, close within 10% of the 52-week high, 20-day average traded value >= INR 5 crore, ATR/close <= 4%, Nifty above its EMA200 on the signal date",
+      "param": {
+        "min_rank": 0.7,
+        "min_from_52h_pct": -10.0,
+        "min_adv20_value": 50000000,
+        "max_atr_pct": 4.0,
+        "regime": "bull"
+      },
+      "design": {
+        "portfolio": {
+          "cagr_pct": 9.61,
+          "max_drawdown_pct": -13.74,
+          "calmar": 0.699,
+          "sharpe": 1.228,
+          "sortino": 1.886,
+          "vol_pct": 7.87,
+          "days": 2157,
+          "years": 8.72
+        },
+        "trades": {
+          "trades": 818,
+          "win_rate": 0.285,
+          "expectancy_r": 0.435,
+          "profit_factor": 1.739,
+          "avg_win_r": 3.59,
+          "avg_loss_r": -0.822
+        },
+        "costs": {
+          "accepted": 212,
+          "gross_pnl": 787713.0,
+          "net_pnl": 692036.0,
+          "costs_inr": 52980.0,
+          "slippage_inr": 42697.0,
+          "cost_drag_pct_of_gross": 12.1,
+          "turnover_x_per_year": 6.06
+        },
+        "exposure": {
+          "avg_exposure_pct": 32.6,
+          "max_exposure_pct": 61.7,
+          "time_in_cash_pct": 11.8,
+          "avg_positions": 2.32,
+          "liquidity_limited_orders": 0,
+          "rejected_by_limits": 606
+        }
+      },
+      "design_criteria": {
+        "P1_sample": {
+          "trades": 818,
+          "months": 97,
+          "pass": true
+        },
+        "P2_net_edge_vs_C0": {
+          "mean_daily_diff_pct": 0.01999,
+          "ci_pct": [
+            -0.0119,
+            0.05013
+          ],
+          "alpha": 0.0038461538461538464,
+          "pass": false
+        },
+        "P3_consistency": {
+          "blocks": 8,
+          "variant_beats_C0": 6,
+          "by_year": {
+            "2017": [
+              13.7,
+              10.7
+            ],
+            "2018": [
+              1.1,
+              -10.3
+            ],
+            "2019": [
+              5.6,
+              5.0
+            ],
+            "2020": [
+              14.6,
+              8.2
+            ],
+            "2021": [
+              5.0,
+              9.6
+            ],
+            "2022": [
+              -5.6,
+              -4.4
+            ],
+            "2023": [
+              33.7,
+              17.6
+            ],
+            "2024": [
+              19.0,
+              6.0
+            ]
+          },
+          "pass": true
+        },
+        "P4_absolute": {
+          "net_cagr_pct": 9.61,
+          "pass": true
+        }
+      },
+      "risk_route": null,
+      "design_passed": false,
+      "passed_via": null,
+      "holdout_opened": false,
+      "holdout_passed": null,
+      "adopted_as_candidate": false,
+      "failed_because": [
+        "P2_net_edge_vs_C0"
+      ]
+    },
+    {
+      "id": "V2-3",
+      "name": "volatility-scaled risk",
+      "change": "risk 0.375% per trade (0.75x) when ATR/close > 4%, otherwise 0.5%; the open-risk cap is unchanged",
+      "param": {
+        "atr_pct_threshold": 4.0,
+        "risk_multiplier": 0.75
+      },
+      "design": {
+        "portfolio": {
+          "cagr_pct": 3.55,
+          "max_drawdown_pct": -14.32,
+          "calmar": 0.248,
+          "sharpe": 0.55,
+          "sortino": 0.777,
+          "vol_pct": 6.92,
+          "days": 2271,
+          "years": 9.2
+        },
+        "trades": {
+          "trades": 5461,
+          "win_rate": 0.273,
+          "expectancy_r": 0.443,
+          "profit_factor": 1.818,
+          "avg_win_r": 3.614,
+          "avg_loss_r": -0.745
+        },
+        "costs": {
+          "accepted": 330,
+          "gross_pnl": 300932.0,
+          "net_pnl": 209955.0,
+          "costs_inr": 50368.0,
+          "slippage_inr": 40609.0,
+          "cost_drag_pct_of_gross": 30.2,
+          "turnover_x_per_year": 7.34
+        },
+        "exposure": {
+          "avg_exposure_pct": 31.7,
+          "max_exposure_pct": 56.4,
+          "time_in_cash_pct": 1.0,
+          "avg_positions": 2.84,
+          "liquidity_limited_orders": 2,
+          "rejected_by_limits": 5131
+        }
+      },
+      "design_criteria": {
+        "P1_sample": {
+          "trades": 5461,
+          "months": 110,
+          "pass": true
+        },
+        "P2_net_edge_vs_C0": {
+          "mean_daily_diff_pct": -0.00132,
+          "ci_pct": [
+            -0.0237,
+            0.01989
+          ],
+          "alpha": 0.0038461538461538464,
+          "pass": false
+        },
+        "P3_consistency": {
+          "blocks": 8,
+          "variant_beats_C0": 5,
+          "by_year": {
+            "2017": [
+              15.5,
+              10.7
+            ],
+            "2018": [
+              -9.6,
+              -10.3
+            ],
+            "2019": [
+              1.7,
+              5.0
+            ],
+            "2020": [
+              0.4,
+              8.2
+            ],
+            "2021": [
+              5.0,
+              9.6
+            ],
+            "2022": [
+              -3.5,
+              -4.4
+            ],
+            "2023": [
+              23.4,
+              17.6
+            ],
+            "2024": [
+              9.3,
+              6.0
+            ]
+          },
+          "pass": true
+        },
+        "P4_absolute": {
+          "net_cagr_pct": 3.55,
+          "pass": true
+        }
+      },
+      "risk_route": {
+        "design_dd": [
+          -14.32,
+          -13.09
+        ],
+        "design_calmar": [
+          0.248,
+          0.293
+        ],
+        "pass": false
+      },
+      "design_passed": false,
+      "passed_via": null,
+      "holdout_opened": false,
+      "holdout_passed": null,
+      "adopted_as_candidate": false,
+      "failed_because": [
+        "P2_net_edge_vs_C0"
+      ]
+    }
+  ],
+  "adopted_candidates": [],
+  "c0_retained": true,
+  "earlier_failed_ideas": [
+    {
+      "idea": "admit same-day candidates in momentum-rank order",
+      "where": "reports/benchmarks.md (H2)",
+      "result": "failed: Calmar 0.21 design / 0.42 hold-out vs baseline 0.67 / 0.42; CI includes zero",
+      "live_default": "display the rank only; allocation order stays C0's"
+    },
+    {
+      "idea": "halve risk when the Nifty is below its EMA200",
+      "where": "reports/benchmarks.md (H3)",
+      "result": "failed: Calmar 0.03 design / 0.29 hold-out; CI includes zero",
+      "live_default": "off"
+    }
+  ],
+  "universe": {
+    "version": "U159_v2",
+    "symbols_with_data": 159,
+    "survivorship_bias": true
+  }
+}

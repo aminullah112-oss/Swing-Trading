@@ -2,24 +2,24 @@
   "live_variant": "slow-exit v4 (paper-trading candidate)",
   "rows": {
     "uptrend": {
-      "trades": 3259,
+      "trades": 3268,
       "months": 81,
       "win_rate": 0.267,
-      "avg_r": 0.351,
+      "avg_r": 0.343,
       "ci95": [
-        0.119,
-        0.596
+        0.11,
+        0.582
       ],
-      "profit_factor": 1.61
+      "profit_factor": 1.59
     },
     "pullback_in_uptrend": {
-      "trades": 1121,
+      "trades": 1131,
       "months": 64,
-      "win_rate": 0.246,
-      "avg_r": 0.382,
+      "win_rate": 0.248,
+      "avg_r": 0.383,
       "ci95": [
-        -0.083,
-        0.94
+        -0.07,
+        0.929
       ],
       "profit_factor": 1.71
     },
@@ -27,44 +27,44 @@
       "trades": 103,
       "months": 12,
       "win_rate": 0.301,
-      "avg_r": 0.24,
+      "avg_r": 0.217,
       "ci95": [
-        -0.205,
-        0.907
+        -0.249,
+        0.931
       ],
-      "profit_factor": 1.37
+      "profit_factor": 1.33
     },
     "downtrend": {
-      "trades": 588,
+      "trades": 592,
       "months": 40,
-      "win_rate": 0.293,
-      "avg_r": 0.434,
+      "win_rate": 0.287,
+      "avg_r": 0.418,
       "ci95": [
-        0.08,
-        0.788
+        0.072,
+        0.772
       ],
-      "profit_factor": 1.87
+      "profit_factor": 1.82
     }
   },
-  "n_trades": 5071,
+  "n_trades": 5094,
   "downtrend_minus_rest": [
-    0.07817663317360812,
-    -0.34173171465643926,
-    0.5026687932822531
+    0.0672642869351801,
+    -0.3545841910457059,
+    0.49515576298727815
   ],
   "downtrend_minus_rest_design": [
-    0.3197984505836655,
-    -0.139333833572729,
-    0.8225150744285035
+    0.3134719010392519,
+    -0.13916456473200978,
+    0.8277192646046172
   ],
   "downtrend_minus_rest_holdout": [
-    -0.35201902597892637,
-    -1.1391787329946552,
-    0.4521560694203174
+    -0.3735201806351223,
+    -1.1570565315906853,
+    0.4297889294888018
   ],
   "today": {
     "regime": "downtrend",
     "label": "Downtrend (below both)",
-    "date": "2026-10-16"
+    "date": "2026-10-23"
   }
 }

@@ -5,12 +5,12 @@
     "manage_exits": true,
     "ops_credit": false
   },
-  "generated": "2026-10-23T19:33:43+00:00",
+  "generated": "2026-10-25T07:21:54+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-23 (0 days old)"
+      "msg": "market data through 2026-10-23 (2 days old)"
     },
     {
       "id": "H2",
@@ -20,7 +20,7 @@
     {
       "id": "H3",
       "level": "ok",
-      "msg": "ledger updated 0 days ago; last price update ok"
+      "msg": "ledger updated 2 days ago; last price update ok"
     },
     {
       "id": "H4",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-23T19:33:43+00:00",
-    "commit_sha": "24d6464d63f3bb6b45cda34f3093ed0f1672e6e7",
+    "generated_at": "2026-10-25T07:21:54+00:00",
+    "commit_sha": "3b1d452473cf726bf7e3c35705104ed4d59b038b",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
