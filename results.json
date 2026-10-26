@@ -1,8 +1,8 @@
 {
-  "scan_id": "332643ba2ad8",
-  "timestamp": "2026-10-23T19:33:37.059699+00:00",
-  "scan_date": "2026-10-24",
-  "scan_time": "01:03:37 IST",
+  "scan_id": "ab5526e8fdf8",
+  "timestamp": "2026-10-26T08:51:59.078791+00:00",
+  "scan_date": "2026-10-26",
+  "scan_time": "14:21:59 IST",
   "data_cutoff": "2026-10-23",
   "expected_session": "2026-10-23",
   "sessions_behind": 0,
@@ -11,211 +11,46 @@
     "status": "TRUSTED",
     "reasons": [],
     "symbols": 159,
-    "official_coverage": 0.9874,
+    "official_coverage": 1.0,
     "cutoff_counts": {
-      "2026-10-23": 157,
-      "2026-10-22": 2
+      "2026-10-23": 159
     },
     "quarantined": {
-      "TECHM": [
-        "stale_bar"
-      ],
       "VEDL": [
         "suspect_corporate_action"
       ],
       "IRFC": [
-        "stale_bar"
+        "nse_adjustment_mismatch"
       ]
     },
-    "critical_issue_share": 0.0063,
+    "critical_issue_share": 0.0126,
     "expected_session": "2026-10-23",
     "crosscheck": {
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-10-23",
-      "retrieved_at": "2026-10-23T19:33:37+00:00",
-      "compared": 0,
-      "filled": [
-        "RELIANCE",
-        "TCS",
-        "HDFCBANK",
-        "INFY",
-        "HINDUNILVR",
-        "ICICIBANK",
-        "SBIN",
-        "BHARTIARTL",
-        "KOTAKBANK",
-        "LT",
-        "AXISBANK",
-        "WIPRO",
-        "MARUTI",
-        "BAJFINANCE",
-        "HCLTECH",
-        "ASIANPAINT",
-        "ULTRACEMCO",
-        "TITAN",
-        "SUNPHARMA",
-        "NESTLEIND",
-        "TMPV",
-        "INDUSINDBK",
-        "POWERGRID",
-        "NTPC",
-        "BAJAJFINSV",
-        "ONGC",
-        "JSWSTEEL",
-        "TATASTEEL",
-        "COALINDIA",
-        "ADANIENT",
-        "ADANIPORTS",
-        "CIPLA",
-        "DRREDDY",
-        "DIVISLAB",
-        "BRITANNIA",
-        "EICHERMOT",
-        "GRASIM",
-        "HEROMOTOCO",
-        "ITC",
-        "M&M",
-        "BPCL",
-        "IOC",
-        "TATACONSUM",
-        "APOLLOHOSP",
-        "BAJAJ-AUTO",
-        "UPL",
-        "SBILIFE",
-        "HDFCLIFE",
-        "HINDALCO",
-        "DMART",
-        "SIEMENS",
-        "HAVELLS",
-        "PIDILITIND",
-        "DABUR",
-        "MARICO",
-        "COLPAL",
-        "BERGEPAINT",
-        "GODREJCP",
-        "MUTHOOTFIN",
-        "LUPIN",
-        "BIOCON",
-        "TORNTPHARM",
-        "ALKEM",
-        "AUROPHARMA",
-        "GLENMARK",
-        "AMBUJACEM",
-        "ACC",
-        "SHREECEM",
-        "INDIGO",
-        "TATAPOWER",
-        "TRENT",
-        "NAUKRI",
-        "IRCTC",
-        "CONCOR",
-        "SAIL",
-        "NMDC",
-        "VEDL",
-        "GAIL",
-        "PETRONET",
-        "IGL",
-        "BANKBARODA",
-        "PNB",
-        "CANBK",
-        "FEDERALBNK",
-        "IDFCFIRSTB",
-        "RBLBANK",
-        "AUBANK",
-        "CHOLAFIN",
-        "LICHSGFIN",
-        "MANAPPURAM",
-        "SUNDARMFIN",
-        "SHRIRAMFIN",
-        "PIIND",
-        "PERSISTENT",
-        "COFORGE",
-        "MPHASIS",
-        "LTTS",
-        "KPITTECH",
-        "TATAELXSI",
-        "CYIENT",
-        "DEEPAKNTR",
-        "NAVINFLUOR",
-        "TATACHEM",
-        "APOLLOTYRE",
-        "BALKRISIND",
-        "CEATLTD",
-        "MRF",
-        "MOTHERSON",
-        "BHARATFORG",
-        "BOSCHLTD",
-        "VOLTAS",
-        "KAJARIACER",
-        "SUPREMEIND",
-        "ASTRAL",
-        "POLYCAB",
-        "KEI",
-        "PAGEIND",
-        "RADICO",
-        "LAURUSLABS",
-        "GRANULES",
-        "AJANTPHARM",
-        "ERIS",
-        "METROPOLIS",
-        "MAXHEALTH",
-        "FORTIS",
-        "NH",
-        "SYNGENE",
-        "BRIGADE",
-        "SOBHA",
-        "PRESTIGE",
-        "GODREJPROP",
-        "PHOENIXLTD",
-        "OBEROIRLTY",
-        "THERMAX",
-        "CUMMINSIND",
-        "EMAMILTD",
-        "BEL",
-        "HAL",
-        "RVNL",
-        "PFC",
-        "RECLTD",
-        "SJVN",
-        "NHPC",
-        "SUZLON",
-        "TRIDENT",
-        "RAYMOND",
-        "COROMANDEL",
-        "CHAMBLFERT",
-        "RALLIS",
-        "DHANUKA",
-        "ATUL",
-        "APLAPOLLO",
-        "ETERNAL",
-        "AARTIIND",
-        "TVSMOTOR",
-        "PRAJIND",
-        "NOCIL"
-      ],
-      "cannot_fill": [
-        "TECHM",
-        "IRFC"
-      ],
+      "retrieved_at": "2026-10-26T08:51:59+00:00",
+      "compared": 159,
+      "filled": [],
+      "cannot_fill": [],
       "not_in_bhavcopy": [],
-      "mismatch_share": 0.0,
+      "mismatch_share": 0.0063,
       "note": null,
       "angelone": null,
       "nifty": {
         "status": "ok",
-        "filled": true,
+        "filled": false,
         "note": null
       },
       "close_mismatch": {},
-      "adjustment_mismatch": {}
+      "adjustment_mismatch": {
+        "IRFC": -1.49
+      }
     }
   },
   "missing_symbols": [],
   "missing_detail": {},
-  "recovered_on_retry": [
-    "NOCIL"
-  ],
+  "recovered_on_retry": [],
   "aliases_used": {
     "TATAMOTORS": "TMPV",
     "ZOMATO": "ETERNAL"
@@ -250,13 +85,12 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-10-23T19:33:37+00:00",
-    "frame_last_row": "2026-10-23",
-    "rows": 496,
-    "non_null_closes_on_last_row": 0,
+    "retrieved_at": "2026-10-26T08:51:59+00:00",
+    "frame_last_row": "2026-10-26",
+    "rows": 494,
+    "non_null_closes_on_last_row": 160,
     "last_bar_counts": {
-      "2026-10-23": 157,
-      "2026-10-22": 2
+      "2026-10-23": 159
     }
   },
   "symbols_processed": 159,
@@ -286,7 +120,7 @@
   },
   "summary": {
     "signals": 5,
-    "tradeable": 3,
+    "tradeable": 4,
     "preview": 0
   },
   "market": {
@@ -295,7 +129,7 @@
     "nifty": {
       "close": 22600.0,
       "ema50": 23229.4,
-      "ema200": 23971.9,
+      "ema200": 23971.2,
       "vs_ema200_pct": -5.7,
       "change_20d_pct": -3.6,
       "drawdown_pct": -14.2,
@@ -341,11 +175,11 @@
         },
         {
           "id": "events",
-          "status": "block",
-          "text": "Known event inside the window: results expected 2026-10-23 (0 session(s) away, from yfinance: confirm)"
+          "status": "warn",
+          "text": "Event risk unverified: event_calendar.json has not been filled in"
         }
       ],
-      "execution_ok": false,
+      "execution_ok": true,
       "spark": {
         "close": [
           1710.91,
@@ -549,7 +383,7 @@
       "plan_risk": 94.9929,
       "ema_20": 1880.72,
       "ema_50": 1824.94,
-      "ema_200": 1644.74,
+      "ema_200": 1644.94,
       "rsi": 54.55,
       "vol_ratio": 1.53,
       "vol_5d_ratio": 1.53,
@@ -578,12 +412,12 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-23T19:33:37.059699+00:00",
+      "timestamp": "2026-10-26T08:51:59.078791+00:00",
       "actionable": true,
       "selection": {
-        "tier": "avoid",
+        "tier": "standard",
         "conviction": {
-          "level": "avoid",
+          "level": "medium",
           "met": 4,
           "of": 5
         },
@@ -598,10 +432,8 @@
         "sector": "IT",
         "regime": "bear",
         "events": {
-          "blocked": true,
-          "reasons": [
-            "results expected 2026-10-23 (0 session(s) away, from yfinance: confirm)"
-          ],
+          "blocked": false,
+          "reasons": [],
           "unverified": [
             "event_calendar.json has not been filled in"
           ]
@@ -644,17 +476,17 @@
         },
         "expected_duration": {
           "basis": "empirical",
-          "from": "2135 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "from": "2143 past C0 trades (PULLBACK_EMA20); survivor-biased",
           "winners_median_days": 47.0,
           "winners_range_days": [
             29.0,
-            71.0
+            69.0
           ],
           "losers_median_days": 5.0,
-          "win_rate": 0.247,
-          "typical_winner_r": 1.52,
-          "strong_winner_r": 8.01,
-          "typical_winner_price": 2136.79,
+          "win_rate": 0.25,
+          "typical_winner_r": 1.48,
+          "strong_winner_r": 7.69,
+          "typical_winner_price": 2132.99,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
@@ -928,10 +760,10 @@
       "price": 4725.0,
       "trigger": 4894.7,
       "stop_loss": 4546.66,
-      "plan_risk": 178.3392,
+      "plan_risk": 178.3393,
       "ema_20": 4817.47,
       "ema_50": 4780.73,
-      "ema_200": 4559.47,
+      "ema_200": 4558.88,
       "rsi": 45.4,
       "vol_ratio": 1.53,
       "vol_5d_ratio": 1.33,
@@ -960,7 +792,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-23T19:33:37.059699+00:00",
+      "timestamp": "2026-10-26T08:51:59.078791+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1024,17 +856,17 @@
         },
         "expected_duration": {
           "basis": "empirical",
-          "from": "2135 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "from": "2143 past C0 trades (PULLBACK_EMA20); survivor-biased",
           "winners_median_days": 47.0,
           "winners_range_days": [
             29.0,
-            71.0
+            69.0
           ],
           "losers_median_days": 5.0,
-          "win_rate": 0.247,
-          "typical_winner_r": 1.52,
-          "strong_winner_r": 8.01,
-          "typical_winner_price": 5165.78,
+          "win_rate": 0.25,
+          "typical_winner_r": 1.48,
+          "strong_winner_r": 7.69,
+          "typical_winner_price": 5158.64,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
@@ -1311,7 +1143,7 @@
       "plan_risk": 5.3004,
       "ema_20": 117.51,
       "ema_50": 115.66,
-      "ema_200": 111.94,
+      "ema_200": 111.95,
       "rsi": 58.01,
       "vol_ratio": 0.85,
       "vol_5d_ratio": 0.61,
@@ -1340,7 +1172,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-10-23T19:33:37.059699+00:00",
+      "timestamp": "2026-10-26T08:51:59.078791+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1404,16 +1236,16 @@
         },
         "expected_duration": {
           "basis": "empirical",
-          "from": "790 past C0 trades (TRENDING); survivor-biased",
+          "from": "796 past C0 trades (TRENDING); survivor-biased",
           "winners_median_days": 58.0,
           "winners_range_days": [
             44.0,
-            83.0
+            83.25
           ],
           "losers_median_days": 10.0,
-          "win_rate": 0.333,
+          "win_rate": 0.327,
           "typical_winner_r": 2.14,
-          "strong_winner_r": 9.61,
+          "strong_winner_r": 9.63,
           "typical_winner_price": 133.64,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
@@ -1691,7 +1523,7 @@
       "plan_risk": 16.0768,
       "ema_20": 320.42,
       "ema_50": 317.75,
-      "ema_200": 292.81,
+      "ema_200": 292.73,
       "rsi": 47.44,
       "vol_ratio": 2.19,
       "vol_5d_ratio": 1.63,
@@ -1720,7 +1552,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-23T19:33:37.059699+00:00",
+      "timestamp": "2026-10-26T08:51:59.078791+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1784,17 +1616,17 @@
         },
         "expected_duration": {
           "basis": "empirical",
-          "from": "2135 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "from": "2143 past C0 trades (PULLBACK_EMA20); survivor-biased",
           "winners_median_days": 47.0,
           "winners_range_days": [
             29.0,
-            71.0
+            69.0
           ],
           "losers_median_days": 5.0,
-          "win_rate": 0.247,
-          "typical_winner_r": 1.52,
-          "strong_winner_r": 8.01,
-          "typical_winner_price": 342.44,
+          "win_rate": 0.25,
+          "typical_winner_r": 1.48,
+          "strong_winner_r": 7.69,
+          "typical_winner_price": 341.79,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
@@ -2071,7 +1903,7 @@
       "plan_risk": 84.9214,
       "ema_20": 2009.43,
       "ema_50": 1927.8,
-      "ema_200": 1519.31,
+      "ema_200": 1519.61,
       "rsi": 46.36,
       "vol_ratio": 1.48,
       "vol_5d_ratio": 1.48,
@@ -2100,7 +1932,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-10-23T19:33:37.059699+00:00",
+      "timestamp": "2026-10-26T08:51:59.078791+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -2166,17 +1998,17 @@
         },
         "expected_duration": {
           "basis": "empirical",
-          "from": "2135 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "from": "2143 past C0 trades (PULLBACK_EMA20); survivor-biased",
           "winners_median_days": 47.0,
           "winners_range_days": [
             29.0,
-            71.0
+            69.0
           ],
           "losers_median_days": 5.0,
-          "win_rate": 0.247,
-          "typical_winner_r": 1.52,
-          "strong_winner_r": 8.01,
-          "typical_winner_price": 2138.68,
+          "win_rate": 0.25,
+          "typical_winner_r": 1.48,
+          "strong_winner_r": 7.69,
+          "typical_winner_price": 2135.28,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
@@ -2211,8 +2043,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-10-23T19:33:41+00:00",
-    "commit_sha": "24d6464d63f3bb6b45cda34f3093ed0f1672e6e7",
+    "generated_at": "2026-10-26T08:52:04+00:00",
+    "commit_sha": "6c8a61d9b12c0b9edbd9f082340bd1177f20df50",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
