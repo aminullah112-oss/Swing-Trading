@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-26T08:52:04+00:00",
+  "updated": "2026-10-26T18:53:18+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -2843,19 +2843,140 @@
       "needs_data": false,
       "taken": false,
       "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "FEDERALBNK|2026-10-26",
+      "symbol": "FEDERALBNK",
+      "signal_date": "2026-10-26",
+      "setup": "PULLBACK_EMA50",
+      "score": 83,
+      "in_stockedge": false,
+      "close": 344.4,
+      "trigger": 344.8,
+      "stop": 328.43,
+      "plan_risk": 15.9696,
+      "shares": 172,
+      "risk_amount": 2815.64,
+      "status": "pending",
+      "scan_id": "1f4c48a6741c",
+      "provisional": false,
+      "expires_on": "2026-10-27",
+      "simulated": true,
+      "history": [
+        {
+          "from": null,
+          "to": "pending",
+          "reason": "signal recorded",
+          "ts": "2026-10-26T18:53:18+00:00"
+        }
+      ],
+      "taken": false,
+      "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "DIVISLAB|2026-10-26",
+      "symbol": "DIVISLAB",
+      "signal_date": "2026-10-26",
+      "setup": "PULLBACK_EMA20",
+      "score": 88,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "1f4c48a6741c",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-26T18:53:18+00:00"
+        }
+      ],
+      "expires_on": "2026-10-27",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "PNB|2026-10-26",
+      "symbol": "PNB",
+      "signal_date": "2026-10-26",
+      "setup": "TRENDING",
+      "score": 75,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "1f4c48a6741c",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-26T18:53:18+00:00"
+        }
+      ],
+      "expires_on": "2026-10-27",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "HAL|2026-10-26",
+      "symbol": "HAL",
+      "signal_date": "2026-10-26",
+      "setup": "PULLBACK_EMA20",
+      "score": 93,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "1f4c48a6741c",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-26T18:53:18+00:00"
+        }
+      ],
+      "expires_on": "2026-10-27",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "ETERNAL|2026-10-26",
+      "symbol": "ETERNAL",
+      "signal_date": "2026-10-26",
+      "setup": "PULLBACK_EMA50",
+      "score": 75,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "1f4c48a6741c",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-26T18:53:18+00:00"
+        }
+      ],
+      "expires_on": "2026-10-27",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
     }
   ],
   "summary": {
     "closed_eligible": 3,
     "first_eligible_signal": "2026-10-14",
-    "signals": 77,
-    "pending": 5,
+    "signals": 82,
+    "pending": 6,
     "open": 5,
     "closed": 6,
     "expired": 31,
     "void": 10,
     "cancelled": 0,
-    "rejected": 20,
+    "rejected": 24,
     "win_rate": 0.0,
     "avg_r": -0.81,
     "total_r": -4.86,
@@ -2899,12 +3020,12 @@
         },
         "waiting": {
           "label": "Waiting for entry session",
-          "n": 5,
+          "n": 6,
           "avg_r": null
         },
         "not_tradable": {
           "label": "Not tradable (rejected, cancelled or void)",
-          "n": 29,
+          "n": 33,
           "avg_r": null
         }
       },
@@ -2957,13 +3078,14 @@
     "cbfcb1847fc0",
     "52aa1706353c",
     "332643ba2ad8",
-    "ab5526e8fdf8"
+    "ab5526e8fdf8",
+    "1f4c48a6741c"
   ],
-  "last_cutoff": "2026-10-23",
+  "last_cutoff": "2026-10-26",
   "last_ingest": {
-    "scan_id": "ab5526e8fdf8",
-    "accepted": 0,
-    "rejected": 0,
+    "scan_id": "1f4c48a6741c",
+    "accepted": 1,
+    "rejected": 4,
     "blocked": null
   },
   "reconciliation": {
@@ -2985,23 +3107,23 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-26T08:52:04+00:00"
+    "checked": "2026-10-26T18:53:18+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-26T08:52:05+00:00",
-    "commit_sha": "6c8a61d9b12c0b9edbd9f082340bd1177f20df50",
+    "generated_at": "2026-10-26T18:53:20+00:00",
+    "commit_sha": "840942623db9937781d73c00cb0923fb768e5498",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-23",
+    "data_cutoff": "2026-10-26",
     "source_ids": {
-      "results": "11747df86af7"
+      "results": "7598703e724d"
     },
-    "scan_id": "ab5526e8fdf8"
+    "scan_id": "1f4c48a6741c"
   },
   "duplicates_skipped": 138
 }
