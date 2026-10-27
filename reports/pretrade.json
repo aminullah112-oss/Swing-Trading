@@ -1,6 +1,6 @@
 {
   "verdict": "NO-GO",
-  "generated": "2026-10-26T20:46:02+00:00",
+  "generated": "2026-10-27T08:57:04+00:00",
   "checks": [
     {
       "id": "P1",
@@ -24,13 +24,13 @@
       "id": "P4",
       "level": "block",
       "ok": false,
-      "msg": "health DEGRADED: new entries NOT allowed"
+      "msg": "health FAIL: new entries NOT allowed"
     },
     {
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (180 events)"
+      "msg": "event log verified (187 events)"
     },
     {
       "id": "P6",
@@ -74,7 +74,7 @@
     {
       "symbol": "*",
       "reasons": [
-        "entries blocked: health DEGRADED: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data"
+        "entries blocked: health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data"
       ]
     }
   ],

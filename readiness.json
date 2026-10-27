@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-26T20:46:01+00:00",
+  "generated": "2026-10-27T08:57:04+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
     "live_risk_pct_allowed": 0.0,
     "reasons": [
-      "health DEGRADED (data/ledger untrusted, kill switch or broken pipeline)"
+      "health FAIL (data/ledger untrusted, kill switch or broken pipeline)"
     ],
     "critical_gates_passed": false,
     "unmet": [
@@ -70,9 +70,9 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 3,
+      "value": 5,
       "threshold": 100,
-      "detail": "3 legacy closed signal(s) excluded",
+      "detail": "4 legacy closed signal(s) excluded",
       "evidence_state": "pending_time"
     },
     {
@@ -82,7 +82,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 12,
+      "value": 13,
       "threshold": 182,
       "detail": "",
       "evidence_state": "pending_time"
@@ -96,7 +96,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 3, 12)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 5, 13)",
       "evidence_state": "pending_time"
     },
     {
@@ -108,7 +108,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 3, 12)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 5, 13)",
       "evidence_state": "pending_time"
     },
     {
@@ -147,7 +147,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": "DEGRADED",
+      "value": "FAIL",
       "threshold": "OK/WARN",
       "detail": "health DEGRADED/FAIL earns no operations credit",
       "evidence_state": "failed"
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "cb51306dd812",
-    "ledger": "45f77682e4b8",
-    "health": "8ae0b498b929",
+    "results": "f721ae67f55c",
+    "ledger": "59b82af3ea63",
+    "health": "3242d2bb28b8",
     "grid": "da34195fa567",
     "benchmarks": "3497ed346d45",
     "universe": "5abb1e65293b",
@@ -185,8 +185,8 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-26T20:46:01+00:00",
-    "commit_sha": "e2ce254894d981995751eb3c93e5bcf097310e2f",
+    "generated_at": "2026-10-27T08:57:04+00:00",
+    "commit_sha": "c45c1928c6807fdde48f1e19fd072303f91ea99a",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -195,9 +195,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-26",
     "source_ids": {
-      "results": "cb51306dd812",
-      "ledger": "45f77682e4b8",
-      "health": "8ae0b498b929",
+      "results": "f721ae67f55c",
+      "ledger": "59b82af3ea63",
+      "health": "3242d2bb28b8",
       "grid": "da34195fa567",
       "benchmarks": "3497ed346d45",
       "universe": "5abb1e65293b",

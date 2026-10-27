@@ -4,35 +4,35 @@
   "evidence_eligible": 69,
   "legacy_excluded": 13,
   "by_status": {
-    "expired": 24,
+    "expired": 25,
     "void": 9,
-    "rejected": 24,
-    "open": 3,
-    "closed": 3,
+    "rejected": 22,
+    "open": 2,
+    "closed": 5,
     "pending": 6
   },
   "not_taken_reasons": {
-    "entry session passed without a trigger": 24,
+    "entry session passed without a trigger": 25,
     "entry was simulated on an unfinished session bar; the official bar decides": 3,
-    "aggregate open-risk budget 1.5% of capital would be exceeded": 12,
-    "symbol already has an active signal": 24,
+    "aggregate open-risk budget 1.5% of capital would be exceeded": 13,
+    "symbol already has an active signal": 22,
     "not yet triggered": 6
   },
-  "closed": 3,
-  "forward_avg_r_incl_open": -0.707,
+  "closed": 5,
+  "forward_avg_r_incl_open": -0.6275714285714286,
   "forward_avg_r_ci95_clustered": [
-    -0.707,
-    -0.707
+    -0.628,
+    -0.628
   ],
   "effective_independent_months": 1,
   "rolling_expectancy_last_closed": {},
   "taken_equity_drawdown_pct": 0.0,
   "taken_equity_now_pct": 0.0,
-  "gap_through_stop_exits": 1,
+  "gap_through_stop_exits": 2,
   "partial_fills": 0,
   "readiness_distance": {
     "closed_needed": 100,
-    "closed_have": 3,
+    "closed_have": 5,
     "days_needed": 182,
     "first_eligible_signal": "2026-10-14"
   },
@@ -45,27 +45,27 @@
       },
       "stopped": {
         "label": "Lost: stop hit",
-        "n": 2,
-        "avg_r": -1.202
+        "n": 3,
+        "avg_r": -1.203
       },
       "exited_loss": {
         "label": "Lost: exited at a loss (trend/time exit)",
-        "n": 1,
-        "avg_r": -0.043
+        "n": 2,
+        "avg_r": -0.578
       },
       "open_profit": {
         "label": "Open, in profit (mark-to-market)",
-        "n": 0,
-        "avg_r": null
+        "n": 1,
+        "avg_r": 0.473
       },
       "open_loss": {
         "label": "Open, at a loss (mark-to-market)",
-        "n": 3,
-        "avg_r": -0.599
+        "n": 1,
+        "avg_r": -0.103
       },
       "never_triggered": {
         "label": "Never triggered (buy-stop not reached)",
-        "n": 24,
+        "n": 25,
         "avg_r": null
       },
       "waiting": {
@@ -75,20 +75,20 @@
       },
       "not_tradable": {
         "label": "Not tradable (rejected, cancelled or void)",
-        "n": 33,
+        "n": 31,
         "avg_r": null
       }
     },
-    "entered": 6,
-    "closed": 3,
+    "entered": 7,
+    "closed": 5,
     "closed_win_rate": 0.0,
-    "entered_in_profit_rate": 0.0,
-    "trigger_rate": 0.2,
+    "entered_in_profit_rate": 0.143,
+    "trigger_rate": 0.219,
     "by_setup": {
       "PULLBACK_EMA20": {
-        "entered": 4,
-        "good": 0,
-        "hit_rate": 0.0
+        "entered": 5,
+        "good": 1,
+        "hit_rate": 0.2
       },
       "TRENDING": {
         "entered": 2,
@@ -101,7 +101,7 @@
   },
   "event_log": {
     "verified": true,
-    "events": 180,
+    "events": 187,
     "problem": null
   },
   "reconciliation": {
@@ -123,6 +123,6 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-26T20:45:59+00:00"
+    "checked": "2026-10-27T08:57:01+00:00"
   }
 }
