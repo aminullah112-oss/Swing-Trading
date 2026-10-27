@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-27T08:57:01+00:00",
+  "updated": "2026-10-27T18:22:40+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -212,10 +212,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 1886.78,
-      "mark_price": 1993.0,
-      "unrealized_r": 1.148,
+      "mark_price": 1997.0,
+      "unrealized_r": 1.194,
       "exit_signal": false,
-      "days_held": 9,
+      "days_held": 10,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -1667,10 +1667,10 @@
       "taken": false,
       "entry_date": "2026-10-19",
       "entry": 120.99,
-      "mark_price": 120.89,
-      "unrealized_r": -0.103,
+      "mark_price": 121.27,
+      "unrealized_r": -0.028,
       "exit_signal": false,
-      "days_held": 5,
+      "days_held": 6,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -2884,10 +2884,10 @@
       "taken": false,
       "entry_date": "2026-10-26",
       "entry": 2011.61,
-      "mark_price": 2058.9,
-      "unrealized_r": 0.473,
+      "mark_price": 2142.0,
+      "unrealized_r": 1.45,
       "exit_signal": false,
-      "days_held": 1,
+      "days_held": 2,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -2903,7 +2903,7 @@
       "plan_risk": 15.9696,
       "shares": 172,
       "risk_amount": 2815.64,
-      "status": "pending",
+      "status": "open",
       "scan_id": "1f4c48a6741c",
       "provisional": false,
       "expires_on": "2026-10-27",
@@ -2914,11 +2914,22 @@
           "to": "pending",
           "reason": "signal recorded",
           "ts": "2026-10-26T18:53:18+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "open",
+          "reason": "buy-stop triggered",
+          "ts": "2026-10-27T18:22:40+00:00"
         }
       ],
       "taken": false,
-      "needs_data": false,
-      "not_taken_reason": "not yet triggered"
+      "entry_date": "2026-10-27",
+      "entry": 345.6,
+      "mark_price": 341.6,
+      "unrealized_r": -0.325,
+      "exit_signal": false,
+      "days_held": 1,
+      "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
       "id": "DIVISLAB|2026-10-26",
@@ -2926,7 +2937,7 @@
       "signal_date": "2026-10-26",
       "setup": "PULLBACK_EMA20",
       "score": 88,
-      "status": "pending",
+      "status": "open",
       "scan_id": "56761356c945",
       "shares": 6,
       "risk_amount": 2444.16,
@@ -2942,6 +2953,12 @@
           "to": "pending",
           "reason": "reinstated: rejection was caused by stale bookkeeping, entry session still ahead",
           "ts": "2026-10-27T08:57:01+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "open",
+          "reason": "buy-stop triggered",
+          "ts": "2026-10-27T18:22:40+00:00"
         }
       ],
       "expires_on": "2026-10-27",
@@ -2952,8 +2969,13 @@
       "close": 9050.0,
       "simulated": true,
       "provisional": false,
-      "needs_data": false,
-      "not_taken_reason": "not yet triggered"
+      "entry_date": "2026-10-27",
+      "entry": 9099.09,
+      "mark_price": 9505.5,
+      "unrealized_r": 0.991,
+      "exit_signal": false,
+      "days_held": 1,
+      "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
       "id": "PNB|2026-10-26",
@@ -2984,7 +3006,7 @@
       "signal_date": "2026-10-26",
       "setup": "PULLBACK_EMA20",
       "score": 93,
-      "status": "pending",
+      "status": "open",
       "scan_id": "56761356c945",
       "shares": 12,
       "risk_amount": 2729.28,
@@ -3000,6 +3022,12 @@
           "to": "pending",
           "reason": "reinstated: rejection was caused by stale bookkeeping, entry session still ahead",
           "ts": "2026-10-27T08:57:01+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "open",
+          "reason": "buy-stop triggered",
+          "ts": "2026-10-27T18:22:40+00:00"
         }
       ],
       "expires_on": "2026-10-27",
@@ -3010,8 +3038,13 @@
       "close": 4775.0,
       "simulated": true,
       "provisional": false,
-      "needs_data": false,
-      "not_taken_reason": "not yet triggered"
+      "entry_date": "2026-10-27",
+      "entry": 4819.71,
+      "mark_price": 4855.0,
+      "unrealized_r": 0.098,
+      "exit_signal": false,
+      "days_held": 1,
+      "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
       "id": "ETERNAL|2026-10-26",
@@ -3035,28 +3068,173 @@
       "expires_on": "2026-10-27",
       "taken": false,
       "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "DIVISLAB|2026-10-27",
+      "symbol": "DIVISLAB",
+      "signal_date": "2026-10-27",
+      "setup": "TRENDING",
+      "score": 77,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "7536e4d199cb",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-27T18:22:40+00:00"
+        }
+      ],
+      "expires_on": "2026-10-28",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "ETERNAL|2026-10-27",
+      "symbol": "ETERNAL",
+      "signal_date": "2026-10-27",
+      "setup": "PULLBACK_EMA50",
+      "score": 82,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "7536e4d199cb",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-27T18:22:40+00:00"
+        }
+      ],
+      "expires_on": "2026-10-28",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "AUROPHARMA|2026-10-27",
+      "symbol": "AUROPHARMA",
+      "signal_date": "2026-10-27",
+      "setup": "PULLBACK_EMA50",
+      "score": 81,
+      "in_stockedge": false,
+      "close": 1627.5,
+      "trigger": 1635.0,
+      "stop": 1557.25,
+      "plan_risk": 70.2536,
+      "shares": 36,
+      "risk_amount": 2799.0,
+      "status": "pending",
+      "scan_id": "7536e4d199cb",
+      "provisional": false,
+      "expires_on": "2026-10-28",
+      "simulated": true,
+      "history": [
+        {
+          "from": null,
+          "to": "pending",
+          "reason": "signal recorded",
+          "ts": "2026-10-27T18:22:40+00:00"
+        }
+      ],
+      "needs_data": false,
+      "taken": false,
+      "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "HAL|2026-10-27",
+      "symbol": "HAL",
+      "signal_date": "2026-10-27",
+      "setup": "PULLBACK_EMA20",
+      "score": 94,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "7536e4d199cb",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-27T18:22:40+00:00"
+        }
+      ],
+      "expires_on": "2026-10-28",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "PNB|2026-10-27",
+      "symbol": "PNB",
+      "signal_date": "2026-10-27",
+      "setup": "PULLBACK_EMA20",
+      "score": 93,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "7536e4d199cb",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-27T18:22:40+00:00"
+        }
+      ],
+      "expires_on": "2026-10-28",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "FEDERALBNK|2026-10-27",
+      "symbol": "FEDERALBNK",
+      "signal_date": "2026-10-27",
+      "setup": "PULLBACK_EMA20",
+      "score": 93,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "7536e4d199cb",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-27T18:22:40+00:00"
+        }
+      ],
+      "expires_on": "2026-10-28",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
     }
   ],
   "summary": {
     "closed_eligible": 5,
     "first_eligible_signal": "2026-10-14",
-    "signals": 82,
-    "pending": 6,
-    "open": 3,
+    "signals": 88,
+    "pending": 4,
+    "open": 6,
     "closed": 9,
     "expired": 32,
     "void": 10,
     "cancelled": 0,
-    "rejected": 22,
+    "rejected": 27,
     "win_rate": 0.0,
     "avg_r": -0.852,
     "total_r": -7.67,
-    "open_unrealized_r": 1.52,
+    "open_unrealized_r": 3.38,
     "taken_closed": 0,
     "taken_pnl_inr": 0,
     "avg_r_ci95": null,
-    "avg_r_incl_open": -0.513,
-    "total_r_incl_open": -6.15,
+    "avg_r_incl_open": -0.286,
+    "total_r_incl_open": -4.29,
     "outcomes": {
       "classes": {
         "won": {
@@ -3076,13 +3254,13 @@
         },
         "open_profit": {
           "label": "Open, in profit (mark-to-market)",
-          "n": 1,
-          "avg_r": 0.473
+          "n": 3,
+          "avg_r": 0.846
         },
         "open_loss": {
           "label": "Open, at a loss (mark-to-market)",
-          "n": 1,
-          "avg_r": -0.103
+          "n": 2,
+          "avg_r": -0.177
         },
         "never_triggered": {
           "label": "Never triggered (buy-stop not reached)",
@@ -3091,28 +3269,33 @@
         },
         "waiting": {
           "label": "Waiting for entry session",
-          "n": 6,
+          "n": 4,
           "avg_r": null
         },
         "not_tradable": {
           "label": "Not tradable (rejected, cancelled or void)",
-          "n": 31,
+          "n": 36,
           "avg_r": null
         }
       },
-      "entered": 7,
+      "entered": 10,
       "closed": 5,
       "closed_win_rate": 0.0,
-      "entered_in_profit_rate": 0.143,
-      "trigger_rate": 0.219,
+      "entered_in_profit_rate": 0.3,
+      "trigger_rate": 0.286,
       "by_setup": {
         "PULLBACK_EMA20": {
-          "entered": 5,
-          "good": 1,
-          "hit_rate": 0.2
+          "entered": 7,
+          "good": 3,
+          "hit_rate": 0.429
         },
         "TRENDING": {
           "entered": 2,
+          "good": 0,
+          "hit_rate": 0.0
+        },
+        "PULLBACK_EMA50": {
+          "entered": 1,
           "good": 0,
           "hit_rate": 0.0
         }
@@ -3152,13 +3335,14 @@
     "ab5526e8fdf8",
     "1f4c48a6741c",
     "b00e25a19350",
-    "56761356c945"
+    "56761356c945",
+    "7536e4d199cb"
   ],
-  "last_cutoff": "2026-10-26",
+  "last_cutoff": "2026-10-27",
   "last_ingest": {
-    "scan_id": "56761356c945",
-    "accepted": 2,
-    "rejected": 0,
+    "scan_id": "7536e4d199cb",
+    "accepted": 1,
+    "rejected": 5,
     "blocked": null
   },
   "reconciliation": {
@@ -3180,23 +3364,23 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-27T08:57:01+00:00"
+    "checked": "2026-10-27T18:22:40+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-27T08:57:02+00:00",
-    "commit_sha": "c45c1928c6807fdde48f1e19fd072303f91ea99a",
+    "generated_at": "2026-10-27T18:22:42+00:00",
+    "commit_sha": "675b2c61093c15056388ada76df2f019510b31de",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-26",
+    "data_cutoff": "2026-10-27",
     "source_ids": {
-      "results": "f721ae67f55c"
+      "results": "42bcbcf6b289"
     },
-    "scan_id": "56761356c945"
+    "scan_id": "7536e4d199cb"
   },
   "duplicates_skipped": 146
 }
