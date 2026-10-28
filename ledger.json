@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-28T18:32:23+00:00",
+  "updated": "2026-10-28T20:35:31+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -3622,13 +3622,14 @@
     "7536e4d199cb",
     "8cf7a5a9e706",
     "3177196f294e",
-    "443428cf1085"
+    "443428cf1085",
+    "f40233922f91"
   ],
   "last_cutoff": "2026-10-28",
   "last_ingest": {
-    "scan_id": "443428cf1085",
-    "accepted": 4,
-    "rejected": 5,
+    "scan_id": "f40233922f91",
+    "accepted": 0,
+    "rejected": 0,
     "blocked": null
   },
   "reconciliation": {
@@ -3650,12 +3651,12 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-28T18:32:23+00:00"
+    "checked": "2026-10-28T20:35:31+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-28T18:32:24+00:00",
-    "commit_sha": "2b7d0323b9ad9032616bd66ab605f6ae9d25e822",
+    "generated_at": "2026-10-28T20:35:32+00:00",
+    "commit_sha": "38fc2accab09c535704efd3dbe6146e7e737c721",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -3664,9 +3665,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-28",
     "source_ids": {
-      "results": "770c50de29f6"
+      "results": "6287b147b0d4"
     },
-    "scan_id": "443428cf1085"
+    "scan_id": "f40233922f91"
   },
-  "duplicates_skipped": 155
+  "duplicates_skipped": 164
 }
