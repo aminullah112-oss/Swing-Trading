@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-27T20:15:49+00:00",
+  "updated": "2026-10-28T09:37:22+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -212,10 +212,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 1886.78,
-      "mark_price": 1993.0,
-      "unrealized_r": 1.148,
+      "mark_price": 1997.0,
+      "unrealized_r": 1.194,
       "exit_signal": false,
-      "days_held": 9,
+      "days_held": 10,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -1667,10 +1667,10 @@
       "taken": false,
       "entry_date": "2026-10-19",
       "entry": 120.99,
-      "mark_price": 120.89,
-      "unrealized_r": -0.103,
+      "mark_price": 121.27,
+      "unrealized_r": -0.028,
       "exit_signal": false,
-      "days_held": 5,
+      "days_held": 6,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -2884,10 +2884,10 @@
       "taken": false,
       "entry_date": "2026-10-26",
       "entry": 2011.61,
-      "mark_price": 2058.9,
-      "unrealized_r": 0.473,
+      "mark_price": 2142.0,
+      "unrealized_r": 1.45,
       "exit_signal": false,
-      "days_held": 1,
+      "days_held": 2,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3122,6 +3122,7 @@
       "close": 9505.5,
       "simulated": true,
       "provisional": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -3209,6 +3210,7 @@
       "close": 4855.0,
       "simulated": true,
       "provisional": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -3266,6 +3268,7 @@
       "close": 341.6,
       "simulated": true,
       "provisional": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     }
   ],
@@ -3283,12 +3286,12 @@
     "win_rate": 0.0,
     "avg_r": -0.852,
     "total_r": -7.67,
-    "open_unrealized_r": 1.52,
+    "open_unrealized_r": 2.62,
     "taken_closed": 0,
     "taken_pnl_inr": 0,
     "avg_r_ci95": null,
-    "avg_r_incl_open": -0.513,
-    "total_r_incl_open": -6.15,
+    "avg_r_incl_open": -0.421,
+    "total_r_incl_open": -5.05,
     "outcomes": {
       "classes": {
         "won": {
@@ -3309,12 +3312,12 @@
         "open_profit": {
           "label": "Open, in profit (mark-to-market)",
           "n": 1,
-          "avg_r": 0.473
+          "avg_r": 1.45
         },
         "open_loss": {
           "label": "Open, at a loss (mark-to-market)",
           "n": 1,
-          "avg_r": -0.103
+          "avg_r": -0.028
         },
         "never_triggered": {
           "label": "Never triggered (buy-stop not reached)",
@@ -3386,12 +3389,13 @@
     "b00e25a19350",
     "56761356c945",
     "7536e4d199cb",
-    "8cf7a5a9e706"
+    "8cf7a5a9e706",
+    "3177196f294e"
   ],
   "last_cutoff": "2026-10-27",
   "last_ingest": {
-    "scan_id": "8cf7a5a9e706",
-    "accepted": 3,
+    "scan_id": "3177196f294e",
+    "accepted": 0,
     "rejected": 0,
     "blocked": null
   },
@@ -3414,12 +3418,12 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-27T20:15:49+00:00"
+    "checked": "2026-10-28T09:37:22+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-27T20:15:50+00:00",
-    "commit_sha": "5e7ec36baec330d07494dff48e8c481b023d52fb",
+    "generated_at": "2026-10-28T09:37:22+00:00",
+    "commit_sha": "18b2d429b36221ca69a9579b09792976eaf343e5",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -3428,9 +3432,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-27",
     "source_ids": {
-      "results": "27836d21e389"
+      "results": "76f91eae24f0"
     },
-    "scan_id": "8cf7a5a9e706"
+    "scan_id": "3177196f294e"
   },
-  "duplicates_skipped": 149
+  "duplicates_skipped": 155
 }
