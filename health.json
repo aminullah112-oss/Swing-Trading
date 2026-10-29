@@ -5,12 +5,12 @@
     "manage_exits": false,
     "ops_credit": false
   },
-  "generated": "2026-10-28T20:35:33+00:00",
+  "generated": "2026-10-29T10:32:46+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-28 (0 days old)"
+      "msg": "market data through 2026-10-28 (1 days old)"
     },
     {
       "id": "H2",
@@ -39,13 +39,13 @@
     },
     {
       "id": "H10",
-      "level": "warn",
-      "msg": "data trusted: 99% official-bar coverage; 2 symbol(s) quarantined (CYIENT, VEDL)"
+      "level": "degraded",
+      "msg": "market data UNTRUSTED, no actionable signals: 4 symbols (2.5%) have critical data errors (limit 2%)"
     },
     {
       "id": "H15",
       "level": "warn",
-      "msg": "nse bhavcopy (udiff): compared 0, 0 close and 0 adjustment mismatches, 158 bar(s) filled from NSE because Yahoo lagged"
+      "msg": "nse bhavcopy (udiff): compared 159, 2 close and 2 adjustment mismatches"
     },
     {
       "id": "H11",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (211 events)"
+      "msg": "event log verified (216 events)"
     },
     {
       "id": "H13b",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-28T20:35:33+00:00",
-    "commit_sha": "38fc2accab09c535704efd3dbe6146e7e737c721",
+    "generated_at": "2026-10-29T10:32:46+00:00",
+    "commit_sha": "3fe92cbdc4ee8e8629bea4f8012458f7be1ab961",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -85,9 +85,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-28",
     "source_ids": {
-      "results": "6287b147b0d4",
-      "ledger": "b496ce8b3b18",
-      "events": "04319a843888"
+      "results": "4a79e636b794",
+      "ledger": "98729e6237e1",
+      "events": "c9bb15744ea3"
     }
   }
 }

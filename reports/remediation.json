@@ -76,7 +76,7 @@
       "action": "Accumulate forward data after F1/F2.",
       "depends_on": "F1, F2.",
       "acceptance": "Month-clustered 95% CI lower bound of forward expectancy (closed + open) > 0.",
-      "detail": "needs 100+ closed signals and 182+ days first (have 5, 14)"
+      "detail": "needs 100+ closed signals and 182+ days first (have 5, 15)"
     },
     {
       "id": "F4",
@@ -89,7 +89,7 @@
       "action": "Accumulate forward data after F1/F2.",
       "depends_on": "F1, F2, B1.",
       "acceptance": "Forward CI upper bound >= backtest design-period average R.",
-      "detail": "needs 100+ closed signals and 182+ days first (have 5, 14)"
+      "detail": "needs 100+ closed signals and 182+ days first (have 5, 15)"
     },
     {
       "id": "E1",
@@ -128,7 +128,7 @@
       "action": "Run the Daily Stock Screen on a day the vendor has published the official bars; health must be OK/WARN with trusted data and consistent artefacts.",
       "depends_on": "Vendor publishes daily bars; Yahoo reachable from Actions.",
       "acceptance": "health OK/WARN, data_quality TRUSTED, no inconsistencies.",
-      "detail": "health DEGRADED/FAIL earns no operations credit"
+      "detail": "latest scan data UNTRUSTED (no actionable signals): 4 symbols (2.5%) have critical data errors (limit 2%)"
     },
     {
       "id": "R1",

@@ -1,31 +1,31 @@
 # Forward validation (paper, simulated fills)
 
-Signals recorded: 97 (84 evidence-eligible, 13 legacy excluded). Event log: verified (211 events). Every fill here is simulated; none is a broker fill.
+Signals recorded: 97 (84 evidence-eligible, 13 legacy excluded). Event log: verified (216 events). Every fill here is simulated; none is a broker fill.
 
-By status: {'expired': 25, 'void': 12, 'rejected': 29, 'open': 2, 'closed': 5, 'pending': 11}.
+By status: {'expired': 27, 'void': 12, 'rejected': 29, 'open': 4, 'closed': 5, 'pending': 7}.
 
 Signals not taken, with reasons:
 
-- entry session passed without a trigger: 25
+- entry session passed without a trigger: 27
 - entry was simulated on an unfinished session bar; the official bar decides: 3
-- aggregate open-risk budget 1.5% of capital would be exceeded: 16
+- aggregate open-risk budget 1.5% of capital would be exceeded: 18
 - symbol already has an active signal: 29
-- not yet triggered: 11
+- not yet triggered: 7
 
 How the filtered stocks fared:
 
 - Won: closed in profit: 0
 - Lost: stop hit: 3 (avg -1.20R)
 - Lost: exited at a loss (trend/time exit): 2 (avg -0.58R)
-- Open, in profit (mark-to-market): 1 (avg +1.45R)
-- Open, at a loss (mark-to-market): 1 (avg -0.03R)
-- Never triggered (buy-stop not reached): 25
-- Waiting for entry session: 11
+- Open, in profit (mark-to-market): 3 (avg +0.66R)
+- Open, at a loss (mark-to-market): 1 (avg -0.22R)
+- Never triggered (buy-stop not reached): 27
+- Waiting for entry session: 7
 - Not tradable (rejected, cancelled or void): 41
 
 Closed eligible signals: 5 of 100 needed; first eligible signal 2026-10-14; 182 days required.
 
-Average R including open trades: -0.477 over 1 entry months; month-clustered 95% CI [-0.477, -0.477]. Rolling expectancy (last closed): needs 30+ closed.
+Average R including open trades: -0.333 over 1 entry months; month-clustered 95% CI [-0.333, -0.333]. Rolling expectancy (last closed): needs 30+ closed.
 
 Taken-signal equity drawdown 0.0% of capital (now +0.0%). Gap-through-stop exits: 2. Partial fills: 0.
 

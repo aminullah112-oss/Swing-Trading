@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-28T20:35:31+00:00",
+  "updated": "2026-10-29T10:32:44+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -212,10 +212,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 1886.78,
-      "mark_price": 1997.0,
-      "unrealized_r": 1.194,
+      "mark_price": 1961.9,
+      "unrealized_r": 0.79,
       "exit_signal": false,
-      "days_held": 10,
+      "days_held": 11,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -1667,10 +1667,10 @@
       "taken": false,
       "entry_date": "2026-10-19",
       "entry": 120.99,
-      "mark_price": 121.27,
-      "unrealized_r": -0.028,
+      "mark_price": 120.31,
+      "unrealized_r": -0.216,
       "exit_signal": false,
-      "days_held": 6,
+      "days_held": 7,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -2884,10 +2884,10 @@
       "taken": false,
       "entry_date": "2026-10-26",
       "entry": 2011.61,
-      "mark_price": 2142.0,
-      "unrealized_r": 1.45,
+      "mark_price": 2181.9,
+      "unrealized_r": 1.918,
       "exit_signal": false,
-      "days_held": 2,
+      "days_held": 3,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3096,7 +3096,7 @@
       "signal_date": "2026-10-27",
       "setup": "TRENDING",
       "score": 77,
-      "status": "pending",
+      "status": "open",
       "scan_id": "8cf7a5a9e706",
       "shares": 7,
       "risk_amount": 2688.77,
@@ -3112,6 +3112,12 @@
           "to": "pending",
           "reason": "reinstated: rejection was caused by stale bookkeeping, entry session still ahead",
           "ts": "2026-10-27T20:15:49+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "open",
+          "reason": "buy-stop triggered",
+          "ts": "2026-10-29T10:32:44+00:00"
         }
       ],
       "expires_on": "2026-10-28",
@@ -3122,8 +3128,13 @@
       "close": 9505.5,
       "simulated": true,
       "provisional": false,
-      "needs_data": false,
-      "not_taken_reason": "not yet triggered"
+      "entry_date": "2026-10-28",
+      "entry": 9515.01,
+      "mark_price": 9558.5,
+      "unrealized_r": 0.027,
+      "exit_signal": false,
+      "days_held": 1,
+      "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
       "id": "ETERNAL|2026-10-27",
@@ -3161,7 +3172,7 @@
       "plan_risk": 70.2536,
       "shares": 36,
       "risk_amount": 2799.0,
-      "status": "pending",
+      "status": "open",
       "scan_id": "7536e4d199cb",
       "provisional": false,
       "expires_on": "2026-10-28",
@@ -3172,11 +3183,22 @@
           "to": "pending",
           "reason": "signal recorded",
           "ts": "2026-10-27T18:22:40+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "open",
+          "reason": "buy-stop triggered",
+          "ts": "2026-10-29T10:32:44+00:00"
         }
       ],
-      "needs_data": false,
       "taken": false,
-      "not_taken_reason": "not yet triggered"
+      "entry_date": "2026-10-28",
+      "entry": 1636.63,
+      "mark_price": 1644.8,
+      "unrealized_r": 0.035,
+      "exit_signal": false,
+      "days_held": 1,
+      "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
       "id": "HAL|2026-10-27",
@@ -3184,7 +3206,7 @@
       "signal_date": "2026-10-27",
       "setup": "PULLBACK_EMA20",
       "score": 94,
-      "status": "pending",
+      "status": "expired",
       "scan_id": "8cf7a5a9e706",
       "shares": 10,
       "risk_amount": 2580.0,
@@ -3200,6 +3222,12 @@
           "to": "pending",
           "reason": "reinstated: rejection was caused by stale bookkeeping, entry session still ahead",
           "ts": "2026-10-27T20:15:49+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "expired",
+          "reason": "entry session passed without the buy-stop triggering",
+          "ts": "2026-10-29T10:32:44+00:00"
         }
       ],
       "expires_on": "2026-10-28",
@@ -3210,8 +3238,8 @@
       "close": 4855.0,
       "simulated": true,
       "provisional": false,
-      "needs_data": false,
-      "not_taken_reason": "not yet triggered"
+      "expired_reason": "trigger_not_hit",
+      "not_taken_reason": "entry session passed without a trigger"
     },
     {
       "id": "PNB|2026-10-27",
@@ -3242,7 +3270,7 @@
       "signal_date": "2026-10-27",
       "setup": "PULLBACK_EMA20",
       "score": 93,
-      "status": "pending",
+      "status": "expired",
       "scan_id": "8cf7a5a9e706",
       "shares": 126,
       "risk_amount": 2821.14,
@@ -3258,6 +3286,12 @@
           "to": "pending",
           "reason": "reinstated: rejection was caused by stale bookkeeping, entry session still ahead",
           "ts": "2026-10-27T20:15:49+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "expired",
+          "reason": "entry session passed without the buy-stop triggering",
+          "ts": "2026-10-29T10:32:44+00:00"
         }
       ],
       "expires_on": "2026-10-28",
@@ -3268,8 +3302,8 @@
       "close": 341.6,
       "simulated": true,
       "provisional": false,
-      "needs_data": false,
-      "not_taken_reason": "not yet triggered"
+      "expired_reason": "trigger_not_hit",
+      "not_taken_reason": "entry session passed without a trigger"
     },
     {
       "id": "TECHM|2026-10-28",
@@ -3298,6 +3332,7 @@
         }
       ],
       "taken": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -3327,6 +3362,7 @@
         }
       ],
       "taken": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -3448,6 +3484,7 @@
         }
       ],
       "taken": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -3500,6 +3537,7 @@
         }
       ],
       "taken": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     }
   ],
@@ -3507,22 +3545,22 @@
     "closed_eligible": 5,
     "first_eligible_signal": "2026-10-14",
     "signals": 97,
-    "pending": 11,
-    "open": 3,
+    "pending": 7,
+    "open": 5,
     "closed": 9,
-    "expired": 32,
+    "expired": 34,
     "void": 13,
     "cancelled": 0,
     "rejected": 29,
     "win_rate": 0.0,
     "avg_r": -0.852,
     "total_r": -7.67,
-    "open_unrealized_r": 2.62,
+    "open_unrealized_r": 2.55,
     "taken_closed": 0,
     "taken_pnl_inr": 0,
     "avg_r_ci95": null,
-    "avg_r_incl_open": -0.421,
-    "total_r_incl_open": -5.05,
+    "avg_r_incl_open": -0.365,
+    "total_r_incl_open": -5.12,
     "outcomes": {
       "classes": {
         "won": {
@@ -3542,22 +3580,22 @@
         },
         "open_profit": {
           "label": "Open, in profit (mark-to-market)",
-          "n": 1,
-          "avg_r": 1.45
+          "n": 3,
+          "avg_r": 0.66
         },
         "open_loss": {
           "label": "Open, at a loss (mark-to-market)",
           "n": 1,
-          "avg_r": -0.028
+          "avg_r": -0.216
         },
         "never_triggered": {
           "label": "Never triggered (buy-stop not reached)",
-          "n": 25,
+          "n": 27,
           "avg_r": null
         },
         "waiting": {
           "label": "Waiting for entry session",
-          "n": 11,
+          "n": 7,
           "avg_r": null
         },
         "not_tradable": {
@@ -3566,11 +3604,11 @@
           "avg_r": null
         }
       },
-      "entered": 7,
+      "entered": 9,
       "closed": 5,
       "closed_win_rate": 0.0,
-      "entered_in_profit_rate": 0.143,
-      "trigger_rate": 0.219,
+      "entered_in_profit_rate": 0.333,
+      "trigger_rate": 0.25,
       "by_setup": {
         "PULLBACK_EMA20": {
           "entered": 5,
@@ -3578,9 +3616,14 @@
           "hit_rate": 0.2
         },
         "TRENDING": {
-          "entered": 2,
-          "good": 0,
-          "hit_rate": 0.0
+          "entered": 3,
+          "good": 1,
+          "hit_rate": 0.333
+        },
+        "PULLBACK_EMA50": {
+          "entered": 1,
+          "good": 1,
+          "hit_rate": 1.0
         }
       },
       "legacy_excluded": 13,
@@ -3627,10 +3670,9 @@
   ],
   "last_cutoff": "2026-10-28",
   "last_ingest": {
-    "scan_id": "f40233922f91",
+    "scan_id": "a8c7fe9e502f",
     "accepted": 0,
-    "rejected": 0,
-    "blocked": null
+    "blocked": "scan data not trusted (not actionable): 4 symbols (2.5%) have critical data errors (limit 2%)"
   },
   "reconciliation": {
     "ok": false,
@@ -3651,12 +3693,12 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-28T20:35:31+00:00"
+    "checked": "2026-10-29T10:32:44+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-28T20:35:32+00:00",
-    "commit_sha": "38fc2accab09c535704efd3dbe6146e7e737c721",
+    "generated_at": "2026-10-29T10:32:46+00:00",
+    "commit_sha": "3fe92cbdc4ee8e8629bea4f8012458f7be1ab961",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -3665,9 +3707,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-28",
     "source_ids": {
-      "results": "6287b147b0d4"
+      "results": "4a79e636b794"
     },
-    "scan_id": "f40233922f91"
+    "scan_id": "a8c7fe9e502f"
   },
   "duplicates_skipped": 164
 }
