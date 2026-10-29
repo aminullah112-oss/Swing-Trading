@@ -5,12 +5,12 @@
     "manage_exits": false,
     "ops_credit": false
   },
-  "generated": "2026-10-29T10:32:46+00:00",
+  "generated": "2026-10-29T18:40:55+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-28 (1 days old)"
+      "msg": "market data through 2026-10-29 (0 days old)"
     },
     {
       "id": "H2",
@@ -39,13 +39,13 @@
     },
     {
       "id": "H10",
-      "level": "degraded",
-      "msg": "market data UNTRUSTED, no actionable signals: 4 symbols (2.5%) have critical data errors (limit 2%)"
+      "level": "warn",
+      "msg": "data trusted: 99% official-bar coverage; 3 symbol(s) quarantined (KAJARIACER, SHRIRAMFIN, VEDL)"
     },
     {
       "id": "H15",
       "level": "warn",
-      "msg": "nse bhavcopy (udiff): compared 159, 2 close and 2 adjustment mismatches"
+      "msg": "nse bhavcopy (udiff): compared 0, 0 close and 0 adjustment mismatches, 157 bar(s) filled from NSE because Yahoo lagged"
     },
     {
       "id": "H11",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (216 events)"
+      "msg": "event log verified (227 events)"
     },
     {
       "id": "H13b",
@@ -75,19 +75,19 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-29T10:32:46+00:00",
-    "commit_sha": "3fe92cbdc4ee8e8629bea4f8012458f7be1ab961",
+    "generated_at": "2026-10-29T18:40:55+00:00",
+    "commit_sha": "6a8dee515f02893f0d639e297cb64a28ba3e77c3",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-28",
+    "data_cutoff": "2026-10-29",
     "source_ids": {
-      "results": "4a79e636b794",
-      "ledger": "98729e6237e1",
-      "events": "c9bb15744ea3"
+      "results": "fc2cab0b5201",
+      "ledger": "37223f86b141",
+      "events": "a13cb17c16d6"
     }
   }
 }

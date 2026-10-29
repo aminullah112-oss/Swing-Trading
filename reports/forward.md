@@ -1,16 +1,16 @@
 # Forward validation (paper, simulated fills)
 
-Signals recorded: 97 (84 evidence-eligible, 13 legacy excluded). Event log: verified (216 events). Every fill here is simulated; none is a broker fill.
+Signals recorded: 108 (95 evidence-eligible, 13 legacy excluded). Event log: verified (227 events). Every fill here is simulated; none is a broker fill.
 
-By status: {'expired': 27, 'void': 12, 'rejected': 29, 'open': 4, 'closed': 5, 'pending': 7}.
+By status: {'expired': 27, 'void': 12, 'rejected': 35, 'open': 4, 'closed': 5, 'pending': 12}.
 
 Signals not taken, with reasons:
 
 - entry session passed without a trigger: 27
 - entry was simulated on an unfinished session bar; the official bar decides: 3
 - aggregate open-risk budget 1.5% of capital would be exceeded: 18
-- symbol already has an active signal: 29
-- not yet triggered: 7
+- symbol already has an active signal: 35
+- not yet triggered: 12
 
 How the filtered stocks fared:
 
@@ -20,8 +20,8 @@ How the filtered stocks fared:
 - Open, in profit (mark-to-market): 3 (avg +0.66R)
 - Open, at a loss (mark-to-market): 1 (avg -0.22R)
 - Never triggered (buy-stop not reached): 27
-- Waiting for entry session: 7
-- Not tradable (rejected, cancelled or void): 41
+- Waiting for entry session: 12
+- Not tradable (rejected, cancelled or void): 47
 
 Closed eligible signals: 5 of 100 needed; first eligible signal 2026-10-14; 182 days required.
 

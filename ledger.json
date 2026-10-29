@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-29T10:32:44+00:00",
+  "updated": "2026-10-29T18:40:53+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -3539,19 +3539,302 @@
       "taken": false,
       "needs_data": false,
       "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "HAL|2026-10-29",
+      "symbol": "HAL",
+      "signal_date": "2026-10-29",
+      "setup": "PULLBACK_EMA20",
+      "score": 84,
+      "in_stockedge": false,
+      "close": 4869.9,
+      "trigger": 4869.9,
+      "stop": 4687.16,
+      "plan_risk": 182.7429,
+      "shares": 15,
+      "risk_amount": 2741.1,
+      "status": "pending",
+      "scan_id": "2bb66430a76d",
+      "provisional": false,
+      "expires_on": "2026-10-30",
+      "simulated": true,
+      "history": [
+        {
+          "from": null,
+          "to": "pending",
+          "reason": "signal recorded",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "taken": false,
+      "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "PNB|2026-10-29",
+      "symbol": "PNB",
+      "signal_date": "2026-10-29",
+      "setup": "BREAKOUT_CONT",
+      "score": 82,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "2bb66430a76d",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "expires_on": "2026-10-30",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "COFORGE|2026-10-29",
+      "symbol": "COFORGE",
+      "signal_date": "2026-10-29",
+      "setup": "TRENDING",
+      "score": 72,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "2bb66430a76d",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "expires_on": "2026-10-30",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "ICICIBANK|2026-10-29",
+      "symbol": "ICICIBANK",
+      "signal_date": "2026-10-29",
+      "setup": "PULLBACK_EMA20",
+      "score": 93,
+      "in_stockedge": false,
+      "close": 1386.6,
+      "trigger": 1389.0,
+      "stop": 1345.0,
+      "plan_risk": 41.598,
+      "shares": 64,
+      "risk_amount": 2816.0,
+      "status": "pending",
+      "scan_id": "2bb66430a76d",
+      "provisional": false,
+      "expires_on": "2026-10-30",
+      "simulated": true,
+      "history": [
+        {
+          "from": null,
+          "to": "pending",
+          "reason": "signal recorded",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "taken": false,
+      "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "TVSMOTOR|2026-10-29",
+      "symbol": "TVSMOTOR",
+      "signal_date": "2026-10-29",
+      "setup": "BREAKOUT_CONT",
+      "score": 89,
+      "in_stockedge": true,
+      "close": 4280.0,
+      "trigger": 4308.1,
+      "stop": 4089.45,
+      "plan_risk": 190.5536,
+      "shares": 12,
+      "risk_amount": 2623.8,
+      "status": "pending",
+      "scan_id": "2bb66430a76d",
+      "provisional": false,
+      "expires_on": "2026-10-30",
+      "simulated": true,
+      "history": [
+        {
+          "from": null,
+          "to": "pending",
+          "reason": "signal recorded",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "taken": false,
+      "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "BOSCHLTD|2026-10-29",
+      "symbol": "BOSCHLTD",
+      "signal_date": "2026-10-29",
+      "setup": "BREAKOUT_CONT",
+      "score": 89,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "2bb66430a76d",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "expires_on": "2026-10-30",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "RAYMOND|2026-10-29",
+      "symbol": "RAYMOND",
+      "signal_date": "2026-10-29",
+      "setup": "TRENDING",
+      "score": 80,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "2bb66430a76d",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "expires_on": "2026-10-30",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "NAVINFLUOR|2026-10-29",
+      "symbol": "NAVINFLUOR",
+      "signal_date": "2026-10-29",
+      "setup": "PULLBACK_EMA50",
+      "score": 75,
+      "in_stockedge": false,
+      "close": 8260.5,
+      "trigger": 8564.5,
+      "stop": 7841.84,
+      "plan_risk": 418.6607,
+      "shares": 3,
+      "risk_amount": 2167.98,
+      "status": "pending",
+      "scan_id": "2bb66430a76d",
+      "provisional": false,
+      "expires_on": "2026-10-30",
+      "simulated": true,
+      "history": [
+        {
+          "from": null,
+          "to": "pending",
+          "reason": "signal recorded",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "taken": false,
+      "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "FEDERALBNK|2026-10-29",
+      "symbol": "FEDERALBNK",
+      "signal_date": "2026-10-29",
+      "setup": "PULLBACK_EMA20",
+      "score": 89,
+      "in_stockedge": false,
+      "close": 347.75,
+      "trigger": 350.85,
+      "stop": 332.66,
+      "plan_risk": 15.0857,
+      "shares": 155,
+      "risk_amount": 2819.45,
+      "status": "pending",
+      "scan_id": "2bb66430a76d",
+      "provisional": false,
+      "expires_on": "2026-10-30",
+      "simulated": true,
+      "history": [
+        {
+          "from": null,
+          "to": "pending",
+          "reason": "signal recorded",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "taken": false,
+      "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "TECHM|2026-10-29",
+      "symbol": "TECHM",
+      "signal_date": "2026-10-29",
+      "setup": "TRENDING",
+      "score": 72,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "2bb66430a76d",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "expires_on": "2026-10-30",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "MPHASIS|2026-10-29",
+      "symbol": "MPHASIS",
+      "signal_date": "2026-10-29",
+      "setup": "TRENDING",
+      "score": 75,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "2bb66430a76d",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-10-29T18:40:53+00:00"
+        }
+      ],
+      "expires_on": "2026-10-30",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
     }
   ],
   "summary": {
     "closed_eligible": 5,
     "first_eligible_signal": "2026-10-14",
-    "signals": 97,
-    "pending": 7,
+    "signals": 108,
+    "pending": 12,
     "open": 5,
     "closed": 9,
     "expired": 34,
     "void": 13,
     "cancelled": 0,
-    "rejected": 29,
+    "rejected": 35,
     "win_rate": 0.0,
     "avg_r": -0.852,
     "total_r": -7.67,
@@ -3595,12 +3878,12 @@
         },
         "waiting": {
           "label": "Waiting for entry session",
-          "n": 7,
+          "n": 12,
           "avg_r": null
         },
         "not_tradable": {
           "label": "Not tradable (rejected, cancelled or void)",
-          "n": 41,
+          "n": 47,
           "avg_r": null
         }
       },
@@ -3666,13 +3949,15 @@
     "8cf7a5a9e706",
     "3177196f294e",
     "443428cf1085",
-    "f40233922f91"
+    "f40233922f91",
+    "2bb66430a76d"
   ],
-  "last_cutoff": "2026-10-28",
+  "last_cutoff": "2026-10-29",
   "last_ingest": {
-    "scan_id": "a8c7fe9e502f",
-    "accepted": 0,
-    "blocked": "scan data not trusted (not actionable): 4 symbols (2.5%) have critical data errors (limit 2%)"
+    "scan_id": "2bb66430a76d",
+    "accepted": 5,
+    "rejected": 6,
+    "blocked": null
   },
   "reconciliation": {
     "ok": false,
@@ -3693,23 +3978,23 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-29T10:32:44+00:00"
+    "checked": "2026-10-29T18:40:53+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-29T10:32:46+00:00",
-    "commit_sha": "3fe92cbdc4ee8e8629bea4f8012458f7be1ab961",
+    "generated_at": "2026-10-29T18:40:55+00:00",
+    "commit_sha": "6a8dee515f02893f0d639e297cb64a28ba3e77c3",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-28",
+    "data_cutoff": "2026-10-29",
     "source_ids": {
-      "results": "4a79e636b794"
+      "results": "fc2cab0b5201"
     },
-    "scan_id": "a8c7fe9e502f"
+    "scan_id": "2bb66430a76d"
   },
   "duplicates_skipped": 164
 }

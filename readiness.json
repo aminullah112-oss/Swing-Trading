@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T10:32:47+00:00",
+  "generated": "2026-10-29T18:40:56+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -148,8 +148,8 @@
       "status": "fail",
       "earned": 0.0,
       "value": "FAIL",
-      "threshold": "trusted data",
-      "detail": "latest scan data UNTRUSTED (no actionable signals): 4 symbols (2.5%) have critical data errors (limit 2%)",
+      "threshold": "OK/WARN",
+      "detail": "health DEGRADED/FAIL earns no operations credit",
       "evidence_state": "failed"
     },
     {
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "4a79e636b794",
-    "ledger": "98729e6237e1",
-    "health": "d8945fccec49",
+    "results": "fc2cab0b5201",
+    "ledger": "37223f86b141",
+    "health": "5060bdc81fdf",
     "grid": "da34195fa567",
     "benchmarks": "3497ed346d45",
     "universe": "5abb1e65293b",
@@ -185,19 +185,19 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-10-29T10:32:47+00:00",
-    "commit_sha": "3fe92cbdc4ee8e8629bea4f8012458f7be1ab961",
+    "generated_at": "2026-10-29T18:40:56+00:00",
+    "commit_sha": "6a8dee515f02893f0d639e297cb64a28ba3e77c3",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-28",
+    "data_cutoff": "2026-10-29",
     "source_ids": {
-      "results": "4a79e636b794",
-      "ledger": "98729e6237e1",
-      "health": "d8945fccec49",
+      "results": "fc2cab0b5201",
+      "ledger": "37223f86b141",
+      "health": "5060bdc81fdf",
       "grid": "da34195fa567",
       "benchmarks": "3497ed346d45",
       "universe": "5abb1e65293b",

@@ -1,22 +1,22 @@
 {
   "all_fills_simulated": true,
-  "signals_total": 97,
-  "evidence_eligible": 84,
+  "signals_total": 108,
+  "evidence_eligible": 95,
   "legacy_excluded": 13,
   "by_status": {
     "expired": 27,
     "void": 12,
-    "rejected": 29,
+    "rejected": 35,
     "open": 4,
     "closed": 5,
-    "pending": 7
+    "pending": 12
   },
   "not_taken_reasons": {
     "entry session passed without a trigger": 27,
     "entry was simulated on an unfinished session bar; the official bar decides": 3,
     "aggregate open-risk budget 1.5% of capital would be exceeded": 18,
-    "symbol already has an active signal": 29,
-    "not yet triggered": 7
+    "symbol already has an active signal": 35,
+    "not yet triggered": 12
   },
   "closed": 5,
   "forward_avg_r_incl_open": -0.33322222222222225,
@@ -70,12 +70,12 @@
       },
       "waiting": {
         "label": "Waiting for entry session",
-        "n": 7,
+        "n": 12,
         "avg_r": null
       },
       "not_tradable": {
         "label": "Not tradable (rejected, cancelled or void)",
-        "n": 41,
+        "n": 47,
         "avg_r": null
       }
     },
@@ -106,7 +106,7 @@
   },
   "event_log": {
     "verified": true,
-    "events": 216,
+    "events": 227,
     "problem": null
   },
   "reconciliation": {
@@ -128,6 +128,6 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-29T10:32:44+00:00"
+    "checked": "2026-10-29T18:40:53+00:00"
   }
 }
