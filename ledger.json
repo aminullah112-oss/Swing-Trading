@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-10-29T20:39:23+00:00",
+  "updated": "2026-10-30T10:34:09+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -212,10 +212,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 1886.78,
-      "mark_price": 1961.9,
-      "unrealized_r": 0.79,
+      "mark_price": 1962.0,
+      "unrealized_r": 0.791,
       "exit_signal": false,
-      "days_held": 11,
+      "days_held": 12,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -1667,10 +1667,10 @@
       "taken": false,
       "entry_date": "2026-10-19",
       "entry": 120.99,
-      "mark_price": 120.31,
-      "unrealized_r": -0.216,
+      "mark_price": 123.9,
+      "unrealized_r": 0.488,
       "exit_signal": false,
-      "days_held": 7,
+      "days_held": 8,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -2884,10 +2884,10 @@
       "taken": false,
       "entry_date": "2026-10-26",
       "entry": 2011.61,
-      "mark_price": 2181.9,
-      "unrealized_r": 1.918,
+      "mark_price": 2244.0,
+      "unrealized_r": 2.648,
       "exit_signal": false,
-      "days_held": 3,
+      "days_held": 4,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3130,10 +3130,10 @@
       "provisional": false,
       "entry_date": "2026-10-28",
       "entry": 9515.01,
-      "mark_price": 9558.5,
-      "unrealized_r": 0.027,
+      "mark_price": 9664.0,
+      "unrealized_r": 0.301,
       "exit_signal": false,
-      "days_held": 1,
+      "days_held": 2,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3194,10 +3194,10 @@
       "taken": false,
       "entry_date": "2026-10-28",
       "entry": 1636.63,
-      "mark_price": 1644.8,
-      "unrealized_r": 0.035,
+      "mark_price": 1659.9,
+      "unrealized_r": 0.249,
       "exit_signal": false,
-      "days_held": 1,
+      "days_held": 2,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3318,7 +3318,7 @@
       "plan_risk": 94.6636,
       "shares": 25,
       "risk_amount": 2814.0,
-      "status": "pending",
+      "status": "open",
       "scan_id": "443428cf1085",
       "provisional": false,
       "expires_on": "2026-10-29",
@@ -3329,11 +3329,22 @@
           "to": "pending",
           "reason": "signal recorded",
           "ts": "2026-10-28T18:32:23+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "open",
+          "reason": "buy-stop triggered",
+          "ts": "2026-10-30T10:34:09+00:00"
         }
       ],
       "taken": false,
-      "needs_data": false,
-      "not_taken_reason": "not yet triggered"
+      "entry_date": "2026-10-29",
+      "entry": 1796.29,
+      "mark_price": 1769.6,
+      "unrealized_r": -0.347,
+      "exit_signal": false,
+      "days_held": 1,
+      "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
       "id": "MPHASIS|2026-10-28",
@@ -3348,7 +3359,7 @@
       "plan_risk": 143.6893,
       "shares": 14,
       "risk_amount": 2654.26,
-      "status": "pending",
+      "status": "expired",
       "scan_id": "443428cf1085",
       "provisional": false,
       "expires_on": "2026-10-29",
@@ -3359,11 +3370,17 @@
           "to": "pending",
           "reason": "signal recorded",
           "ts": "2026-10-28T18:32:23+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "expired",
+          "reason": "entry session passed without the buy-stop triggering",
+          "ts": "2026-10-30T10:34:09+00:00"
         }
       ],
       "taken": false,
-      "needs_data": false,
-      "not_taken_reason": "not yet triggered"
+      "expired_reason": "trigger_not_hit",
+      "not_taken_reason": "entry session passed without a trigger"
     },
     {
       "id": "HAL|2026-10-28",
@@ -3470,7 +3487,7 @@
       "plan_risk": 1659.6429,
       "shares": 1,
       "risk_amount": 1659.64,
-      "status": "pending",
+      "status": "open",
       "scan_id": "443428cf1085",
       "provisional": false,
       "expires_on": "2026-10-29",
@@ -3481,11 +3498,22 @@
           "to": "pending",
           "reason": "signal recorded",
           "ts": "2026-10-28T18:32:23+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "open",
+          "reason": "buy-stop triggered",
+          "ts": "2026-10-30T10:34:09+00:00"
         }
       ],
       "taken": false,
-      "needs_data": false,
-      "not_taken_reason": "not yet triggered"
+      "entry_date": "2026-10-29",
+      "entry": 47672.62,
+      "mark_price": 47565.0,
+      "unrealized_r": -0.165,
+      "exit_signal": false,
+      "days_held": 1,
+      "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
       "id": "PNB|2026-10-28",
@@ -3523,7 +3551,7 @@
       "plan_risk": 111.3964,
       "shares": 22,
       "risk_amount": 2800.6,
-      "status": "pending",
+      "status": "open",
       "scan_id": "443428cf1085",
       "provisional": false,
       "expires_on": "2026-10-29",
@@ -3534,11 +3562,22 @@
           "to": "pending",
           "reason": "signal recorded",
           "ts": "2026-10-28T18:32:23+00:00"
+        },
+        {
+          "from": "pending",
+          "to": "open",
+          "reason": "buy-stop triggered",
+          "ts": "2026-10-30T10:34:09+00:00"
         }
       ],
       "taken": false,
-      "needs_data": false,
-      "not_taken_reason": "not yet triggered"
+      "entry_date": "2026-10-29",
+      "entry": 1979.78,
+      "mark_price": 1962.0,
+      "unrealized_r": -0.221,
+      "exit_signal": false,
+      "days_held": 1,
+      "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
       "id": "HAL|2026-10-29",
@@ -3567,6 +3606,7 @@
         }
       ],
       "taken": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -3642,6 +3682,7 @@
         }
       ],
       "taken": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -3671,6 +3712,7 @@
         }
       ],
       "taken": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -3746,6 +3788,7 @@
         }
       ],
       "taken": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -3775,6 +3818,7 @@
         }
       ],
       "taken": false,
+      "needs_data": false,
       "not_taken_reason": "not yet triggered"
     },
     {
@@ -3828,22 +3872,22 @@
     "closed_eligible": 5,
     "first_eligible_signal": "2026-10-14",
     "signals": 108,
-    "pending": 12,
-    "open": 5,
+    "pending": 8,
+    "open": 8,
     "closed": 9,
-    "expired": 34,
+    "expired": 35,
     "void": 13,
     "cancelled": 0,
     "rejected": 35,
     "win_rate": 0.0,
     "avg_r": -0.852,
     "total_r": -7.67,
-    "open_unrealized_r": 2.55,
+    "open_unrealized_r": 3.74,
     "taken_closed": 0,
     "taken_pnl_inr": 0,
     "avg_r_ci95": null,
-    "avg_r_incl_open": -0.365,
-    "total_r_incl_open": -5.12,
+    "avg_r_incl_open": -0.231,
+    "total_r_incl_open": -3.93,
     "outcomes": {
       "classes": {
         "won": {
@@ -3863,22 +3907,22 @@
         },
         "open_profit": {
           "label": "Open, in profit (mark-to-market)",
-          "n": 3,
-          "avg_r": 0.66
+          "n": 4,
+          "avg_r": 0.922
         },
         "open_loss": {
           "label": "Open, at a loss (mark-to-market)",
-          "n": 1,
-          "avg_r": -0.216
+          "n": 3,
+          "avg_r": -0.244
         },
         "never_triggered": {
           "label": "Never triggered (buy-stop not reached)",
-          "n": 27,
+          "n": 28,
           "avg_r": null
         },
         "waiting": {
           "label": "Waiting for entry session",
-          "n": 12,
+          "n": 8,
           "avg_r": null
         },
         "not_tradable": {
@@ -3887,26 +3931,31 @@
           "avg_r": null
         }
       },
-      "entered": 9,
+      "entered": 12,
       "closed": 5,
       "closed_win_rate": 0.0,
       "entered_in_profit_rate": 0.333,
-      "trigger_rate": 0.25,
+      "trigger_rate": 0.3,
       "by_setup": {
         "PULLBACK_EMA20": {
-          "entered": 5,
-          "good": 1,
-          "hit_rate": 0.2
+          "entered": 6,
+          "good": 2,
+          "hit_rate": 0.333
         },
         "TRENDING": {
-          "entered": 3,
+          "entered": 4,
           "good": 1,
-          "hit_rate": 0.333
+          "hit_rate": 0.25
         },
         "PULLBACK_EMA50": {
           "entered": 1,
           "good": 1,
           "hit_rate": 1.0
+        },
+        "BREAKOUT_CONT": {
+          "entered": 1,
+          "good": 0,
+          "hit_rate": 0.0
         }
       },
       "legacy_excluded": 13,
@@ -3955,10 +4004,9 @@
   ],
   "last_cutoff": "2026-10-29",
   "last_ingest": {
-    "scan_id": "17a26cca5d0c",
+    "scan_id": "5a52b67bccef",
     "accepted": 0,
-    "rejected": 0,
-    "blocked": null
+    "blocked": "scan data not trusted (not actionable): 4 symbols (2.5%) have critical data errors (limit 2%)"
   },
   "reconciliation": {
     "ok": false,
@@ -3979,12 +4027,12 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-10-29T20:39:23+00:00"
+    "checked": "2026-10-30T10:34:09+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-10-29T20:39:24+00:00",
-    "commit_sha": "02621389436a5ececfd26df28cdd8a268890ccbc",
+    "generated_at": "2026-10-30T10:34:10+00:00",
+    "commit_sha": "bf86a195eafaa94364eec7cb6e9e14cd73ed70a6",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -3993,9 +4041,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-29",
     "source_ids": {
-      "results": "ef27ef3c9b48"
+      "results": "ff08051e7846"
     },
-    "scan_id": "17a26cca5d0c"
+    "scan_id": "5a52b67bccef"
   },
   "duplicates_skipped": 175
 }

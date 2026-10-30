@@ -1,6 +1,6 @@
 {
   "verdict": "NO-GO",
-  "generated": "2026-10-29T20:39:26+00:00",
+  "generated": "2026-10-30T10:34:13+00:00",
   "checks": [
     {
       "id": "P1",
@@ -17,8 +17,8 @@
     {
       "id": "P3",
       "level": "block",
-      "ok": true,
-      "msg": "data quality TRUSTED"
+      "ok": false,
+      "msg": "data quality UNTRUSTED: 4 symbols (2.5%) have critical data errors (limit 2%)"
     },
     {
       "id": "P4",
@@ -30,7 +30,7 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (227 events)"
+      "msg": "event log verified (232 events)"
     },
     {
       "id": "P6",
@@ -74,7 +74,7 @@
     {
       "symbol": "*",
       "reasons": [
-        "entries blocked: health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data"
+        "entries blocked: data quality UNTRUSTED: 4 symbols (2.5%) have critical data errors (limit 2%); health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data"
       ]
     }
   ],

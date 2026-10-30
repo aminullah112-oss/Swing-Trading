@@ -5,12 +5,12 @@
     "manage_exits": false,
     "ops_credit": false
   },
-  "generated": "2026-10-29T20:39:24+00:00",
+  "generated": "2026-10-30T10:34:11+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-29 (0 days old)"
+      "msg": "market data through 2026-10-29 (1 days old)"
     },
     {
       "id": "H2",
@@ -39,13 +39,13 @@
     },
     {
       "id": "H10",
-      "level": "warn",
-      "msg": "data trusted: 99% official-bar coverage; 3 symbol(s) quarantined (KAJARIACER, SHRIRAMFIN, VEDL)"
+      "level": "degraded",
+      "msg": "market data UNTRUSTED, no actionable signals: 4 symbols (2.5%) have critical data errors (limit 2%)"
     },
     {
       "id": "H15",
       "level": "warn",
-      "msg": "nse bhavcopy (udiff): compared 0, 0 close and 0 adjustment mismatches, 157 bar(s) filled from NSE because Yahoo lagged"
+      "msg": "nse bhavcopy (udiff): compared 159, 2 close and 2 adjustment mismatches"
     },
     {
       "id": "H11",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (227 events)"
+      "msg": "event log verified (232 events)"
     },
     {
       "id": "H13b",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-29T20:39:24+00:00",
-    "commit_sha": "02621389436a5ececfd26df28cdd8a268890ccbc",
+    "generated_at": "2026-10-30T10:34:11+00:00",
+    "commit_sha": "bf86a195eafaa94364eec7cb6e9e14cd73ed70a6",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -85,9 +85,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-10-29",
     "source_ids": {
-      "results": "ef27ef3c9b48",
-      "ledger": "53d7fc576a92",
-      "events": "a13cb17c16d6"
+      "results": "ff08051e7846",
+      "ledger": "8897ae27b38f",
+      "events": "0bdf391ec782"
     }
   }
 }
