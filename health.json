@@ -5,12 +5,12 @@
     "manage_exits": false,
     "ops_credit": false
   },
-  "generated": "2026-10-30T10:34:11+00:00",
+  "generated": "2026-10-30T18:16:38+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-10-29 (1 days old)"
+      "msg": "market data through 2026-10-30 (0 days old)"
     },
     {
       "id": "H2",
@@ -39,13 +39,13 @@
     },
     {
       "id": "H10",
-      "level": "degraded",
-      "msg": "market data UNTRUSTED, no actionable signals: 4 symbols (2.5%) have critical data errors (limit 2%)"
+      "level": "warn",
+      "msg": "data trusted: 100% official-bar coverage; 2 symbol(s) quarantined (RECLTD, VEDL)"
     },
     {
       "id": "H15",
       "level": "warn",
-      "msg": "nse bhavcopy (udiff): compared 159, 2 close and 2 adjustment mismatches"
+      "msg": "nse bhavcopy (udiff): compared 159, 0 close and 1 adjustment mismatches"
     },
     {
       "id": "H11",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (232 events)"
+      "msg": "event log verified (246 events)"
     },
     {
       "id": "H13b",
@@ -75,19 +75,19 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-10-30T10:34:11+00:00",
-    "commit_sha": "bf86a195eafaa94364eec7cb6e9e14cd73ed70a6",
+    "generated_at": "2026-10-30T18:16:38+00:00",
+    "commit_sha": "8e0de37bd638887475d6db6c0f733b96e8b20bdc",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-29",
+    "data_cutoff": "2026-10-30",
     "source_ids": {
-      "results": "ff08051e7846",
-      "ledger": "8897ae27b38f",
-      "events": "0bdf391ec782"
+      "results": "56de97f55dc3",
+      "ledger": "0c0f013ea06b",
+      "events": "88422e0fabd4"
     }
   }
 }

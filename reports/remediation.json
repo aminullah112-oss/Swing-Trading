@@ -128,7 +128,7 @@
       "action": "Run the Daily Stock Screen on a day the vendor has published the official bars; health must be OK/WARN with trusted data and consistent artefacts.",
       "depends_on": "Vendor publishes daily bars; Yahoo reachable from Actions.",
       "acceptance": "health OK/WARN, data_quality TRUSTED, no inconsistencies.",
-      "detail": "latest scan data UNTRUSTED (no actionable signals): 4 symbols (2.5%) have critical data errors (limit 2%)"
+      "detail": "health DEGRADED/FAIL earns no operations credit"
     },
     {
       "id": "R1",
