@@ -2,24 +2,24 @@
   "symbols": 159,
   "full": {
     "equal_weight": {
-      "cagr_pct": 19.3,
+      "cagr_pct": 19.6,
       "max_drawdown_pct": -38.0
     },
     "nifty": {
-      "cagr_pct": 10.0,
+      "cagr_pct": 10.3,
       "max_drawdown_pct": -38.4
     },
     "universe_excess_cagr_pct": 9.3
   },
   "holdout": {
     "equal_weight": {
-      "cagr_pct": 16.2,
+      "cagr_pct": 16.8,
       "max_drawdown_pct": -20.7
     },
     "nifty": {
-      "cagr_pct": 6.0,
+      "cagr_pct": 6.5,
       "max_drawdown_pct": -15.8
     },
-    "universe_excess_cagr_pct": 10.2
+    "universe_excess_cagr_pct": 10.3
   }
 }
