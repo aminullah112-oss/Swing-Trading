@@ -1,8 +1,8 @@
 {
-  "scan_id": "9ebf42d0a59d",
-  "timestamp": "2026-11-02T21:57:24.245074+00:00",
+  "scan_id": "149073fdb69d",
+  "timestamp": "2026-11-02T23:14:16.036944+00:00",
   "scan_date": "2026-11-03",
-  "scan_time": "03:27:24 IST",
+  "scan_time": "04:44:16 IST",
   "data_cutoff": "2026-11-02",
   "expected_session": "2026-11-02",
   "sessions_behind": 0,
@@ -30,7 +30,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-02",
-      "retrieved_at": "2026-11-02T21:57:24+00:00",
+      "retrieved_at": "2026-11-02T23:14:16+00:00",
       "compared": 0,
       "filled": [
         "RELIANCE",
@@ -245,7 +245,7 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-02T21:57:24+00:00",
+    "retrieved_at": "2026-11-02T23:14:16+00:00",
     "frame_last_row": "2026-11-02",
     "rows": 494,
     "non_null_closes_on_last_row": 0,
@@ -575,7 +575,7 @@
         ],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -958,7 +958,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1338,7 +1338,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1718,7 +1718,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2098,7 +2098,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2478,7 +2478,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2858,7 +2858,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -3240,7 +3240,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -3622,7 +3622,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -4004,7 +4004,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4384,7 +4384,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4764,7 +4764,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-02T21:57:24.245074+00:00",
+      "timestamp": "2026-11-02T23:14:16.036944+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4873,8 +4873,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-02T21:57:29+00:00",
-    "commit_sha": "acf5ea224f287bba3c1788fa61203f754b582b47",
+    "generated_at": "2026-11-02T23:14:22+00:00",
+    "commit_sha": "4652aade3387f22fe43ebb95763eafb9bbfc460d",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
