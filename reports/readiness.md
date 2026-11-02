@@ -1,6 +1,6 @@
 # Readiness scorecard: 1.0/10 — PAPER ONLY
 
-Generated 2026-11-01T08:46:25+00:00. Live risk allowed: **0.0%** per trade.
+Generated 2026-11-02T10:59:50+00:00. Live risk allowed: **0.0%** per trade.
 
 | Gate | Points | Status | Value / detail |
 |---|---|---|---|
@@ -8,9 +8,9 @@ Generated 2026-11-01T08:46:25+00:00. Live risk allowed: **0.0%** per trade.
 | U1 Beats buy-and-hold of the same universe AND a momentum-30 replica per unit of drawdown (hold-out) **(critical)** | 0/1 | ❌ fail | strategy 0.53 vs universe buy-and-hold 0.81, momentum-30 replica 1.02 — hold-out CAGR 7.8% / DD -14.8% (reports/benchmarks.md) |
 | B2 Survivorship-free backtest passes the same gates (attested) **(critical)** | 0/1.5 | 🖐 not attested | survivorship bias remains: no point-in-time membership file (EDGE_PIT_UNIVERSE); results are survivorship-biased (attestations.json: survivorship_free_backtest_passed also required) |
 | F1 At least 100 closed forward signals | 0/1 | ❌ fail | 5 — 4 legacy closed signal(s) excluded |
-| F2 At least 182 days of forward record | 0/1 | ❌ fail | 18 |
-| F3 Forward expectancy (closed + open) has a 95% CI lower bound above 0 **(critical)** | 0/1.5 | ⏳ not enough data | needs 100+ closed signals and 182+ days first (have 5, 18) |
-| F4 Forward expectancy is not clearly below the backtest design-period figure **(critical)** | 0/1 | ⏳ not enough data | needs 100+ closed signals and 182+ days first (have 5, 18) |
+| F2 At least 182 days of forward record | 0/1 | ❌ fail | 19 |
+| F3 Forward expectancy (closed + open) has a 95% CI lower bound above 0 **(critical)** | 0/1.5 | ⏳ not enough data | needs 100+ closed signals and 182+ days first (have 5, 19) |
+| F4 Forward expectancy is not clearly below the backtest design-period figure **(critical)** | 0/1 | ⏳ not enough data | needs 100+ closed signals and 182+ days first (have 5, 19) |
 | E1 At least 30 live fills with slippage within 2x the model **(critical)** | 0/1 | ⏳ not enough data | {'n_entries': 0, 'n_exits': 0, 'entry_slip_bps': None, 'exit_slip_bps': None} |
 | S1 Forward record includes a >=10% Nifty drawdown, rules followed (attested) | 0/0.5 | 🖐 not attested | attestations.json: market_stress_observed |
 | O1 Operations healthy: no health FAIL and no data lag | 0/0.5 | ❌ fail | FAIL — health DEGRADED/FAIL earns no operations credit |
