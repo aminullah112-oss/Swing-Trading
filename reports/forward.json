@@ -4,25 +4,25 @@
   "evidence_eligible": 137,
   "legacy_excluded": 13,
   "by_status": {
-    "expired": 37,
+    "expired": 38,
     "void": 15,
     "rejected": 62,
     "open": 12,
     "closed": 5,
-    "pending": 6
+    "pending": 5
   },
   "not_taken_reasons": {
-    "entry session passed without a trigger": 37,
+    "entry session passed without a trigger": 38,
     "entry was simulated on an unfinished session bar; the official bar decides": 3,
     "aggregate open-risk budget 1.5% of capital would be exceeded": 29,
     "symbol already has an active signal": 62,
-    "not yet triggered": 6
+    "not yet triggered": 5
   },
   "closed": 5,
-  "forward_avg_r_incl_open": 0.15452941176470586,
+  "forward_avg_r_incl_open": 0.2567058823529412,
   "forward_avg_r_ci95_clustered": [
-    0.042,
-    0.201
+    0.175,
+    0.291
   ],
   "effective_independent_months": 2,
   "rolling_expectancy_last_closed": {},
@@ -55,22 +55,22 @@
       },
       "open_profit": {
         "label": "Open, in profit (mark-to-market)",
-        "n": 8,
-        "avg_r": 1.02
+        "n": 10,
+        "avg_r": 1.026
       },
       "open_loss": {
         "label": "Open, at a loss (mark-to-market)",
-        "n": 4,
-        "avg_r": -0.193
+        "n": 2,
+        "avg_r": -0.566
       },
       "never_triggered": {
         "label": "Never triggered (buy-stop not reached)",
-        "n": 37,
+        "n": 38,
         "avg_r": null
       },
       "waiting": {
         "label": "Waiting for entry session",
-        "n": 6,
+        "n": 5,
         "avg_r": null
       },
       "not_tradable": {
@@ -82,18 +82,18 @@
     "entered": 17,
     "closed": 5,
     "closed_win_rate": 0.0,
-    "entered_in_profit_rate": 0.471,
-    "trigger_rate": 0.315,
+    "entered_in_profit_rate": 0.588,
+    "trigger_rate": 0.309,
     "by_setup": {
       "PULLBACK_EMA20": {
         "entered": 8,
-        "good": 3,
-        "hit_rate": 0.375
+        "good": 4,
+        "hit_rate": 0.5
       },
       "TRENDING": {
         "entered": 5,
-        "good": 1,
-        "hit_rate": 0.2
+        "good": 2,
+        "hit_rate": 0.4
       },
       "PULLBACK_EMA50": {
         "entered": 2,
@@ -111,7 +111,7 @@
   },
   "event_log": {
     "verified": true,
-    "events": 302,
+    "events": 303,
     "problem": null
   },
   "reconciliation": {
@@ -133,6 +133,6 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-11-04T21:32:01+00:00"
+    "checked": "2026-11-05T10:50:47+00:00"
   }
 }
