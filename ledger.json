@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-11-05T10:50:47+00:00",
+  "updated": "2026-11-05T20:19:16+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -5146,19 +5146,209 @@
       "expires_on": "2026-11-05",
       "taken": false,
       "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "MPHASIS|2026-11-05",
+      "symbol": "MPHASIS",
+      "signal_date": "2026-11-05",
+      "setup": "PULLBACK_EMA20",
+      "score": 99,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "9f528ed376e9",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-11-05T20:19:16+00:00"
+        }
+      ],
+      "expires_on": "2026-11-06",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "MOTHERSON|2026-11-05",
+      "symbol": "MOTHERSON",
+      "signal_date": "2026-11-05",
+      "setup": "BREAKOUT_CONT",
+      "score": 89,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "9f528ed376e9",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-11-05T20:19:16+00:00"
+        }
+      ],
+      "expires_on": "2026-11-06",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "FEDERALBNK|2026-11-05",
+      "symbol": "FEDERALBNK",
+      "signal_date": "2026-11-05",
+      "setup": "PULLBACK_EMA20",
+      "score": 87,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "9f528ed376e9",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-11-05T20:19:16+00:00"
+        }
+      ],
+      "expires_on": "2026-11-06",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "HAL|2026-11-05",
+      "symbol": "HAL",
+      "signal_date": "2026-11-05",
+      "setup": "TRENDING",
+      "score": 76,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "9f528ed376e9",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-11-05T20:19:16+00:00"
+        }
+      ],
+      "expires_on": "2026-11-06",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "GLENMARK|2026-11-05",
+      "symbol": "GLENMARK",
+      "signal_date": "2026-11-05",
+      "setup": "TRENDING",
+      "score": 75,
+      "in_stockedge": false,
+      "close": 2481.8,
+      "trigger": 2542.2,
+      "stop": 2369.55,
+      "plan_risk": 112.2535,
+      "shares": 16,
+      "risk_amount": 2762.4,
+      "status": "pending",
+      "scan_id": "9f528ed376e9",
+      "provisional": false,
+      "expires_on": "2026-11-06",
+      "simulated": true,
+      "history": [
+        {
+          "from": null,
+          "to": "pending",
+          "reason": "signal recorded",
+          "ts": "2026-11-05T20:19:16+00:00"
+        }
+      ],
+      "taken": false,
+      "not_taken_reason": "not yet triggered"
+    },
+    {
+      "id": "PNB|2026-11-05",
+      "symbol": "PNB",
+      "signal_date": "2026-11-05",
+      "setup": "BREAKOUT_CONT",
+      "score": 82,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "9f528ed376e9",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-11-05T20:19:16+00:00"
+        }
+      ],
+      "expires_on": "2026-11-06",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "HCLTECH|2026-11-05",
+      "symbol": "HCLTECH",
+      "signal_date": "2026-11-05",
+      "setup": "TRENDING",
+      "score": 78,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "9f528ed376e9",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-11-05T20:19:16+00:00"
+        }
+      ],
+      "expires_on": "2026-11-06",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
+    },
+    {
+      "id": "RAYMOND|2026-11-05",
+      "symbol": "RAYMOND",
+      "signal_date": "2026-11-05",
+      "setup": "TRENDING",
+      "score": 79,
+      "status": "rejected",
+      "reject_reason": "symbol already has an active signal",
+      "scan_id": "9f528ed376e9",
+      "shares": 0,
+      "risk_amount": 0.0,
+      "history": [
+        {
+          "from": null,
+          "to": "rejected",
+          "reason": "symbol already has an active signal",
+          "ts": "2026-11-05T20:19:16+00:00"
+        }
+      ],
+      "expires_on": "2026-11-06",
+      "taken": false,
+      "not_taken_reason": "symbol already has an active signal"
     }
   ],
   "summary": {
     "closed_eligible": 5,
     "first_eligible_signal": "2026-10-14",
-    "signals": 150,
-    "pending": 5,
+    "signals": 158,
+    "pending": 6,
     "open": 13,
     "closed": 9,
     "expired": 45,
     "void": 16,
     "cancelled": 0,
-    "rejected": 62,
+    "rejected": 69,
     "win_rate": 0.0,
     "avg_r": -0.852,
     "total_r": -7.67,
@@ -5202,12 +5392,12 @@
         },
         "waiting": {
           "label": "Waiting for entry session",
-          "n": 5,
+          "n": 6,
           "avg_r": null
         },
         "not_tradable": {
           "label": "Not tradable (rejected, cancelled or void)",
-          "n": 77,
+          "n": 84,
           "avg_r": null
         }
       },
@@ -5291,13 +5481,14 @@
     "8560d903aefe",
     "acda71209a98",
     "1a50b0b2e0b3",
-    "606281860f5b"
+    "606281860f5b",
+    "9f528ed376e9"
   ],
-  "last_cutoff": "2026-11-04",
+  "last_cutoff": "2026-11-05",
   "last_ingest": {
-    "scan_id": "606281860f5b",
-    "accepted": 0,
-    "rejected": 0,
+    "scan_id": "9f528ed376e9",
+    "accepted": 1,
+    "rejected": 7,
     "blocked": null
   },
   "reconciliation": {
@@ -5319,23 +5510,23 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-11-05T10:50:47+00:00"
+    "checked": "2026-11-05T20:19:16+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-11-05T10:50:49+00:00",
-    "commit_sha": "22fb19214ac44ba39887efc07aea477c252a0f97",
+    "generated_at": "2026-11-05T20:19:18+00:00",
+    "commit_sha": "d7b2f2444b24755655349a70bef2ecb2fe667750",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-11-04",
+    "data_cutoff": "2026-11-05",
     "source_ids": {
-      "results": "913580c42df9"
+      "results": "718e8dbfe6c3"
     },
-    "scan_id": "606281860f5b"
+    "scan_id": "9f528ed376e9"
   },
   "duplicates_skipped": 240
 }
