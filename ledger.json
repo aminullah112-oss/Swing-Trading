@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-11-06T11:03:42+00:00",
+  "updated": "2026-11-06T19:44:16+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -212,10 +212,10 @@
       ],
       "entry_date": "2026-10-13",
       "entry": 1886.78,
-      "mark_price": 2076.0,
-      "unrealized_r": 2.104,
+      "mark_price": 2079.0,
+      "unrealized_r": 2.139,
       "exit_signal": false,
-      "days_held": 18,
+      "days_held": 17,
       "not_taken_reason": "legacy record: kept as history, holds no risk budget"
     },
     {
@@ -1667,10 +1667,10 @@
       "taken": false,
       "entry_date": "2026-10-19",
       "entry": 120.99,
-      "mark_price": 126.55,
-      "unrealized_r": 1.008,
+      "mark_price": 126.1,
+      "unrealized_r": 0.92,
       "exit_signal": false,
-      "days_held": 14,
+      "days_held": 13,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -2884,10 +2884,10 @@
       "taken": false,
       "entry_date": "2026-10-26",
       "entry": 2010.75,
-      "mark_price": 2340.0,
-      "unrealized_r": 3.787,
+      "mark_price": 2345.0,
+      "unrealized_r": 3.846,
       "exit_signal": false,
-      "days_held": 10,
+      "days_held": 9,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3130,10 +3130,10 @@
       "provisional": false,
       "entry_date": "2026-10-28",
       "entry": 9515.01,
-      "mark_price": 10320.5,
-      "unrealized_r": 2.006,
+      "mark_price": 10140.5,
+      "unrealized_r": 1.539,
       "exit_signal": false,
-      "days_held": 8,
+      "days_held": 7,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3194,10 +3194,10 @@
       "taken": false,
       "entry_date": "2026-10-28",
       "entry": 1636.63,
-      "mark_price": 1800.0,
-      "unrealized_r": 2.239,
+      "mark_price": 1785.0,
+      "unrealized_r": 2.026,
       "exit_signal": false,
-      "days_held": 8,
+      "days_held": 7,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3340,10 +3340,10 @@
       "taken": false,
       "entry_date": "2026-10-29",
       "entry": 1796.29,
-      "mark_price": 1831.0,
-      "unrealized_r": 0.3,
+      "mark_price": 1822.7,
+      "unrealized_r": 0.212,
       "exit_signal": false,
-      "days_held": 7,
+      "days_held": 6,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3509,10 +3509,10 @@
       "taken": false,
       "entry_date": "2026-10-29",
       "entry": 47672.62,
-      "mark_price": 50700.0,
-      "unrealized_r": 1.72,
+      "mark_price": 52475.0,
+      "unrealized_r": 2.787,
       "exit_signal": false,
-      "days_held": 7,
+      "days_held": 6,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3573,10 +3573,10 @@
       "taken": false,
       "entry_date": "2026-10-29",
       "entry": 1979.78,
-      "mark_price": 2076.0,
-      "unrealized_r": 0.8,
+      "mark_price": 2079.0,
+      "unrealized_r": 0.827,
       "exit_signal": false,
-      "days_held": 7,
+      "days_held": 6,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -3991,10 +3991,10 @@
       "taken": false,
       "entry_date": "2026-11-02",
       "entry": 4873.67,
-      "mark_price": 4980.0,
-      "unrealized_r": 0.497,
+      "mark_price": 5043.0,
+      "unrealized_r": 0.847,
       "exit_signal": false,
-      "days_held": 5,
+      "days_held": 4,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -4301,10 +4301,10 @@
       "provisional": false,
       "entry_date": "2026-11-03",
       "entry": 1404.4,
-      "mark_price": 1571.2,
-      "unrealized_r": 3.881,
+      "mark_price": 1500.0,
+      "unrealized_r": 2.174,
       "exit_signal": false,
-      "days_held": 4,
+      "days_held": 3,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -4411,10 +4411,10 @@
       "provisional": false,
       "entry_date": "2026-11-03",
       "entry": 4307.0,
-      "mark_price": 4491.7,
-      "unrealized_r": 0.888,
+      "mark_price": 4450.0,
+      "unrealized_r": 0.67,
       "exit_signal": false,
-      "days_held": 4,
+      "days_held": 3,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -4480,10 +4480,10 @@
       "provisional": false,
       "entry_date": "2026-11-03",
       "entry": 2588.39,
-      "mark_price": 2520.0,
-      "unrealized_r": -0.555,
+      "mark_price": 2510.0,
+      "unrealized_r": -0.627,
       "exit_signal": false,
-      "days_held": 4,
+      "days_held": 3,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -4631,10 +4631,10 @@
       "taken": false,
       "entry_date": "2026-11-03",
       "entry": 2040.34,
-      "mark_price": 2154.9,
-      "unrealized_r": 1.182,
+      "mark_price": 2126.0,
+      "unrealized_r": 0.864,
       "exit_signal": false,
-      "days_held": 4,
+      "days_held": 3,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -4961,10 +4961,10 @@
       "taken": false,
       "entry_date": "2026-11-05",
       "entry": 338.84,
-      "mark_price": 340.1,
-      "unrealized_r": 0.005,
+      "mark_price": 338.5,
+      "unrealized_r": -0.097,
       "exit_signal": false,
-      "days_held": 2,
+      "days_held": 1,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -5025,10 +5025,10 @@
       "taken": false,
       "entry_date": "2026-11-05",
       "entry": 1439.74,
-      "mark_price": 1440.0,
-      "unrealized_r": -0.08,
+      "mark_price": 1430.5,
+      "unrealized_r": -0.24,
       "exit_signal": false,
-      "days_held": 2,
+      "days_held": 1,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -5639,12 +5639,12 @@
     "win_rate": 0.0,
     "avg_r": -0.931,
     "total_r": -9.31,
-    "open_unrealized_r": 19.78,
+    "open_unrealized_r": 17.89,
     "taken_closed": 0,
     "taken_pnl_inr": 0,
     "avg_r_ci95": null,
-    "avg_r_incl_open": 0.419,
-    "total_r_incl_open": 10.47,
+    "avg_r_incl_open": 0.343,
+    "total_r_incl_open": 8.58,
     "outcomes": {
       "classes": {
         "won": {
@@ -5664,13 +5664,13 @@
         },
         "open_profit": {
           "label": "Open, in profit (mark-to-market)",
-          "n": 12,
-          "avg_r": 1.526
+          "n": 11,
+          "avg_r": 1.519
         },
         "open_loss": {
           "label": "Open, at a loss (mark-to-market)",
-          "n": 2,
-          "avg_r": -0.318
+          "n": 3,
+          "avg_r": -0.321
         },
         "never_triggered": {
           "label": "Never triggered (buy-stop not reached)",
@@ -5691,13 +5691,13 @@
       "entered": 20,
       "closed": 6,
       "closed_win_rate": 0.0,
-      "entered_in_profit_rate": 0.6,
+      "entered_in_profit_rate": 0.55,
       "trigger_rate": 0.345,
       "by_setup": {
         "PULLBACK_EMA20": {
           "entered": 10,
-          "good": 5,
-          "hit_rate": 0.5
+          "good": 4,
+          "hit_rate": 0.4
         },
         "TRENDING": {
           "entered": 6,
@@ -5771,13 +5771,14 @@
     "606281860f5b",
     "9f528ed376e9",
     "ef10b41389d6",
-    "b0598b48ad1a"
+    "b0598b48ad1a",
+    "9d5d6e2c9283"
   ],
   "last_cutoff": "2026-11-06",
   "last_ingest": {
-    "scan_id": "b0598b48ad1a",
-    "accepted": 2,
-    "rejected": 8,
+    "scan_id": "9d5d6e2c9283",
+    "accepted": 0,
+    "rejected": 0,
     "blocked": null
   },
   "reconciliation": {
@@ -5799,12 +5800,12 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-11-06T11:03:42+00:00"
+    "checked": "2026-11-06T19:44:16+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-11-06T11:03:44+00:00",
-    "commit_sha": "1d684e676fed692200128409352556930a0fbdfe",
+    "generated_at": "2026-11-06T19:44:17+00:00",
+    "commit_sha": "42c314ac1053e553b17424a355147533eb165805",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -5813,9 +5814,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-11-06",
     "source_ids": {
-      "results": "f074e5f7c62d"
+      "results": "4910551b5ae8"
     },
-    "scan_id": "b0598b48ad1a"
+    "scan_id": "9d5d6e2c9283"
   },
-  "duplicates_skipped": 248
+  "duplicates_skipped": 258
 }
