@@ -1,8 +1,8 @@
 {
-  "scan_id": "9d5d6e2c9283",
-  "timestamp": "2026-11-06T19:44:11.177232+00:00",
+  "scan_id": "c4fc95ce8003",
+  "timestamp": "2026-11-06T21:05:58.583495+00:00",
   "scan_date": "2026-11-07",
-  "scan_time": "01:14:11 IST",
+  "scan_time": "02:35:58 IST",
   "data_cutoff": "2026-11-06",
   "expected_session": "2026-11-06",
   "sessions_behind": 0,
@@ -36,7 +36,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-06",
-      "retrieved_at": "2026-11-06T19:44:11+00:00",
+      "retrieved_at": "2026-11-06T21:05:59+00:00",
       "compared": 0,
       "filled": [
         "RELIANCE",
@@ -97,7 +97,6 @@
         "BERGEPAINT",
         "GODREJCP",
         "MUTHOOTFIN",
-        "LUPIN",
         "BIOCON",
         "TORNTPHARM",
         "ALKEM",
@@ -194,7 +193,8 @@
         "ETERNAL",
         "AARTIIND",
         "TVSMOTOR",
-        "PRAJIND"
+        "PRAJIND",
+        "LUPIN"
       ],
       "cannot_fill": [
         "POWERGRID",
@@ -216,7 +216,9 @@
   },
   "missing_symbols": [],
   "missing_detail": {},
-  "recovered_on_retry": [],
+  "recovered_on_retry": [
+    "LUPIN"
+  ],
   "aliases_used": {
     "TATAMOTORS": "TMPV",
     "ZOMATO": "ETERNAL"
@@ -251,7 +253,7 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-06T19:44:11+00:00",
+    "retrieved_at": "2026-11-06T21:05:58+00:00",
     "frame_last_row": "2026-11-06",
     "rows": 496,
     "non_null_closes_on_last_row": 0,
@@ -579,7 +581,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-06T19:44:11.177232+00:00",
+      "timestamp": "2026-11-06T21:05:58.583495+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -959,7 +961,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-06T19:44:11.177232+00:00",
+      "timestamp": "2026-11-06T21:05:58.583495+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -1341,7 +1343,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-06T19:44:11.177232+00:00",
+      "timestamp": "2026-11-06T21:05:58.583495+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1721,7 +1723,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-06T19:44:11.177232+00:00",
+      "timestamp": "2026-11-06T21:05:58.583495+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2102,7 +2104,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-06T19:44:11.177232+00:00",
+      "timestamp": "2026-11-06T21:05:58.583495+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2487,7 +2489,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-06T19:44:11.177232+00:00",
+      "timestamp": "2026-11-06T21:05:58.583495+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2869,7 +2871,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-06T19:44:11.177232+00:00",
+      "timestamp": "2026-11-06T21:05:58.583495+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3249,7 +3251,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-06T19:44:11.177232+00:00",
+      "timestamp": "2026-11-06T21:05:58.583495+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3629,7 +3631,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-06T19:44:11.177232+00:00",
+      "timestamp": "2026-11-06T21:05:58.583495+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -4011,7 +4013,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-06T19:44:11.177232+00:00",
+      "timestamp": "2026-11-06T21:05:58.583495+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4120,8 +4122,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-06T19:44:16+00:00",
-    "commit_sha": "42c314ac1053e553b17424a355147533eb165805",
+    "generated_at": "2026-11-06T21:06:05+00:00",
+    "commit_sha": "976bf8b90a7e2ca87f865b9c4d59ca8cfba5cc10",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
