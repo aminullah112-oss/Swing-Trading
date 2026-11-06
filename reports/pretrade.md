@@ -1,14 +1,14 @@
 # Pre-trade checklist: **NO-GO** (paper only)
 
-Generated 2026-11-05T21:35:34+00:00.
+Generated 2026-11-06T11:03:46+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
-| P1 block | ✅ | scan data cutoff 2026-11-05 vs expected session 2026-11-05 (0 behind) |
+| P1 block | ✅ | scan data cutoff 2026-11-06 vs expected session 2026-11-06 (0 behind) |
 | P2 block | ✅ | scan provenance current |
 | P3 block | ✅ | data quality TRUSTED |
 | P4 block | ❌ | health FAIL: new entries NOT allowed |
-| P5 block | ✅ | event log verified (311 events) |
+| P5 block | ✅ | event log verified (325 events) |
 | P6 block | ❌ | ledger reconciliation 3 issue(s): needs_data |
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |
