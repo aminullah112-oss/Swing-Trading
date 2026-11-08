@@ -1,15 +1,15 @@
 {
   "provenance": {
     "kind": "experiments_v2",
-    "generated_at": "2026-11-01T08:46:22+00:00",
-    "commit_sha": "5af68a6232bc78ad5708d7d026dd75d50436b345",
+    "generated_at": "2026-11-08T08:38:02+00:00",
+    "commit_sha": "b1ea309cf7417b582bbf2a4ce88c9d5decc2a774",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-10-30",
+    "data_cutoff": "2026-11-06",
     "source_ids": {},
     "prereg": "PREREG_v2",
     "prereg_hash": "469617ab55541dbfc86c3b11bd5f1d1a396c508975cd6d72c3b78573183b4dd9"
@@ -18,68 +18,68 @@
     "id": "C0",
     "design": {
       "portfolio": {
-        "cagr_pct": 6.22,
-        "max_drawdown_pct": -12.79,
-        "calmar": 0.486,
-        "sharpe": 0.845,
-        "sortino": 1.186,
-        "vol_pct": 7.64,
-        "days": 2268,
-        "years": 9.19
+        "cagr_pct": 5.1,
+        "max_drawdown_pct": -11.86,
+        "calmar": 0.43,
+        "sharpe": 0.732,
+        "sortino": 1.03,
+        "vol_pct": 7.29,
+        "days": 2264,
+        "years": 9.17
       },
       "trades": {
-        "trades": 5451,
+        "trades": 5435,
         "win_rate": 0.273,
-        "expectancy_r": 0.444,
-        "profit_factor": 1.82,
-        "avg_win_r": 3.618,
-        "avg_loss_r": -0.745
+        "expectancy_r": 0.446,
+        "profit_factor": 1.824,
+        "avg_win_r": 3.615,
+        "avg_loss_r": -0.744
       },
       "costs": {
-        "accepted": 300,
-        "gross_pnl": 516699.0,
-        "net_pnl": 412254.0,
-        "costs_inr": 57828.0,
-        "slippage_inr": 46617.0,
-        "cost_drag_pct_of_gross": 20.2,
-        "turnover_x_per_year": 7.24
+        "accepted": 302,
+        "gross_pnl": 425973.0,
+        "net_pnl": 324156.0,
+        "costs_inr": 56371.0,
+        "slippage_inr": 45446.0,
+        "cost_drag_pct_of_gross": 23.9,
+        "turnover_x_per_year": 7.4
       },
       "exposure": {
-        "avg_exposure_pct": 34.1,
-        "max_exposure_pct": 56.3,
-        "time_in_cash_pct": 1.0,
-        "avg_positions": 2.79,
+        "avg_exposure_pct": 33.8,
+        "max_exposure_pct": 56.5,
+        "time_in_cash_pct": 1.1,
+        "avg_positions": 2.78,
         "liquidity_limited_orders": 2,
-        "rejected_by_limits": 5151
+        "rejected_by_limits": 5133
       }
     },
     "holdout": {
       "portfolio": {
-        "cagr_pct": 1.85,
+        "cagr_pct": 1.71,
         "max_drawdown_pct": -10.87,
-        "calmar": 0.171,
-        "sharpe": 0.296,
-        "sortino": 0.434,
+        "calmar": 0.158,
+        "sharpe": 0.276,
+        "sortino": 0.406,
         "vol_pct": 7.16,
-        "days": 453,
-        "years": 1.82
+        "days": 458,
+        "years": 1.84
       },
       "trades": {
-        "trades": 666,
-        "win_rate": 0.236,
-        "expectancy_r": -0.158,
-        "profit_factor": 0.741,
-        "avg_win_r": 1.923,
-        "avg_loss_r": -0.8
+        "trades": 669,
+        "win_rate": 0.242,
+        "expectancy_r": -0.138,
+        "profit_factor": 0.773,
+        "avg_win_r": 1.947,
+        "avg_loss_r": -0.805
       },
       "costs": {
-        "accepted": 70,
-        "gross_pnl": 39412.0,
-        "net_pnl": 17568.0,
-        "costs_inr": 12093.0,
-        "slippage_inr": 9751.0,
-        "cost_drag_pct_of_gross": 55.4,
-        "turnover_x_per_year": 9.28
+        "accepted": 71,
+        "gross_pnl": 38452.0,
+        "net_pnl": 16296.0,
+        "costs_inr": 12266.0,
+        "slippage_inr": 9890.0,
+        "cost_drag_pct_of_gross": 57.6,
+        "turnover_x_per_year": 9.31
       },
       "exposure": {
         "avg_exposure_pct": 37.2,
@@ -87,7 +87,7 @@
         "time_in_cash_pct": 0.2,
         "avg_positions": 2.73,
         "liquidity_limited_orders": 0,
-        "rejected_by_limits": 596
+        "rejected_by_limits": 598
       }
     }
   },
@@ -101,179 +101,119 @@
       },
       "design": {
         "portfolio": {
-          "cagr_pct": 6.75,
-          "max_drawdown_pct": -11.93,
-          "calmar": 0.566,
-          "sharpe": 0.943,
-          "sortino": 1.351,
-          "vol_pct": 7.37,
-          "days": 2268,
-          "years": 9.19
+          "cagr_pct": 4.89,
+          "max_drawdown_pct": -14.43,
+          "calmar": 0.339,
+          "sharpe": 0.7,
+          "sortino": 1.002,
+          "vol_pct": 7.34,
+          "days": 2264,
+          "years": 9.17
         },
         "trades": {
-          "trades": 5451,
+          "trades": 5435,
           "win_rate": 0.273,
-          "expectancy_r": 0.444,
-          "profit_factor": 1.82,
-          "avg_win_r": 3.618,
-          "avg_loss_r": -0.745
+          "expectancy_r": 0.446,
+          "profit_factor": 1.824,
+          "avg_win_r": 3.615,
+          "avg_loss_r": -0.744
         },
         "costs": {
-          "accepted": 294,
-          "gross_pnl": 561633.0,
-          "net_pnl": 458418.0,
-          "costs_inr": 57148.0,
-          "slippage_inr": 46067.0,
-          "cost_drag_pct_of_gross": 18.4,
-          "turnover_x_per_year": 7.07
+          "accepted": 319,
+          "gross_pnl": 414232.0,
+          "net_pnl": 307959.0,
+          "costs_inr": 58838.0,
+          "slippage_inr": 47435.0,
+          "cost_drag_pct_of_gross": 25.7,
+          "turnover_x_per_year": 7.79
         },
         "exposure": {
-          "avg_exposure_pct": 34.2,
+          "avg_exposure_pct": 33.7,
           "max_exposure_pct": 56.5,
-          "time_in_cash_pct": 0.8,
-          "avg_positions": 2.79,
+          "time_in_cash_pct": 1.2,
+          "avg_positions": 2.77,
           "liquidity_limited_orders": 2,
-          "rejected_by_limits": 5157
+          "rejected_by_limits": 5116
         }
       },
       "design_criteria": {
         "P1_sample": {
-          "trades": 5451,
+          "trades": 5435,
           "months": 110,
           "pass": true
         },
         "P2_net_edge_vs_C0": {
-          "mean_daily_diff_pct": 0.00195,
+          "mean_daily_diff_pct": -0.0008,
           "ci_pct": [
-            -0.00591,
-            0.01077
+            -0.0104,
+            0.00858
           ],
           "alpha": 0.0038461538461538464,
           "pass": false
         },
         "P3_consistency": {
           "blocks": 8,
-          "variant_beats_C0": 6,
+          "variant_beats_C0": 5,
           "by_year": {
             "2017": [
-              9.2,
-              8.8
+              6.2,
+              6.4
             ],
             "2018": [
-              -0.7,
-              -2.5
+              -1.4,
+              -1.6
             ],
             "2019": [
-              1.7,
-              3.7
+              1.4,
+              5.0
             ],
             "2020": [
-              14.5,
-              14.4
+              8.6,
+              4.5
             ],
             "2021": [
-              2.4,
-              3.4
+              2.0,
+              -0.9
             ],
             "2022": [
-              2.8,
-              0.8
+              -3.5,
+              2.6
             ],
             "2023": [
-              24.9,
-              23.8
+              24.8,
+              24.7
             ],
             "2024": [
-              11.2,
-              8.7
+              7.7,
+              6.2
             ]
           },
           "pass": true
         },
         "P4_absolute": {
-          "net_cagr_pct": 6.75,
+          "net_cagr_pct": 4.89,
           "pass": true
         }
       },
       "risk_route": {
         "design_dd": [
-          -11.93,
-          -12.79
+          -14.43,
+          -11.86
         ],
         "design_calmar": [
-          0.566,
-          0.486
+          0.339,
+          0.43
         ],
-        "pass": true
+        "pass": false
       },
-      "design_passed": true,
-      "passed_via": "risk route",
-      "holdout_opened": true,
-      "holdout_passed": false,
+      "design_passed": false,
+      "passed_via": null,
+      "holdout_opened": false,
+      "holdout_passed": null,
       "adopted_as_candidate": false,
-      "holdout": {
-        "portfolio": {
-          "cagr_pct": 1.85,
-          "max_drawdown_pct": -10.87,
-          "calmar": 0.171,
-          "sharpe": 0.296,
-          "sortino": 0.434,
-          "vol_pct": 7.16,
-          "days": 453,
-          "years": 1.82
-        },
-        "trades": {
-          "trades": 666,
-          "win_rate": 0.236,
-          "expectancy_r": -0.158,
-          "profit_factor": 0.741,
-          "avg_win_r": 1.923,
-          "avg_loss_r": -0.8
-        },
-        "costs": {
-          "accepted": 70,
-          "gross_pnl": 39412.0,
-          "net_pnl": 17568.0,
-          "costs_inr": 12093.0,
-          "slippage_inr": 9751.0,
-          "cost_drag_pct_of_gross": 55.4,
-          "turnover_x_per_year": 9.28
-        },
-        "exposure": {
-          "avg_exposure_pct": 37.2,
-          "max_exposure_pct": 52.5,
-          "time_in_cash_pct": 0.2,
-          "avg_positions": 2.73,
-          "liquidity_limited_orders": 0,
-          "rejected_by_limits": 596
-        }
-      },
-      "holdout_criteria": {
-        "O1_calmar_ge_C0": true,
-        "O2_net_cagr_positive": true,
-        "O3_dd_within_2pp": true,
-        "variant": {
-          "cagr_pct": 1.85,
-          "max_drawdown_pct": -10.87,
-          "calmar": 0.171,
-          "sharpe": 0.296,
-          "sortino": 0.434,
-          "vol_pct": 7.16,
-          "days": 453,
-          "years": 1.82
-        },
-        "C0": {
-          "cagr_pct": 1.85,
-          "max_drawdown_pct": -10.87,
-          "calmar": 0.171,
-          "sharpe": 0.296,
-          "sortino": 0.434,
-          "vol_pct": 7.16,
-          "days": 453,
-          "years": 1.82
-        },
-        "risk_route_holdout_ok": false
-      }
+      "failed_because": [
+        "P2_net_edge_vs_C0"
+      ]
     },
     {
       "id": "V2-2",
@@ -288,97 +228,97 @@
       },
       "design": {
         "portfolio": {
-          "cagr_pct": 10.46,
-          "max_drawdown_pct": -14.45,
-          "calmar": 0.724,
-          "sharpe": 1.281,
-          "sortino": 1.977,
-          "vol_pct": 8.18,
+          "cagr_pct": 10.56,
+          "max_drawdown_pct": -14.32,
+          "calmar": 0.738,
+          "sharpe": 1.298,
+          "sortino": 2.006,
+          "vol_pct": 8.14,
           "days": 2157,
           "years": 8.72
         },
         "trades": {
-          "trades": 816,
-          "win_rate": 0.282,
-          "expectancy_r": 0.431,
-          "profit_factor": 1.73,
-          "avg_win_r": 3.622,
+          "trades": 817,
+          "win_rate": 0.284,
+          "expectancy_r": 0.434,
+          "profit_factor": 1.736,
+          "avg_win_r": 3.6,
           "avg_loss_r": -0.822
         },
         "costs": {
-          "accepted": 209,
-          "gross_pnl": 875275.0,
-          "net_pnl": 780370.0,
-          "costs_inr": 52555.0,
-          "slippage_inr": 42351.0,
-          "cost_drag_pct_of_gross": 10.8,
-          "turnover_x_per_year": 5.89
+          "accepted": 206,
+          "gross_pnl": 883472.0,
+          "net_pnl": 790929.0,
+          "costs_inr": 51247.0,
+          "slippage_inr": 41295.0,
+          "cost_drag_pct_of_gross": 10.5,
+          "turnover_x_per_year": 5.77
         },
         "exposure": {
-          "avg_exposure_pct": 32.2,
+          "avg_exposure_pct": 32.3,
           "max_exposure_pct": 54.9,
-          "time_in_cash_pct": 12.5,
-          "avg_positions": 2.32,
+          "time_in_cash_pct": 12.2,
+          "avg_positions": 2.33,
           "liquidity_limited_orders": 0,
-          "rejected_by_limits": 607
+          "rejected_by_limits": 611
         }
       },
       "design_criteria": {
         "P1_sample": {
-          "trades": 816,
+          "trades": 817,
           "months": 97,
           "pass": true
         },
         "P2_net_edge_vs_C0": {
-          "mean_daily_diff_pct": 0.01392,
+          "mean_daily_diff_pct": 0.01876,
           "ci_pct": [
-            -0.01462,
-            0.04419
+            -0.00899,
+            0.04924
           ],
           "alpha": 0.0038461538461538464,
           "pass": false
         },
         "P3_consistency": {
           "blocks": 8,
-          "variant_beats_C0": 7,
+          "variant_beats_C0": 6,
           "by_year": {
             "2017": [
               13.7,
-              8.8
+              6.4
             ],
             "2018": [
               1.1,
-              -2.5
+              -1.6
             ],
             "2019": [
-              5.6,
-              3.7
+              3.4,
+              5.0
             ],
             "2020": [
               14.6,
-              14.4
+              4.5
             ],
             "2021": [
-              5.0,
-              3.4
+              5.2,
+              -0.9
             ],
             "2022": [
-              -5.5,
-              0.8
+              -4.0,
+              2.6
             ],
             "2023": [
-              43.0,
-              23.8
+              44.5,
+              24.7
             ],
             "2024": [
               19.0,
-              8.7
+              6.2
             ]
           },
           "pass": true
         },
         "P4_absolute": {
-          "net_cagr_pct": 10.46,
+          "net_cagr_pct": 10.56,
           "pass": true
         }
       },
@@ -402,108 +342,108 @@
       },
       "design": {
         "portfolio": {
-          "cagr_pct": 4.54,
-          "max_drawdown_pct": -12.2,
-          "calmar": 0.372,
-          "sharpe": 0.684,
-          "sortino": 0.977,
-          "vol_pct": 6.98,
-          "days": 2268,
-          "years": 9.19
+          "cagr_pct": 5.07,
+          "max_drawdown_pct": -12.97,
+          "calmar": 0.391,
+          "sharpe": 0.75,
+          "sortino": 1.072,
+          "vol_pct": 7.06,
+          "days": 2264,
+          "years": 9.17
         },
         "trades": {
-          "trades": 5451,
+          "trades": 5435,
           "win_rate": 0.273,
-          "expectancy_r": 0.444,
-          "profit_factor": 1.82,
-          "avg_win_r": 3.618,
-          "avg_loss_r": -0.745
+          "expectancy_r": 0.446,
+          "profit_factor": 1.824,
+          "avg_win_r": 3.615,
+          "avg_loss_r": -0.744
         },
         "costs": {
-          "accepted": 323,
-          "gross_pnl": 375694.0,
-          "net_pnl": 278717.0,
-          "costs_inr": 53691.0,
-          "slippage_inr": 43286.0,
-          "cost_drag_pct_of_gross": 25.8,
-          "turnover_x_per_year": 7.37
+          "accepted": 318,
+          "gross_pnl": 419909.0,
+          "net_pnl": 322117.0,
+          "costs_inr": 54143.0,
+          "slippage_inr": 43649.0,
+          "cost_drag_pct_of_gross": 23.3,
+          "turnover_x_per_year": 7.06
         },
         "exposure": {
-          "avg_exposure_pct": 31.9,
-          "max_exposure_pct": 56.2,
-          "time_in_cash_pct": 0.7,
-          "avg_positions": 2.85,
+          "avg_exposure_pct": 31.7,
+          "max_exposure_pct": 56.1,
+          "time_in_cash_pct": 1.1,
+          "avg_positions": 2.88,
           "liquidity_limited_orders": 2,
-          "rejected_by_limits": 5128
+          "rejected_by_limits": 5117
         }
       },
       "design_criteria": {
         "P1_sample": {
-          "trades": 5451,
+          "trades": 5435,
           "months": 110,
           "pass": true
         },
         "P2_net_edge_vs_C0": {
-          "mean_daily_diff_pct": -0.00667,
+          "mean_daily_diff_pct": -0.00017,
           "ci_pct": [
-            -0.0247,
-            0.00912
+            -0.01342,
+            0.01356
           ],
           "alpha": 0.0038461538461538464,
           "pass": false
         },
         "P3_consistency": {
           "blocks": 8,
-          "variant_beats_C0": 1,
+          "variant_beats_C0": 4,
           "by_year": {
             "2017": [
-              5.0,
-              8.8
+              15.3,
+              6.4
             ],
             "2018": [
-              -3.4,
-              -2.5
+              -8.5,
+              -1.6
             ],
             "2019": [
-              3.4,
-              3.7
+              5.4,
+              5.0
             ],
             "2020": [
-              -0.3,
-              14.4
+              3.3,
+              4.5
             ],
             "2021": [
-              5.9,
-              3.4
+              6.0,
+              -0.9
             ],
             "2022": [
-              -1.0,
-              0.8
+              -2.6,
+              2.6
             ],
             "2023": [
-              23.6,
-              23.8
+              22.6,
+              24.7
             ],
             "2024": [
-              8.6,
-              8.7
+              8.3,
+              6.2
             ]
           },
           "pass": false
         },
         "P4_absolute": {
-          "net_cagr_pct": 4.54,
+          "net_cagr_pct": 5.07,
           "pass": true
         }
       },
       "risk_route": {
         "design_dd": [
-          -12.2,
-          -12.79
+          -12.97,
+          -11.86
         ],
         "design_calmar": [
-          0.372,
-          0.486
+          0.391,
+          0.43
         ],
         "pass": false
       },

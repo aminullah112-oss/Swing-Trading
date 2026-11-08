@@ -1,13 +1,13 @@
 # Pre-registered selection experiments (PREREG_v2)
 
-Universe U159_v2 (159 symbols, survivorship bias present), data cutoff 2026-10-30, pre-registration `469617ab5554`. Realistic costs; Bonferroni over 13 tests. **C0 retained: yes.** Candidates: none.
+Universe U159_v2 (159 symbols, survivorship bias present), data cutoff 2026-11-06, pre-registration `469617ab5554`. Realistic costs; Bonferroni over 13 tests. **C0 retained: yes.** Candidates: none.
 
 | ID | Change | Design net (CAGR / maxDD / Calmar) | Trades / months | Passed via | Hold-out | Result |
 |---|---|---|---|---|---|---|
-| C0 | control | 6.22% / -12.79% / Calmar 0.486 | — | — | — | control |
-| V2-1 | sector cap | 6.75% / -11.93% / Calmar 0.566 | 5451 / 110 | risk route | FAILED | failed at hold-out |
-| V2-2 | preferred-tier stack | 10.46% / -14.45% / Calmar 0.724 | 816 / 97 | — | not opened | failed (P2_net_edge_vs_C0) |
-| V2-3 | volatility-scaled risk | 4.54% / -12.2% / Calmar 0.372 | 5451 / 110 | — | not opened | failed (P2_net_edge_vs_C0, P3_consistency) |
+| C0 | control | 5.1% / -11.86% / Calmar 0.43 | — | — | — | control |
+| V2-1 | sector cap | 4.89% / -14.43% / Calmar 0.339 | 5435 / 110 | — | not opened | failed (P2_net_edge_vs_C0) |
+| V2-2 | preferred-tier stack | 10.56% / -14.32% / Calmar 0.738 | 817 / 97 | — | not opened | failed (P2_net_edge_vs_C0) |
+| V2-3 | volatility-scaled risk | 5.07% / -12.97% / Calmar 0.391 | 5435 / 110 | — | not opened | failed (P2_net_edge_vs_C0, P3_consistency) |
 
 ## Already tested, failed, not retested
 

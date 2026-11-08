@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-06T21:06:09+00:00",
+  "generated": "2026-11-08T08:38:04+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -46,9 +46,9 @@
       "critical": true,
       "status": "fail",
       "earned": 0.0,
-      "value": "strategy 0.53 vs universe buy-and-hold 0.81, momentum-30 replica 1.02",
+      "value": "strategy 0.47 vs universe buy-and-hold 0.89, momentum-30 replica 1.09",
       "threshold": "Calmar >= every same-universe benchmark (hold-out)",
-      "detail": "hold-out CAGR 7.8% / DD -14.8% (reports/benchmarks.md)",
+      "detail": "hold-out CAGR 7.4% / DD -15.7% (reports/benchmarks.md)",
       "evidence_state": "failed"
     },
     {
@@ -82,7 +82,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 23,
+      "value": 25,
       "threshold": 182,
       "detail": "",
       "evidence_state": "pending_time"
@@ -96,7 +96,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 6, 23)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 6, 25)",
       "evidence_state": "pending_time"
     },
     {
@@ -108,7 +108,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 6, 23)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 6, 25)",
       "evidence_state": "pending_time"
     },
     {
@@ -174,19 +174,19 @@
   "inputs": {
     "results": "4fa3d270f299",
     "ledger": "d1f8a8e37aa0",
-    "health": "8272f417f622",
-    "grid": "53fee898b0f9",
-    "benchmarks": "a2504262e6ca",
-    "universe": "bb8aa8955c73",
+    "health": "f818ce645e1b",
+    "grid": "d40397f05b67",
+    "benchmarks": "cbc7b5270748",
+    "universe": "08c06d80fc6f",
     "attestations": "66ee1ecfcc82",
-    "report_provenance": "3f17cc44da9a"
+    "report_provenance": "cfc65409f8e7"
   },
   "stale_evidence": [],
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-11-06T21:06:09+00:00",
-    "commit_sha": "976bf8b90a7e2ca87f865b9c4d59ca8cfba5cc10",
+    "generated_at": "2026-11-08T08:38:04+00:00",
+    "commit_sha": "b1ea309cf7417b582bbf2a4ce88c9d5decc2a774",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -197,12 +197,12 @@
     "source_ids": {
       "results": "4fa3d270f299",
       "ledger": "d1f8a8e37aa0",
-      "health": "8272f417f622",
-      "grid": "53fee898b0f9",
-      "benchmarks": "a2504262e6ca",
-      "universe": "bb8aa8955c73",
+      "health": "f818ce645e1b",
+      "grid": "d40397f05b67",
+      "benchmarks": "cbc7b5270748",
+      "universe": "08c06d80fc6f",
       "attestations": "66ee1ecfcc82",
-      "report_provenance": "3f17cc44da9a"
+      "report_provenance": "cfc65409f8e7"
     }
   }
 }
