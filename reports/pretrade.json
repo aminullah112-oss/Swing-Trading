@@ -1,12 +1,12 @@
 {
   "verdict": "NO-GO",
-  "generated": "2026-11-06T21:06:10+00:00",
+  "generated": "2026-11-09T12:04:04+00:00",
   "checks": [
     {
       "id": "P1",
       "level": "block",
       "ok": true,
-      "msg": "scan data cutoff 2026-11-06 vs expected session 2026-11-06 (0 behind)"
+      "msg": "scan data cutoff 2026-11-09 vs expected session 2026-11-09 (0 behind)"
     },
     {
       "id": "P2",
@@ -17,8 +17,8 @@
     {
       "id": "P3",
       "level": "block",
-      "ok": true,
-      "msg": "data quality TRUSTED"
+      "ok": false,
+      "msg": "data quality UNTRUSTED: 37 symbols (23.3%) have critical data errors (limit 2%); Yahoo disagrees with NSE's own file for 23% of compared symbols (limit 5%)"
     },
     {
       "id": "P4",
@@ -30,7 +30,7 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (325 events)"
+      "msg": "event log verified (329 events)"
     },
     {
       "id": "P6",
@@ -74,7 +74,7 @@
     {
       "symbol": "*",
       "reasons": [
-        "entries blocked: health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data"
+        "entries blocked: data quality UNTRUSTED: 37 symbols (23.3%) have critical data errors (limit 2%); Yahoo disagrees with NSE's own file for 23% of compared symbols (limit 5%); health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data"
       ]
     }
   ],

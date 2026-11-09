@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-08T08:38:04+00:00",
+  "generated": "2026-11-09T12:04:03+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -70,7 +70,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 6,
+      "value": 7,
       "threshold": 100,
       "detail": "4 legacy closed signal(s) excluded",
       "evidence_state": "pending_time"
@@ -82,7 +82,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 25,
+      "value": 26,
       "threshold": 182,
       "detail": "",
       "evidence_state": "pending_time"
@@ -96,7 +96,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 6, 25)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 7, 26)",
       "evidence_state": "pending_time"
     },
     {
@@ -108,7 +108,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 6, 25)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 7, 26)",
       "evidence_state": "pending_time"
     },
     {
@@ -148,8 +148,8 @@
       "status": "fail",
       "earned": 0.0,
       "value": "FAIL",
-      "threshold": "OK/WARN",
-      "detail": "health DEGRADED/FAIL earns no operations credit",
+      "threshold": "trusted data",
+      "detail": "latest scan data UNTRUSTED (no actionable signals): 37 symbols (23.3%) have critical data errors (limit 2%); Yahoo disagrees with NSE's own file for 23% of compared symbols (limit 5%)",
       "evidence_state": "failed"
     },
     {
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "4fa3d270f299",
-    "ledger": "d1f8a8e37aa0",
-    "health": "f818ce645e1b",
+    "results": "f104ccf0ecee",
+    "ledger": "bf13fc33acd8",
+    "health": "acd770401b32",
     "grid": "d40397f05b67",
     "benchmarks": "cbc7b5270748",
     "universe": "08c06d80fc6f",
@@ -185,19 +185,19 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-11-08T08:38:04+00:00",
-    "commit_sha": "b1ea309cf7417b582bbf2a4ce88c9d5decc2a774",
+    "generated_at": "2026-11-09T12:04:03+00:00",
+    "commit_sha": "3ad65db72cbc81d52121c1165d9e548f269cb94c",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-11-06",
+    "data_cutoff": "2026-11-09",
     "source_ids": {
-      "results": "4fa3d270f299",
-      "ledger": "d1f8a8e37aa0",
-      "health": "f818ce645e1b",
+      "results": "f104ccf0ecee",
+      "ledger": "bf13fc33acd8",
+      "health": "acd770401b32",
       "grid": "d40397f05b67",
       "benchmarks": "cbc7b5270748",
       "universe": "08c06d80fc6f",

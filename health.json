@@ -5,12 +5,17 @@
     "manage_exits": false,
     "ops_credit": false
   },
-  "generated": "2026-11-08T08:38:03+00:00",
+  "generated": "2026-11-09T12:04:02+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-11-06 (2 days old)"
+      "msg": "market data through 2026-11-09 (0 days old)"
+    },
+    {
+      "id": "H1c",
+      "level": "warn",
+      "msg": "signals use provisional 2026-11-09 bars built from 5-minute data for 159 symbols (close = last); the official daily bar is not published yet. Last audit: median close error 0.0 bps"
     },
     {
       "id": "H2",
@@ -20,7 +25,7 @@
     {
       "id": "H3",
       "level": "ok",
-      "msg": "ledger updated 2 days ago; last price update ok"
+      "msg": "ledger updated 0 days ago; last price update ok"
     },
     {
       "id": "H4",
@@ -30,7 +35,7 @@
     {
       "id": "H7",
       "level": "ok",
-      "msg": "edge-decay check needs 30+ closed signals (have 10)"
+      "msg": "edge-decay check needs 30+ closed signals (have 11)"
     },
     {
       "id": "H8",
@@ -39,13 +44,13 @@
     },
     {
       "id": "H10",
-      "level": "warn",
-      "msg": "data trusted: 98% official-bar coverage; 4 symbol(s) quarantined (NTPC, PETRONET, POWERGRID, VEDL)"
+      "level": "degraded",
+      "msg": "market data UNTRUSTED, no actionable signals: 37 symbols (23.3%) have critical data errors (limit 2%); Yahoo disagrees with NSE's own file for 23% of compared symbols (limit 5%)"
     },
     {
       "id": "H15",
       "level": "warn",
-      "msg": "nse bhavcopy (udiff): compared 0, 0 close and 0 adjustment mismatches, 156 bar(s) filled from NSE because Yahoo lagged"
+      "msg": "nse bhavcopy (udiff): compared 159, 0 close and 36 adjustment mismatches"
     },
     {
       "id": "H11",
@@ -55,7 +60,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (325 events)"
+      "msg": "event log verified (329 events)"
     },
     {
       "id": "H13b",
@@ -75,19 +80,19 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-11-08T08:38:03+00:00",
-    "commit_sha": "b1ea309cf7417b582bbf2a4ce88c9d5decc2a774",
+    "generated_at": "2026-11-09T12:04:02+00:00",
+    "commit_sha": "3ad65db72cbc81d52121c1165d9e548f269cb94c",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-11-06",
+    "data_cutoff": "2026-11-09",
     "source_ids": {
-      "results": "4fa3d270f299",
-      "ledger": "d1f8a8e37aa0",
-      "events": "f75fd7ee7ad0"
+      "results": "f104ccf0ecee",
+      "ledger": "bf13fc33acd8",
+      "events": "206d75306307"
     }
   }
 }

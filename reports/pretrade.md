@@ -1,14 +1,14 @@
 # Pre-trade checklist: **NO-GO** (paper only)
 
-Generated 2026-11-06T21:06:10+00:00.
+Generated 2026-11-09T12:04:04+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
-| P1 block | ✅ | scan data cutoff 2026-11-06 vs expected session 2026-11-06 (0 behind) |
+| P1 block | ✅ | scan data cutoff 2026-11-09 vs expected session 2026-11-09 (0 behind) |
 | P2 block | ✅ | scan provenance current |
-| P3 block | ✅ | data quality TRUSTED |
+| P3 block | ❌ | data quality UNTRUSTED: 37 symbols (23.3%) have critical data errors (limit 2%); Yahoo disagrees with NSE's own file for 23% of compared symbols (limit 5%) |
 | P4 block | ❌ | health FAIL: new entries NOT allowed |
-| P5 block | ✅ | event log verified (325 events) |
+| P5 block | ✅ | event log verified (329 events) |
 | P6 block | ❌ | ledger reconciliation 3 issue(s): needs_data |
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |
@@ -21,6 +21,6 @@ Generated 2026-11-06T21:06:10+00:00.
 
 ## Rejected
 
-- *: entries blocked: health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data
+- *: entries blocked: data quality UNTRUSTED: 37 symbols (23.3%) have critical data errors (limit 2%); Yahoo disagrees with NSE's own file for 23% of compared symbols (limit 5%); health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data
 
 A GO means the checks passed, not that the trade is wise. Paper only: no order is sent anywhere.
