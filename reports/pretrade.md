@@ -1,6 +1,6 @@
 # Pre-trade checklist: **NO-GO** (paper only)
 
-Generated 2026-11-09T12:04:04+00:00.
+Generated 2026-11-09T23:21:19+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
@@ -8,7 +8,7 @@ Generated 2026-11-09T12:04:04+00:00.
 | P2 block | ✅ | scan provenance current |
 | P3 block | ❌ | data quality UNTRUSTED: 37 symbols (23.3%) have critical data errors (limit 2%); Yahoo disagrees with NSE's own file for 23% of compared symbols (limit 5%) |
 | P4 block | ❌ | health FAIL: new entries NOT allowed |
-| P5 block | ✅ | event log verified (329 events) |
+| P5 block | ✅ | event log verified (330 events) |
 | P6 block | ❌ | ledger reconciliation 3 issue(s): needs_data |
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |

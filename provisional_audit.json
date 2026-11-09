@@ -145,5 +145,131 @@
     },
     "date": "2026-11-09",
     "audited_at": "2026-11-09T12:03:49+00:00"
+  },
+  {
+    "symbols": 159,
+    "median_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 12.6,
+      "high": 2.2,
+      "low": 2.6,
+      "open": 14.5,
+      "volume": 185.0
+    },
+    "p90_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 44.4,
+      "high": 32.3,
+      "low": 16.6,
+      "open": 57.4,
+      "volume": 414.3
+    },
+    "date": "2026-11-09",
+    "audited_at": "2026-11-09T22:44:52+00:00"
+  },
+  {
+    "symbols": 159,
+    "median_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 12.6,
+      "high": 2.2,
+      "low": 2.6,
+      "open": 14.5,
+      "volume": 185.0
+    },
+    "p90_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 44.4,
+      "high": 32.3,
+      "low": 16.6,
+      "open": 57.4,
+      "volume": 414.3
+    },
+    "date": "2026-11-09",
+    "audited_at": "2026-11-09T22:52:07+00:00"
+  },
+  {
+    "symbols": 159,
+    "median_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 12.6,
+      "high": 2.2,
+      "low": 2.6,
+      "open": 14.5,
+      "volume": 185.0
+    },
+    "p90_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 44.4,
+      "high": 32.3,
+      "low": 16.6,
+      "open": 57.4,
+      "volume": 414.3
+    },
+    "date": "2026-11-09",
+    "audited_at": "2026-11-09T22:59:22+00:00"
+  },
+  {
+    "symbols": 159,
+    "median_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 12.6,
+      "high": 2.2,
+      "low": 2.6,
+      "open": 14.5,
+      "volume": 185.0
+    },
+    "p90_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 44.4,
+      "high": 32.3,
+      "low": 16.6,
+      "open": 57.4,
+      "volume": 414.3
+    },
+    "date": "2026-11-09",
+    "audited_at": "2026-11-09T23:06:37+00:00"
+  },
+  {
+    "symbols": 159,
+    "median_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 12.6,
+      "high": 2.2,
+      "low": 2.6,
+      "open": 14.5,
+      "volume": 185.0
+    },
+    "p90_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 44.4,
+      "high": 32.3,
+      "low": 16.6,
+      "open": 57.4,
+      "volume": 414.3
+    },
+    "date": "2026-11-09",
+    "audited_at": "2026-11-09T23:13:52+00:00"
+  },
+  {
+    "symbols": 159,
+    "median_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 12.6,
+      "high": 2.2,
+      "low": 2.6,
+      "open": 14.5,
+      "volume": 185.0
+    },
+    "p90_abs_error_bps": {
+      "close_last": 0.0,
+      "close_vwap30": 44.4,
+      "high": 32.3,
+      "low": 16.6,
+      "open": 57.4,
+      "volume": 414.3
+    },
+    "date": "2026-11-09",
+    "audited_at": "2026-11-09T23:21:07+00:00"
   }
 ]

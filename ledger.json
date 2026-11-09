@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-11-09T12:04:00+00:00",
+  "updated": "2026-11-09T23:21:16+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -5803,7 +5803,7 @@
   ],
   "last_cutoff": "2026-11-06",
   "last_ingest": {
-    "scan_id": "84322221ee15",
+    "scan_id": "e0416f84c69e",
     "accepted": 0,
     "blocked": "scan data not trusted (not actionable): 37 symbols (23.3%) have critical data errors (limit 2%); Yahoo disagrees with NSE's own file for 23% of compared symbols (limit 5%)"
   },
@@ -5826,12 +5826,12 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-11-09T12:04:00+00:00"
+    "checked": "2026-11-09T23:21:16+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-11-09T12:04:01+00:00",
-    "commit_sha": "3ad65db72cbc81d52121c1165d9e548f269cb94c",
+    "generated_at": "2026-11-09T23:21:17+00:00",
+    "commit_sha": "28ac13b6fc5982613160e023c35e16b0fd028376",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -5840,9 +5840,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-11-09",
     "source_ids": {
-      "results": "f104ccf0ecee"
+      "results": "dcf6adb202b6"
     },
-    "scan_id": "84322221ee15"
+    "scan_id": "e0416f84c69e"
   },
   "duplicates_skipped": 268
 }
