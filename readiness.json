@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-09T23:21:19+00:00",
+  "generated": "2026-11-10T00:28:13+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -82,7 +82,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 26,
+      "value": 27,
       "threshold": 182,
       "detail": "",
       "evidence_state": "pending_time"
@@ -96,7 +96,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 7, 26)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 7, 27)",
       "evidence_state": "pending_time"
     },
     {
@@ -108,7 +108,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 7, 26)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 7, 27)",
       "evidence_state": "pending_time"
     },
     {
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "dcf6adb202b6",
-    "ledger": "0db4cb7f71f6",
-    "health": "a218d54fcf9e",
+    "results": "c49b3da4cd61",
+    "ledger": "1489abcd52f7",
+    "health": "265fc7c8a411",
     "grid": "d40397f05b67",
     "benchmarks": "cbc7b5270748",
     "universe": "08c06d80fc6f",
@@ -185,8 +185,8 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-11-09T23:21:19+00:00",
-    "commit_sha": "28ac13b6fc5982613160e023c35e16b0fd028376",
+    "generated_at": "2026-11-10T00:28:13+00:00",
+    "commit_sha": "183d8954fe69a45ff88aee8053fa88c09442e6ab",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -195,9 +195,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-11-09",
     "source_ids": {
-      "results": "dcf6adb202b6",
-      "ledger": "0db4cb7f71f6",
-      "health": "a218d54fcf9e",
+      "results": "c49b3da4cd61",
+      "ledger": "1489abcd52f7",
+      "health": "265fc7c8a411",
       "grid": "d40397f05b67",
       "benchmarks": "cbc7b5270748",
       "universe": "08c06d80fc6f",

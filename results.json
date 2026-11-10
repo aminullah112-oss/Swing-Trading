@@ -1,8 +1,8 @@
 {
-  "scan_id": "e0416f84c69e",
-  "timestamp": "2026-11-09T23:21:07.091245+00:00",
+  "scan_id": "6e76678a1bed",
+  "timestamp": "2026-11-10T00:28:01.020435+00:00",
   "scan_date": "2026-11-10",
-  "scan_time": "04:51:07 IST",
+  "scan_time": "05:58:01 IST",
   "data_cutoff": "2026-11-09",
   "expected_session": "2026-11-09",
   "sessions_behind": 0,
@@ -137,7 +137,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-09",
-      "retrieved_at": "2026-11-09T23:21:07+00:00",
+      "retrieved_at": "2026-11-10T00:28:01+00:00",
       "compared": 159,
       "filled": [],
       "cannot_fill": [],
@@ -147,7 +147,7 @@
       "angelone": null,
       "nifty": {
         "status": "ok",
-        "filled": true,
+        "filled": false,
         "note": null
       },
       "close_mismatch": {},
@@ -213,7 +213,7 @@
       "high": 2.2,
       "low": 2.6,
       "open": 14.5,
-      "volume": 185.0
+      "volume": 478.9
     },
     "p90_abs_error_bps": {
       "close_last": 0.0,
@@ -221,10 +221,10 @@
       "high": 32.3,
       "low": 16.6,
       "open": 57.4,
-      "volume": 414.3
+      "volume": 928.3
     },
     "date": "2026-11-09",
-    "audited_at": "2026-11-09T23:21:07+00:00"
+    "audited_at": "2026-11-10T00:28:01+00:00"
   },
   "vendor": {
     "vendor": "yahoo-finance via yfinance",
@@ -232,10 +232,10 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-09T23:21:07+00:00",
+    "retrieved_at": "2026-11-10T00:28:01+00:00",
     "frame_last_row": "2026-11-09",
     "rows": 494,
-    "non_null_closes_on_last_row": 159,
+    "non_null_closes_on_last_row": 160,
     "last_bar_counts": {
       "2026-11-09": 159
     },
@@ -243,7 +243,7 @@
       "daily_5d": {
         "last_row": "2026-11-09 00:00:00",
         "rows": 5,
-        "non_null_closes_on_last_row": 2
+        "non_null_closes_on_last_row": 3
       },
       "intraday_5m_1d": {
         "last_row": "2026-11-09 15:25:00+05:30",
@@ -564,7 +564,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-11-09T23:21:07.091245+00:00",
+      "timestamp": "2026-11-10T00:28:01.020435+00:00",
       "actionable": false,
       "provisional": true
     },
@@ -833,7 +833,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-11-09T23:21:07.091245+00:00",
+      "timestamp": "2026-11-10T00:28:01.020435+00:00",
       "actionable": false,
       "provisional": true
     },
@@ -1103,7 +1103,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-11-09T23:21:07.091245+00:00",
+      "timestamp": "2026-11-10T00:28:01.020435+00:00",
       "actionable": false,
       "provisional": true
     },
@@ -1373,7 +1373,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-11-09T23:21:07.091245+00:00",
+      "timestamp": "2026-11-10T00:28:01.020435+00:00",
       "actionable": false,
       "provisional": true
     },
@@ -1643,7 +1643,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-11-09T23:21:07.091245+00:00",
+      "timestamp": "2026-11-10T00:28:01.020435+00:00",
       "actionable": false,
       "provisional": true
     },
@@ -1913,7 +1913,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-11-09T23:21:07.091245+00:00",
+      "timestamp": "2026-11-10T00:28:01.020435+00:00",
       "actionable": false,
       "provisional": true
     },
@@ -2183,7 +2183,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-11-09T23:21:07.091245+00:00",
+      "timestamp": "2026-11-10T00:28:01.020435+00:00",
       "actionable": false,
       "provisional": true
     },
@@ -2453,7 +2453,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-11-09T23:21:07.091245+00:00",
+      "timestamp": "2026-11-10T00:28:01.020435+00:00",
       "actionable": false,
       "provisional": true
     },
@@ -2722,7 +2722,7 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-11-09T23:21:07.091245+00:00",
+      "timestamp": "2026-11-10T00:28:01.020435+00:00",
       "actionable": false,
       "provisional": true
     },
@@ -2991,15 +2991,15 @@
         "Supertrend bullish (+3)"
       ],
       "position": null,
-      "timestamp": "2026-11-09T23:21:07.091245+00:00",
+      "timestamp": "2026-11-10T00:28:01.020435+00:00",
       "actionable": false,
       "provisional": true
     }
   ],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-09T23:21:15+00:00",
-    "commit_sha": "28ac13b6fc5982613160e023c35e16b0fd028376",
+    "generated_at": "2026-11-10T00:28:09+00:00",
+    "commit_sha": "183d8954fe69a45ff88aee8053fa88c09442e6ab",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
