@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-11-10T11:43:32+00:00",
+  "updated": "2026-11-10T20:38:50+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -3193,8 +3193,8 @@
       ],
       "taken": false,
       "entry_date": "2026-10-28",
-      "entry": 1636.63,
-      "mark_price": 1855.3,
+      "entry": 1630.46,
+      "mark_price": 1848.3,
       "unrealized_r": 3.024,
       "exit_signal": false,
       "days_held": 9,
@@ -5803,7 +5803,7 @@
   ],
   "last_cutoff": "2026-11-06",
   "last_ingest": {
-    "scan_id": "25569d64f3b3",
+    "scan_id": "43ec05956e98",
     "accepted": 0,
     "blocked": "scan data not trusted (not actionable): only 0% of symbols have an official daily bar for the expected session 2026-11-10 (need 95%); last-bar dates: {'2026-11-09': 159}; the Nifty 50 has no official bar for 2026-11-10 (last: 2026-11-09)"
   },
@@ -5826,12 +5826,12 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-11-10T11:43:32+00:00"
+    "checked": "2026-11-10T20:38:50+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-11-10T11:43:34+00:00",
-    "commit_sha": "1796a4b34af7bb66baa83050d35ec99f4215b5d0",
+    "generated_at": "2026-11-10T20:38:52+00:00",
+    "commit_sha": "f4951acbf2747f7c3b90ce7f79695006f404648b",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -5840,9 +5840,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-11-09",
     "source_ids": {
-      "results": "ff6e63287a37"
+      "results": "1509766b8e3d"
     },
-    "scan_id": "25569d64f3b3"
+    "scan_id": "43ec05956e98"
   },
   "duplicates_skipped": 268
 }
