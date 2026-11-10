@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-11-10T00:28:10+00:00",
+  "updated": "2026-11-10T11:43:32+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -5803,9 +5803,9 @@
   ],
   "last_cutoff": "2026-11-06",
   "last_ingest": {
-    "scan_id": "6e76678a1bed",
+    "scan_id": "25569d64f3b3",
     "accepted": 0,
-    "blocked": "scan data not trusted (not actionable): 37 symbols (23.3%) have critical data errors (limit 2%); Yahoo disagrees with NSE's own file for 23% of compared symbols (limit 5%)"
+    "blocked": "scan data not trusted (not actionable): only 0% of symbols have an official daily bar for the expected session 2026-11-10 (need 95%); last-bar dates: {'2026-11-09': 159}; the Nifty 50 has no official bar for 2026-11-10 (last: 2026-11-09)"
   },
   "reconciliation": {
     "ok": false,
@@ -5826,12 +5826,12 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-11-10T00:28:10+00:00"
+    "checked": "2026-11-10T11:43:32+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-11-10T00:28:11+00:00",
-    "commit_sha": "183d8954fe69a45ff88aee8053fa88c09442e6ab",
+    "generated_at": "2026-11-10T11:43:34+00:00",
+    "commit_sha": "1796a4b34af7bb66baa83050d35ec99f4215b5d0",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -5840,9 +5840,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-11-09",
     "source_ids": {
-      "results": "c49b3da4cd61"
+      "results": "ff6e63287a37"
     },
-    "scan_id": "6e76678a1bed"
+    "scan_id": "25569d64f3b3"
   },
   "duplicates_skipped": 268
 }

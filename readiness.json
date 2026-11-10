@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-10T00:28:13+00:00",
+  "generated": "2026-11-10T11:43:35+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -149,7 +149,7 @@
       "earned": 0.0,
       "value": "FAIL",
       "threshold": "trusted data",
-      "detail": "latest scan data UNTRUSTED (no actionable signals): 37 symbols (23.3%) have critical data errors (limit 2%); Yahoo disagrees with NSE's own file for 23% of compared symbols (limit 5%)",
+      "detail": "latest scan data UNTRUSTED (no actionable signals): only 0% of symbols have an official daily bar for the expected session 2026-11-10 (need 95%); last-bar dates: {'2026-11-09': 159}; the Nifty 50 has no official bar for 2026-11-10 (last: 2026-11-09)",
       "evidence_state": "failed"
     },
     {
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "c49b3da4cd61",
-    "ledger": "1489abcd52f7",
-    "health": "265fc7c8a411",
+    "results": "ff6e63287a37",
+    "ledger": "4f402a6a91bd",
+    "health": "d9a64271a923",
     "grid": "d40397f05b67",
     "benchmarks": "cbc7b5270748",
     "universe": "08c06d80fc6f",
@@ -185,8 +185,8 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-11-10T00:28:13+00:00",
-    "commit_sha": "183d8954fe69a45ff88aee8053fa88c09442e6ab",
+    "generated_at": "2026-11-10T11:43:35+00:00",
+    "commit_sha": "1796a4b34af7bb66baa83050d35ec99f4215b5d0",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -195,9 +195,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-11-09",
     "source_ids": {
-      "results": "c49b3da4cd61",
-      "ledger": "1489abcd52f7",
-      "health": "265fc7c8a411",
+      "results": "ff6e63287a37",
+      "ledger": "4f402a6a91bd",
+      "health": "d9a64271a923",
       "grid": "d40397f05b67",
       "benchmarks": "cbc7b5270748",
       "universe": "08c06d80fc6f",
