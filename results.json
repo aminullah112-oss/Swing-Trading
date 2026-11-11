@@ -1,8 +1,8 @@
 {
-  "scan_id": "3e7b20138c3e",
-  "timestamp": "2026-11-11T19:53:32.400480+00:00",
+  "scan_id": "5ae7430da0a9",
+  "timestamp": "2026-11-11T22:17:51.907277+00:00",
   "scan_date": "2026-11-12",
-  "scan_time": "01:23:32 IST",
+  "scan_time": "03:47:51 IST",
   "data_cutoff": "2026-11-11",
   "expected_session": "2026-11-11",
   "sessions_behind": 0,
@@ -30,7 +30,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-11",
-      "retrieved_at": "2026-11-11T19:53:32+00:00",
+      "retrieved_at": "2026-11-11T22:17:52+00:00",
       "compared": 0,
       "filled": [
         "RELIANCE",
@@ -137,6 +137,7 @@
         "DEEPAKNTR",
         "NAVINFLUOR",
         "TATACHEM",
+        "APOLLOTYRE",
         "BALKRISIND",
         "CEATLTD",
         "MRF",
@@ -189,8 +190,7 @@
         "ETERNAL",
         "AARTIIND",
         "TVSMOTOR",
-        "PRAJIND",
-        "APOLLOTYRE"
+        "PRAJIND"
       ],
       "cannot_fill": [
         "CHAMBLFERT"
@@ -210,9 +210,7 @@
   },
   "missing_symbols": [],
   "missing_detail": {},
-  "recovered_on_retry": [
-    "APOLLOTYRE"
-  ],
+  "recovered_on_retry": [],
   "aliases_used": {
     "TATAMOTORS": "TMPV",
     "ZOMATO": "ETERNAL"
@@ -247,7 +245,7 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-11T19:53:32+00:00",
+    "retrieved_at": "2026-11-11T22:17:51+00:00",
     "frame_last_row": "2026-11-11",
     "rows": 495,
     "non_null_closes_on_last_row": 0,
@@ -576,7 +574,7 @@
         ],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -958,7 +956,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1337,7 +1335,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1717,7 +1715,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2097,7 +2095,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "avoid",
@@ -2479,7 +2477,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2859,7 +2857,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3239,7 +3237,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3619,7 +3617,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3998,7 +3996,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4378,7 +4376,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-11T19:53:32.400480+00:00",
+      "timestamp": "2026-11-11T22:17:51.907277+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4487,8 +4485,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-11T19:53:38+00:00",
-    "commit_sha": "b7f1be48ef1da4d2734a418295badc79ac140d12",
+    "generated_at": "2026-11-11T22:17:58+00:00",
+    "commit_sha": "c9e4dfd8c6b59d5189e166dde6dc7bc45ffc9872",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
