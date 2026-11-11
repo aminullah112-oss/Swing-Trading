@@ -1,12 +1,12 @@
 {
   "verdict": "NO-GO",
-  "generated": "2026-11-10T22:02:33+00:00",
+  "generated": "2026-11-11T11:01:23+00:00",
   "checks": [
     {
       "id": "P1",
       "level": "block",
-      "ok": false,
-      "msg": "scan data cutoff 2026-11-09 vs expected session 2026-11-10 (1 behind)"
+      "ok": true,
+      "msg": "scan data cutoff 2026-11-11 vs expected session 2026-11-11 (0 behind)"
     },
     {
       "id": "P2",
@@ -17,8 +17,8 @@
     {
       "id": "P3",
       "level": "block",
-      "ok": false,
-      "msg": "data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-11-10 (need 95%); last-bar dates: {'2026-11-09': 159}; the Nifty 50 has no official bar for 2026-11-10 (last: 2026-11-09)"
+      "ok": true,
+      "msg": "data quality TRUSTED"
     },
     {
       "id": "P4",
@@ -30,7 +30,7 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (334 events)"
+      "msg": "event log verified (345 events)"
     },
     {
       "id": "P6",
@@ -74,7 +74,7 @@
     {
       "symbol": "*",
       "reasons": [
-        "entries blocked: scan data cutoff 2026-11-09 vs expected session 2026-11-10 (1 behind); data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-11-10 (need 95%); last-bar dates: {'2026-11-09': 159}; the Nifty 50 has no official bar for 2026-11-10 (last: 2026-11-09); health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data"
+        "entries blocked: health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data"
       ]
     }
   ],
