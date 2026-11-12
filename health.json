@@ -5,7 +5,7 @@
     "manage_exits": false,
     "ops_credit": false
   },
-  "generated": "2026-11-12T11:01:03+00:00",
+  "generated": "2026-11-12T20:29:58+00:00",
   "checks": [
     {
       "id": "H1",
@@ -40,12 +40,12 @@
     {
       "id": "H10",
       "level": "warn",
-      "msg": "data trusted: 100% official-bar coverage; 1 symbol(s) quarantined (VEDL)"
+      "msg": "data trusted: 99% official-bar coverage; 3 symbol(s) quarantined (HINDUNILVR, ONGC, VEDL)"
     },
     {
       "id": "H15",
       "level": "warn",
-      "msg": "NSE bhavcopy cross-check unavailable: udiff: HTTPError: HTTP Error 404: Not Found; legacy: HTTPError: HTTP Error 404: Not Found; legacy: HTTPError: HTTP Error 404: Not Found; Yahoo bars are unverified against the exchange"
+      "msg": "nse bhavcopy (udiff): compared 0, 0 close and 0 adjustment mismatches, 157 bar(s) filled from NSE because Yahoo lagged"
     },
     {
       "id": "H11",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (361 events)"
+      "msg": "event log verified (363 events)"
     },
     {
       "id": "H13b",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-11-12T11:01:03+00:00",
-    "commit_sha": "b70b472fbe38e5aa061e14a72563d6e8e19e2be3",
+    "generated_at": "2026-11-12T20:29:58+00:00",
+    "commit_sha": "453487fe41e8193c70ffd19ff6ebda6e0368ed40",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -85,9 +85,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-11-12",
     "source_ids": {
-      "results": "5b7258f2fa94",
-      "ledger": "6902130bed41",
-      "events": "4cbab0d36b03"
+      "results": "60be7fac1e62",
+      "ledger": "d11ed1d6f02f",
+      "events": "962d598a04cb"
     }
   }
 }

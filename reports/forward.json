@@ -5,24 +5,24 @@
   "legacy_excluded": 13,
   "by_status": {
     "expired": 41,
-    "void": 15,
-    "rejected": 94,
-    "open": 15,
+    "void": 16,
+    "rejected": 93,
+    "open": 14,
     "closed": 7,
-    "pending": 7
+    "pending": 8
   },
   "not_taken_reasons": {
     "entry session passed without a trigger": 41,
     "entry was simulated on an unfinished session bar; the official bar decides": 3,
     "aggregate open-risk budget 1.5% of capital would be exceeded": 34,
-    "symbol already has an active signal": 94,
-    "not yet triggered": 7
+    "symbol already has an active signal": 93,
+    "not yet triggered": 8
   },
   "closed": 7,
-  "forward_avg_r_incl_open": 0.818,
+  "forward_avg_r_incl_open": 0.8072380952380952,
   "forward_avg_r_ci95_clustered": [
-    0.507,
-    1.077
+    0.484,
+    1.049
   ],
   "effective_independent_months": 2,
   "rolling_expectancy_last_closed": {},
@@ -56,12 +56,12 @@
       "open_profit": {
         "label": "Open, in profit (mark-to-market)",
         "n": 11,
-        "avg_r": 2.502
+        "avg_r": 2.336
       },
       "open_loss": {
         "label": "Open, at a loss (mark-to-market)",
-        "n": 4,
-        "avg_r": -0.472
+        "n": 3,
+        "avg_r": -0.37
       },
       "never_triggered": {
         "label": "Never triggered (buy-stop not reached)",
@@ -70,7 +70,7 @@
       },
       "waiting": {
         "label": "Waiting for entry session",
-        "n": 7,
+        "n": 8,
         "avg_r": null
       },
       "not_tradable": {
@@ -79,11 +79,11 @@
         "avg_r": null
       }
     },
-    "entered": 22,
+    "entered": 21,
     "closed": 7,
     "closed_win_rate": 0.0,
-    "entered_in_profit_rate": 0.5,
-    "trigger_rate": 0.349,
+    "entered_in_profit_rate": 0.524,
+    "trigger_rate": 0.339,
     "by_setup": {
       "PULLBACK_EMA20": {
         "entered": 10,
@@ -96,9 +96,9 @@
         "hit_rate": 0.286
       },
       "PULLBACK_EMA50": {
-        "entered": 3,
+        "entered": 2,
         "good": 2,
-        "hit_rate": 0.667
+        "hit_rate": 1.0
       },
       "BREAKOUT_CONT": {
         "entered": 2,
@@ -111,7 +111,7 @@
   },
   "event_log": {
     "verified": true,
-    "events": 361,
+    "events": 363,
     "problem": null
   },
   "reconciliation": {
@@ -133,6 +133,6 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-11-12T11:00:59+00:00"
+    "checked": "2026-11-12T20:29:56+00:00"
   }
 }
