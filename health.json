@@ -5,12 +5,12 @@
     "manage_exits": false,
     "ops_credit": false
   },
-  "generated": "2026-11-11T22:18:01+00:00",
+  "generated": "2026-11-12T11:01:03+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-11-11 (0 days old)"
+      "msg": "market data through 2026-11-12 (0 days old)"
     },
     {
       "id": "H2",
@@ -40,12 +40,12 @@
     {
       "id": "H10",
       "level": "warn",
-      "msg": "data trusted: 99% official-bar coverage; 2 symbol(s) quarantined (CHAMBLFERT, VEDL)"
+      "msg": "data trusted: 100% official-bar coverage; 1 symbol(s) quarantined (VEDL)"
     },
     {
       "id": "H15",
       "level": "warn",
-      "msg": "nse bhavcopy (udiff): compared 0, 0 close and 0 adjustment mismatches, 158 bar(s) filled from NSE because Yahoo lagged"
+      "msg": "NSE bhavcopy cross-check unavailable: udiff: HTTPError: HTTP Error 404: Not Found; legacy: HTTPError: HTTP Error 404: Not Found; legacy: HTTPError: HTTP Error 404: Not Found; Yahoo bars are unverified against the exchange"
     },
     {
       "id": "H11",
@@ -55,7 +55,7 @@
     {
       "id": "H12",
       "level": "ok",
-      "msg": "event log verified (345 events)"
+      "msg": "event log verified (361 events)"
     },
     {
       "id": "H13b",
@@ -75,19 +75,19 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-11-11T22:18:01+00:00",
-    "commit_sha": "c9e4dfd8c6b59d5189e166dde6dc7bc45ffc9872",
+    "generated_at": "2026-11-12T11:01:03+00:00",
+    "commit_sha": "b70b472fbe38e5aa061e14a72563d6e8e19e2be3",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-11-11",
+    "data_cutoff": "2026-11-12",
     "source_ids": {
-      "results": "4d2d24403700",
-      "ledger": "63322c793c21",
-      "events": "7fe9ddfb87bd"
+      "results": "5b7258f2fa94",
+      "ledger": "6902130bed41",
+      "events": "4cbab0d36b03"
     }
   }
 }

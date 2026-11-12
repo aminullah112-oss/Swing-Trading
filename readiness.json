@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-11T22:18:02+00:00",
+  "generated": "2026-11-12T11:01:04+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -82,7 +82,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 28,
+      "value": 29,
       "threshold": 182,
       "detail": "",
       "evidence_state": "pending_time"
@@ -96,7 +96,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 7, 28)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 7, 29)",
       "evidence_state": "pending_time"
     },
     {
@@ -108,7 +108,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 7, 28)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 7, 29)",
       "evidence_state": "pending_time"
     },
     {
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "4d2d24403700",
-    "ledger": "63322c793c21",
-    "health": "b8482fcdd684",
+    "results": "5b7258f2fa94",
+    "ledger": "6902130bed41",
+    "health": "8b4d4c45ab88",
     "grid": "d40397f05b67",
     "benchmarks": "cbc7b5270748",
     "universe": "08c06d80fc6f",
@@ -185,19 +185,19 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-11-11T22:18:02+00:00",
-    "commit_sha": "c9e4dfd8c6b59d5189e166dde6dc7bc45ffc9872",
+    "generated_at": "2026-11-12T11:01:04+00:00",
+    "commit_sha": "b70b472fbe38e5aa061e14a72563d6e8e19e2be3",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-11-11",
+    "data_cutoff": "2026-11-12",
     "source_ids": {
-      "results": "4d2d24403700",
-      "ledger": "63322c793c21",
-      "health": "b8482fcdd684",
+      "results": "5b7258f2fa94",
+      "ledger": "6902130bed41",
+      "health": "8b4d4c45ab88",
       "grid": "d40397f05b67",
       "benchmarks": "cbc7b5270748",
       "universe": "08c06d80fc6f",
