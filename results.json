@@ -1,64 +1,217 @@
 {
-  "scan_id": "25670236f759",
-  "timestamp": "2026-11-13T10:55:27.123346+00:00",
-  "scan_date": "2026-11-13",
-  "scan_time": "16:25:27 IST",
-  "data_cutoff": "2026-11-12",
-  "expected_session": "2026-11-12",
+  "scan_id": "0ea97b619c1b",
+  "timestamp": "2026-11-13T20:05:52.156346+00:00",
+  "scan_date": "2026-11-14",
+  "scan_time": "01:35:52 IST",
+  "data_cutoff": "2026-11-13",
+  "expected_session": "2026-11-13",
   "sessions_behind": 0,
   "actionable": true,
   "data_quality": {
     "status": "TRUSTED",
     "reasons": [],
     "symbols": 159,
-    "official_coverage": 1.0,
+    "official_coverage": 0.9937,
     "cutoff_counts": {
-      "2026-11-12": 159
+      "2026-11-13": 158,
+      "2026-11-12": 1
     },
     "quarantined": {
-      "ONGC": [
-        "nse_adjustment_mismatch"
-      ],
       "VEDL": [
         "suspect_corporate_action"
       ],
       "EMAMILTD": [
-        "nse_close_mismatch",
-        "nse_adjustment_mismatch"
+        "stale_bar"
       ]
     },
-    "critical_issue_share": 0.0189,
-    "expected_session": "2026-11-12",
+    "critical_issue_share": 0.0063,
+    "expected_session": "2026-11-13",
     "crosscheck": {
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
-      "session": "2026-11-12",
-      "retrieved_at": "2026-11-13T10:55:27+00:00",
-      "compared": 159,
-      "filled": [],
-      "cannot_fill": [],
+      "session": "2026-11-13",
+      "retrieved_at": "2026-11-13T20:05:52+00:00",
+      "compared": 0,
+      "filled": [
+        "RELIANCE",
+        "TCS",
+        "HDFCBANK",
+        "INFY",
+        "HINDUNILVR",
+        "ICICIBANK",
+        "SBIN",
+        "BHARTIARTL",
+        "KOTAKBANK",
+        "LT",
+        "AXISBANK",
+        "WIPRO",
+        "MARUTI",
+        "BAJFINANCE",
+        "HCLTECH",
+        "ASIANPAINT",
+        "ULTRACEMCO",
+        "TITAN",
+        "SUNPHARMA",
+        "NESTLEIND",
+        "TECHM",
+        "TMPV",
+        "INDUSINDBK",
+        "POWERGRID",
+        "NTPC",
+        "BAJAJFINSV",
+        "ONGC",
+        "JSWSTEEL",
+        "TATASTEEL",
+        "COALINDIA",
+        "ADANIENT",
+        "ADANIPORTS",
+        "CIPLA",
+        "DRREDDY",
+        "DIVISLAB",
+        "BRITANNIA",
+        "EICHERMOT",
+        "GRASIM",
+        "HEROMOTOCO",
+        "ITC",
+        "M&M",
+        "BPCL",
+        "IOC",
+        "TATACONSUM",
+        "APOLLOHOSP",
+        "BAJAJ-AUTO",
+        "UPL",
+        "SBILIFE",
+        "HDFCLIFE",
+        "HINDALCO",
+        "DMART",
+        "SIEMENS",
+        "HAVELLS",
+        "PIDILITIND",
+        "DABUR",
+        "MARICO",
+        "COLPAL",
+        "BERGEPAINT",
+        "GODREJCP",
+        "MUTHOOTFIN",
+        "LUPIN",
+        "BIOCON",
+        "TORNTPHARM",
+        "ALKEM",
+        "AUROPHARMA",
+        "GLENMARK",
+        "AMBUJACEM",
+        "ACC",
+        "SHREECEM",
+        "INDIGO",
+        "TATAPOWER",
+        "TRENT",
+        "NAUKRI",
+        "IRCTC",
+        "CONCOR",
+        "SAIL",
+        "NMDC",
+        "VEDL",
+        "GAIL",
+        "PETRONET",
+        "IGL",
+        "BANKBARODA",
+        "PNB",
+        "CANBK",
+        "FEDERALBNK",
+        "IDFCFIRSTB",
+        "RBLBANK",
+        "AUBANK",
+        "CHOLAFIN",
+        "LICHSGFIN",
+        "MANAPPURAM",
+        "SUNDARMFIN",
+        "SHRIRAMFIN",
+        "PIIND",
+        "PERSISTENT",
+        "COFORGE",
+        "MPHASIS",
+        "LTTS",
+        "KPITTECH",
+        "TATAELXSI",
+        "CYIENT",
+        "DEEPAKNTR",
+        "NAVINFLUOR",
+        "TATACHEM",
+        "APOLLOTYRE",
+        "BALKRISIND",
+        "CEATLTD",
+        "MRF",
+        "MOTHERSON",
+        "BHARATFORG",
+        "BOSCHLTD",
+        "VOLTAS",
+        "KAJARIACER",
+        "SUPREMEIND",
+        "ASTRAL",
+        "POLYCAB",
+        "KEI",
+        "PAGEIND",
+        "RADICO",
+        "LAURUSLABS",
+        "GRANULES",
+        "AJANTPHARM",
+        "ERIS",
+        "METROPOLIS",
+        "MAXHEALTH",
+        "FORTIS",
+        "NH",
+        "SYNGENE",
+        "BRIGADE",
+        "SOBHA",
+        "PRESTIGE",
+        "GODREJPROP",
+        "PHOENIXLTD",
+        "OBEROIRLTY",
+        "THERMAX",
+        "CUMMINSIND",
+        "BEL",
+        "HAL",
+        "IRFC",
+        "RVNL",
+        "PFC",
+        "RECLTD",
+        "SJVN",
+        "NHPC",
+        "SUZLON",
+        "TRIDENT",
+        "RAYMOND",
+        "COROMANDEL",
+        "CHAMBLFERT",
+        "RALLIS",
+        "DHANUKA",
+        "ATUL",
+        "NOCIL",
+        "APLAPOLLO",
+        "ETERNAL",
+        "AARTIIND",
+        "TVSMOTOR",
+        "PRAJIND"
+      ],
+      "cannot_fill": [
+        "EMAMILTD"
+      ],
       "not_in_bhavcopy": [],
-      "mismatch_share": 0.0126,
+      "mismatch_share": 0.0,
       "note": null,
       "angelone": null,
       "nifty": {
         "status": "ok",
-        "filled": false,
+        "filled": true,
         "note": null
       },
-      "close_mismatch": {
-        "EMAMILTD": -1.212
-      },
-      "adjustment_mismatch": {
-        "ONGC": -3.41,
-        "EMAMILTD": -1.21
-      }
+      "close_mismatch": {},
+      "adjustment_mismatch": {}
     }
   },
   "missing_symbols": [],
   "missing_detail": {},
   "recovered_on_retry": [
-    "BRITANNIA"
+    "PRAJIND"
   ],
   "aliases_used": {
     "TATAMOTORS": "TMPV",
@@ -94,17 +247,18 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-13T10:55:27+00:00",
+    "retrieved_at": "2026-11-13T20:05:52+00:00",
     "frame_last_row": "2026-11-13",
     "rows": 495,
-    "non_null_closes_on_last_row": 159,
+    "non_null_closes_on_last_row": 0,
     "last_bar_counts": {
-      "2026-11-12": 159
+      "2026-11-13": 158,
+      "2026-11-12": 1
     }
   },
   "symbols_processed": 159,
   "total_scanned": 159,
-  "total_passed": 13,
+  "total_passed": 15,
   "universe": {
     "version": "U159_v2",
     "count": 159
@@ -128,1926 +282,29 @@
     "max_per_sector": 2
   },
   "summary": {
-    "signals": 13,
-    "tradeable": 13,
+    "signals": 15,
+    "tradeable": 14,
     "preview": 0
   },
   "market": {
-    "breadth_stage2_pct": 18.2,
-    "signals": 13,
+    "breadth_stage2_pct": 20.1,
+    "signals": 15,
     "nifty": {
-      "close": 25299.3,
-      "ema50": 23556.0,
-      "ema200": 23960.1,
-      "vs_ema200_pct": 5.6,
-      "change_20d_pct": 11.3,
-      "drawdown_pct": -3.9,
+      "close": 25144.3,
+      "ema50": 23618.3,
+      "ema200": 23971.9,
+      "vs_ema200_pct": 4.9,
+      "change_20d_pct": 11.1,
+      "drawdown_pct": -4.5,
       "trend": "Above EMA200 but below EMA50: pullback within an uptrend"
     }
   },
   "stocks": [
     {
-      "avg_value_cr": 525.7,
-      "close_in_range": 0.911,
-      "stop_pct": 5.94,
-      "trigger_gap_pct": 0.25,
-      "checks": [
-        {
-          "id": "liquidity",
-          "status": "ok",
-          "text": "Liquid: \u20b9526 cr/day average traded value"
-        },
-        {
-          "id": "stop_width",
-          "status": "ok",
-          "text": "Stop 5.9% below entry"
-        },
-        {
-          "id": "trigger_gap",
-          "status": "ok",
-          "text": "Buy-stop 0.2% above the close"
-        },
-        {
-          "id": "close_strength",
-          "status": "ok",
-          "text": "Close in the top 9% of the day's range"
-        },
-        {
-          "id": "extension",
-          "status": "ok",
-          "text": "1.9% from EMA20"
-        },
-        {
-          "id": "volume",
-          "status": "ok",
-          "text": "Volume 1.2x average"
-        },
-        {
-          "id": "events",
-          "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
-        }
-      ],
-      "execution_ok": true,
-      "spark": {
-        "close": [
-          1806.0,
-          1773.0,
-          1813.1,
-          1882.0,
-          1891.7,
-          1873.0,
-          1892.8,
-          1880.0,
-          1901.8,
-          2014.6,
-          1985.3,
-          1988.9,
-          1965.7,
-          1971.8,
-          1972.8,
-          1935.0,
-          1950.0,
-          1845.0,
-          1833.1,
-          1846.5,
-          1775.5,
-          1766.7,
-          1793.0,
-          1841.0,
-          1814.0,
-          1803.0,
-          1782.4,
-          1785.9,
-          1784.0,
-          1773.0,
-          1722.0,
-          1749.1,
-          1826.0,
-          1852.0,
-          1849.7,
-          1822.2,
-          1814.3,
-          1867.9,
-          1846.6,
-          1929.0,
-          1928.0,
-          1934.3,
-          1951.9,
-          1925.0,
-          1951.0,
-          1908.8,
-          1900.5,
-          1993.0,
-          1997.0,
-          1961.9,
-          1962.0,
-          2045.0,
-          2099.0,
-          2060.8,
-          2060.0,
-          2079.0,
-          2076.0,
-          2047.0,
-          2017.5,
-          2034.0
-        ],
-        "ema20": [
-          1719.33,
-          1724.44,
-          1732.89,
-          1747.09,
-          1760.86,
-          1771.54,
-          1783.09,
-          1792.32,
-          1802.75,
-          1822.92,
-          1838.39,
-          1852.72,
-          1863.48,
-          1873.8,
-          1883.23,
-          1888.16,
-          1894.05,
-          1889.38,
-          1884.02,
-          1880.44,
-          1870.45,
-          1860.57,
-          1854.13,
-          1852.88,
-          1849.18,
-          1844.78,
-          1838.84,
-          1833.8,
-          1829.06,
-          1823.72,
-          1814.03,
-          1807.85,
-          1809.57,
-          1813.62,
-          1817.05,
-          1817.54,
-          1817.23,
-          1822.06,
-          1824.4,
-          1834.36,
-          1843.28,
-          1851.95,
-          1861.46,
-          1867.52,
-          1875.47,
-          1878.64,
-          1880.72,
-          1891.42,
-          1901.47,
-          1907.23,
-          1912.44,
-          1925.07,
-          1941.63,
-          1952.98,
-          1963.17,
-          1974.21,
-          1983.9,
-          1989.91,
-          1992.54,
-          1996.49
-        ],
-        "ema50": [
-          1593.66,
-          1600.7,
-          1609.03,
-          1619.73,
-          1630.4,
-          1639.91,
-          1649.83,
-          1658.85,
-          1668.38,
-          1681.96,
-          1693.85,
-          1705.42,
-          1715.63,
-          1725.68,
-          1735.37,
-          1743.2,
-          1751.31,
-          1754.98,
-          1758.04,
-          1761.51,
-          1762.06,
-          1762.24,
-          1763.45,
-          1766.49,
-          1768.35,
-          1769.71,
-          1770.21,
-          1770.83,
-          1771.34,
-          1771.41,
-          1769.47,
-          1768.67,
-          1770.92,
-          1774.1,
-          1777.06,
-          1778.83,
-          1780.22,
-          1783.66,
-          1786.13,
-          1791.73,
-          1797.08,
-          1802.46,
-          1808.32,
-          1812.89,
-          1818.31,
-          1821.86,
-          1824.94,
-          1831.53,
-          1838.02,
-          1842.88,
-          1847.55,
-          1855.29,
-          1864.85,
-          1872.54,
-          1879.89,
-          1887.7,
-          1895.08,
-          1901.04,
-          1905.61,
-          1910.64
-        ],
-        "from": "2026-08-17"
-      },
-      "symbol": "COFORGE",
-      "decision": "SIGNAL",
-      "score": 99,
-      "stage": 2,
-      "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20",
-      "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 2034.0,
-      "trigger": 2039.0,
-      "stop_loss": 1917.95,
-      "plan_risk": 116.0464,
-      "ema_20": 1996.49,
-      "ema_50": 1910.64,
-      "ema_200": 1692.86,
-      "rsi": 58.37,
-      "vol_ratio": 1.23,
-      "vol_5d_ratio": 1.23,
-      "ema_dist_pct": 1.88,
-      "from_52w_high": -4.41,
-      "atr_pct": 3.8,
-      "st_direction": 1,
-      "ema50_slope_pct": 1.636,
-      "atr": 77.36,
-      "reasons": [
-        "Stage 2 (+25)",
-        "PULLBACK_EMA20 (+20)",
-        "RSI 58 (+20)",
-        "Vol 1.2x (+13)",
-        "All EMAs rising (+15)",
-        "Near 52W high (+3)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": {
-        "shares": 23,
-        "invested": 46897.0,
-        "stop_loss": 1917.95,
-        "risk_amount": 2784.15,
-        "risk_pct_of_capital": 0.493,
-        "note": null,
-        "size_notes": [],
-        "within_risk_budget": true
-      },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
-      "actionable": true,
-      "selection": {
-        "tier": "preferred",
-        "conviction": {
-          "level": "high",
-          "met": 5,
-          "of": 5
-        },
-        "conditions": {
-          "relative strength in the top 30%": true,
-          "within 10% of the 52-week high": "True",
-          "traded value at least INR 5 crore a day": true,
-          "ATR at most 4% of price": "True",
-          "Nifty above its EMA200": true
-        },
-        "rs_rank_pct": 87,
-        "sector": "IT",
-        "regime": "bull",
-        "events": {
-          "blocked": false,
-          "reasons": [],
-          "unverified": [
-            "event_calendar.json has not been filled in"
-          ]
-        },
-        "risk_mult": 1.0,
-        "size_notes": [],
-        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
-      },
-      "plan": {
-        "entry": {
-          "basis": "rule",
-          "buy_stop": 2039.0,
-          "valid": "the next session only; if the stop is not reached the signal expires"
-        },
-        "stop": {
-          "basis": "rule",
-          "price": 1917.95,
-          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
-        },
-        "profit_review_levels": {
-          "basis": "reference",
-          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
-          "levels": [
-            {
-              "r": 1,
-              "price": 2155.05,
-              "gain_pct": 5.7
-            },
-            {
-              "r": 2,
-              "price": 2271.09,
-              "gain_pct": 11.4
-            },
-            {
-              "r": 3,
-              "price": 2387.14,
-              "gain_pct": 17.1
-            }
-          ]
-        },
-        "expected_duration": {
-          "basis": "empirical",
-          "from": "2141 past C0 trades (PULLBACK_EMA20); survivor-biased",
-          "winners_median_days": 47.0,
-          "winners_range_days": [
-            29.0,
-            68.0
-          ],
-          "losers_median_days": 5.0,
-          "win_rate": 0.252,
-          "typical_winner_r": 1.44,
-          "strong_winner_r": 7.68,
-          "typical_winner_price": 2206.11,
-          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
-        },
-        "sell_trigger": {
-          "basis": "rule",
-          "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 1910.64,
-          "ema50_in_about_a_week": 1941.9,
-          "time_exit": "sell after 120 sessions if still held",
-          "warning_signs": [
-            "two closes below EMA20 (1996.49): momentum fading, consider tightening attention",
-            "EMA50 turning down while price is near it"
-          ],
-          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
-        },
-        "add_more": {
-          "basis": "untested",
-          "default": "do not add",
-          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
-          "conditions": [
-            "daily close at or above 2155.05 (entry + 1R)",
-            "close above EMA20 (1996.49) and EMA50 rising",
-            "move the stop up to the entry 2039.0 FIRST, so the original position carries no risk",
-            "total open risk stays within the 1.5% budget and this position within 25% of capital"
-          ],
-          "max_extra_shares": 23,
-          "risk_of_add_inr": 2669.0,
-          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
-        }
-      }
-    },
-    {
-      "avg_value_cr": 569.93,
-      "close_in_range": 0.316,
-      "stop_pct": 5.58,
-      "trigger_gap_pct": 1.32,
-      "checks": [
-        {
-          "id": "liquidity",
-          "status": "ok",
-          "text": "Liquid: \u20b9570 cr/day average traded value"
-        },
-        {
-          "id": "stop_width",
-          "status": "ok",
-          "text": "Stop 5.6% below entry"
-        },
-        {
-          "id": "trigger_gap",
-          "status": "ok",
-          "text": "Buy-stop 1.3% above the close"
-        },
-        {
-          "id": "close_strength",
-          "status": "warn",
-          "text": "Weak close: bottom 32% of the day's range"
-        },
-        {
-          "id": "extension",
-          "status": "ok",
-          "text": "-0.3% from EMA20"
-        },
-        {
-          "id": "volume",
-          "status": "ok",
-          "text": "Volume 0.6x average"
-        },
-        {
-          "id": "events",
-          "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
-        }
-      ],
-      "execution_ok": true,
-      "spark": {
-        "close": [
-          1313.31,
-          1286.55,
-          1313.11,
-          1306.77,
-          1291.01,
-          1310.34,
-          1304.19,
-          1287.04,
-          1270.69,
-          1304.49,
-          1300.62,
-          1339.48,
-          1319.75,
-          1307.36,
-          1281.99,
-          1271.48,
-          1265.73,
-          1218.95,
-          1196.35,
-          1195.46,
-          1242.64,
-          1241.94,
-          1247.2,
-          1238.28,
-          1269.7,
-          1259.19,
-          1245.61,
-          1232.63,
-          1246.9,
-          1241.55,
-          1211.22,
-          1219.15,
-          1232.13,
-          1191.3,
-          1193.77,
-          1174.54,
-          1166.52,
-          1205.96,
-          1212.21,
-          1314.3,
-          1315.29,
-          1348.0,
-          1380.0,
-          1379.9,
-          1424.2,
-          1421.7,
-          1422.2,
-          1417.0,
-          1420.0,
-          1400.5,
-          1403.9,
-          1428.1,
-          1434.0,
-          1439.1,
-          1405.0,
-          1430.5,
-          1440.0,
-          1407.0,
-          1395.0,
-          1380.8
-        ],
-        "ema20": [
-          1306.78,
-          1304.85,
-          1305.64,
-          1305.75,
-          1304.34,
-          1304.91,
-          1304.84,
-          1303.15,
-          1300.06,
-          1300.48,
-          1300.49,
-          1304.21,
-          1305.69,
-          1305.85,
-          1303.57,
-          1300.52,
-          1297.2,
-          1289.75,
-          1280.86,
-          1272.72,
-          1269.86,
-          1267.2,
-          1265.29,
-          1262.72,
-          1263.39,
-          1262.99,
-          1261.33,
-          1258.6,
-          1257.48,
-          1255.97,
-          1251.7,
-          1248.6,
-          1247.03,
-          1241.73,
-          1237.16,
-          1231.2,
-          1225.04,
-          1223.22,
-          1222.17,
-          1230.95,
-          1238.98,
-          1249.36,
-          1261.8,
-          1273.05,
-          1287.45,
-          1300.23,
-          1311.85,
-          1321.86,
-          1331.21,
-          1337.81,
-          1344.1,
-          1352.1,
-          1359.9,
-          1367.44,
-          1371.02,
-          1376.69,
-          1382.72,
-          1385.03,
-          1385.98,
-          1385.49
-        ],
-        "ema50": [
-          1248.92,
-          1250.4,
-          1252.86,
-          1254.97,
-          1256.38,
-          1258.5,
-          1260.29,
-          1261.34,
-          1261.71,
-          1263.38,
-          1264.84,
-          1267.77,
-          1269.81,
-          1271.28,
-          1271.7,
-          1271.69,
-          1271.46,
-          1269.4,
-          1266.54,
-          1263.75,
-          1262.92,
-          1262.1,
-          1261.51,
-          1260.6,
-          1260.96,
-          1260.89,
-          1260.29,
-          1259.21,
-          1258.72,
-          1258.05,
-          1256.21,
-          1254.76,
-          1253.87,
-          1251.42,
-          1249.16,
-          1246.23,
-          1243.11,
-          1241.65,
-          1240.49,
-          1243.39,
-          1246.21,
-          1250.2,
-          1255.29,
-          1260.18,
-          1266.61,
-          1272.69,
-          1278.55,
-          1283.98,
-          1289.32,
-          1293.68,
-          1298.0,
-          1303.1,
-          1308.24,
-          1313.37,
-          1316.96,
-          1321.41,
-          1326.06,
-          1329.24,
-          1331.82,
-          1333.74
-        ],
-        "from": "2026-08-17"
-      },
-      "symbol": "HCLTECH",
-      "decision": "SIGNAL",
-      "score": 86,
-      "stage": 2,
-      "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20",
-      "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 1380.8,
-      "trigger": 1399.0,
-      "stop_loss": 1320.95,
-      "plan_risk": 59.85,
-      "ema_20": 1385.49,
-      "ema_50": 1333.74,
-      "ema_200": 1315.83,
-      "rsi": 52.41,
-      "vol_ratio": 0.57,
-      "vol_5d_ratio": 0.51,
-      "ema_dist_pct": -0.34,
-      "from_52w_high": -19.43,
-      "atr_pct": 2.89,
-      "st_direction": 1,
-      "ema50_slope_pct": 1.274,
-      "atr": 39.9,
-      "reasons": [
-        "Stage 2 (+25)",
-        "PULLBACK_EMA20 (+20)",
-        "RSI 52 (+20)",
-        "Vol 0.6x (+3)",
-        "All EMAs rising (+15)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": {
-        "shares": 36,
-        "invested": 50364.0,
-        "stop_loss": 1320.95,
-        "risk_amount": 2809.8,
-        "risk_pct_of_capital": 0.497,
-        "note": null,
-        "size_notes": [],
-        "within_risk_budget": true
-      },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
-      "actionable": true,
-      "selection": {
-        "tier": "standard",
-        "conviction": {
-          "level": "medium",
-          "met": 3,
-          "of": 5
-        },
-        "conditions": {
-          "relative strength in the top 30%": false,
-          "within 10% of the 52-week high": "False",
-          "traded value at least INR 5 crore a day": true,
-          "ATR at most 4% of price": "True",
-          "Nifty above its EMA200": true
-        },
-        "rs_rank_pct": 64,
-        "sector": "IT",
-        "regime": "bull",
-        "events": {
-          "blocked": false,
-          "reasons": [],
-          "unverified": [
-            "event_calendar.json has not been filled in"
-          ]
-        },
-        "risk_mult": 1.0,
-        "size_notes": [],
-        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
-      },
-      "plan": {
-        "entry": {
-          "basis": "rule",
-          "buy_stop": 1399.0,
-          "valid": "the next session only; if the stop is not reached the signal expires"
-        },
-        "stop": {
-          "basis": "rule",
-          "price": 1320.95,
-          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
-        },
-        "profit_review_levels": {
-          "basis": "reference",
-          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
-          "levels": [
-            {
-              "r": 1,
-              "price": 1458.85,
-              "gain_pct": 4.3
-            },
-            {
-              "r": 2,
-              "price": 1518.7,
-              "gain_pct": 8.6
-            },
-            {
-              "r": 3,
-              "price": 1578.55,
-              "gain_pct": 12.8
-            }
-          ]
-        },
-        "expected_duration": {
-          "basis": "empirical",
-          "from": "2141 past C0 trades (PULLBACK_EMA20); survivor-biased",
-          "winners_median_days": 47.0,
-          "winners_range_days": [
-            29.0,
-            68.0
-          ],
-          "losers_median_days": 5.0,
-          "win_rate": 0.252,
-          "typical_winner_r": 1.44,
-          "strong_winner_r": 7.68,
-          "typical_winner_price": 1485.18,
-          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
-        },
-        "sell_trigger": {
-          "basis": "rule",
-          "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 1333.74,
-          "ema50_in_about_a_week": 1350.73,
-          "time_exit": "sell after 120 sessions if still held",
-          "warning_signs": [
-            "two closes below EMA20 (1385.49): momentum fading, consider tightening attention",
-            "EMA50 turning down while price is near it"
-          ],
-          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
-        },
-        "add_more": {
-          "basis": "untested",
-          "default": "do not add",
-          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
-          "conditions": [
-            "daily close at or above 1458.85 (entry + 1R)",
-            "close above EMA20 (1385.49) and EMA50 rising",
-            "move the stop up to the entry 1399.0 FIRST, so the original position carries no risk",
-            "total open risk stays within the 1.5% budget and this position within 25% of capital"
-          ],
-          "max_extra_shares": 36,
-          "risk_of_add_inr": 2155.0,
-          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
-        }
-      }
-    },
-    {
-      "avg_value_cr": 218.6,
-      "close_in_range": 0.611,
-      "stop_pct": 4.49,
-      "trigger_gap_pct": 0.77,
-      "checks": [
-        {
-          "id": "liquidity",
-          "status": "ok",
-          "text": "Liquid: \u20b9219 cr/day average traded value"
-        },
-        {
-          "id": "stop_width",
-          "status": "ok",
-          "text": "Stop 4.5% below entry"
-        },
-        {
-          "id": "trigger_gap",
-          "status": "ok",
-          "text": "Buy-stop 0.8% above the close"
-        },
-        {
-          "id": "close_strength",
-          "status": "ok",
-          "text": "Close in the top 39% of the day's range"
-        },
-        {
-          "id": "extension",
-          "status": "ok",
-          "text": "5.3% from EMA20"
-        },
-        {
-          "id": "volume",
-          "status": "ok",
-          "text": "Volume 1.5x average"
-        },
-        {
-          "id": "events",
-          "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
-        }
-      ],
-      "execution_ok": true,
-      "spark": {
-        "close": [
-          1621.06,
-          1638.79,
-          1618.37,
-          1601.93,
-          1615.18,
-          1601.93,
-          1611.7,
-          1616.88,
-          1630.82,
-          1639.09,
-          1710.52,
-          1676.95,
-          1641.98,
-          1631.12,
-          1646.86,
-          1653.74,
-          1685.62,
-          1692.49,
-          1662.11,
-          1673.46,
-          1653.74,
-          1636.8,
-          1683.62,
-          1727.46,
-          1706.94,
-          1693.59,
-          1715.0,
-          1709.53,
-          1705.54,
-          1691.1,
-          1691.29,
-          1665.69,
-          1670.47,
-          1668.58,
-          1686.41,
-          1675.65,
-          1638.79,
-          1686.61,
-          1700.46,
-          1678.24,
-          1656.63,
-          1671.57,
-          1660.61,
-          1615.28,
-          1572.84,
-          1604.82,
-          1565.77,
-          1584.0,
-          1621.36,
-          1638.59,
-          1653.64,
-          1675.06,
-          1677.45,
-          1688.11,
-          1698.57,
-          1778.27,
-          1793.21,
-          1848.3,
-          1827.5,
-          1807.2
-        ],
-        "ema20": [
-          1600.12,
-          1603.8,
-          1605.19,
-          1604.88,
-          1605.86,
-          1605.49,
-          1606.08,
-          1607.11,
-          1609.36,
-          1612.2,
-          1621.56,
-          1626.84,
-          1628.28,
-          1628.55,
-          1630.29,
-          1632.53,
-          1637.58,
-          1642.81,
-          1644.65,
-          1647.39,
-          1648.0,
-          1646.93,
-          1650.43,
-          1657.76,
-          1662.44,
-          1665.41,
-          1670.13,
-          1673.89,
-          1676.9,
-          1678.25,
-          1679.49,
-          1678.18,
-          1677.45,
-          1676.6,
-          1677.54,
-          1677.36,
-          1673.68,
-          1674.92,
-          1677.35,
-          1677.43,
-          1675.45,
-          1675.08,
-          1673.7,
-          1668.14,
-          1659.06,
-          1653.9,
-          1645.5,
-          1639.65,
-          1637.91,
-          1637.97,
-          1639.46,
-          1642.85,
-          1646.15,
-          1650.14,
-          1654.76,
-          1666.52,
-          1678.58,
-          1694.75,
-          1707.39,
-          1716.9
-        ],
-        "ema50": [
-          1550.0,
-          1553.48,
-          1556.03,
-          1557.83,
-          1560.08,
-          1561.72,
-          1563.68,
-          1565.76,
-          1568.32,
-          1571.09,
-          1576.56,
-          1580.5,
-          1582.91,
-          1584.8,
-          1587.23,
-          1589.84,
-          1593.6,
-          1597.47,
-          1600.01,
-          1602.89,
-          1604.88,
-          1606.13,
-          1609.17,
-          1613.81,
-          1617.46,
-          1620.45,
-          1624.16,
-          1627.5,
-          1630.57,
-          1632.94,
-          1635.23,
-          1636.42,
-          1637.76,
-          1638.97,
-          1640.83,
-          1642.19,
-          1642.06,
-          1643.81,
-          1646.03,
-          1647.29,
-          1647.66,
-          1648.6,
-          1649.07,
-          1647.74,
-          1644.8,
-          1643.24,
-          1640.2,
-          1637.99,
-          1637.34,
-          1637.39,
-          1638.03,
-          1639.48,
-          1640.97,
-          1642.82,
-          1645.0,
-          1650.23,
-          1655.84,
-          1663.38,
-          1669.82,
-          1675.21
-        ],
-        "from": "2026-08-17"
-      },
-      "symbol": "AUROPHARMA",
-      "decision": "SIGNAL",
-      "score": 79,
-      "stage": 2,
-      "setup_type": "BREAKOUT_CONT",
-      "setup_desc": "Breakout continuation",
-      "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 1807.2,
-      "trigger": 1821.1,
-      "stop_loss": 1739.28,
-      "plan_risk": 67.9242,
-      "ema_20": 1716.9,
-      "ema_50": 1675.21,
-      "ema_200": 1510.67,
-      "rsi": 65.8,
-      "vol_ratio": 1.48,
-      "vol_5d_ratio": 1.0,
-      "ema_dist_pct": 5.26,
-      "from_52w_high": -2.83,
-      "atr_pct": 2.51,
-      "st_direction": 1,
-      "ema50_slope_pct": 1.836,
-      "atr": 45.28,
-      "reasons": [
-        "Stage 2 (+25)",
-        "BREAKOUT_CONT (+10)",
-        "RSI 66 (+13)",
-        "Vol 1.5x (+13)",
-        "All EMAs rising (+15)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": {
-        "shares": 34,
-        "invested": 61917.4,
-        "stop_loss": 1739.28,
-        "risk_amount": 2781.88,
-        "risk_pct_of_capital": 0.492,
-        "note": null,
-        "size_notes": [],
-        "within_risk_budget": true
-      },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
-      "actionable": true,
-      "selection": {
-        "tier": "preferred",
-        "conviction": {
-          "level": "high",
-          "met": 5,
-          "of": 5
-        },
-        "conditions": {
-          "relative strength in the top 30%": true,
-          "within 10% of the 52-week high": "True",
-          "traded value at least INR 5 crore a day": true,
-          "ATR at most 4% of price": "True",
-          "Nifty above its EMA200": true
-        },
-        "rs_rank_pct": 97,
-        "sector": "Pharma & healthcare",
-        "regime": "bull",
-        "events": {
-          "blocked": false,
-          "reasons": [],
-          "unverified": [
-            "event_calendar.json has not been filled in"
-          ]
-        },
-        "risk_mult": 1.0,
-        "size_notes": [],
-        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
-      },
-      "plan": {
-        "entry": {
-          "basis": "rule",
-          "buy_stop": 1821.1,
-          "valid": "the next session only; if the stop is not reached the signal expires"
-        },
-        "stop": {
-          "basis": "rule",
-          "price": 1739.28,
-          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
-        },
-        "profit_review_levels": {
-          "basis": "reference",
-          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
-          "levels": [
-            {
-              "r": 1,
-              "price": 1889.02,
-              "gain_pct": 3.7
-            },
-            {
-              "r": 2,
-              "price": 1956.95,
-              "gain_pct": 7.5
-            },
-            {
-              "r": 3,
-              "price": 2024.87,
-              "gain_pct": 11.2
-            }
-          ]
-        },
-        "expected_duration": {
-          "basis": "empirical",
-          "from": "231 past C0 trades (BREAKOUT_CONT); survivor-biased",
-          "winners_median_days": 60.0,
-          "winners_range_days": [
-            45.25,
-            77.75
-          ],
-          "losers_median_days": 9.0,
-          "win_rate": 0.286,
-          "typical_winner_r": 3.21,
-          "strong_winner_r": 9.23,
-          "typical_winner_price": 2039.14,
-          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
-        },
-        "sell_trigger": {
-          "basis": "rule",
-          "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 1675.21,
-          "ema50_in_about_a_week": 1705.97,
-          "time_exit": "sell after 120 sessions if still held",
-          "warning_signs": [
-            "two closes below EMA20 (1716.9): momentum fading, consider tightening attention",
-            "EMA50 turning down while price is near it"
-          ],
-          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
-        },
-        "add_more": {
-          "basis": "untested",
-          "default": "do not add",
-          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
-          "conditions": [
-            "daily close at or above 1889.02 (entry + 1R)",
-            "close above EMA20 (1716.9) and EMA50 rising",
-            "move the stop up to the entry 1821.1 FIRST, so the original position carries no risk",
-            "total open risk stays within the 1.5% budget and this position within 25% of capital"
-          ],
-          "max_extra_shares": 34,
-          "risk_of_add_inr": 2309.0,
-          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
-        }
-      }
-    },
-    {
-      "avg_value_cr": 277.35,
-      "close_in_range": 0.215,
-      "stop_pct": 7.65,
-      "trigger_gap_pct": 2.13,
-      "checks": [
-        {
-          "id": "liquidity",
-          "status": "ok",
-          "text": "Liquid: \u20b9277 cr/day average traded value"
-        },
-        {
-          "id": "stop_width",
-          "status": "ok",
-          "text": "Stop 7.7% below entry"
-        },
-        {
-          "id": "trigger_gap",
-          "status": "ok",
-          "text": "Buy-stop 2.1% above the close"
-        },
-        {
-          "id": "close_strength",
-          "status": "warn",
-          "text": "Weak close: bottom 22% of the day's range"
-        },
-        {
-          "id": "extension",
-          "status": "ok",
-          "text": "3.0% from EMA20"
-        },
-        {
-          "id": "volume",
-          "status": "ok",
-          "text": "Volume 0.7x average"
-        },
-        {
-          "id": "events",
-          "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
-        }
-      ],
-      "execution_ok": true,
-      "spark": {
-        "close": [
-          168.06,
-          170.4,
-          170.29,
-          169.58,
-          169.38,
-          169.0,
-          166.45,
-          165.0,
-          166.0,
-          165.6,
-          170.68,
-          165.6,
-          163.3,
-          162.0,
-          160.7,
-          162.0,
-          163.85,
-          163.7,
-          163.2,
-          164.45,
-          158.15,
-          158.27,
-          161.87,
-          162.57,
-          162.91,
-          161.77,
-          164.4,
-          162.5,
-          165.71,
-          162.37,
-          158.56,
-          163.26,
-          157.03,
-          156.5,
-          160.0,
-          159.2,
-          153.08,
-          153.0,
-          156.99,
-          160.0,
-          159.8,
-          160.66,
-          160.0,
-          158.15,
-          157.27,
-          154.64,
-          151.67,
-          153.75,
-          157.95,
-          160.33,
-          160.0,
-          156.5,
-          159.0,
-          160.0,
-          159.49,
-          168.0,
-          158.55,
-          161.91,
-          169.69,
-          165.83
-        ],
-        "ema20": [
-          158.47,
-          159.6,
-          160.62,
-          161.47,
-          162.23,
-          162.87,
-          163.21,
-          163.38,
-          163.63,
-          163.82,
-          164.47,
-          164.58,
-          164.46,
-          164.22,
-          163.89,
-          163.71,
-          163.72,
-          163.72,
-          163.67,
-          163.74,
-          163.21,
-          162.74,
-          162.66,
-          162.65,
-          162.67,
-          162.59,
-          162.76,
-          162.74,
-          163.02,
-          162.96,
-          162.54,
-          162.61,
-          162.08,
-          161.55,
-          161.4,
-          161.19,
-          160.42,
-          159.71,
-          159.45,
-          159.5,
-          159.53,
-          159.64,
-          159.67,
-          159.53,
-          159.31,
-          158.87,
-          158.18,
-          157.76,
-          157.78,
-          158.02,
-          158.21,
-          158.05,
-          158.14,
-          158.32,
-          158.43,
-          159.34,
-          159.26,
-          159.52,
-          160.48,
-          160.99
-        ],
-        "ema50": [
-          149.79,
-          150.6,
-          151.37,
-          152.08,
-          152.76,
-          153.4,
-          153.91,
-          154.35,
-          154.8,
-          155.23,
-          155.83,
-          156.22,
-          156.49,
-          156.71,
-          156.87,
-          157.07,
-          157.33,
-          157.58,
-          157.8,
-          158.06,
-          158.07,
-          158.07,
-          158.22,
-          158.39,
-          158.57,
-          158.7,
-          158.92,
-          159.06,
-          159.32,
-          159.44,
-          159.41,
-          159.56,
-          159.46,
-          159.34,
-          159.37,
-          159.36,
-          159.12,
-          158.88,
-          158.8,
-          158.85,
-          158.89,
-          158.96,
-          159.0,
-          158.96,
-          158.9,
-          158.73,
-          158.45,
-          158.27,
-          158.26,
-          158.34,
-          158.4,
-          158.33,
-          158.35,
-          158.42,
-          158.46,
-          158.83,
-          158.82,
-          158.94,
-          159.37,
-          159.62
-        ],
-        "from": "2026-08-17"
-      },
-      "symbol": "MOTHERSON",
-      "decision": "SIGNAL",
-      "score": 87,
-      "stage": 2,
-      "setup_type": "PULLBACK_EMA50",
-      "setup_desc": "Pullback to EMA50",
-      "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 165.83,
-      "trigger": 169.37,
-      "stop_loss": 156.42,
-      "plan_risk": 9.4136,
-      "ema_20": 160.99,
-      "ema_50": 159.62,
-      "ema_200": 144.08,
-      "rsi": 55.86,
-      "vol_ratio": 0.74,
-      "vol_5d_ratio": 0.48,
-      "ema_dist_pct": 3.0,
-      "from_52w_high": -4.29,
-      "atr_pct": 3.78,
-      "st_direction": 1,
-      "ema50_slope_pct": 0.731,
-      "atr": 6.28,
-      "reasons": [
-        "Stage 2 (+25)",
-        "PULLBACK_EMA50 (+14)",
-        "RSI 56 (+20)",
-        "Vol 0.7x (+7)",
-        "All EMAs rising (+15)",
-        "Near 52W high (+3)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": {
-        "shares": 218,
-        "invested": 36922.66,
-        "stop_loss": 156.42,
-        "risk_amount": 2823.1,
-        "risk_pct_of_capital": 0.5,
-        "note": null,
-        "size_notes": [],
-        "within_risk_budget": false
-      },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
-      "actionable": true,
-      "selection": {
-        "tier": "preferred",
-        "conviction": {
-          "level": "high",
-          "met": 5,
-          "of": 5
-        },
-        "conditions": {
-          "relative strength in the top 30%": true,
-          "within 10% of the 52-week high": "True",
-          "traded value at least INR 5 crore a day": true,
-          "ATR at most 4% of price": "True",
-          "Nifty above its EMA200": true
-        },
-        "rs_rank_pct": 96,
-        "sector": "Autos & ancillaries",
-        "regime": "bull",
-        "events": {
-          "blocked": false,
-          "reasons": [],
-          "unverified": [
-            "event_calendar.json has not been filled in"
-          ]
-        },
-        "risk_mult": 1.0,
-        "size_notes": [],
-        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
-      },
-      "plan": {
-        "entry": {
-          "basis": "rule",
-          "buy_stop": 169.37,
-          "valid": "the next session only; if the stop is not reached the signal expires"
-        },
-        "stop": {
-          "basis": "rule",
-          "price": 156.42,
-          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
-        },
-        "profit_review_levels": {
-          "basis": "reference",
-          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
-          "levels": [
-            {
-              "r": 1,
-              "price": 178.78,
-              "gain_pct": 5.6
-            },
-            {
-              "r": 2,
-              "price": 188.2,
-              "gain_pct": 11.1
-            },
-            {
-              "r": 3,
-              "price": 197.61,
-              "gain_pct": 16.7
-            }
-          ]
-        },
-        "expected_duration": {
-          "basis": "empirical",
-          "from": "1833 past C0 trades (PULLBACK_EMA50); survivor-biased",
-          "winners_median_days": 43.0,
-          "winners_range_days": [
-            28.0,
-            67.25
-          ],
-          "losers_median_days": 4.0,
-          "win_rate": 0.253,
-          "typical_winner_r": 1.29,
-          "strong_winner_r": 8.21,
-          "typical_winner_price": 181.51,
-          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
-        },
-        "sell_trigger": {
-          "basis": "rule",
-          "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 159.62,
-          "ema50_in_about_a_week": 160.79,
-          "time_exit": "sell after 120 sessions if still held",
-          "warning_signs": [
-            "two closes below EMA20 (160.99): momentum fading, consider tightening attention",
-            "EMA50 turning down while price is near it"
-          ],
-          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
-        },
-        "add_more": {
-          "basis": "untested",
-          "default": "do not add",
-          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
-          "conditions": [
-            "daily close at or above 178.78 (entry + 1R)",
-            "close above EMA20 (160.99) and EMA50 rising",
-            "move the stop up to the entry 169.37 FIRST, so the original position carries no risk",
-            "total open risk stays within the 1.5% budget and this position within 25% of capital"
-          ],
-          "max_extra_shares": 218,
-          "risk_of_add_inr": 2052.0,
-          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
-        }
-      }
-    },
-    {
-      "avg_value_cr": 319.48,
-      "close_in_range": 0.435,
-      "stop_pct": 4.4,
-      "trigger_gap_pct": 0.9,
-      "checks": [
-        {
-          "id": "liquidity",
-          "status": "ok",
-          "text": "Liquid: \u20b9319 cr/day average traded value"
-        },
-        {
-          "id": "stop_width",
-          "status": "ok",
-          "text": "Stop 4.4% below entry"
-        },
-        {
-          "id": "trigger_gap",
-          "status": "ok",
-          "text": "Buy-stop 0.9% above the close"
-        },
-        {
-          "id": "close_strength",
-          "status": "ok",
-          "text": "Close in the top 56% of the day's range"
-        },
-        {
-          "id": "extension",
-          "status": "ok",
-          "text": "5.7% from EMA20"
-        },
-        {
-          "id": "volume",
-          "status": "ok",
-          "text": "Volume 1.6x average"
-        },
-        {
-          "id": "events",
-          "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
-        }
-      ],
-      "execution_ok": true,
-      "spark": {
-        "close": [
-          354.1,
-          357.8,
-          358.8,
-          355.3,
-          361.0,
-          357.75,
-          346.95,
-          345.3,
-          344.8,
-          344.25,
-          356.7,
-          349.25,
-          353.35,
-          344.6,
-          343.0,
-          342.0,
-          344.15,
-          345.0,
-          346.0,
-          344.5,
-          343.0,
-          341.8,
-          332.75,
-          332.75,
-          332.0,
-          327.0,
-          331.3,
-          329.5,
-          322.0,
-          325.0,
-          320.2,
-          317.4,
-          318.2,
-          327.35,
-          320.0,
-          323.5,
-          321.0,
-          330.0,
-          328.2,
-          329.5,
-          330.0,
-          335.0,
-          338.0,
-          348.85,
-          344.0,
-          347.8,
-          340.9,
-          344.4,
-          341.6,
-          346.0,
-          347.75,
-          339.7,
-          337.5,
-          333.75,
-          335.2,
-          338.5,
-          340.1,
-          344.1,
-          361.6,
-          362.5
-        ],
-        "ema20": [
-          351.44,
-          352.04,
-          352.69,
-          352.94,
-          353.7,
-          354.09,
-          353.41,
-          352.64,
-          351.89,
-          351.16,
-          351.69,
-          351.46,
-          351.64,
-          350.97,
-          350.21,
-          349.43,
-          348.92,
-          348.55,
-          348.31,
-          347.95,
-          347.47,
-          346.93,
-          345.58,
-          344.36,
-          343.18,
-          341.64,
-          340.66,
-          339.59,
-          337.92,
-          336.69,
-          335.12,
-          333.43,
-          331.98,
-          331.54,
-          330.44,
-          329.78,
-          328.94,
-          329.04,
-          328.96,
-          329.01,
-          329.11,
-          329.67,
-          330.46,
-          332.21,
-          333.34,
-          334.71,
-          335.3,
-          336.17,
-          336.69,
-          337.57,
-          338.54,
-          338.65,
-          338.54,
-          338.09,
-          337.81,
-          337.88,
-          338.09,
-          338.66,
-          340.85,
-          342.91
-        ],
-        "ema50": [
-          337.05,
-          337.86,
-          338.68,
-          339.34,
-          340.18,
-          340.87,
-          341.11,
-          341.28,
-          341.41,
-          341.53,
-          342.12,
-          342.4,
-          342.83,
-          342.9,
-          342.9,
-          342.87,
-          342.92,
-          343.0,
-          343.12,
-          343.17,
-          343.16,
-          343.11,
-          342.7,
-          342.31,
-          341.91,
-          341.33,
-          340.93,
-          340.48,
-          339.76,
-          339.18,
-          338.44,
-          337.61,
-          336.85,
-          336.48,
-          335.83,
-          335.35,
-          334.78,
-          334.6,
-          334.35,
-          334.16,
-          333.99,
-          334.03,
-          334.19,
-          334.76,
-          335.13,
-          335.62,
-          335.83,
-          336.17,
-          336.38,
-          336.76,
-          337.19,
-          337.29,
-          337.29,
-          337.16,
-          337.08,
-          337.13,
-          337.25,
-          337.52,
-          338.46,
-          339.41
-        ],
-        "from": "2026-08-17"
-      },
-      "symbol": "FEDERALBNK",
-      "decision": "SIGNAL",
-      "score": 79,
-      "stage": 2,
-      "setup_type": "BREAKOUT_CONT",
-      "setup_desc": "Breakout continuation",
-      "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 362.5,
-      "trigger": 365.75,
-      "stop_loss": 349.66,
-      "plan_risk": 12.8357,
-      "ema_20": 342.91,
-      "ema_50": 339.41,
-      "ema_200": 312.59,
-      "rsi": 68.09,
-      "vol_ratio": 1.6,
-      "vol_5d_ratio": 1.3,
-      "ema_dist_pct": 5.71,
-      "from_52w_high": -2.14,
-      "atr_pct": 2.36,
-      "st_direction": 1,
-      "ema50_slope_pct": 0.691,
-      "atr": 8.56,
-      "reasons": [
-        "Stage 2 (+25)",
-        "BREAKOUT_CONT (+10)",
-        "RSI 68 (+13)",
-        "Vol 1.6x (+13)",
-        "All EMAs rising (+15)",
-        "Supertrend bullish (+3)"
-      ],
-      "position": {
-        "shares": 175,
-        "invested": 64006.25,
-        "stop_loss": 349.66,
-        "risk_amount": 2815.75,
-        "risk_pct_of_capital": 0.498,
-        "note": null,
-        "size_notes": [],
-        "within_risk_budget": false
-      },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
-      "actionable": true,
-      "selection": {
-        "tier": "preferred",
-        "conviction": {
-          "level": "high",
-          "met": 5,
-          "of": 5
-        },
-        "conditions": {
-          "relative strength in the top 30%": true,
-          "within 10% of the 52-week high": "True",
-          "traded value at least INR 5 crore a day": true,
-          "ATR at most 4% of price": "True",
-          "Nifty above its EMA200": true
-        },
-        "rs_rank_pct": 97,
-        "sector": "Banks",
-        "regime": "bull",
-        "events": {
-          "blocked": false,
-          "reasons": [],
-          "unverified": [
-            "event_calendar.json has not been filled in"
-          ]
-        },
-        "risk_mult": 1.0,
-        "size_notes": [],
-        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
-      },
-      "plan": {
-        "entry": {
-          "basis": "rule",
-          "buy_stop": 365.75,
-          "valid": "the next session only; if the stop is not reached the signal expires"
-        },
-        "stop": {
-          "basis": "rule",
-          "price": 349.66,
-          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
-        },
-        "profit_review_levels": {
-          "basis": "reference",
-          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
-          "levels": [
-            {
-              "r": 1,
-              "price": 378.59,
-              "gain_pct": 3.5
-            },
-            {
-              "r": 2,
-              "price": 391.42,
-              "gain_pct": 7.0
-            },
-            {
-              "r": 3,
-              "price": 404.26,
-              "gain_pct": 10.5
-            }
-          ]
-        },
-        "expected_duration": {
-          "basis": "empirical",
-          "from": "231 past C0 trades (BREAKOUT_CONT); survivor-biased",
-          "winners_median_days": 60.0,
-          "winners_range_days": [
-            45.25,
-            77.75
-          ],
-          "losers_median_days": 9.0,
-          "win_rate": 0.286,
-          "typical_winner_r": 3.21,
-          "strong_winner_r": 9.23,
-          "typical_winner_price": 406.95,
-          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
-        },
-        "sell_trigger": {
-          "basis": "rule",
-          "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 339.41,
-          "ema50_in_about_a_week": 341.76,
-          "time_exit": "sell after 120 sessions if still held",
-          "warning_signs": [
-            "two closes below EMA20 (342.91): momentum fading, consider tightening attention",
-            "EMA50 turning down while price is near it"
-          ],
-          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
-        },
-        "add_more": {
-          "basis": "untested",
-          "default": "do not add",
-          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
-          "conditions": [
-            "daily close at or above 378.59 (entry + 1R)",
-            "close above EMA20 (342.91) and EMA50 rising",
-            "move the stop up to the entry 365.75 FIRST, so the original position carries no risk",
-            "total open risk stays within the 1.5% budget and this position within 25% of capital"
-          ],
-          "max_extra_shares": 175,
-          "risk_of_add_inr": 2246.0,
-          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
-        }
-      }
-    },
-    {
-      "avg_value_cr": 68.97,
-      "close_in_range": 0.986,
-      "stop_pct": 5.21,
-      "trigger_gap_pct": 0.08,
+      "avg_value_cr": 69.3,
+      "close_in_range": 0.144,
+      "stop_pct": 8.01,
+      "trigger_gap_pct": 3.03,
       "checks": [
         {
           "id": "liquidity",
@@ -2057,27 +314,27 @@
         {
           "id": "stop_width",
           "status": "ok",
-          "text": "Stop 5.2% below entry"
+          "text": "Stop 8.0% below entry"
         },
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop 0.1% above the close"
+          "text": "Buy-stop 3.0% above the close"
         },
         {
           "id": "close_strength",
-          "status": "ok",
-          "text": "Close in the top 1% of the day's range"
+          "status": "warn",
+          "text": "Weak close: bottom 14% of the day's range"
         },
         {
           "id": "extension",
-          "status": "warn",
-          "text": "Extended: 10.3% above EMA20"
+          "status": "ok",
+          "text": "6.7% from EMA20"
         },
         {
           "id": "volume",
           "status": "ok",
-          "text": "Volume 2.1x average"
+          "text": "Volume 0.9x average"
         },
         {
           "id": "events",
@@ -2088,7 +345,6 @@
       "execution_ok": true,
       "spark": {
         "close": [
-          1591.9,
           1590.0,
           1581.8,
           1585.5,
@@ -2147,10 +403,10 @@
           1629.0,
           1597.5,
           1625.0,
-          1693.9
+          1693.9,
+          1650.0
         ],
         "ema20": [
-          1608.45,
           1606.69,
           1604.32,
           1602.53,
@@ -2209,10 +465,10 @@
           1498.55,
           1507.98,
           1519.12,
-          1535.77
+          1535.77,
+          1546.65
         ],
         "ema50": [
-          1576.98,
           1577.49,
           1577.66,
           1577.97,
@@ -2271,54 +527,55 @@
           1499.21,
           1503.06,
           1507.84,
-          1515.14
+          1515.14,
+          1520.43
         ],
-        "from": "2026-08-17"
+        "from": "2026-08-18"
       },
       "symbol": "PRESTIGE",
       "decision": "SIGNAL",
-      "score": 76,
+      "score": 72,
       "stage": 2,
       "setup_type": "TRENDING",
       "setup_desc": "Stage 2 momentum",
       "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 1693.9,
-      "trigger": 1695.2,
-      "stop_loss": 1606.87,
-      "plan_risk": 87.0322,
-      "ema_20": 1535.77,
-      "ema_50": 1515.14,
-      "ema_200": 1511.06,
-      "rsi": 70.38,
-      "vol_ratio": 2.05,
-      "vol_5d_ratio": 1.64,
-      "ema_dist_pct": 10.3,
-      "from_52w_high": -4.79,
-      "atr_pct": 3.43,
+      "signal_date": "2026-11-13",
+      "price": 1650.0,
+      "trigger": 1700.0,
+      "stop_loss": 1563.82,
+      "plan_risk": 86.175,
+      "ema_20": 1546.65,
+      "ema_50": 1520.43,
+      "ema_200": 1512.44,
+      "rsi": 63.72,
+      "vol_ratio": 0.88,
+      "vol_5d_ratio": 0.7,
+      "ema_dist_pct": 6.68,
+      "from_52w_high": -7.26,
+      "atr_pct": 3.48,
       "st_direction": 1,
-      "ema50_slope_pct": 1.836,
-      "atr": 58.02,
+      "ema50_slope_pct": 1.775,
+      "atr": 57.45,
       "reasons": [
         "Stage 2 (+25)",
         "TRENDING (+6)",
-        "RSI 70 (+4)",
-        "Vol 2.1x (+20)",
+        "RSI 64 (+13)",
+        "Vol 0.9x (+7)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 31,
-        "invested": 52551.2,
-        "stop_loss": 1606.87,
-        "risk_amount": 2738.23,
-        "risk_pct_of_capital": 0.485,
+        "shares": 20,
+        "invested": 34000.0,
+        "stop_loss": 1563.82,
+        "risk_amount": 2723.6,
+        "risk_pct_of_capital": 0.482,
         "note": null,
         "size_notes": [],
-        "within_risk_budget": false
+        "within_risk_budget": true
       },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2334,7 +591,7 @@
           "ATR at most 4% of price": "True",
           "Nifty above its EMA200": true
         },
-        "rs_rank_pct": 64,
+        "rs_rank_pct": 63,
         "sector": "Real estate",
         "regime": "bull",
         "events": {
@@ -2351,12 +608,12 @@
       "plan": {
         "entry": {
           "basis": "rule",
-          "buy_stop": 1695.2,
+          "buy_stop": 1700.0,
           "valid": "the next session only; if the stop is not reached the signal expires"
         },
         "stop": {
           "basis": "rule",
-          "price": 1606.87,
+          "price": 1563.82,
           "note": "fixed at entry; never moved down. A gap open below it fills at the open"
         },
         "profit_review_levels": {
@@ -2365,18 +622,18 @@
           "levels": [
             {
               "r": 1,
-              "price": 1782.23,
+              "price": 1786.18,
               "gain_pct": 5.1
             },
             {
               "r": 2,
-              "price": 1869.26,
-              "gain_pct": 10.3
+              "price": 1872.35,
+              "gain_pct": 10.1
             },
             {
               "r": 3,
-              "price": 1956.3,
-              "gain_pct": 15.4
+              "price": 1958.52,
+              "gain_pct": 15.2
             }
           ]
         },
@@ -2392,17 +649,17 @@
           "win_rate": 0.329,
           "typical_winner_r": 2.04,
           "strong_winner_r": 9.61,
-          "typical_winner_price": 1872.75,
+          "typical_winner_price": 1875.8,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
           "basis": "rule",
           "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 1515.14,
-          "ema50_in_about_a_week": 1542.96,
+          "ema50_now": 1520.43,
+          "ema50_in_about_a_week": 1547.42,
           "time_exit": "sell after 120 sessions if still held",
           "warning_signs": [
-            "two closes below EMA20 (1535.77): momentum fading, consider tightening attention",
+            "two closes below EMA20 (1546.65): momentum fading, consider tightening attention",
             "EMA50 turning down while price is near it"
           ],
           "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
@@ -2412,37 +669,37 @@
           "default": "do not add",
           "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
           "conditions": [
-            "daily close at or above 1782.23 (entry + 1R)",
-            "close above EMA20 (1535.77) and EMA50 rising",
-            "move the stop up to the entry 1695.2 FIRST, so the original position carries no risk",
+            "daily close at or above 1786.18 (entry + 1R)",
+            "close above EMA20 (1546.65) and EMA50 rising",
+            "move the stop up to the entry 1700.0 FIRST, so the original position carries no risk",
             "total open risk stays within the 1.5% budget and this position within 25% of capital"
           ],
-          "max_extra_shares": 31,
-          "risk_of_add_inr": 2698.0,
+          "max_extra_shares": 20,
+          "risk_of_add_inr": 1724.0,
           "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
         }
       }
     },
     {
-      "avg_value_cr": 440.15,
-      "close_in_range": 0.38,
-      "stop_pct": 7.9,
-      "trigger_gap_pct": 3.6,
+      "avg_value_cr": 443.91,
+      "close_in_range": 0.375,
+      "stop_pct": 5.94,
+      "trigger_gap_pct": 1.55,
       "checks": [
         {
           "id": "liquidity",
           "status": "ok",
-          "text": "Liquid: \u20b9440 cr/day average traded value"
+          "text": "Liquid: \u20b9444 cr/day average traded value"
         },
         {
           "id": "stop_width",
           "status": "ok",
-          "text": "Stop 7.9% below entry"
+          "text": "Stop 5.9% below entry"
         },
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop 3.6% above the close"
+          "text": "Buy-stop 1.6% above the close"
         },
         {
           "id": "close_strength",
@@ -2452,12 +709,12 @@
         {
           "id": "extension",
           "status": "ok",
-          "text": "-1.2% from EMA20"
+          "text": "-1.7% from EMA20"
         },
         {
           "id": "volume",
           "status": "ok",
-          "text": "Volume 3.2x average"
+          "text": "Volume 0.9x average"
         },
         {
           "id": "events",
@@ -2468,7 +725,6 @@
       "execution_ok": true,
       "spark": {
         "close": [
-          5059.0,
           5099.0,
           5017.0,
           4998.0,
@@ -2527,10 +783,10 @@
           4980.0,
           4999.0,
           4949.0,
-          4843.4
+          4843.4,
+          4809.8
         ],
         "ema20": [
-          4780.67,
           4810.99,
           4830.61,
           4846.55,
@@ -2589,10 +845,10 @@
           4891.46,
           4901.7,
           4906.21,
-          4900.22
+          4900.22,
+          4891.61
         ],
         "ema50": [
-          4594.81,
           4614.58,
           4630.36,
           4644.78,
@@ -2651,54 +907,55 @@
           4827.0,
           4833.74,
           4838.26,
-          4838.46
+          4838.46,
+          4837.34
         ],
-        "from": "2026-08-17"
+        "from": "2026-08-18"
       },
       "symbol": "HAL",
       "decision": "SIGNAL",
-      "score": 100,
+      "score": 93,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
       "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 4843.4,
-      "trigger": 5017.9,
-      "stop_loss": 4621.59,
-      "plan_risk": 221.8071,
-      "ema_20": 4900.22,
-      "ema_50": 4838.46,
-      "ema_200": 4601.97,
-      "rsi": 47.49,
-      "vol_ratio": 3.24,
-      "vol_5d_ratio": 2.6,
-      "ema_dist_pct": -1.16,
-      "from_52w_high": -5.95,
-      "atr_pct": 3.05,
+      "signal_date": "2026-11-13",
+      "price": 4809.8,
+      "trigger": 4884.4,
+      "stop_loss": 4594.31,
+      "plan_risk": 215.4856,
+      "ema_20": 4891.61,
+      "ema_50": 4837.34,
+      "ema_200": 4604.03,
+      "rsi": 45.57,
+      "vol_ratio": 0.89,
+      "vol_5d_ratio": 0.71,
+      "ema_dist_pct": -1.67,
+      "from_52w_high": -6.6,
+      "atr_pct": 2.99,
       "st_direction": 1,
-      "ema50_slope_pct": 0.557,
-      "atr": 147.87,
+      "ema50_slope_pct": 0.344,
+      "atr": 143.66,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 47 (+20)",
-        "Vol 3.2x (+20)",
+        "RSI 46 (+20)",
+        "Vol 0.9x (+7)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 7,
-        "invested": 35125.3,
-        "stop_loss": 4621.59,
-        "risk_amount": 2774.17,
-        "risk_pct_of_capital": 0.491,
+        "shares": 9,
+        "invested": 43959.6,
+        "stop_loss": 4594.31,
+        "risk_amount": 2610.81,
+        "risk_pct_of_capital": 0.462,
         "note": null,
         "size_notes": [],
-        "within_risk_budget": false
+        "within_risk_budget": true
       },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2731,12 +988,12 @@
       "plan": {
         "entry": {
           "basis": "rule",
-          "buy_stop": 5017.9,
+          "buy_stop": 4884.4,
           "valid": "the next session only; if the stop is not reached the signal expires"
         },
         "stop": {
           "basis": "rule",
-          "price": 4621.59,
+          "price": 4594.31,
           "note": "fixed at entry; never moved down. A gap open below it fills at the open"
         },
         "profit_review_levels": {
@@ -2745,18 +1002,18 @@
           "levels": [
             {
               "r": 1,
-              "price": 5239.71,
+              "price": 5099.89,
               "gain_pct": 4.4
             },
             {
               "r": 2,
-              "price": 5461.51,
+              "price": 5315.37,
               "gain_pct": 8.8
             },
             {
               "r": 3,
-              "price": 5683.32,
-              "gain_pct": 13.3
+              "price": 5530.86,
+              "gain_pct": 13.2
             }
           ]
         },
@@ -2772,17 +1029,17 @@
           "win_rate": 0.252,
           "typical_winner_r": 1.44,
           "strong_winner_r": 7.68,
-          "typical_winner_price": 5337.3,
+          "typical_winner_price": 5194.7,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
           "basis": "rule",
           "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 4838.46,
-          "ema50_in_about_a_week": 4865.41,
+          "ema50_now": 4837.34,
+          "ema50_in_about_a_week": 4853.98,
           "time_exit": "sell after 120 sessions if still held",
           "warning_signs": [
-            "two closes below EMA20 (4900.22): momentum fading, consider tightening attention",
+            "two closes below EMA20 (4891.61): momentum fading, consider tightening attention",
             "EMA50 turning down while price is near it"
           ],
           "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
@@ -2792,52 +1049,52 @@
           "default": "do not add",
           "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
           "conditions": [
-            "daily close at or above 5239.71 (entry + 1R)",
-            "close above EMA20 (4900.22) and EMA50 rising",
-            "move the stop up to the entry 5017.9 FIRST, so the original position carries no risk",
+            "daily close at or above 5099.89 (entry + 1R)",
+            "close above EMA20 (4891.61) and EMA50 rising",
+            "move the stop up to the entry 4884.4 FIRST, so the original position carries no risk",
             "total open risk stays within the 1.5% budget and this position within 25% of capital"
           ],
-          "max_extra_shares": 7,
-          "risk_of_add_inr": 1553.0,
+          "max_extra_shares": 9,
+          "risk_of_add_inr": 1939.0,
           "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
         }
       }
     },
     {
-      "avg_value_cr": 217.05,
-      "close_in_range": 0.838,
-      "stop_pct": 6.89,
-      "trigger_gap_pct": 0.37,
+      "avg_value_cr": 447.34,
+      "close_in_range": 0.07,
+      "stop_pct": 5.96,
+      "trigger_gap_pct": 2.12,
       "checks": [
         {
           "id": "liquidity",
           "status": "ok",
-          "text": "Liquid: \u20b9217 cr/day average traded value"
+          "text": "Liquid: \u20b9447 cr/day average traded value"
         },
         {
           "id": "stop_width",
           "status": "ok",
-          "text": "Stop 6.9% below entry"
+          "text": "Stop 6.0% below entry"
         },
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop 0.4% above the close"
+          "text": "Buy-stop 2.1% above the close"
         },
         {
           "id": "close_strength",
-          "status": "ok",
-          "text": "Close in the top 16% of the day's range"
+          "status": "warn",
+          "text": "Weak close: bottom 7% of the day's range"
         },
         {
           "id": "extension",
           "status": "ok",
-          "text": "-2.3% from EMA20"
+          "text": "3.2% from EMA20"
         },
         {
           "id": "volume",
           "status": "warn",
-          "text": "Light volume (0.3x average)"
+          "text": "Light volume (0.5x average)"
         },
         {
           "id": "events",
@@ -2848,256 +1105,254 @@
       "execution_ok": true,
       "spark": {
         "close": [
-          2510.0,
-          2432.0,
-          2424.5,
-          2430.0,
-          2430.0,
-          2427.0,
-          2431.9,
-          2400.0,
-          2413.6,
-          2455.0,
-          2427.4,
-          2505.5,
-          2480.0,
-          2471.0,
-          2422.0,
-          2369.1,
-          2355.0,
-          2307.5,
-          2291.7,
-          2295.0,
-          2378.0,
-          2316.7,
-          2320.0,
-          2300.4,
-          2296.2,
-          2265.0,
-          2259.0,
-          2248.2,
-          2234.0,
-          2237.5,
-          2154.4,
-          2154.4,
-          2250.2,
-          2297.1,
-          2298.0,
-          2289.0,
-          2303.4,
-          2360.0,
-          2353.5,
-          2466.3,
-          2435.3,
-          2453.2,
-          2500.0,
-          2500.0,
-          2575.0,
-          2499.5,
-          2480.0,
-          2557.6,
-          2618.4,
-          2518.0,
-          2561.3,
-          2525.6,
-          2563.7,
-          2535.3,
-          2468.4,
-          2510.0,
-          2520.0,
-          2455.0,
-          2390.0,
-          2410.0
+          5048.6,
+          5068.0,
+          5068.0,
+          5086.1,
+          5079.0,
+          5124.8,
+          5100.0,
+          5139.3,
+          5169.2,
+          5102.4,
+          5050.0,
+          5074.0,
+          5027.0,
+          5020.0,
+          4995.0,
+          4987.0,
+          5005.0,
+          5021.0,
+          5009.5,
+          4856.0,
+          4908.5,
+          4841.0,
+          4798.5,
+          4875.0,
+          4928.5,
+          4880.0,
+          4832.5,
+          4884.0,
+          4819.5,
+          4675.0,
+          4587.0,
+          4515.7,
+          4580.0,
+          4550.0,
+          4377.0,
+          4359.5,
+          4410.0,
+          4400.0,
+          4487.0,
+          4444.0,
+          4455.8,
+          4444.8,
+          4424.2,
+          4380.9,
+          4350.0,
+          4299.7,
+          4323.0,
+          4365.9,
+          4337.9,
+          4434.0,
+          4436.5,
+          4476.3,
+          4562.0,
+          4754.4,
+          4834.6,
+          5000.0,
+          5005.0,
+          4970.0,
+          4921.9,
+          4844.9
         ],
         "ema20": [
-          2439.19,
-          2438.51,
-          2437.17,
-          2436.49,
-          2435.87,
-          2435.03,
-          2434.73,
-          2431.42,
-          2429.72,
-          2432.13,
-          2431.68,
-          2438.71,
-          2442.64,
-          2445.34,
-          2443.12,
-          2436.07,
-          2428.35,
-          2416.84,
-          2404.92,
-          2394.45,
-          2392.89,
-          2385.63,
-          2379.38,
-          2371.86,
-          2364.65,
-          2355.16,
-          2346.0,
-          2336.69,
-          2326.91,
-          2318.39,
-          2302.78,
-          2288.64,
-          2284.98,
-          2286.14,
-          2287.27,
-          2287.43,
-          2288.95,
-          2295.72,
-          2301.22,
-          2316.94,
-          2328.22,
-          2340.12,
-          2355.35,
-          2369.12,
-          2388.73,
-          2399.28,
-          2406.97,
-          2421.31,
-          2440.08,
-          2447.5,
-          2458.34,
-          2464.75,
-          2474.17,
-          2479.99,
-          2478.89,
-          2481.85,
-          2485.49,
-          2482.58,
-          2473.76,
-          2467.69
+          4930.51,
+          4943.6,
+          4955.45,
+          4967.89,
+          4978.47,
+          4992.41,
+          5002.66,
+          5015.67,
+          5030.29,
+          5037.16,
+          5038.38,
+          5041.77,
+          5040.37,
+          5038.43,
+          5034.29,
+          5029.79,
+          5027.43,
+          5026.81,
+          5025.17,
+          5009.05,
+          4999.48,
+          4984.38,
+          4966.68,
+          4957.95,
+          4955.15,
+          4947.99,
+          4936.99,
+          4931.94,
+          4921.23,
+          4897.78,
+          4868.18,
+          4834.61,
+          4810.37,
+          4785.57,
+          4746.66,
+          4709.79,
+          4681.23,
+          4654.45,
+          4638.5,
+          4619.98,
+          4604.34,
+          4589.15,
+          4573.44,
+          4555.1,
+          4535.57,
+          4513.1,
+          4495.0,
+          4482.7,
+          4468.91,
+          4465.59,
+          4462.82,
+          4464.1,
+          4473.43,
+          4500.18,
+          4532.03,
+          4576.6,
+          4617.4,
+          4650.98,
+          4676.78,
+          4692.8
         ],
         "ema50": [
-          2354.58,
-          2357.62,
-          2360.24,
-          2362.98,
-          2365.61,
-          2368.01,
-          2370.52,
-          2371.68,
-          2373.32,
-          2376.52,
-          2378.52,
-          2383.5,
-          2387.28,
-          2390.56,
-          2391.8,
-          2390.91,
-          2389.5,
-          2386.28,
-          2382.57,
-          2379.14,
-          2379.1,
-          2376.65,
-          2374.43,
-          2371.52,
-          2368.57,
-          2364.51,
-          2360.37,
-          2355.97,
-          2351.19,
-          2346.73,
-          2339.19,
-          2331.94,
-          2328.74,
-          2327.5,
-          2326.34,
-          2324.87,
-          2324.03,
-          2325.44,
-          2326.54,
-          2332.02,
-          2336.07,
-          2340.67,
-          2346.92,
-          2352.92,
-          2361.63,
-          2367.03,
-          2371.46,
-          2378.76,
-          2388.16,
-          2393.25,
-          2399.84,
-          2404.77,
-          2411.01,
-          2415.88,
-          2417.94,
-          2421.55,
-          2425.41,
-          2426.57,
-          2425.14,
-          2424.54
+          4700.47,
+          4714.88,
+          4728.73,
+          4742.75,
+          4755.93,
+          4770.4,
+          4783.32,
+          4797.28,
+          4811.87,
+          4823.26,
+          4832.15,
+          4841.64,
+          4848.91,
+          4855.62,
+          4861.08,
+          4866.02,
+          4871.47,
+          4877.33,
+          4882.52,
+          4881.48,
+          4882.54,
+          4880.91,
+          4877.68,
+          4877.57,
+          4879.57,
+          4879.59,
+          4877.74,
+          4877.98,
+          4875.69,
+          4867.82,
+          4856.81,
+          4843.43,
+          4833.1,
+          4822.0,
+          4804.55,
+          4787.1,
+          4772.31,
+          4757.71,
+          4747.09,
+          4735.2,
+          4724.25,
+          4713.29,
+          4701.95,
+          4689.36,
+          4676.05,
+          4661.29,
+          4648.03,
+          4636.96,
+          4625.24,
+          4617.74,
+          4610.63,
+          4605.36,
+          4603.66,
+          4609.57,
+          4618.4,
+          4633.36,
+          4647.94,
+          4660.57,
+          4670.81,
+          4677.64
         ],
-        "from": "2026-08-17"
+        "from": "2026-08-18"
       },
-      "symbol": "MPHASIS",
+      "symbol": "TITAN",
       "decision": "SIGNAL",
-      "score": 78,
+      "score": 89,
       "stage": 2,
-      "setup_type": "PULLBACK_EMA50",
-      "setup_desc": "Pullback to EMA50",
+      "setup_type": "PULLBACK_EMA20",
+      "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 2410.0,
-      "trigger": 2418.9,
-      "stop_loss": 2252.35,
-      "plan_risk": 157.65,
-      "ema_20": 2467.69,
-      "ema_50": 2424.54,
-      "ema_200": 2397.31,
-      "rsi": 45.91,
-      "vol_ratio": 0.34,
-      "vol_5d_ratio": 0.24,
-      "ema_dist_pct": -2.34,
-      "from_52w_high": -16.82,
-      "atr_pct": 4.36,
+      "signal_date": "2026-11-13",
+      "price": 4844.9,
+      "trigger": 4947.8,
+      "stop_loss": 4652.85,
+      "plan_risk": 192.0537,
+      "ema_20": 4692.8,
+      "ema_50": 4677.64,
+      "ema_200": 4463.42,
+      "rsi": 60.82,
+      "vol_ratio": 0.46,
+      "vol_5d_ratio": 0.36,
+      "ema_dist_pct": 3.24,
+      "from_52w_high": -6.59,
+      "atr_pct": 2.64,
       "st_direction": 1,
-      "ema50_slope_pct": 0.273,
-      "atr": 105.1,
+      "ema50_slope_pct": 1.283,
+      "atr": 128.04,
       "reasons": [
         "Stage 2 (+25)",
-        "PULLBACK_EMA50 (+14)",
-        "RSI 46 (+20)",
-        "Vol 0.3x (+3)",
-        "2 EMAs rising (+10)",
+        "PULLBACK_EMA20 (+20)",
+        "RSI 61 (+20)",
+        "Vol 0.5x (+3)",
+        "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 12,
-        "invested": 29026.8,
-        "stop_loss": 2252.35,
-        "risk_amount": 1998.6,
-        "risk_pct_of_capital": 0.354,
+        "shares": 9,
+        "invested": 44530.2,
+        "stop_loss": 4652.85,
+        "risk_amount": 2654.55,
+        "risk_pct_of_capital": 0.47,
         "note": null,
-        "size_notes": [
-          "ATR 4.4% above 4%: size x0.75"
-        ],
-        "within_risk_budget": false
+        "size_notes": [],
+        "within_risk_budget": true
       },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
       "actionable": true,
       "selection": {
-        "tier": "standard",
+        "tier": "preferred",
         "conviction": {
-          "level": "low",
-          "met": 2,
+          "level": "high",
+          "met": 5,
           "of": 5
         },
         "conditions": {
-          "relative strength in the top 30%": false,
-          "within 10% of the 52-week high": "False",
+          "relative strength in the top 30%": true,
+          "within 10% of the 52-week high": "True",
           "traded value at least INR 5 crore a day": true,
-          "ATR at most 4% of price": "False",
+          "ATR at most 4% of price": "True",
           "Nifty above its EMA200": true
         },
-        "rs_rank_pct": 55,
-        "sector": "IT",
+        "rs_rank_pct": 89,
+        "sector": "FMCG & consumer",
         "regime": "bull",
         "events": {
           "blocked": false,
@@ -3106,21 +1361,19 @@
             "event_calendar.json has not been filled in"
           ]
         },
-        "risk_mult": 0.75,
-        "size_notes": [
-          "ATR 4.4% above 4%: size x0.75"
-        ],
+        "risk_mult": 1.0,
+        "size_notes": [],
         "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
       },
       "plan": {
         "entry": {
           "basis": "rule",
-          "buy_stop": 2418.9,
+          "buy_stop": 4947.8,
           "valid": "the next session only; if the stop is not reached the signal expires"
         },
         "stop": {
           "basis": "rule",
-          "price": 2252.35,
+          "price": 4652.85,
           "note": "fixed at entry; never moved down. A gap open below it fills at the open"
         },
         "profit_review_levels": {
@@ -3129,44 +1382,44 @@
           "levels": [
             {
               "r": 1,
-              "price": 2576.55,
-              "gain_pct": 6.5
+              "price": 5139.85,
+              "gain_pct": 3.9
             },
             {
               "r": 2,
-              "price": 2734.2,
-              "gain_pct": 13.0
+              "price": 5331.91,
+              "gain_pct": 7.8
             },
             {
               "r": 3,
-              "price": 2891.85,
-              "gain_pct": 19.6
+              "price": 5523.96,
+              "gain_pct": 11.6
             }
           ]
         },
         "expected_duration": {
           "basis": "empirical",
-          "from": "1833 past C0 trades (PULLBACK_EMA50); survivor-biased",
-          "winners_median_days": 43.0,
+          "from": "2141 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "winners_median_days": 47.0,
           "winners_range_days": [
-            28.0,
-            67.25
+            29.0,
+            68.0
           ],
-          "losers_median_days": 4.0,
-          "win_rate": 0.253,
-          "typical_winner_r": 1.29,
-          "strong_winner_r": 8.21,
-          "typical_winner_price": 2622.27,
+          "losers_median_days": 5.0,
+          "win_rate": 0.252,
+          "typical_winner_r": 1.44,
+          "strong_winner_r": 7.68,
+          "typical_winner_price": 5224.36,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
           "basis": "rule",
           "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 2424.54,
-          "ema50_in_about_a_week": 2431.16,
+          "ema50_now": 4677.64,
+          "ema50_in_about_a_week": 4737.65,
           "time_exit": "sell after 120 sessions if still held",
           "warning_signs": [
-            "two closes below EMA20 (2467.69): momentum fading, consider tightening attention",
+            "two closes below EMA20 (4692.8): momentum fading, consider tightening attention",
             "EMA50 turning down while price is near it"
           ],
           "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
@@ -3176,47 +1429,806 @@
           "default": "do not add",
           "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
           "conditions": [
-            "daily close at or above 2576.55 (entry + 1R)",
-            "close above EMA20 (2467.69) and EMA50 rising",
-            "move the stop up to the entry 2418.9 FIRST, so the original position carries no risk",
+            "daily close at or above 5139.85 (entry + 1R)",
+            "close above EMA20 (4692.8) and EMA50 rising",
+            "move the stop up to the entry 4947.8 FIRST, so the original position carries no risk",
             "total open risk stays within the 1.5% budget and this position within 25% of capital"
           ],
-          "max_extra_shares": 12,
-          "risk_of_add_inr": 1892.0,
+          "max_extra_shares": 9,
+          "risk_of_add_inr": 1728.0,
           "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
         }
       }
     },
     {
-      "avg_value_cr": 734.23,
-      "close_in_range": 0.448,
-      "stop_pct": 4.88,
-      "trigger_gap_pct": 0.9,
+      "avg_value_cr": 148.9,
+      "close_in_range": 0.035,
+      "stop_pct": 6.48,
+      "trigger_gap_pct": 2.25,
       "checks": [
         {
           "id": "liquidity",
           "status": "ok",
-          "text": "Liquid: \u20b9734 cr/day average traded value"
+          "text": "Liquid: \u20b9149 cr/day average traded value"
         },
         {
           "id": "stop_width",
           "status": "ok",
-          "text": "Stop 4.9% below entry"
+          "text": "Stop 6.5% below entry"
         },
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop 0.9% above the close"
+          "text": "Buy-stop 2.2% above the close"
         },
         {
           "id": "close_strength",
-          "status": "ok",
-          "text": "Close in the top 55% of the day's range"
+          "status": "warn",
+          "text": "Weak close: bottom 4% of the day's range"
         },
         {
           "id": "extension",
           "status": "ok",
-          "text": "1.3% from EMA20"
+          "text": "2.0% from EMA20"
+        },
+        {
+          "id": "volume",
+          "status": "ok",
+          "text": "Volume 0.8x average"
+        },
+        {
+          "id": "events",
+          "status": "warn",
+          "text": "Event risk unverified: event_calendar.json has not been filled in"
+        }
+      ],
+      "execution_ok": true,
+      "spark": {
+        "close": [
+          48730.0,
+          48460.0,
+          48750.0,
+          48200.0,
+          48100.0,
+          48680.0,
+          48895.0,
+          48780.0,
+          48640.0,
+          50000.0,
+          48550.0,
+          47250.0,
+          47000.0,
+          46820.0,
+          48025.0,
+          48785.0,
+          49100.0,
+          48775.0,
+          48385.0,
+          47070.0,
+          47555.0,
+          47735.0,
+          47000.0,
+          47565.0,
+          48290.0,
+          47955.0,
+          47750.0,
+          48250.0,
+          47020.0,
+          45700.0,
+          47100.0,
+          45480.0,
+          44960.0,
+          45000.0,
+          44410.0,
+          43155.0,
+          43545.0,
+          44585.0,
+          44900.0,
+          45000.0,
+          45035.0,
+          45560.0,
+          45195.0,
+          44500.0,
+          44070.0,
+          44085.0,
+          44900.0,
+          45600.0,
+          47625.0,
+          47565.0,
+          47200.0,
+          48100.0,
+          49645.0,
+          50925.0,
+          52475.0,
+          50700.0,
+          49550.0,
+          50490.0,
+          50500.0,
+          49390.0
+        ],
+        "ema20": [
+          44040.38,
+          44461.3,
+          44869.75,
+          45186.91,
+          45464.35,
+          45770.6,
+          46068.16,
+          46326.43,
+          46546.77,
+          46875.65,
+          47035.11,
+          47055.58,
+          47050.29,
+          47028.35,
+          47123.27,
+          47281.53,
+          47454.72,
+          47580.46,
+          47657.08,
+          47601.17,
+          47596.77,
+          47609.94,
+          47551.85,
+          47553.1,
+          47623.28,
+          47654.87,
+          47663.93,
+          47719.75,
+          47653.11,
+          47467.1,
+          47432.14,
+          47246.22,
+          47028.48,
+          46835.29,
+          46604.31,
+          46275.81,
+          46015.73,
+          45879.47,
+          45786.19,
+          45711.31,
+          45646.9,
+          45638.63,
+          45596.38,
+          45491.96,
+          45356.53,
+          45235.44,
+          45203.49,
+          45241.25,
+          45468.28,
+          45667.96,
+          45813.87,
+          46031.6,
+          46375.73,
+          46809.0,
+          47348.62,
+          47667.79,
+          47847.05,
+          48098.76,
+          48327.45,
+          48428.65
+        ],
+        "ema50": [
+          41673.96,
+          41940.08,
+          42207.14,
+          42442.15,
+          42664.03,
+          42899.95,
+          43135.05,
+          43356.42,
+          43563.62,
+          43816.02,
+          44001.67,
+          44129.06,
+          44241.64,
+          44342.75,
+          44487.16,
+          44655.7,
+          44829.98,
+          44984.69,
+          45118.04,
+          45194.58,
+          45287.15,
+          45383.14,
+          45446.55,
+          45529.63,
+          45637.88,
+          45728.74,
+          45808.01,
+          45903.77,
+          45947.55,
+          45937.84,
+          45983.41,
+          45963.67,
+          45924.31,
+          45888.07,
+          45830.1,
+          45725.2,
+          45639.7,
+          45598.34,
+          45570.95,
+          45548.56,
+          45528.42,
+          45529.66,
+          45516.54,
+          45476.67,
+          45421.51,
+          45369.1,
+          45350.7,
+          45360.48,
+          45449.28,
+          45532.25,
+          45597.65,
+          45695.78,
+          45850.66,
+          46049.65,
+          46301.62,
+          46474.11,
+          46594.73,
+          46747.49,
+          46894.65,
+          46992.5
+        ],
+        "from": "2026-08-18"
+      },
+      "symbol": "BOSCHLTD",
+      "decision": "SIGNAL",
+      "score": 93,
+      "stage": 2,
+      "setup_type": "PULLBACK_EMA20",
+      "setup_desc": "Pullback to EMA20",
+      "in_stockedge": false,
+      "signal_date": "2026-11-13",
+      "price": 49390.0,
+      "trigger": 50500.0,
+      "stop_loss": 47228.39,
+      "plan_risk": 2161.6071,
+      "ema_20": 48428.65,
+      "ema_50": 46992.5,
+      "ema_200": 42098.34,
+      "rsi": 56.41,
+      "vol_ratio": 0.76,
+      "vol_5d_ratio": 0.71,
+      "ema_dist_pct": 1.99,
+      "from_52w_high": -5.88,
+      "atr_pct": 2.92,
+      "st_direction": 1,
+      "ema50_slope_pct": 1.492,
+      "atr": 1441.07,
+      "reasons": [
+        "Stage 2 (+25)",
+        "PULLBACK_EMA20 (+20)",
+        "RSI 56 (+20)",
+        "Vol 0.8x (+7)",
+        "All EMAs rising (+15)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 0,
+        "invested": 0.0,
+        "stop_loss": 47228.39,
+        "risk_amount": 0.0,
+        "risk_pct_of_capital": 0.0,
+        "note": "0 shares: risk limit cannot fund one share",
+        "size_notes": [],
+        "within_risk_budget": false
+      },
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
+      "actionable": true,
+      "selection": {
+        "tier": "preferred",
+        "conviction": {
+          "level": "high",
+          "met": 5,
+          "of": 5
+        },
+        "conditions": {
+          "relative strength in the top 30%": true,
+          "within 10% of the 52-week high": "True",
+          "traded value at least INR 5 crore a day": true,
+          "ATR at most 4% of price": "True",
+          "Nifty above its EMA200": true
+        },
+        "rs_rank_pct": 95,
+        "sector": "Autos & ancillaries",
+        "regime": "bull",
+        "events": {
+          "blocked": false,
+          "reasons": [],
+          "unverified": [
+            "event_calendar.json has not been filled in"
+          ]
+        },
+        "risk_mult": 1.0,
+        "size_notes": [],
+        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
+      },
+      "plan": {
+        "entry": {
+          "basis": "rule",
+          "buy_stop": 50500.0,
+          "valid": "the next session only; if the stop is not reached the signal expires"
+        },
+        "stop": {
+          "basis": "rule",
+          "price": 47228.39,
+          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
+        },
+        "profit_review_levels": {
+          "basis": "reference",
+          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
+          "levels": [
+            {
+              "r": 1,
+              "price": 52661.61,
+              "gain_pct": 4.3
+            },
+            {
+              "r": 2,
+              "price": 54823.21,
+              "gain_pct": 8.6
+            },
+            {
+              "r": 3,
+              "price": 56984.82,
+              "gain_pct": 12.8
+            }
+          ]
+        },
+        "expected_duration": {
+          "basis": "empirical",
+          "from": "2141 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "winners_median_days": 47.0,
+          "winners_range_days": [
+            29.0,
+            68.0
+          ],
+          "losers_median_days": 5.0,
+          "win_rate": 0.252,
+          "typical_winner_r": 1.44,
+          "strong_winner_r": 7.68,
+          "typical_winner_price": 53612.71,
+          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
+        },
+        "sell_trigger": {
+          "basis": "rule",
+          "condition": "a daily close below EMA50, then sell at the next open",
+          "ema50_now": 46992.5,
+          "ema50_in_about_a_week": 47693.63,
+          "time_exit": "sell after 120 sessions if still held",
+          "warning_signs": [
+            "two closes below EMA20 (48428.65): momentum fading, consider tightening attention",
+            "EMA50 turning down while price is near it"
+          ],
+          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
+        },
+        "add_more": {
+          "basis": "untested",
+          "default": "do not add",
+          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
+          "conditions": [
+            "daily close at or above 52661.61 (entry + 1R)",
+            "close above EMA20 (48428.65) and EMA50 rising",
+            "move the stop up to the entry 50500.0 FIRST, so the original position carries no risk",
+            "total open risk stays within the 1.5% budget and this position within 25% of capital"
+          ],
+          "max_extra_shares": 0,
+          "risk_of_add_inr": 0.0,
+          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
+        }
+      }
+    },
+    {
+      "avg_value_cr": 523.56,
+      "close_in_range": 0.337,
+      "stop_pct": 5.44,
+      "trigger_gap_pct": 1.36,
+      "checks": [
+        {
+          "id": "liquidity",
+          "status": "ok",
+          "text": "Liquid: \u20b9524 cr/day average traded value"
+        },
+        {
+          "id": "stop_width",
+          "status": "ok",
+          "text": "Stop 5.4% below entry"
+        },
+        {
+          "id": "trigger_gap",
+          "status": "ok",
+          "text": "Buy-stop 1.4% above the close"
+        },
+        {
+          "id": "close_strength",
+          "status": "warn",
+          "text": "Weak close: bottom 34% of the day's range"
+        },
+        {
+          "id": "extension",
+          "status": "ok",
+          "text": "-0.5% from EMA20"
+        },
+        {
+          "id": "volume",
+          "status": "ok",
+          "text": "Volume 0.7x average"
+        },
+        {
+          "id": "events",
+          "status": "warn",
+          "text": "Event risk unverified: event_calendar.json has not been filled in"
+        }
+      ],
+      "execution_ok": true,
+      "spark": {
+        "close": [
+          1286.55,
+          1313.11,
+          1306.77,
+          1291.01,
+          1310.34,
+          1304.19,
+          1287.04,
+          1270.69,
+          1304.49,
+          1300.62,
+          1339.48,
+          1319.75,
+          1307.36,
+          1281.99,
+          1271.48,
+          1265.73,
+          1218.95,
+          1196.35,
+          1195.46,
+          1242.64,
+          1241.94,
+          1247.2,
+          1238.28,
+          1269.7,
+          1259.19,
+          1245.61,
+          1232.63,
+          1246.9,
+          1241.55,
+          1211.22,
+          1219.15,
+          1232.13,
+          1191.3,
+          1193.77,
+          1174.54,
+          1166.52,
+          1205.96,
+          1212.21,
+          1314.3,
+          1315.29,
+          1348.0,
+          1380.0,
+          1379.9,
+          1424.2,
+          1421.7,
+          1422.2,
+          1417.0,
+          1420.0,
+          1400.5,
+          1403.9,
+          1428.1,
+          1434.0,
+          1439.1,
+          1405.0,
+          1430.5,
+          1440.0,
+          1407.0,
+          1395.0,
+          1380.8,
+          1378.0
+        ],
+        "ema20": [
+          1304.85,
+          1305.64,
+          1305.75,
+          1304.34,
+          1304.91,
+          1304.84,
+          1303.15,
+          1300.06,
+          1300.48,
+          1300.49,
+          1304.21,
+          1305.69,
+          1305.85,
+          1303.57,
+          1300.52,
+          1297.2,
+          1289.75,
+          1280.86,
+          1272.72,
+          1269.86,
+          1267.2,
+          1265.29,
+          1262.72,
+          1263.39,
+          1262.99,
+          1261.33,
+          1258.6,
+          1257.48,
+          1255.97,
+          1251.7,
+          1248.6,
+          1247.03,
+          1241.73,
+          1237.16,
+          1231.2,
+          1225.04,
+          1223.22,
+          1222.17,
+          1230.95,
+          1238.98,
+          1249.36,
+          1261.8,
+          1273.05,
+          1287.45,
+          1300.23,
+          1311.85,
+          1321.86,
+          1331.21,
+          1337.81,
+          1344.1,
+          1352.1,
+          1359.9,
+          1367.44,
+          1371.02,
+          1376.69,
+          1382.72,
+          1385.03,
+          1385.98,
+          1385.49,
+          1384.77
+        ],
+        "ema50": [
+          1250.4,
+          1252.86,
+          1254.97,
+          1256.38,
+          1258.5,
+          1260.29,
+          1261.34,
+          1261.71,
+          1263.38,
+          1264.84,
+          1267.77,
+          1269.81,
+          1271.28,
+          1271.7,
+          1271.69,
+          1271.46,
+          1269.4,
+          1266.54,
+          1263.75,
+          1262.92,
+          1262.1,
+          1261.51,
+          1260.6,
+          1260.96,
+          1260.89,
+          1260.29,
+          1259.21,
+          1258.72,
+          1258.05,
+          1256.21,
+          1254.76,
+          1253.87,
+          1251.42,
+          1249.16,
+          1246.23,
+          1243.11,
+          1241.65,
+          1240.49,
+          1243.39,
+          1246.21,
+          1250.2,
+          1255.29,
+          1260.18,
+          1266.61,
+          1272.69,
+          1278.55,
+          1283.98,
+          1289.32,
+          1293.68,
+          1298.0,
+          1303.1,
+          1308.24,
+          1313.37,
+          1316.96,
+          1321.41,
+          1326.06,
+          1329.24,
+          1331.82,
+          1333.74,
+          1335.47
+        ],
+        "from": "2026-08-18"
+      },
+      "symbol": "HCLTECH",
+      "decision": "SIGNAL",
+      "score": 86,
+      "stage": 2,
+      "setup_type": "PULLBACK_EMA20",
+      "setup_desc": "Pullback to EMA20",
+      "in_stockedge": false,
+      "signal_date": "2026-11-13",
+      "price": 1378.0,
+      "trigger": 1396.7,
+      "stop_loss": 1320.75,
+      "plan_risk": 57.2464,
+      "ema_20": 1384.77,
+      "ema_50": 1335.47,
+      "ema_200": 1316.45,
+      "rsi": 51.77,
+      "vol_ratio": 0.66,
+      "vol_5d_ratio": 0.6,
+      "ema_dist_pct": -0.49,
+      "from_52w_high": -19.59,
+      "atr_pct": 2.77,
+      "st_direction": 1,
+      "ema50_slope_pct": 1.064,
+      "atr": 38.16,
+      "reasons": [
+        "Stage 2 (+25)",
+        "PULLBACK_EMA20 (+20)",
+        "RSI 52 (+20)",
+        "Vol 0.7x (+3)",
+        "All EMAs rising (+15)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 37,
+        "invested": 51677.9,
+        "stop_loss": 1320.75,
+        "risk_amount": 2810.15,
+        "risk_pct_of_capital": 0.497,
+        "note": null,
+        "size_notes": [],
+        "within_risk_budget": false
+      },
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
+      "actionable": true,
+      "selection": {
+        "tier": "standard",
+        "conviction": {
+          "level": "medium",
+          "met": 3,
+          "of": 5
+        },
+        "conditions": {
+          "relative strength in the top 30%": false,
+          "within 10% of the 52-week high": "False",
+          "traded value at least INR 5 crore a day": true,
+          "ATR at most 4% of price": "True",
+          "Nifty above its EMA200": true
+        },
+        "rs_rank_pct": 67,
+        "sector": "IT",
+        "regime": "bull",
+        "events": {
+          "blocked": false,
+          "reasons": [],
+          "unverified": [
+            "event_calendar.json has not been filled in"
+          ]
+        },
+        "risk_mult": 1.0,
+        "size_notes": [],
+        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
+      },
+      "plan": {
+        "entry": {
+          "basis": "rule",
+          "buy_stop": 1396.7,
+          "valid": "the next session only; if the stop is not reached the signal expires"
+        },
+        "stop": {
+          "basis": "rule",
+          "price": 1320.75,
+          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
+        },
+        "profit_review_levels": {
+          "basis": "reference",
+          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
+          "levels": [
+            {
+              "r": 1,
+              "price": 1453.95,
+              "gain_pct": 4.1
+            },
+            {
+              "r": 2,
+              "price": 1511.19,
+              "gain_pct": 8.2
+            },
+            {
+              "r": 3,
+              "price": 1568.44,
+              "gain_pct": 12.3
+            }
+          ]
+        },
+        "expected_duration": {
+          "basis": "empirical",
+          "from": "2141 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "winners_median_days": 47.0,
+          "winners_range_days": [
+            29.0,
+            68.0
+          ],
+          "losers_median_days": 5.0,
+          "win_rate": 0.252,
+          "typical_winner_r": 1.44,
+          "strong_winner_r": 7.68,
+          "typical_winner_price": 1479.13,
+          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
+        },
+        "sell_trigger": {
+          "basis": "rule",
+          "condition": "a daily close below EMA50, then sell at the next open",
+          "ema50_now": 1335.47,
+          "ema50_in_about_a_week": 1349.68,
+          "time_exit": "sell after 120 sessions if still held",
+          "warning_signs": [
+            "two closes below EMA20 (1384.77): momentum fading, consider tightening attention",
+            "EMA50 turning down while price is near it"
+          ],
+          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
+        },
+        "add_more": {
+          "basis": "untested",
+          "default": "do not add",
+          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
+          "conditions": [
+            "daily close at or above 1453.95 (entry + 1R)",
+            "close above EMA20 (1384.77) and EMA50 rising",
+            "move the stop up to the entry 1396.7 FIRST, so the original position carries no risk",
+            "total open risk stays within the 1.5% budget and this position within 25% of capital"
+          ],
+          "max_extra_shares": 37,
+          "risk_of_add_inr": 2118.0,
+          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
+        }
+      }
+    },
+    {
+      "avg_value_cr": 325.02,
+      "close_in_range": 0.901,
+      "stop_pct": 4.21,
+      "trigger_gap_pct": 0.16,
+      "checks": [
+        {
+          "id": "liquidity",
+          "status": "ok",
+          "text": "Liquid: \u20b9325 cr/day average traded value"
+        },
+        {
+          "id": "stop_width",
+          "status": "ok",
+          "text": "Stop 4.2% below entry"
+        },
+        {
+          "id": "trigger_gap",
+          "status": "ok",
+          "text": "Buy-stop 0.2% above the close"
+        },
+        {
+          "id": "close_strength",
+          "status": "ok",
+          "text": "Close in the top 10% of the day's range"
+        },
+        {
+          "id": "extension",
+          "status": "ok",
+          "text": "4.5% from EMA20"
         },
         {
           "id": "volume",
@@ -3232,7 +2244,386 @@
       "execution_ok": true,
       "spark": {
         "close": [
-          1596.8,
+          4356.8,
+          4361.1,
+          4390.0,
+          4390.0,
+          4363.5,
+          4420.0,
+          4464.0,
+          4409.8,
+          4304.2,
+          4341.3,
+          4203.0,
+          4200.0,
+          4200.0,
+          4133.1,
+          4132.0,
+          4133.2,
+          4151.1,
+          4121.5,
+          4125.0,
+          4050.0,
+          4033.0,
+          4101.7,
+          4171.3,
+          4155.0,
+          4140.0,
+          4135.0,
+          4091.0,
+          4157.3,
+          4095.0,
+          4091.1,
+          4106.0,
+          4021.0,
+          4031.0,
+          3981.0,
+          3926.0,
+          3839.4,
+          3866.8,
+          3940.3,
+          4011.5,
+          3969.7,
+          4020.0,
+          4095.1,
+          4074.0,
+          3992.6,
+          3974.0,
+          3980.2,
+          3996.0,
+          4087.0,
+          4239.9,
+          4280.0,
+          4195.2,
+          4213.0,
+          4303.2,
+          4331.2,
+          4450.0,
+          4491.7,
+          4505.9,
+          4560.0,
+          4500.0,
+          4495.0
+        ],
+        "ema20": [
+          4220.3,
+          4233.71,
+          4248.59,
+          4262.06,
+          4271.72,
+          4285.84,
+          4302.81,
+          4313.0,
+          4312.16,
+          4314.94,
+          4304.28,
+          4294.35,
+          4285.36,
+          4270.86,
+          4257.63,
+          4245.78,
+          4236.77,
+          4225.79,
+          4216.19,
+          4200.36,
+          4184.42,
+          4176.54,
+          4176.04,
+          4174.04,
+          4170.8,
+          4167.39,
+          4160.11,
+          4159.85,
+          4153.67,
+          4147.71,
+          4143.74,
+          4132.05,
+          4122.43,
+          4108.96,
+          4091.53,
+          4067.52,
+          4048.4,
+          4038.11,
+          4035.57,
+          4029.3,
+          4028.41,
+          4034.77,
+          4038.5,
+          4034.13,
+          4028.4,
+          4023.81,
+          4021.16,
+          4027.43,
+          4047.67,
+          4069.8,
+          4081.74,
+          4094.24,
+          4114.14,
+          4134.81,
+          4164.83,
+          4195.96,
+          4225.48,
+          4257.34,
+          4280.45,
+          4300.88
+        ],
+        "ema50": [
+          3947.57,
+          3963.79,
+          3980.5,
+          3996.56,
+          4010.95,
+          4026.99,
+          4044.13,
+          4058.47,
+          4068.11,
+          4078.82,
+          4083.69,
+          4088.25,
+          4092.63,
+          4094.22,
+          4095.7,
+          4097.17,
+          4099.29,
+          4100.16,
+          4101.13,
+          4099.13,
+          4096.53,
+          4096.74,
+          4099.66,
+          4101.83,
+          4103.33,
+          4104.57,
+          4104.04,
+          4106.13,
+          4105.69,
+          4105.12,
+          4105.15,
+          4101.85,
+          4099.07,
+          4094.44,
+          4087.84,
+          4078.1,
+          4069.81,
+          4064.73,
+          4062.64,
+          4059.0,
+          4057.47,
+          4058.94,
+          4059.53,
+          4056.91,
+          4053.66,
+          4050.78,
+          4048.63,
+          4050.13,
+          4057.58,
+          4066.3,
+          4071.35,
+          4076.91,
+          4085.78,
+          4095.41,
+          4109.31,
+          4124.31,
+          4139.27,
+          4155.77,
+          4169.27,
+          4182.04
+        ],
+        "from": "2026-08-18"
+      },
+      "symbol": "TVSMOTOR",
+      "decision": "SIGNAL",
+      "score": 72,
+      "stage": 2,
+      "setup_type": "TRENDING",
+      "setup_desc": "Stage 2 momentum",
+      "in_stockedge": true,
+      "signal_date": "2026-11-13",
+      "price": 4495.0,
+      "trigger": 4502.0,
+      "stop_loss": 4312.51,
+      "plan_risk": 182.4857,
+      "ema_20": 4300.88,
+      "ema_50": 4182.04,
+      "ema_200": 3861.92,
+      "rsi": 68.11,
+      "vol_ratio": 0.86,
+      "vol_5d_ratio": 0.86,
+      "ema_dist_pct": 4.51,
+      "from_52w_high": -3.04,
+      "atr_pct": 2.71,
+      "st_direction": 1,
+      "ema50_slope_pct": 1.77,
+      "atr": 121.66,
+      "reasons": [
+        "Stage 2 (+25)",
+        "TRENDING (+6)",
+        "RSI 68 (+13)",
+        "Vol 0.9x (+7)",
+        "All EMAs rising (+15)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 14,
+        "invested": 63028.0,
+        "stop_loss": 4312.51,
+        "risk_amount": 2652.86,
+        "risk_pct_of_capital": 0.47,
+        "note": null,
+        "size_notes": [],
+        "within_risk_budget": false
+      },
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
+      "actionable": true,
+      "selection": {
+        "tier": "preferred",
+        "conviction": {
+          "level": "high",
+          "met": 5,
+          "of": 5
+        },
+        "conditions": {
+          "relative strength in the top 30%": true,
+          "within 10% of the 52-week high": "True",
+          "traded value at least INR 5 crore a day": true,
+          "ATR at most 4% of price": "True",
+          "Nifty above its EMA200": true
+        },
+        "rs_rank_pct": 91,
+        "sector": "Autos & ancillaries",
+        "regime": "bull",
+        "events": {
+          "blocked": false,
+          "reasons": [],
+          "unverified": [
+            "event_calendar.json has not been filled in"
+          ]
+        },
+        "risk_mult": 1.0,
+        "size_notes": [],
+        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
+      },
+      "plan": {
+        "entry": {
+          "basis": "rule",
+          "buy_stop": 4502.0,
+          "valid": "the next session only; if the stop is not reached the signal expires"
+        },
+        "stop": {
+          "basis": "rule",
+          "price": 4312.51,
+          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
+        },
+        "profit_review_levels": {
+          "basis": "reference",
+          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
+          "levels": [
+            {
+              "r": 1,
+              "price": 4684.49,
+              "gain_pct": 4.1
+            },
+            {
+              "r": 2,
+              "price": 4866.97,
+              "gain_pct": 8.1
+            },
+            {
+              "r": 3,
+              "price": 5049.46,
+              "gain_pct": 12.2
+            }
+          ]
+        },
+        "expected_duration": {
+          "basis": "empirical",
+          "from": "796 past C0 trades (TRENDING); survivor-biased",
+          "winners_median_days": 57.0,
+          "winners_range_days": [
+            43.25,
+            82.75
+          ],
+          "losers_median_days": 10.0,
+          "win_rate": 0.329,
+          "typical_winner_r": 2.04,
+          "strong_winner_r": 9.61,
+          "typical_winner_price": 4874.27,
+          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
+        },
+        "sell_trigger": {
+          "basis": "rule",
+          "condition": "a daily close below EMA50, then sell at the next open",
+          "ema50_now": 4182.04,
+          "ema50_in_about_a_week": 4256.06,
+          "time_exit": "sell after 120 sessions if still held",
+          "warning_signs": [
+            "two closes below EMA20 (4300.88): momentum fading, consider tightening attention",
+            "EMA50 turning down while price is near it"
+          ],
+          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
+        },
+        "add_more": {
+          "basis": "untested",
+          "default": "do not add",
+          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
+          "conditions": [
+            "daily close at or above 4684.49 (entry + 1R)",
+            "close above EMA20 (4300.88) and EMA50 rising",
+            "move the stop up to the entry 4502.0 FIRST, so the original position carries no risk",
+            "total open risk stays within the 1.5% budget and this position within 25% of capital"
+          ],
+          "max_extra_shares": 14,
+          "risk_of_add_inr": 2555.0,
+          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
+        }
+      }
+    },
+    {
+      "avg_value_cr": 717.45,
+      "close_in_range": 0.032,
+      "stop_pct": 5.3,
+      "trigger_gap_pct": 1.56,
+      "checks": [
+        {
+          "id": "liquidity",
+          "status": "ok",
+          "text": "Liquid: \u20b9717 cr/day average traded value"
+        },
+        {
+          "id": "stop_width",
+          "status": "ok",
+          "text": "Stop 5.3% below entry"
+        },
+        {
+          "id": "trigger_gap",
+          "status": "ok",
+          "text": "Buy-stop 1.6% above the close"
+        },
+        {
+          "id": "close_strength",
+          "status": "warn",
+          "text": "Weak close: bottom 3% of the day's range"
+        },
+        {
+          "id": "extension",
+          "status": "ok",
+          "text": "0.6% from EMA20"
+        },
+        {
+          "id": "volume",
+          "status": "ok",
+          "text": "Volume 0.5x average"
+        },
+        {
+          "id": "events",
+          "status": "warn",
+          "text": "Event risk unverified: event_calendar.json has not been filled in"
+        }
+      ],
+      "execution_ok": true,
+      "spark": {
+        "close": [
           1578.94,
           1576.76,
           1579.04,
@@ -3291,10 +2682,10 @@
           1831.0,
           1805.0,
           1788.5,
-          1774.0
+          1774.0,
+          1764.0
         ],
         "ema20": [
-          1593.96,
           1592.53,
           1591.03,
           1589.89,
@@ -3353,10 +2744,10 @@
           1738.57,
           1744.89,
           1749.05,
-          1751.42
+          1751.42,
+          1752.62
         ],
         "ema50": [
-          1528.27,
           1530.26,
           1532.08,
           1533.92,
@@ -3415,54 +2806,55 @@
           1653.32,
           1659.27,
           1664.34,
-          1668.64
+          1668.64,
+          1672.38
         ],
-        "from": "2026-08-17"
+        "from": "2026-08-18"
       },
       "symbol": "TECHM",
       "decision": "SIGNAL",
-      "score": 93,
+      "score": 89,
       "stage": 2,
       "setup_type": "PULLBACK_EMA20",
       "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 1774.0,
-      "trigger": 1790.0,
-      "stop_loss": 1702.61,
-      "plan_risk": 71.3893,
-      "ema_20": 1751.42,
-      "ema_50": 1668.64,
-      "ema_200": 1542.9,
-      "rsi": 58.49,
-      "vol_ratio": 0.87,
-      "vol_5d_ratio": 0.87,
-      "ema_dist_pct": 1.29,
-      "from_52w_high": -4.62,
-      "atr_pct": 2.68,
+      "signal_date": "2026-11-13",
+      "price": 1764.0,
+      "trigger": 1791.5,
+      "stop_loss": 1696.51,
+      "plan_risk": 67.4893,
+      "ema_20": 1752.62,
+      "ema_50": 1672.38,
+      "ema_200": 1545.1,
+      "rsi": 56.48,
+      "vol_ratio": 0.55,
+      "vol_5d_ratio": 0.53,
+      "ema_dist_pct": 0.65,
+      "from_52w_high": -5.16,
+      "atr_pct": 2.55,
       "st_direction": 1,
-      "ema50_slope_pct": 1.817,
-      "atr": 47.59,
+      "ema50_slope_pct": 1.598,
+      "atr": 44.99,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 58 (+20)",
-        "Vol 0.9x (+7)",
+        "RSI 56 (+20)",
+        "Vol 0.5x (+3)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 32,
-        "invested": 57280.0,
-        "stop_loss": 1702.61,
-        "risk_amount": 2796.48,
-        "risk_pct_of_capital": 0.495,
+        "shares": 29,
+        "invested": 51953.5,
+        "stop_loss": 1696.51,
+        "risk_amount": 2754.71,
+        "risk_pct_of_capital": 0.488,
         "note": null,
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3478,7 +2870,7 @@
           "ATR at most 4% of price": "True",
           "Nifty above its EMA200": true
         },
-        "rs_rank_pct": 91,
+        "rs_rank_pct": 90,
         "sector": "IT",
         "regime": "bull",
         "events": {
@@ -3495,12 +2887,12 @@
       "plan": {
         "entry": {
           "basis": "rule",
-          "buy_stop": 1790.0,
+          "buy_stop": 1791.5,
           "valid": "the next session only; if the stop is not reached the signal expires"
         },
         "stop": {
           "basis": "rule",
-          "price": 1702.61,
+          "price": 1696.51,
           "note": "fixed at entry; never moved down. A gap open below it fills at the open"
         },
         "profit_review_levels": {
@@ -3509,18 +2901,18 @@
           "levels": [
             {
               "r": 1,
-              "price": 1861.39,
-              "gain_pct": 4.0
+              "price": 1858.99,
+              "gain_pct": 3.8
             },
             {
               "r": 2,
-              "price": 1932.78,
-              "gain_pct": 8.0
+              "price": 1926.48,
+              "gain_pct": 7.5
             },
             {
               "r": 3,
-              "price": 2004.17,
-              "gain_pct": 12.0
+              "price": 1993.97,
+              "gain_pct": 11.3
             }
           ]
         },
@@ -3536,17 +2928,17 @@
           "win_rate": 0.252,
           "typical_winner_r": 1.44,
           "strong_winner_r": 7.68,
-          "typical_winner_price": 1892.8,
+          "typical_winner_price": 1888.68,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
           "basis": "rule",
           "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 1668.64,
-          "ema50_in_about_a_week": 1698.96,
+          "ema50_now": 1672.38,
+          "ema50_in_about_a_week": 1699.1,
           "time_exit": "sell after 120 sessions if still held",
           "warning_signs": [
-            "two closes below EMA20 (1751.42): momentum fading, consider tightening attention",
+            "two closes below EMA20 (1752.62): momentum fading, consider tightening attention",
             "EMA50 turning down while price is near it"
           ],
           "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
@@ -3556,52 +2948,52 @@
           "default": "do not add",
           "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
           "conditions": [
-            "daily close at or above 1861.39 (entry + 1R)",
-            "close above EMA20 (1751.42) and EMA50 rising",
-            "move the stop up to the entry 1790.0 FIRST, so the original position carries no risk",
+            "daily close at or above 1858.99 (entry + 1R)",
+            "close above EMA20 (1752.62) and EMA50 rising",
+            "move the stop up to the entry 1791.5 FIRST, so the original position carries no risk",
             "total open risk stays within the 1.5% budget and this position within 25% of capital"
           ],
-          "max_extra_shares": 32,
-          "risk_of_add_inr": 2284.0,
+          "max_extra_shares": 29,
+          "risk_of_add_inr": 1957.0,
           "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
         }
       }
     },
     {
-      "avg_value_cr": 309.07,
-      "close_in_range": 0.554,
-      "stop_pct": 5.13,
-      "trigger_gap_pct": 0.81,
+      "avg_value_cr": 516.07,
+      "close_in_range": 0.063,
+      "stop_pct": 7.53,
+      "trigger_gap_pct": 2.26,
       "checks": [
         {
           "id": "liquidity",
           "status": "ok",
-          "text": "Liquid: \u20b9309 cr/day average traded value"
+          "text": "Liquid: \u20b9516 cr/day average traded value"
         },
         {
           "id": "stop_width",
           "status": "ok",
-          "text": "Stop 5.1% below entry"
+          "text": "Stop 7.5% below entry"
         },
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop 0.8% above the close"
+          "text": "Buy-stop 2.3% above the close"
         },
         {
           "id": "close_strength",
-          "status": "ok",
-          "text": "Close in the top 45% of the day's range"
+          "status": "warn",
+          "text": "Weak close: bottom 6% of the day's range"
         },
         {
           "id": "extension",
           "status": "ok",
-          "text": "1.1% from EMA20"
+          "text": "1.4% from EMA20"
         },
         {
           "id": "volume",
           "status": "ok",
-          "text": "Volume 0.8x average"
+          "text": "Volume 0.9x average"
         },
         {
           "id": "events",
@@ -3612,7 +3004,768 @@
       "execution_ok": true,
       "spark": {
         "close": [
-          5745.0,
+          1773.0,
+          1813.1,
+          1882.0,
+          1891.7,
+          1873.0,
+          1892.8,
+          1880.0,
+          1901.8,
+          2014.6,
+          1985.3,
+          1988.9,
+          1965.7,
+          1971.8,
+          1972.8,
+          1935.0,
+          1950.0,
+          1845.0,
+          1833.1,
+          1846.5,
+          1775.5,
+          1766.7,
+          1793.0,
+          1841.0,
+          1814.0,
+          1803.0,
+          1782.4,
+          1785.9,
+          1784.0,
+          1773.0,
+          1722.0,
+          1749.1,
+          1826.0,
+          1852.0,
+          1849.7,
+          1822.2,
+          1814.3,
+          1867.9,
+          1846.6,
+          1929.0,
+          1928.0,
+          1934.3,
+          1951.9,
+          1925.0,
+          1951.0,
+          1908.8,
+          1900.5,
+          1993.0,
+          1997.0,
+          1961.9,
+          1962.0,
+          2045.0,
+          2099.0,
+          2060.8,
+          2060.0,
+          2079.0,
+          2076.0,
+          2047.0,
+          2017.5,
+          2034.0,
+          2028.0
+        ],
+        "ema20": [
+          1724.44,
+          1732.89,
+          1747.09,
+          1760.86,
+          1771.54,
+          1783.09,
+          1792.32,
+          1802.75,
+          1822.92,
+          1838.39,
+          1852.72,
+          1863.48,
+          1873.8,
+          1883.23,
+          1888.16,
+          1894.05,
+          1889.38,
+          1884.02,
+          1880.44,
+          1870.45,
+          1860.57,
+          1854.13,
+          1852.88,
+          1849.18,
+          1844.78,
+          1838.84,
+          1833.8,
+          1829.06,
+          1823.72,
+          1814.03,
+          1807.85,
+          1809.57,
+          1813.62,
+          1817.05,
+          1817.54,
+          1817.23,
+          1822.06,
+          1824.4,
+          1834.36,
+          1843.28,
+          1851.95,
+          1861.46,
+          1867.52,
+          1875.47,
+          1878.64,
+          1880.72,
+          1891.42,
+          1901.47,
+          1907.23,
+          1912.44,
+          1925.07,
+          1941.63,
+          1952.98,
+          1963.17,
+          1974.21,
+          1983.9,
+          1989.91,
+          1992.54,
+          1996.49,
+          1999.49
+        ],
+        "ema50": [
+          1600.7,
+          1609.03,
+          1619.73,
+          1630.4,
+          1639.91,
+          1649.83,
+          1658.85,
+          1668.38,
+          1681.96,
+          1693.85,
+          1705.42,
+          1715.63,
+          1725.68,
+          1735.37,
+          1743.2,
+          1751.31,
+          1754.98,
+          1758.04,
+          1761.51,
+          1762.06,
+          1762.24,
+          1763.45,
+          1766.49,
+          1768.35,
+          1769.71,
+          1770.21,
+          1770.83,
+          1771.34,
+          1771.41,
+          1769.47,
+          1768.67,
+          1770.92,
+          1774.1,
+          1777.06,
+          1778.83,
+          1780.22,
+          1783.66,
+          1786.13,
+          1791.73,
+          1797.08,
+          1802.46,
+          1808.32,
+          1812.89,
+          1818.31,
+          1821.86,
+          1824.94,
+          1831.53,
+          1838.02,
+          1842.88,
+          1847.55,
+          1855.29,
+          1864.85,
+          1872.54,
+          1879.89,
+          1887.7,
+          1895.08,
+          1901.04,
+          1905.61,
+          1910.64,
+          1915.24
+        ],
+        "from": "2026-08-18"
+      },
+      "symbol": "COFORGE",
+      "decision": "SIGNAL",
+      "score": 93,
+      "stage": 2,
+      "setup_type": "PULLBACK_EMA20",
+      "setup_desc": "Pullback to EMA20",
+      "in_stockedge": false,
+      "signal_date": "2026-11-13",
+      "price": 2028.0,
+      "trigger": 2073.8,
+      "stop_loss": 1917.69,
+      "plan_risk": 110.3143,
+      "ema_20": 1999.49,
+      "ema_50": 1915.24,
+      "ema_200": 1696.19,
+      "rsi": 57.42,
+      "vol_ratio": 0.89,
+      "vol_5d_ratio": 0.89,
+      "ema_dist_pct": 1.43,
+      "from_52w_high": -4.69,
+      "atr_pct": 3.63,
+      "st_direction": 1,
+      "ema50_slope_pct": 1.459,
+      "atr": 73.54,
+      "reasons": [
+        "Stage 2 (+25)",
+        "PULLBACK_EMA20 (+20)",
+        "RSI 57 (+20)",
+        "Vol 0.9x (+7)",
+        "All EMAs rising (+15)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 18,
+        "invested": 37328.4,
+        "stop_loss": 1917.69,
+        "risk_amount": 2809.98,
+        "risk_pct_of_capital": 0.497,
+        "note": null,
+        "size_notes": [],
+        "within_risk_budget": false
+      },
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
+      "actionable": true,
+      "selection": {
+        "tier": "preferred",
+        "conviction": {
+          "level": "high",
+          "met": 5,
+          "of": 5
+        },
+        "conditions": {
+          "relative strength in the top 30%": true,
+          "within 10% of the 52-week high": "True",
+          "traded value at least INR 5 crore a day": true,
+          "ATR at most 4% of price": "True",
+          "Nifty above its EMA200": true
+        },
+        "rs_rank_pct": 88,
+        "sector": "IT",
+        "regime": "bull",
+        "events": {
+          "blocked": false,
+          "reasons": [],
+          "unverified": [
+            "event_calendar.json has not been filled in"
+          ]
+        },
+        "risk_mult": 1.0,
+        "size_notes": [],
+        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
+      },
+      "plan": {
+        "entry": {
+          "basis": "rule",
+          "buy_stop": 2073.8,
+          "valid": "the next session only; if the stop is not reached the signal expires"
+        },
+        "stop": {
+          "basis": "rule",
+          "price": 1917.69,
+          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
+        },
+        "profit_review_levels": {
+          "basis": "reference",
+          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
+          "levels": [
+            {
+              "r": 1,
+              "price": 2184.11,
+              "gain_pct": 5.3
+            },
+            {
+              "r": 2,
+              "price": 2294.43,
+              "gain_pct": 10.6
+            },
+            {
+              "r": 3,
+              "price": 2404.74,
+              "gain_pct": 16.0
+            }
+          ]
+        },
+        "expected_duration": {
+          "basis": "empirical",
+          "from": "2141 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "winners_median_days": 47.0,
+          "winners_range_days": [
+            29.0,
+            68.0
+          ],
+          "losers_median_days": 5.0,
+          "win_rate": 0.252,
+          "typical_winner_r": 1.44,
+          "strong_winner_r": 7.68,
+          "typical_winner_price": 2232.65,
+          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
+        },
+        "sell_trigger": {
+          "basis": "rule",
+          "condition": "a daily close below EMA50, then sell at the next open",
+          "ema50_now": 1915.24,
+          "ema50_in_about_a_week": 1943.18,
+          "time_exit": "sell after 120 sessions if still held",
+          "warning_signs": [
+            "two closes below EMA20 (1999.49): momentum fading, consider tightening attention",
+            "EMA50 turning down while price is near it"
+          ],
+          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
+        },
+        "add_more": {
+          "basis": "untested",
+          "default": "do not add",
+          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
+          "conditions": [
+            "daily close at or above 2184.11 (entry + 1R)",
+            "close above EMA20 (1999.49) and EMA50 rising",
+            "move the stop up to the entry 2073.8 FIRST, so the original position carries no risk",
+            "total open risk stays within the 1.5% budget and this position within 25% of capital"
+          ],
+          "max_extra_shares": 18,
+          "risk_of_add_inr": 1986.0,
+          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
+        }
+      }
+    },
+    {
+      "avg_value_cr": 346.6,
+      "close_in_range": 0.98,
+      "stop_pct": 3.7,
+      "trigger_gap_pct": 0.05,
+      "checks": [
+        {
+          "id": "liquidity",
+          "status": "ok",
+          "text": "Liquid: \u20b9347 cr/day average traded value"
+        },
+        {
+          "id": "stop_width",
+          "status": "ok",
+          "text": "Stop 3.7% below entry"
+        },
+        {
+          "id": "trigger_gap",
+          "status": "ok",
+          "text": "Buy-stop 0.1% above the close"
+        },
+        {
+          "id": "close_strength",
+          "status": "ok",
+          "text": "Close in the top 2% of the day's range"
+        },
+        {
+          "id": "extension",
+          "status": "ok",
+          "text": "3.1% from EMA20"
+        },
+        {
+          "id": "volume",
+          "status": "ok",
+          "text": "Volume 1.0x average"
+        },
+        {
+          "id": "events",
+          "status": "block",
+          "text": "Known event inside the window: results expected 2026-11-13 (0 session(s) away, from yfinance: confirm)"
+        }
+      ],
+      "execution_ok": false,
+      "spark": {
+        "close": [
+          8018.5,
+          7990.5,
+          8042.0,
+          8010.0,
+          8047.0,
+          8055.0,
+          8035.0,
+          8100.0,
+          8059.0,
+          7953.5,
+          7970.0,
+          7711.5,
+          7690.0,
+          7630.5,
+          7672.0,
+          7747.5,
+          7734.5,
+          7697.0,
+          7530.0,
+          7452.5,
+          7500.0,
+          7493.5,
+          7516.0,
+          7512.5,
+          7427.0,
+          7470.0,
+          7338.5,
+          7360.0,
+          7213.5,
+          7179.0,
+          7150.0,
+          6920.0,
+          7021.5,
+          7051.0,
+          6960.0,
+          6767.5,
+          7050.0,
+          7119.0,
+          7163.0,
+          7082.5,
+          7225.0,
+          7284.5,
+          7349.0,
+          7170.5,
+          7084.5,
+          7066.0,
+          7099.5,
+          7165.0,
+          7300.0,
+          7238.0,
+          7220.0,
+          7213.0,
+          7440.0,
+          7420.0,
+          7713.0,
+          7669.5,
+          7629.0,
+          7592.0,
+          7549.0,
+          7650.0
+        ],
+        "ema20": [
+          7884.14,
+          7894.27,
+          7908.34,
+          7918.02,
+          7930.31,
+          7942.18,
+          7951.02,
+          7965.21,
+          7974.14,
+          7972.18,
+          7971.97,
+          7947.16,
+          7922.67,
+          7894.85,
+          7873.62,
+          7861.61,
+          7849.5,
+          7834.98,
+          7805.93,
+          7772.27,
+          7746.34,
+          7722.26,
+          7702.62,
+          7684.51,
+          7659.99,
+          7641.89,
+          7613.0,
+          7588.9,
+          7553.15,
+          7517.52,
+          7482.52,
+          7428.94,
+          7390.14,
+          7357.84,
+          7319.95,
+          7267.34,
+          7246.64,
+          7234.48,
+          7227.67,
+          7213.85,
+          7214.91,
+          7221.54,
+          7233.68,
+          7227.66,
+          7214.03,
+          7199.93,
+          7190.36,
+          7187.95,
+          7198.62,
+          7202.37,
+          7204.05,
+          7204.9,
+          7227.29,
+          7245.64,
+          7290.15,
+          7326.28,
+          7355.11,
+          7377.67,
+          7393.99,
+          7418.37
+        ],
+        "ema50": [
+          7629.82,
+          7643.97,
+          7659.58,
+          7673.32,
+          7687.97,
+          7702.37,
+          7715.41,
+          7730.49,
+          7743.37,
+          7751.61,
+          7760.18,
+          7758.27,
+          7755.59,
+          7750.69,
+          7747.6,
+          7747.6,
+          7747.08,
+          7745.12,
+          7736.68,
+          7725.54,
+          7716.69,
+          7707.94,
+          7700.41,
+          7693.05,
+          7682.61,
+          7674.27,
+          7661.11,
+          7649.3,
+          7632.21,
+          7614.44,
+          7596.22,
+          7569.7,
+          7548.21,
+          7528.71,
+          7506.41,
+          7477.43,
+          7460.67,
+          7447.27,
+          7436.12,
+          7422.25,
+          7414.52,
+          7409.42,
+          7407.05,
+          7397.77,
+          7385.49,
+          7372.96,
+          7362.23,
+          7354.5,
+          7352.36,
+          7347.88,
+          7342.86,
+          7337.77,
+          7341.78,
+          7344.85,
+          7359.28,
+          7371.45,
+          7381.55,
+          7389.8,
+          7396.05,
+          7406.0
+        ],
+        "from": "2026-08-18"
+      },
+      "symbol": "EICHERMOT",
+      "decision": "SIGNAL",
+      "score": 93,
+      "stage": 2,
+      "setup_type": "PULLBACK_EMA20",
+      "setup_desc": "Pullback to EMA20",
+      "in_stockedge": false,
+      "signal_date": "2026-11-13",
+      "price": 7650.0,
+      "trigger": 7654.0,
+      "stop_loss": 7370.57,
+      "plan_risk": 279.4286,
+      "ema_20": 7418.37,
+      "ema_50": 7406.0,
+      "ema_200": 7262.43,
+      "rsi": 61.7,
+      "vol_ratio": 1.01,
+      "vol_5d_ratio": 0.83,
+      "ema_dist_pct": 3.12,
+      "from_52w_high": -6.31,
+      "atr_pct": 2.44,
+      "st_direction": 1,
+      "ema50_slope_pct": 0.635,
+      "atr": 186.29,
+      "reasons": [
+        "Stage 2 (+25)",
+        "PULLBACK_EMA20 (+20)",
+        "RSI 62 (+20)",
+        "Vol 1.0x (+7)",
+        "All EMAs rising (+15)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 9,
+        "invested": 68886.0,
+        "stop_loss": 7370.57,
+        "risk_amount": 2550.87,
+        "risk_pct_of_capital": 0.451,
+        "note": null,
+        "size_notes": [],
+        "within_risk_budget": false
+      },
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
+      "actionable": true,
+      "selection": {
+        "tier": "avoid",
+        "conviction": {
+          "level": "avoid",
+          "met": 5,
+          "of": 5
+        },
+        "conditions": {
+          "relative strength in the top 30%": true,
+          "within 10% of the 52-week high": "True",
+          "traded value at least INR 5 crore a day": true,
+          "ATR at most 4% of price": "True",
+          "Nifty above its EMA200": true
+        },
+        "rs_rank_pct": 79,
+        "sector": "Autos & ancillaries",
+        "regime": "bull",
+        "events": {
+          "blocked": true,
+          "reasons": [
+            "results expected 2026-11-13 (0 session(s) away, from yfinance: confirm)"
+          ],
+          "unverified": [
+            "event_calendar.json has not been filled in"
+          ]
+        },
+        "risk_mult": 1.0,
+        "size_notes": [],
+        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
+      },
+      "plan": {
+        "entry": {
+          "basis": "rule",
+          "buy_stop": 7654.0,
+          "valid": "the next session only; if the stop is not reached the signal expires"
+        },
+        "stop": {
+          "basis": "rule",
+          "price": 7370.57,
+          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
+        },
+        "profit_review_levels": {
+          "basis": "reference",
+          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
+          "levels": [
+            {
+              "r": 1,
+              "price": 7933.43,
+              "gain_pct": 3.7
+            },
+            {
+              "r": 2,
+              "price": 8212.86,
+              "gain_pct": 7.3
+            },
+            {
+              "r": 3,
+              "price": 8492.29,
+              "gain_pct": 11.0
+            }
+          ]
+        },
+        "expected_duration": {
+          "basis": "empirical",
+          "from": "2141 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "winners_median_days": 47.0,
+          "winners_range_days": [
+            29.0,
+            68.0
+          ],
+          "losers_median_days": 5.0,
+          "win_rate": 0.252,
+          "typical_winner_r": 1.44,
+          "strong_winner_r": 7.68,
+          "typical_winner_price": 8056.38,
+          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
+        },
+        "sell_trigger": {
+          "basis": "rule",
+          "condition": "a daily close below EMA50, then sell at the next open",
+          "ema50_now": 7406.0,
+          "ema50_in_about_a_week": 7453.03,
+          "time_exit": "sell after 120 sessions if still held",
+          "warning_signs": [
+            "two closes below EMA20 (7418.37): momentum fading, consider tightening attention",
+            "EMA50 turning down while price is near it"
+          ],
+          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
+        },
+        "add_more": {
+          "basis": "untested",
+          "default": "do not add",
+          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
+          "conditions": [
+            "daily close at or above 7933.43 (entry + 1R)",
+            "close above EMA20 (7418.37) and EMA50 rising",
+            "move the stop up to the entry 7654.0 FIRST, so the original position carries no risk",
+            "total open risk stays within the 1.5% budget and this position within 25% of capital"
+          ],
+          "max_extra_shares": 8,
+          "risk_of_add_inr": 2235.0,
+          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
+        }
+      }
+    },
+    {
+      "avg_value_cr": 309.01,
+      "close_in_range": 0.914,
+      "stop_pct": 4.32,
+      "trigger_gap_pct": 0.16,
+      "checks": [
+        {
+          "id": "liquidity",
+          "status": "ok",
+          "text": "Liquid: \u20b9309 cr/day average traded value"
+        },
+        {
+          "id": "stop_width",
+          "status": "ok",
+          "text": "Stop 4.3% below entry"
+        },
+        {
+          "id": "trigger_gap",
+          "status": "ok",
+          "text": "Buy-stop 0.2% above the close"
+        },
+        {
+          "id": "close_strength",
+          "status": "ok",
+          "text": "Close in the top 9% of the day's range"
+        },
+        {
+          "id": "extension",
+          "status": "ok",
+          "text": "1.7% from EMA20"
+        },
+        {
+          "id": "volume",
+          "status": "ok",
+          "text": "Volume 0.9x average"
+        },
+        {
+          "id": "events",
+          "status": "warn",
+          "text": "Event risk unverified: event_calendar.json has not been filled in"
+        }
+      ],
+      "execution_ok": true,
+      "spark": {
+        "close": [
           5745.5,
           5709.5,
           5740.5,
@@ -3671,10 +3824,10 @@
           5513.0,
           5410.5,
           5345.0,
-          5342.0
+          5342.0,
+          5385.0
         ],
         "ema20": [
-          5514.72,
           5536.7,
           5553.16,
           5571.0,
@@ -3733,10 +3886,10 @@
           5257.92,
           5272.45,
           5279.36,
-          5285.33
+          5285.33,
+          5294.82
         ],
         "ema50": [
-          5244.78,
           5264.42,
           5281.87,
           5299.86,
@@ -3795,9 +3948,10 @@
           5247.08,
           5253.49,
           5257.08,
-          5260.41
+          5260.41,
+          5265.29
         ],
-        "from": "2026-08-17"
+        "from": "2026-08-18"
       },
       "symbol": "HEROMOTOCO",
       "decision": "SIGNAL",
@@ -3806,43 +3960,43 @@
       "setup_type": "PULLBACK_EMA20",
       "setup_desc": "Pullback to EMA20",
       "in_stockedge": true,
-      "signal_date": "2026-11-12",
-      "price": 5342.0,
-      "trigger": 5385.5,
-      "stop_loss": 5109.34,
-      "plan_risk": 232.6607,
-      "ema_20": 5285.33,
-      "ema_50": 5260.41,
-      "ema_200": 5186.55,
-      "rsi": 53.85,
-      "vol_ratio": 0.84,
-      "vol_5d_ratio": 0.84,
-      "ema_dist_pct": 1.07,
-      "from_52w_high": -13.5,
-      "atr_pct": 2.9,
+      "signal_date": "2026-11-13",
+      "price": 5385.0,
+      "trigger": 5393.5,
+      "stop_loss": 5160.48,
+      "plan_risk": 224.5179,
+      "ema_20": 5294.82,
+      "ema_50": 5265.29,
+      "ema_200": 5188.52,
+      "rsi": 55.89,
+      "vol_ratio": 0.86,
+      "vol_5d_ratio": 0.86,
+      "ema_dist_pct": 1.7,
+      "from_52w_high": -12.8,
+      "atr_pct": 2.78,
       "st_direction": 1,
-      "ema50_slope_pct": 0.68,
-      "atr": 155.11,
+      "ema50_slope_pct": 0.555,
+      "atr": 149.68,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 54 (+20)",
-        "Vol 0.8x (+7)",
+        "RSI 56 (+20)",
+        "Vol 0.9x (+7)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 10,
-        "invested": 53855.0,
-        "stop_loss": 5109.34,
-        "risk_amount": 2761.6,
-        "risk_pct_of_capital": 0.489,
+        "shares": 12,
+        "invested": 64722.0,
+        "stop_loss": 5160.48,
+        "risk_amount": 2796.24,
+        "risk_pct_of_capital": 0.495,
         "note": null,
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3858,7 +4012,7 @@
           "ATR at most 4% of price": "True",
           "Nifty above its EMA200": true
         },
-        "rs_rank_pct": 61,
+        "rs_rank_pct": 65,
         "sector": "Autos & ancillaries",
         "regime": "bull",
         "events": {
@@ -3875,12 +4029,12 @@
       "plan": {
         "entry": {
           "basis": "rule",
-          "buy_stop": 5385.5,
+          "buy_stop": 5393.5,
           "valid": "the next session only; if the stop is not reached the signal expires"
         },
         "stop": {
           "basis": "rule",
-          "price": 5109.34,
+          "price": 5160.48,
           "note": "fixed at entry; never moved down. A gap open below it fills at the open"
         },
         "profit_review_levels": {
@@ -3889,18 +4043,18 @@
           "levels": [
             {
               "r": 1,
-              "price": 5618.16,
-              "gain_pct": 4.3
+              "price": 5618.02,
+              "gain_pct": 4.2
             },
             {
               "r": 2,
-              "price": 5850.82,
-              "gain_pct": 8.6
+              "price": 5842.54,
+              "gain_pct": 8.3
             },
             {
               "r": 3,
-              "price": 6083.48,
-              "gain_pct": 13.0
+              "price": 6067.05,
+              "gain_pct": 12.5
             }
           ]
         },
@@ -3916,17 +4070,17 @@
           "win_rate": 0.252,
           "typical_winner_r": 1.44,
           "strong_winner_r": 7.68,
-          "typical_winner_price": 5720.53,
+          "typical_winner_price": 5716.81,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
           "basis": "rule",
           "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 5260.41,
-          "ema50_in_about_a_week": 5296.18,
+          "ema50_now": 5265.29,
+          "ema50_in_about_a_week": 5294.51,
           "time_exit": "sell after 120 sessions if still held",
           "warning_signs": [
-            "two closes below EMA20 (5285.33): momentum fading, consider tightening attention",
+            "two closes below EMA20 (5294.82): momentum fading, consider tightening attention",
             "EMA50 turning down while price is near it"
           ],
           "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
@@ -3936,52 +4090,52 @@
           "default": "do not add",
           "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
           "conditions": [
-            "daily close at or above 5618.16 (entry + 1R)",
-            "close above EMA20 (5285.33) and EMA50 rising",
-            "move the stop up to the entry 5385.5 FIRST, so the original position carries no risk",
+            "daily close at or above 5618.02 (entry + 1R)",
+            "close above EMA20 (5294.82) and EMA50 rising",
+            "move the stop up to the entry 5393.5 FIRST, so the original position carries no risk",
             "total open risk stays within the 1.5% budget and this position within 25% of capital"
           ],
-          "max_extra_shares": 10,
-          "risk_of_add_inr": 2327.0,
+          "max_extra_shares": 12,
+          "risk_of_add_inr": 2694.0,
           "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
         }
       }
     },
     {
-      "avg_value_cr": 13.59,
-      "close_in_range": 0.079,
-      "stop_pct": 7.16,
-      "trigger_gap_pct": 2.18,
+      "avg_value_cr": 219.39,
+      "close_in_range": 0.876,
+      "stop_pct": 6.63,
+      "trigger_gap_pct": 0.4,
       "checks": [
         {
           "id": "liquidity",
           "status": "ok",
-          "text": "Liquid: \u20b914 cr/day average traded value"
+          "text": "Liquid: \u20b9219 cr/day average traded value"
         },
         {
           "id": "stop_width",
           "status": "ok",
-          "text": "Stop 7.2% below entry"
+          "text": "Stop 6.6% below entry"
         },
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop 2.2% above the close"
+          "text": "Buy-stop 0.4% above the close"
         },
         {
           "id": "close_strength",
-          "status": "warn",
-          "text": "Weak close: bottom 8% of the day's range"
+          "status": "ok",
+          "text": "Close in the top 12% of the day's range"
         },
         {
           "id": "extension",
           "status": "ok",
-          "text": "1.2% from EMA20"
+          "text": "-0.5% from EMA20"
         },
         {
           "id": "volume",
           "status": "ok",
-          "text": "Volume 1.1x average"
+          "text": "Volume 0.7x average"
         },
         {
           "id": "events",
@@ -3992,7 +4146,770 @@
       "execution_ok": true,
       "spark": {
         "close": [
-          549.78,
+          2432.0,
+          2424.5,
+          2430.0,
+          2430.0,
+          2427.0,
+          2431.9,
+          2400.0,
+          2413.6,
+          2455.0,
+          2427.4,
+          2505.5,
+          2480.0,
+          2471.0,
+          2422.0,
+          2369.1,
+          2355.0,
+          2307.5,
+          2291.7,
+          2295.0,
+          2378.0,
+          2316.7,
+          2320.0,
+          2300.4,
+          2296.2,
+          2265.0,
+          2259.0,
+          2248.2,
+          2234.0,
+          2237.5,
+          2154.4,
+          2154.4,
+          2250.2,
+          2297.1,
+          2298.0,
+          2289.0,
+          2303.4,
+          2360.0,
+          2353.5,
+          2466.3,
+          2435.3,
+          2453.2,
+          2500.0,
+          2500.0,
+          2575.0,
+          2499.5,
+          2480.0,
+          2557.6,
+          2618.4,
+          2518.0,
+          2561.3,
+          2525.6,
+          2563.7,
+          2535.3,
+          2468.4,
+          2510.0,
+          2520.0,
+          2455.0,
+          2390.0,
+          2410.0,
+          2455.0
+        ],
+        "ema20": [
+          2438.51,
+          2437.17,
+          2436.49,
+          2435.87,
+          2435.03,
+          2434.73,
+          2431.42,
+          2429.72,
+          2432.13,
+          2431.68,
+          2438.71,
+          2442.64,
+          2445.34,
+          2443.12,
+          2436.07,
+          2428.35,
+          2416.84,
+          2404.92,
+          2394.45,
+          2392.89,
+          2385.63,
+          2379.38,
+          2371.86,
+          2364.65,
+          2355.16,
+          2346.0,
+          2336.69,
+          2326.91,
+          2318.39,
+          2302.78,
+          2288.64,
+          2284.98,
+          2286.14,
+          2287.27,
+          2287.43,
+          2288.95,
+          2295.72,
+          2301.22,
+          2316.94,
+          2328.22,
+          2340.12,
+          2355.35,
+          2369.12,
+          2388.73,
+          2399.28,
+          2406.97,
+          2421.31,
+          2440.08,
+          2447.5,
+          2458.34,
+          2464.75,
+          2474.17,
+          2479.99,
+          2478.89,
+          2481.85,
+          2485.49,
+          2482.58,
+          2473.76,
+          2467.69,
+          2466.48
+        ],
+        "ema50": [
+          2357.62,
+          2360.24,
+          2362.98,
+          2365.61,
+          2368.01,
+          2370.52,
+          2371.68,
+          2373.32,
+          2376.52,
+          2378.52,
+          2383.5,
+          2387.28,
+          2390.56,
+          2391.8,
+          2390.91,
+          2389.5,
+          2386.28,
+          2382.57,
+          2379.14,
+          2379.1,
+          2376.65,
+          2374.43,
+          2371.52,
+          2368.57,
+          2364.51,
+          2360.37,
+          2355.97,
+          2351.19,
+          2346.73,
+          2339.19,
+          2331.94,
+          2328.74,
+          2327.5,
+          2326.34,
+          2324.87,
+          2324.03,
+          2325.44,
+          2326.54,
+          2332.02,
+          2336.07,
+          2340.67,
+          2346.92,
+          2352.92,
+          2361.63,
+          2367.03,
+          2371.46,
+          2378.76,
+          2388.16,
+          2393.25,
+          2399.84,
+          2404.77,
+          2411.01,
+          2415.88,
+          2417.94,
+          2421.55,
+          2425.41,
+          2426.57,
+          2425.14,
+          2424.54,
+          2425.74
+        ],
+        "from": "2026-08-18"
+      },
+      "symbol": "MPHASIS",
+      "decision": "SIGNAL",
+      "score": 84,
+      "stage": 2,
+      "setup_type": "PULLBACK_EMA20",
+      "setup_desc": "Pullback to EMA20",
+      "in_stockedge": false,
+      "signal_date": "2026-11-13",
+      "price": 2455.0,
+      "trigger": 2464.8,
+      "stop_loss": 2301.27,
+      "plan_risk": 153.7286,
+      "ema_20": 2466.48,
+      "ema_50": 2425.74,
+      "ema_200": 2397.88,
+      "rsi": 49.92,
+      "vol_ratio": 0.7,
+      "vol_5d_ratio": 0.49,
+      "ema_dist_pct": -0.47,
+      "from_52w_high": -15.27,
+      "atr_pct": 4.17,
+      "st_direction": 1,
+      "ema50_slope_pct": 0.173,
+      "atr": 102.49,
+      "reasons": [
+        "Stage 2 (+25)",
+        "PULLBACK_EMA20 (+20)",
+        "RSI 50 (+20)",
+        "Vol 0.7x (+3)",
+        "2 EMAs rising (+10)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 12,
+        "invested": 29577.6,
+        "stop_loss": 2301.27,
+        "risk_amount": 1962.36,
+        "risk_pct_of_capital": 0.347,
+        "note": null,
+        "size_notes": [
+          "ATR 4.2% above 4%: size x0.75"
+        ],
+        "within_risk_budget": false
+      },
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
+      "actionable": true,
+      "selection": {
+        "tier": "standard",
+        "conviction": {
+          "level": "low",
+          "met": 2,
+          "of": 5
+        },
+        "conditions": {
+          "relative strength in the top 30%": false,
+          "within 10% of the 52-week high": "False",
+          "traded value at least INR 5 crore a day": true,
+          "ATR at most 4% of price": "False",
+          "Nifty above its EMA200": true
+        },
+        "rs_rank_pct": 58,
+        "sector": "IT",
+        "regime": "bull",
+        "events": {
+          "blocked": false,
+          "reasons": [],
+          "unverified": [
+            "event_calendar.json has not been filled in"
+          ]
+        },
+        "risk_mult": 0.75,
+        "size_notes": [
+          "ATR 4.2% above 4%: size x0.75"
+        ],
+        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
+      },
+      "plan": {
+        "entry": {
+          "basis": "rule",
+          "buy_stop": 2464.8,
+          "valid": "the next session only; if the stop is not reached the signal expires"
+        },
+        "stop": {
+          "basis": "rule",
+          "price": 2301.27,
+          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
+        },
+        "profit_review_levels": {
+          "basis": "reference",
+          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
+          "levels": [
+            {
+              "r": 1,
+              "price": 2618.53,
+              "gain_pct": 6.2
+            },
+            {
+              "r": 2,
+              "price": 2772.26,
+              "gain_pct": 12.5
+            },
+            {
+              "r": 3,
+              "price": 2925.99,
+              "gain_pct": 18.7
+            }
+          ]
+        },
+        "expected_duration": {
+          "basis": "empirical",
+          "from": "2141 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "winners_median_days": 47.0,
+          "winners_range_days": [
+            29.0,
+            68.0
+          ],
+          "losers_median_days": 5.0,
+          "win_rate": 0.252,
+          "typical_winner_r": 1.44,
+          "strong_winner_r": 7.68,
+          "typical_winner_price": 2686.17,
+          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
+        },
+        "sell_trigger": {
+          "basis": "rule",
+          "condition": "a daily close below EMA50, then sell at the next open",
+          "ema50_now": 2425.74,
+          "ema50_in_about_a_week": 2429.94,
+          "time_exit": "sell after 120 sessions if still held",
+          "warning_signs": [
+            "two closes below EMA20 (2466.48): momentum fading, consider tightening attention",
+            "EMA50 turning down while price is near it"
+          ],
+          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
+        },
+        "add_more": {
+          "basis": "untested",
+          "default": "do not add",
+          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
+          "conditions": [
+            "daily close at or above 2618.53 (entry + 1R)",
+            "close above EMA20 (2466.48) and EMA50 rising",
+            "move the stop up to the entry 2464.8 FIRST, so the original position carries no risk",
+            "total open risk stays within the 1.5% budget and this position within 25% of capital"
+          ],
+          "max_extra_shares": 12,
+          "risk_of_add_inr": 1845.0,
+          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
+        }
+      }
+    },
+    {
+      "avg_value_cr": 276.89,
+      "close_in_range": 0.304,
+      "stop_pct": 6.72,
+      "trigger_gap_pct": 1.32,
+      "checks": [
+        {
+          "id": "liquidity",
+          "status": "ok",
+          "text": "Liquid: \u20b9277 cr/day average traded value"
+        },
+        {
+          "id": "stop_width",
+          "status": "ok",
+          "text": "Stop 6.7% below entry"
+        },
+        {
+          "id": "trigger_gap",
+          "status": "ok",
+          "text": "Buy-stop 1.3% above the close"
+        },
+        {
+          "id": "close_strength",
+          "status": "warn",
+          "text": "Weak close: bottom 30% of the day's range"
+        },
+        {
+          "id": "extension",
+          "status": "ok",
+          "text": "2.1% from EMA20"
+        },
+        {
+          "id": "volume",
+          "status": "warn",
+          "text": "Light volume (0.3x average)"
+        },
+        {
+          "id": "events",
+          "status": "warn",
+          "text": "Event risk unverified: event_calendar.json has not been filled in"
+        }
+      ],
+      "execution_ok": true,
+      "spark": {
+        "close": [
+          170.4,
+          170.29,
+          169.58,
+          169.38,
+          169.0,
+          166.45,
+          165.0,
+          166.0,
+          165.6,
+          170.68,
+          165.6,
+          163.3,
+          162.0,
+          160.7,
+          162.0,
+          163.85,
+          163.7,
+          163.2,
+          164.45,
+          158.15,
+          158.27,
+          161.87,
+          162.57,
+          162.91,
+          161.77,
+          164.4,
+          162.5,
+          165.71,
+          162.37,
+          158.56,
+          163.26,
+          157.03,
+          156.5,
+          160.0,
+          159.2,
+          153.08,
+          153.0,
+          156.99,
+          160.0,
+          159.8,
+          160.66,
+          160.0,
+          158.15,
+          157.27,
+          154.64,
+          151.67,
+          153.75,
+          157.95,
+          160.33,
+          160.0,
+          156.5,
+          159.0,
+          160.0,
+          159.49,
+          168.0,
+          158.55,
+          161.91,
+          169.69,
+          165.83,
+          164.8
+        ],
+        "ema20": [
+          159.6,
+          160.62,
+          161.47,
+          162.23,
+          162.87,
+          163.21,
+          163.38,
+          163.63,
+          163.82,
+          164.47,
+          164.58,
+          164.46,
+          164.22,
+          163.89,
+          163.71,
+          163.72,
+          163.72,
+          163.67,
+          163.74,
+          163.21,
+          162.74,
+          162.66,
+          162.65,
+          162.67,
+          162.59,
+          162.76,
+          162.74,
+          163.02,
+          162.96,
+          162.54,
+          162.61,
+          162.08,
+          161.55,
+          161.4,
+          161.19,
+          160.42,
+          159.71,
+          159.45,
+          159.5,
+          159.53,
+          159.64,
+          159.67,
+          159.53,
+          159.31,
+          158.87,
+          158.18,
+          157.76,
+          157.78,
+          158.02,
+          158.21,
+          158.05,
+          158.14,
+          158.32,
+          158.43,
+          159.34,
+          159.26,
+          159.52,
+          160.48,
+          160.99,
+          161.36
+        ],
+        "ema50": [
+          150.6,
+          151.37,
+          152.08,
+          152.76,
+          153.4,
+          153.91,
+          154.35,
+          154.8,
+          155.23,
+          155.83,
+          156.22,
+          156.49,
+          156.71,
+          156.87,
+          157.07,
+          157.33,
+          157.58,
+          157.8,
+          158.06,
+          158.07,
+          158.07,
+          158.22,
+          158.39,
+          158.57,
+          158.7,
+          158.92,
+          159.06,
+          159.32,
+          159.44,
+          159.41,
+          159.56,
+          159.46,
+          159.34,
+          159.37,
+          159.36,
+          159.12,
+          158.88,
+          158.8,
+          158.85,
+          158.89,
+          158.96,
+          159.0,
+          158.96,
+          158.9,
+          158.73,
+          158.45,
+          158.27,
+          158.26,
+          158.34,
+          158.4,
+          158.33,
+          158.35,
+          158.42,
+          158.46,
+          158.83,
+          158.82,
+          158.94,
+          159.37,
+          159.62,
+          159.82
+        ],
+        "from": "2026-08-18"
+      },
+      "symbol": "MOTHERSON",
+      "decision": "SIGNAL",
+      "score": 89,
+      "stage": 2,
+      "setup_type": "PULLBACK_EMA20",
+      "setup_desc": "Pullback to EMA20",
+      "in_stockedge": false,
+      "signal_date": "2026-11-13",
+      "price": 164.8,
+      "trigger": 166.98,
+      "stop_loss": 155.76,
+      "plan_risk": 9.045,
+      "ema_20": 161.36,
+      "ema_50": 159.82,
+      "ema_200": 144.28,
+      "rsi": 54.6,
+      "vol_ratio": 0.33,
+      "vol_5d_ratio": 0.23,
+      "ema_dist_pct": 2.13,
+      "from_52w_high": -4.89,
+      "atr_pct": 3.66,
+      "st_direction": 1,
+      "ema50_slope_pct": 0.622,
+      "atr": 6.03,
+      "reasons": [
+        "Stage 2 (+25)",
+        "PULLBACK_EMA20 (+20)",
+        "RSI 55 (+20)",
+        "Vol 0.3x (+3)",
+        "All EMAs rising (+15)",
+        "Near 52W high (+3)",
+        "Supertrend bullish (+3)"
+      ],
+      "position": {
+        "shares": 251,
+        "invested": 41911.98,
+        "stop_loss": 155.76,
+        "risk_amount": 2816.22,
+        "risk_pct_of_capital": 0.498,
+        "note": null,
+        "size_notes": [],
+        "within_risk_budget": false
+      },
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
+      "actionable": true,
+      "selection": {
+        "tier": "preferred",
+        "conviction": {
+          "level": "high",
+          "met": 5,
+          "of": 5
+        },
+        "conditions": {
+          "relative strength in the top 30%": true,
+          "within 10% of the 52-week high": "True",
+          "traded value at least INR 5 crore a day": true,
+          "ATR at most 4% of price": "True",
+          "Nifty above its EMA200": true
+        },
+        "rs_rank_pct": 96,
+        "sector": "Autos & ancillaries",
+        "regime": "bull",
+        "events": {
+          "blocked": false,
+          "reasons": [],
+          "unverified": [
+            "event_calendar.json has not been filled in"
+          ]
+        },
+        "risk_mult": 1.0,
+        "size_notes": [],
+        "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
+      },
+      "plan": {
+        "entry": {
+          "basis": "rule",
+          "buy_stop": 166.98,
+          "valid": "the next session only; if the stop is not reached the signal expires"
+        },
+        "stop": {
+          "basis": "rule",
+          "price": 155.76,
+          "note": "fixed at entry; never moved down. A gap open below it fills at the open"
+        },
+        "profit_review_levels": {
+          "basis": "reference",
+          "note": "C0 has no fixed take-profit. These are prices to review the trade at, not targets the backtest used",
+          "levels": [
+            {
+              "r": 1,
+              "price": 176.02,
+              "gain_pct": 5.4
+            },
+            {
+              "r": 2,
+              "price": 185.07,
+              "gain_pct": 10.8
+            },
+            {
+              "r": 3,
+              "price": 194.11,
+              "gain_pct": 16.3
+            }
+          ]
+        },
+        "expected_duration": {
+          "basis": "empirical",
+          "from": "2141 past C0 trades (PULLBACK_EMA20); survivor-biased",
+          "winners_median_days": 47.0,
+          "winners_range_days": [
+            29.0,
+            68.0
+          ],
+          "losers_median_days": 5.0,
+          "win_rate": 0.252,
+          "typical_winner_r": 1.44,
+          "strong_winner_r": 7.68,
+          "typical_winner_price": 180.0,
+          "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
+        },
+        "sell_trigger": {
+          "basis": "rule",
+          "condition": "a daily close below EMA50, then sell at the next open",
+          "ema50_now": 159.82,
+          "ema50_in_about_a_week": 160.81,
+          "time_exit": "sell after 120 sessions if still held",
+          "warning_signs": [
+            "two closes below EMA20 (161.36): momentum fading, consider tightening attention",
+            "EMA50 turning down while price is near it"
+          ],
+          "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
+        },
+        "add_more": {
+          "basis": "untested",
+          "default": "do not add",
+          "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
+          "conditions": [
+            "daily close at or above 176.02 (entry + 1R)",
+            "close above EMA20 (161.36) and EMA50 rising",
+            "move the stop up to the entry 166.98 FIRST, so the original position carries no risk",
+            "total open risk stays within the 1.5% budget and this position within 25% of capital"
+          ],
+          "max_extra_shares": 251,
+          "risk_of_add_inr": 2270.0,
+          "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
+        }
+      }
+    },
+    {
+      "avg_value_cr": 13.17,
+      "close_in_range": 0.084,
+      "stop_pct": 7.84,
+      "trigger_gap_pct": 2.92,
+      "checks": [
+        {
+          "id": "liquidity",
+          "status": "ok",
+          "text": "Liquid: \u20b913 cr/day average traded value"
+        },
+        {
+          "id": "stop_width",
+          "status": "ok",
+          "text": "Stop 7.8% below entry"
+        },
+        {
+          "id": "trigger_gap",
+          "status": "ok",
+          "text": "Buy-stop 2.9% above the close"
+        },
+        {
+          "id": "close_strength",
+          "status": "warn",
+          "text": "Weak close: bottom 8% of the day's range"
+        },
+        {
+          "id": "extension",
+          "status": "ok",
+          "text": "0.9% from EMA20"
+        },
+        {
+          "id": "volume",
+          "status": "ok",
+          "text": "Volume 1.0x average"
+        },
+        {
+          "id": "events",
+          "status": "warn",
+          "text": "Event risk unverified: event_calendar.json has not been filled in"
+        }
+      ],
+      "execution_ok": true,
+      "spark": {
+        "close": [
           550.98,
           554.02,
           539.85,
@@ -4051,10 +4968,10 @@
           567.75,
           582.35,
           576.15,
-          565.2
+          565.2,
+          564.2
         ],
         "ema20": [
-          564.01,
           562.77,
           561.94,
           559.83,
@@ -4113,10 +5030,10 @@
           552.94,
           555.74,
           557.68,
-          558.4
+          558.4,
+          558.95
         ],
         "ema50": [
-          554.61,
           554.46,
           554.45,
           553.87,
@@ -4175,9 +5092,10 @@
           554.73,
           555.81,
           556.61,
-          556.95
+          556.95,
+          557.23
         ],
-        "from": "2026-08-17"
+        "from": "2026-08-18"
       },
       "symbol": "METROPOLIS",
       "decision": "SIGNAL",
@@ -4186,43 +5104,43 @@
       "setup_type": "PULLBACK_EMA20",
       "setup_desc": "Pullback to EMA20",
       "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 565.2,
-      "trigger": 577.5,
-      "stop_loss": 536.17,
-      "plan_risk": 29.0253,
-      "ema_20": 558.4,
-      "ema_50": 556.95,
-      "ema_200": 534.23,
-      "rsi": 53.6,
-      "vol_ratio": 1.12,
-      "vol_5d_ratio": 0.79,
-      "ema_dist_pct": 1.22,
-      "from_52w_high": -7.04,
-      "atr_pct": 3.42,
+      "signal_date": "2026-11-13",
+      "price": 564.2,
+      "trigger": 580.65,
+      "stop_loss": 535.14,
+      "plan_risk": 29.0608,
+      "ema_20": 558.95,
+      "ema_50": 557.23,
+      "ema_200": 534.53,
+      "rsi": 53.13,
+      "vol_ratio": 0.95,
+      "vol_5d_ratio": 0.95,
+      "ema_dist_pct": 0.94,
+      "from_52w_high": -7.2,
+      "atr_pct": 3.43,
       "st_direction": 1,
-      "ema50_slope_pct": 0.613,
-      "atr": 19.35,
+      "ema50_slope_pct": 0.547,
+      "atr": 19.37,
       "reasons": [
         "Stage 2 (+25)",
         "PULLBACK_EMA20 (+20)",
-        "RSI 54 (+20)",
-        "Vol 1.1x (+7)",
+        "RSI 53 (+20)",
+        "Vol 1.0x (+7)",
         "All EMAs rising (+15)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 68,
-        "invested": 39270.0,
-        "stop_loss": 536.17,
-        "risk_amount": 2810.44,
-        "risk_pct_of_capital": 0.497,
+        "shares": 62,
+        "invested": 36000.3,
+        "stop_loss": 535.14,
+        "risk_amount": 2821.62,
+        "risk_pct_of_capital": 0.499,
         "note": null,
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4238,7 +5156,7 @@
           "ATR at most 4% of price": "True",
           "Nifty above its EMA200": true
         },
-        "rs_rank_pct": 62,
+        "rs_rank_pct": 66,
         "sector": "Pharma & healthcare",
         "regime": "bull",
         "events": {
@@ -4255,12 +5173,12 @@
       "plan": {
         "entry": {
           "basis": "rule",
-          "buy_stop": 577.5,
+          "buy_stop": 580.65,
           "valid": "the next session only; if the stop is not reached the signal expires"
         },
         "stop": {
           "basis": "rule",
-          "price": 536.17,
+          "price": 535.14,
           "note": "fixed at entry; never moved down. A gap open below it fills at the open"
         },
         "profit_review_levels": {
@@ -4269,18 +5187,18 @@
           "levels": [
             {
               "r": 1,
-              "price": 606.53,
+              "price": 609.71,
               "gain_pct": 5.0
             },
             {
               "r": 2,
-              "price": 635.55,
-              "gain_pct": 10.1
+              "price": 638.77,
+              "gain_pct": 10.0
             },
             {
               "r": 3,
-              "price": 664.58,
-              "gain_pct": 15.1
+              "price": 667.83,
+              "gain_pct": 15.0
             }
           ]
         },
@@ -4296,17 +5214,17 @@
           "win_rate": 0.252,
           "typical_winner_r": 1.44,
           "strong_winner_r": 7.68,
-          "typical_winner_price": 619.3,
+          "typical_winner_price": 622.5,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
           "basis": "rule",
           "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 556.95,
-          "ema50_in_about_a_week": 560.36,
+          "ema50_now": 557.23,
+          "ema50_in_about_a_week": 560.28,
           "time_exit": "sell after 120 sessions if still held",
           "warning_signs": [
-            "two closes below EMA20 (558.4): momentum fading, consider tightening attention",
+            "two closes below EMA20 (558.95): momentum fading, consider tightening attention",
             "EMA50 turning down while price is near it"
           ],
           "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
@@ -4316,52 +5234,52 @@
           "default": "do not add",
           "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
           "conditions": [
-            "daily close at or above 606.53 (entry + 1R)",
-            "close above EMA20 (558.4) and EMA50 rising",
-            "move the stop up to the entry 577.5 FIRST, so the original position carries no risk",
+            "daily close at or above 609.71 (entry + 1R)",
+            "close above EMA20 (558.95) and EMA50 rising",
+            "move the stop up to the entry 580.65 FIRST, so the original position carries no risk",
             "total open risk stays within the 1.5% budget and this position within 25% of capital"
           ],
-          "max_extra_shares": 68,
-          "risk_of_add_inr": 1974.0,
+          "max_extra_shares": 62,
+          "risk_of_add_inr": 1802.0,
           "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
         }
       }
     },
     {
-      "avg_value_cr": 81.3,
-      "close_in_range": 0.404,
-      "stop_pct": 11.49,
-      "trigger_gap_pct": 3.4,
+      "avg_value_cr": 78.46,
+      "close_in_range": 0.612,
+      "stop_pct": 9.72,
+      "trigger_gap_pct": 1.6,
       "checks": [
         {
           "id": "liquidity",
           "status": "ok",
-          "text": "Liquid: \u20b981 cr/day average traded value"
+          "text": "Liquid: \u20b978 cr/day average traded value"
         },
         {
           "id": "stop_width",
-          "status": "warn",
-          "text": "Wide stop (11.5%): small position and real gap risk"
+          "status": "ok",
+          "text": "Stop 9.7% below entry"
         },
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop 3.4% above the close"
+          "text": "Buy-stop 1.6% above the close"
         },
         {
           "id": "close_strength",
           "status": "ok",
-          "text": "Close in the top 60% of the day's range"
+          "text": "Close in the top 39% of the day's range"
         },
         {
           "id": "extension",
           "status": "ok",
-          "text": "1.4% from EMA20"
+          "text": "3.1% from EMA20"
         },
         {
           "id": "volume",
           "status": "ok",
-          "text": "Volume 1.6x average"
+          "text": "Volume 0.9x average"
         },
         {
           "id": "events",
@@ -4372,7 +5290,6 @@
       "execution_ok": true,
       "spark": {
         "close": [
-          647.85,
           625.0,
           630.5,
           656.65,
@@ -4431,10 +5348,10 @@
           1082.0,
           1091.2,
           1094.4,
-          1126.4
+          1126.4,
+          1149.0
         ],
         "ema20": [
-          617.2,
           617.95,
           619.14,
           622.71,
@@ -4493,10 +5410,10 @@
           1112.24,
           1110.23,
           1108.73,
-          1110.41
+          1110.41,
+          1114.08
         ],
         "ema50": [
-          590.58,
           591.93,
           593.44,
           595.92,
@@ -4555,56 +5472,57 @@
           1022.48,
           1025.18,
           1027.89,
-          1031.76
+          1031.76,
+          1036.35
         ],
-        "from": "2026-08-17"
+        "from": "2026-08-18"
       },
       "symbol": "RAYMOND",
       "decision": "SIGNAL",
-      "score": 94,
+      "score": 74,
       "stage": 2,
-      "setup_type": "PULLBACK_EMA20",
-      "setup_desc": "Pullback to EMA20",
+      "setup_type": "TRENDING",
+      "setup_desc": "Stage 2 momentum",
       "in_stockedge": false,
-      "signal_date": "2026-11-12",
-      "price": 1126.4,
-      "trigger": 1164.7,
-      "stop_loss": 1030.84,
-      "plan_risk": 95.5607,
-      "ema_20": 1110.41,
-      "ema_50": 1031.76,
-      "ema_200": 769.18,
-      "rsi": 54.12,
-      "vol_ratio": 1.61,
-      "vol_5d_ratio": 1.61,
-      "ema_dist_pct": 1.44,
-      "from_52w_high": -15.88,
-      "atr_pct": 5.66,
+      "signal_date": "2026-11-13",
+      "price": 1149.0,
+      "trigger": 1167.4,
+      "stop_loss": 1053.95,
+      "plan_risk": 95.0464,
+      "ema_20": 1114.08,
+      "ema_50": 1036.35,
+      "ema_200": 772.96,
+      "rsi": 57.09,
+      "vol_ratio": 0.87,
+      "vol_5d_ratio": 0.87,
+      "ema_dist_pct": 3.13,
+      "from_52w_high": -14.19,
+      "atr_pct": 5.51,
       "st_direction": 1,
-      "ema50_slope_pct": 1.597,
-      "atr": 63.71,
+      "ema50_slope_pct": 1.598,
+      "atr": 63.36,
       "reasons": [
         "Stage 2 (+25)",
-        "PULLBACK_EMA20 (+20)",
-        "RSI 54 (+20)",
-        "Vol 1.6x (+13)",
+        "TRENDING (+6)",
+        "RSI 57 (+20)",
+        "Vol 0.9x (+7)",
         "2 EMAs rising (+10)",
         "Near 52W high (+3)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 15,
-        "invested": 17470.5,
-        "stop_loss": 1030.84,
-        "risk_amount": 2007.9,
-        "risk_pct_of_capital": 0.355,
+        "shares": 18,
+        "invested": 21013.2,
+        "stop_loss": 1053.95,
+        "risk_amount": 2042.1,
+        "risk_pct_of_capital": 0.361,
         "note": null,
         "size_notes": [
-          "ATR 5.7% above 4%: size x0.75"
+          "ATR 5.5% above 4%: size x0.75"
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4633,19 +5551,19 @@
         },
         "risk_mult": 0.75,
         "size_notes": [
-          "ATR 5.7% above 4%: size x0.75"
+          "ATR 5.5% above 4%: size x0.75"
         ],
         "status": "hypothesis: C0 trades every signal; the preferred tier is tested in PREREG_v2"
       },
       "plan": {
         "entry": {
           "basis": "rule",
-          "buy_stop": 1164.7,
+          "buy_stop": 1167.4,
           "valid": "the next session only; if the stop is not reached the signal expires"
         },
         "stop": {
           "basis": "rule",
-          "price": 1030.84,
+          "price": 1053.95,
           "note": "fixed at entry; never moved down. A gap open below it fills at the open"
         },
         "profit_review_levels": {
@@ -4654,44 +5572,44 @@
           "levels": [
             {
               "r": 1,
-              "price": 1260.26,
-              "gain_pct": 8.2
+              "price": 1262.45,
+              "gain_pct": 8.1
             },
             {
               "r": 2,
-              "price": 1355.82,
-              "gain_pct": 16.4
+              "price": 1357.49,
+              "gain_pct": 16.3
             },
             {
               "r": 3,
-              "price": 1451.38,
-              "gain_pct": 24.6
+              "price": 1452.54,
+              "gain_pct": 24.4
             }
           ]
         },
         "expected_duration": {
           "basis": "empirical",
-          "from": "2141 past C0 trades (PULLBACK_EMA20); survivor-biased",
-          "winners_median_days": 47.0,
+          "from": "796 past C0 trades (TRENDING); survivor-biased",
+          "winners_median_days": 57.0,
           "winners_range_days": [
-            29.0,
-            68.0
+            43.25,
+            82.75
           ],
-          "losers_median_days": 5.0,
-          "win_rate": 0.252,
-          "typical_winner_r": 1.44,
-          "strong_winner_r": 7.68,
-          "typical_winner_price": 1302.31,
+          "losers_median_days": 10.0,
+          "win_rate": 0.329,
+          "typical_winner_r": 2.04,
+          "strong_winner_r": 9.61,
+          "typical_winner_price": 1361.29,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
           "basis": "rule",
           "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 1031.76,
-          "ema50_in_about_a_week": 1048.24,
+          "ema50_now": 1036.35,
+          "ema50_in_about_a_week": 1052.91,
           "time_exit": "sell after 120 sessions if still held",
           "warning_signs": [
-            "two closes below EMA20 (1110.41): momentum fading, consider tightening attention",
+            "two closes below EMA20 (1114.08): momentum fading, consider tightening attention",
             "EMA50 turning down while price is near it"
           ],
           "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
@@ -4701,52 +5619,52 @@
           "default": "do not add",
           "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
           "conditions": [
-            "daily close at or above 1260.26 (entry + 1R)",
-            "close above EMA20 (1110.41) and EMA50 rising",
-            "move the stop up to the entry 1164.7 FIRST, so the original position carries no risk",
+            "daily close at or above 1262.45 (entry + 1R)",
+            "close above EMA20 (1114.08) and EMA50 rising",
+            "move the stop up to the entry 1167.4 FIRST, so the original position carries no risk",
             "total open risk stays within the 1.5% budget and this position within 25% of capital"
           ],
-          "max_extra_shares": 15,
-          "risk_of_add_inr": 1433.0,
+          "max_extra_shares": 18,
+          "risk_of_add_inr": 1711.0,
           "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
         }
       }
     },
     {
-      "avg_value_cr": 212.88,
-      "close_in_range": 1.0,
-      "stop_pct": 5.0,
-      "trigger_gap_pct": -0.0,
+      "avg_value_cr": 215.98,
+      "close_in_range": 0.336,
+      "stop_pct": 6.03,
+      "trigger_gap_pct": 1.28,
       "checks": [
         {
           "id": "liquidity",
           "status": "ok",
-          "text": "Liquid: \u20b9213 cr/day average traded value"
+          "text": "Liquid: \u20b9216 cr/day average traded value"
         },
         {
           "id": "stop_width",
           "status": "ok",
-          "text": "Stop 5.0% below entry"
+          "text": "Stop 6.0% below entry"
         },
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop -0.0% above the close"
+          "text": "Buy-stop 1.3% above the close"
         },
         {
           "id": "close_strength",
-          "status": "ok",
-          "text": "Close in the top 0% of the day's range"
+          "status": "warn",
+          "text": "Weak close: bottom 34% of the day's range"
         },
         {
           "id": "extension",
           "status": "ok",
-          "text": "5.5% from EMA20"
+          "text": "4.3% from EMA20"
         },
         {
           "id": "volume",
           "status": "ok",
-          "text": "Volume 1.6x average"
+          "text": "Volume 0.8x average"
         },
         {
           "id": "events",
@@ -4757,7 +5675,6 @@
       "execution_ok": true,
       "spark": {
         "close": [
-          4693.4,
           4732.9,
           4696.0,
           4696.0,
@@ -4816,10 +5733,10 @@
           4515.2,
           4560.8,
           4440.3,
-          4638.2
+          4638.2,
+          4605.0
         ],
         "ema20": [
-          4426.47,
           4455.65,
           4478.54,
           4499.25,
@@ -4878,10 +5795,10 @@
           4342.67,
           4363.45,
           4370.77,
-          4396.24
+          4396.24,
+          4416.12
         ],
         "ema50": [
-          4116.91,
           4141.06,
           4162.83,
           4183.74,
@@ -4940,53 +5857,54 @@
           4357.76,
           4365.72,
           4368.64,
-          4379.21
+          4379.21,
+          4388.07
         ],
-        "from": "2026-08-17"
+        "from": "2026-08-18"
       },
       "symbol": "RADICO",
       "decision": "SIGNAL",
-      "score": 86,
+      "score": 76,
       "stage": 2,
-      "setup_type": "BREAKOUT_CONT",
-      "setup_desc": "Breakout continuation",
+      "setup_type": "TRENDING",
+      "setup_desc": "Stage 2 momentum",
       "in_stockedge": true,
-      "signal_date": "2026-11-12",
-      "price": 4638.2,
-      "trigger": 4638.2,
-      "stop_loss": 4406.4,
-      "plan_risk": 231.8036,
-      "ema_20": 4396.24,
-      "ema_50": 4379.21,
-      "ema_200": 3881.48,
-      "rsi": 60.2,
-      "vol_ratio": 1.59,
-      "vol_5d_ratio": 1.59,
-      "ema_dist_pct": 5.5,
-      "from_52w_high": -2.29,
-      "atr_pct": 3.33,
+      "signal_date": "2026-11-13",
+      "price": 4605.0,
+      "trigger": 4664.0,
+      "stop_loss": 4382.56,
+      "plan_risk": 222.4394,
+      "ema_20": 4416.12,
+      "ema_50": 4388.07,
+      "ema_200": 3888.68,
+      "rsi": 58.58,
+      "vol_ratio": 0.83,
+      "vol_5d_ratio": 0.83,
+      "ema_dist_pct": 4.28,
+      "from_52w_high": -2.99,
+      "atr_pct": 3.22,
       "st_direction": 1,
-      "ema50_slope_pct": 0.805,
-      "atr": 154.54,
+      "ema50_slope_pct": 0.844,
+      "atr": 148.29,
       "reasons": [
         "Stage 2 (+25)",
-        "BREAKOUT_CONT (+10)",
-        "RSI 60 (+20)",
-        "Vol 1.6x (+13)",
+        "TRENDING (+6)",
+        "RSI 59 (+20)",
+        "Vol 0.8x (+7)",
         "All EMAs rising (+15)",
         "Supertrend bullish (+3)"
       ],
       "position": {
-        "shares": 12,
-        "invested": 55658.4,
-        "stop_loss": 4406.4,
-        "risk_amount": 2781.6,
-        "risk_pct_of_capital": 0.492,
+        "shares": 10,
+        "invested": 46640.0,
+        "stop_loss": 4382.56,
+        "risk_amount": 2814.4,
+        "risk_pct_of_capital": 0.498,
         "note": null,
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-13T10:55:27.123346+00:00",
+      "timestamp": "2026-11-13T20:05:52.156346+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5002,7 +5920,7 @@
           "ATR at most 4% of price": "True",
           "Nifty above its EMA200": true
         },
-        "rs_rank_pct": 95,
+        "rs_rank_pct": 94,
         "sector": "FMCG & consumer",
         "regime": "bull",
         "events": {
@@ -5019,12 +5937,12 @@
       "plan": {
         "entry": {
           "basis": "rule",
-          "buy_stop": 4638.2,
+          "buy_stop": 4664.0,
           "valid": "the next session only; if the stop is not reached the signal expires"
         },
         "stop": {
           "basis": "rule",
-          "price": 4406.4,
+          "price": 4382.56,
           "note": "fixed at entry; never moved down. A gap open below it fills at the open"
         },
         "profit_review_levels": {
@@ -5033,44 +5951,44 @@
           "levels": [
             {
               "r": 1,
-              "price": 4870.0,
-              "gain_pct": 5.0
+              "price": 4886.44,
+              "gain_pct": 4.8
             },
             {
               "r": 2,
-              "price": 5101.81,
-              "gain_pct": 10.0
+              "price": 5108.88,
+              "gain_pct": 9.5
             },
             {
               "r": 3,
-              "price": 5333.61,
-              "gain_pct": 15.0
+              "price": 5331.32,
+              "gain_pct": 14.3
             }
           ]
         },
         "expected_duration": {
           "basis": "empirical",
-          "from": "231 past C0 trades (BREAKOUT_CONT); survivor-biased",
-          "winners_median_days": 60.0,
+          "from": "796 past C0 trades (TRENDING); survivor-biased",
+          "winners_median_days": 57.0,
           "winners_range_days": [
-            45.25,
-            77.75
+            43.25,
+            82.75
           ],
-          "losers_median_days": 9.0,
-          "win_rate": 0.286,
-          "typical_winner_r": 3.21,
-          "strong_winner_r": 9.23,
-          "typical_winner_price": 5382.29,
+          "losers_median_days": 10.0,
+          "win_rate": 0.329,
+          "typical_winner_r": 2.04,
+          "strong_winner_r": 9.61,
+          "typical_winner_price": 5117.78,
           "note": "Sessions the position was held before the exit rule or stop fired. A description of history, not a promise"
         },
         "sell_trigger": {
           "basis": "rule",
           "condition": "a daily close below EMA50, then sell at the next open",
-          "ema50_now": 4379.21,
-          "ema50_in_about_a_week": 4414.46,
+          "ema50_now": 4388.07,
+          "ema50_in_about_a_week": 4425.11,
           "time_exit": "sell after 120 sessions if still held",
           "warning_signs": [
-            "two closes below EMA20 (4396.24): momentum fading, consider tightening attention",
+            "two closes below EMA20 (4416.12): momentum fading, consider tightening attention",
             "EMA50 turning down while price is near it"
           ],
           "note": "The stop stays fixed. EMA50 rises with the trend, so the exit price usually ends above the stop once the trade works"
@@ -5080,13 +5998,13 @@
           "default": "do not add",
           "note": "C0 never adds to positions and no backtest has tested it. Optional, and every limit still applies",
           "conditions": [
-            "daily close at or above 4870.0 (entry + 1R)",
-            "close above EMA20 (4396.24) and EMA50 rising",
-            "move the stop up to the entry 4638.2 FIRST, so the original position carries no risk",
+            "daily close at or above 4886.44 (entry + 1R)",
+            "close above EMA20 (4416.12) and EMA50 rising",
+            "move the stop up to the entry 4664.0 FIRST, so the original position carries no risk",
             "total open risk stays within the 1.5% budget and this position within 25% of capital"
           ],
-          "max_extra_shares": 12,
-          "risk_of_add_inr": 2782.0,
+          "max_extra_shares": 10,
+          "risk_of_add_inr": 2224.0,
           "never_add": "after a close below EMA20, when the stop has not been raised, or to a losing position"
         }
       }
@@ -5095,15 +6013,15 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-13T10:55:32+00:00",
-    "commit_sha": "be9cb1017fa925b611a3263877894f24467473a6",
+    "generated_at": "2026-11-13T20:05:57+00:00",
+    "commit_sha": "9fa548434075d1ca997321b164d01ca56373f7aa",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-11-12",
+    "data_cutoff": "2026-11-13",
     "source_ids": {}
   }
 }

@@ -1,12 +1,12 @@
 {
   "verdict": "NO-GO",
-  "generated": "2026-11-13T10:55:36+00:00",
+  "generated": "2026-11-13T20:06:01+00:00",
   "checks": [
     {
       "id": "P1",
       "level": "block",
       "ok": true,
-      "msg": "scan data cutoff 2026-11-12 vs expected session 2026-11-12 (0 behind)"
+      "msg": "scan data cutoff 2026-11-13 vs expected session 2026-11-13 (0 behind)"
     },
     {
       "id": "P2",
@@ -30,7 +30,7 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (363 events)"
+      "msg": "event log verified (378 events)"
     },
     {
       "id": "P6",
