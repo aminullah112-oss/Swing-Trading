@@ -9,8 +9,8 @@
   "delisted_total": 0,
   "provenance": {
     "kind": "pit_acceptance",
-    "generated_at": "2026-11-08T08:38:03+00:00",
-    "commit_sha": "b1ea309cf7417b582bbf2a4ce88c9d5decc2a774",
+    "generated_at": "2026-11-15T08:52:09+00:00",
+    "commit_sha": "dba85c31d78cf2422e9b9bd3b7787646f21115fc",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",

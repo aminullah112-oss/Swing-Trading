@@ -2,69 +2,69 @@
   "live_variant": "slow-exit v4 (paper-trading candidate)",
   "rows": {
     "uptrend": {
-      "trades": 3242,
+      "trades": 3202,
       "months": 80,
-      "win_rate": 0.267,
-      "avg_r": 0.337,
+      "win_rate": 0.266,
+      "avg_r": 0.338,
       "ci95": [
-        0.1,
-        0.585
+        0.105,
+        0.588
       ],
       "profit_factor": 1.59
     },
     "pullback_in_uptrend": {
-      "trades": 1133,
+      "trades": 1173,
       "months": 65,
-      "win_rate": 0.251,
-      "avg_r": 0.383,
+      "win_rate": 0.259,
+      "avg_r": 0.401,
       "ci95": [
-        -0.056,
-        0.956
+        -0.023,
+        0.962
       ],
-      "profit_factor": 1.71
+      "profit_factor": 1.75
     },
     "bounce_below_ema200": {
       "trades": 104,
       "months": 13,
       "win_rate": 0.308,
-      "avg_r": 0.284,
+      "avg_r": 0.31,
       "ci95": [
-        -0.125,
-        0.973
+        -0.106,
+        1.036
       ],
-      "profit_factor": 1.44
+      "profit_factor": 1.48
     },
     "downtrend": {
-      "trades": 604,
-      "months": 40,
-      "win_rate": 0.296,
-      "avg_r": 0.439,
+      "trades": 594,
+      "months": 39,
+      "win_rate": 0.291,
+      "avg_r": 0.427,
       "ci95": [
-        0.111,
-        0.79
+        0.092,
+        0.773
       ],
-      "profit_factor": 1.88
+      "profit_factor": 1.85
     }
   },
-  "n_trades": 5083,
+  "n_trades": 5073,
   "downtrend_minus_rest": [
-    0.09131613313138731,
-    -0.3199012620294515,
-    0.49856478471478755
+    0.073319975714975,
+    -0.3376401181256366,
+    0.49402457353093465
   ],
   "downtrend_minus_rest_design": [
-    0.31888909984942626,
-    -0.13344533429613173,
-    0.8335346703908699
+    0.26664738338257465,
+    -0.1785440204599379,
+    0.768388942342659
   ],
   "downtrend_minus_rest_holdout": [
-    -0.31665178446843006,
-    -1.0677346732023567,
-    0.4656839130533927
+    -0.2803898584379834,
+    -1.0453292215116636,
+    0.4991432681635073
   ],
   "today": {
     "regime": "pullback_in_uptrend",
     "label": "Pullback in uptrend (below EMA50, above EMA200)",
-    "date": "2026-11-06"
+    "date": "2026-11-13"
   }
 }

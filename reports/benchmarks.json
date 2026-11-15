@@ -3,11 +3,11 @@
   "periods": {
     "design": {
       "Live strategy (baseline)": {
-        "cagr_pct": 4.2,
-        "max_drawdown_pct": -16.1,
-        "calmar": 0.26,
-        "sharpe": 0.63,
-        "days": 1312
+        "cagr_pct": 2.6,
+        "max_drawdown_pct": -11.9,
+        "calmar": 0.22,
+        "sharpe": 0.41,
+        "days": 1307
       },
       "H1 momentum-30 replica": {
         "cagr_pct": 22.6,
@@ -17,104 +17,104 @@
         "days": 1176
       },
       "Equal-weight universe": {
-        "cagr_pct": 22.1,
+        "cagr_pct": 23.5,
         "max_drawdown_pct": -38.0,
-        "calmar": 0.58,
-        "sharpe": 1.22,
-        "days": 1522
+        "calmar": 0.62,
+        "sharpe": 1.29,
+        "days": 1517
       },
       "Nifty 50": {
-        "cagr_pct": 13.1,
+        "cagr_pct": 14.0,
         "max_drawdown_pct": -38.4,
-        "calmar": 0.34,
-        "sharpe": 0.79,
-        "days": 1518
+        "calmar": 0.36,
+        "sharpe": 0.83,
+        "days": 1513
       }
     },
     "holdout": {
       "Live strategy (baseline)": {
-        "cagr_pct": 7.4,
-        "max_drawdown_pct": -15.7,
-        "calmar": 0.47,
-        "sharpe": 0.87,
-        "days": 949
+        "cagr_pct": 7.5,
+        "max_drawdown_pct": -14.8,
+        "calmar": 0.51,
+        "sharpe": 0.88,
+        "days": 953
       },
       "H1 momentum-30 replica": {
-        "cagr_pct": 25.1,
+        "cagr_pct": 25.2,
         "max_drawdown_pct": -23.0,
-        "calmar": 1.09,
-        "sharpe": 1.41,
-        "days": 950
+        "calmar": 1.1,
+        "sharpe": 1.42,
+        "days": 954
       },
       "Equal-weight universe": {
-        "cagr_pct": 18.4,
+        "cagr_pct": 18.5,
         "max_drawdown_pct": -20.7,
-        "calmar": 0.89,
-        "sharpe": 1.25,
-        "days": 950
+        "calmar": 0.9,
+        "sharpe": 1.26,
+        "days": 954
       },
       "Nifty 50": {
-        "cagr_pct": 8.8,
+        "cagr_pct": 8.9,
         "max_drawdown_pct": -15.8,
         "calmar": 0.56,
         "sharpe": 0.74,
-        "days": 949
+        "days": 953
       }
     }
   },
   "hypotheses": {
     "baseline": {
       "design": {
-        "cagr_pct": 4.2,
-        "max_drawdown_pct": -16.1,
-        "calmar": 0.26,
-        "sharpe": 0.63,
-        "days": 1312
+        "cagr_pct": 2.6,
+        "max_drawdown_pct": -11.9,
+        "calmar": 0.22,
+        "sharpe": 0.41,
+        "days": 1307
       },
       "holdout": {
-        "cagr_pct": 7.4,
-        "max_drawdown_pct": -15.7,
-        "calmar": 0.47,
-        "sharpe": 0.87,
-        "days": 949
+        "cagr_pct": 7.5,
+        "max_drawdown_pct": -14.8,
+        "calmar": 0.51,
+        "sharpe": 0.88,
+        "days": 953
       }
     },
     "H2": {
       "design": {
-        "cagr_pct": 6.1,
-        "max_drawdown_pct": -11.2,
-        "calmar": 0.55,
-        "sharpe": 0.83,
-        "days": 1312
+        "cagr_pct": 5.6,
+        "max_drawdown_pct": -9.8,
+        "calmar": 0.57,
+        "sharpe": 0.77,
+        "days": 1307
       },
       "holdout": {
-        "cagr_pct": 5.5,
-        "max_drawdown_pct": -12.0,
-        "calmar": 0.46,
-        "sharpe": 0.81,
-        "days": 949
+        "cagr_pct": 7.2,
+        "max_drawdown_pct": -10.9,
+        "calmar": 0.66,
+        "sharpe": 1.04,
+        "days": 953
       }
     },
     "H3": {
       "design": {
-        "cagr_pct": 4.0,
-        "max_drawdown_pct": -9.1,
-        "calmar": 0.44,
-        "sharpe": 0.66,
-        "days": 1312
+        "cagr_pct": 2.1,
+        "max_drawdown_pct": -12.4,
+        "calmar": 0.17,
+        "sharpe": 0.34,
+        "days": 1307
       },
       "holdout": {
-        "cagr_pct": 3.6,
-        "max_drawdown_pct": -11.5,
-        "calmar": 0.32,
-        "sharpe": 0.48,
-        "days": 949
+        "cagr_pct": 4.5,
+        "max_drawdown_pct": -7.9,
+        "calmar": 0.57,
+        "sharpe": 0.65,
+        "days": 953
       }
     }
   },
   "verdict": {
     "H2": false,
-    "H2_calmar_both": false,
+    "H2_calmar_both": true,
     "H2_holdout_ci_excludes_zero": false,
     "H3": false,
     "H3_calmar_both": false,
@@ -124,41 +124,41 @@
   "diff_ci": {
     "H2": {
       "design": [
-        -0.021704110529182908,
-        0.038838211445419366
+        -0.01837236419797535,
+        0.04261699198929071
       ],
       "holdout": [
-        -0.04346928438880847,
-        0.02471036517294579
+        -0.03851772089811711,
+        0.03179571107047595
       ]
     },
     "H3": {
       "design": [
-        -0.017049253772519257,
-        0.014903156017565582
+        -0.015869625034624756,
+        0.011069724787749985
       ],
       "holdout": [
-        -0.04009473331080094,
-        0.01167973935577475
+        -0.03810176681264847,
+        0.01599391088097122
       ]
     },
     "baseline_minus_momentum_holdout": [
-      -0.13178887417304888,
-      -0.00027305009187901985
+      -0.13235541272986806,
+      0.00014113132855178714
     ]
   },
   "calendar_years": {
     "Live strategy (baseline)": {
-      "2017": 5.0,
-      "2018": 2.0,
-      "2019": 8.1,
-      "2020": 13.2,
-      "2021": 0.4,
-      "2022": -5.4,
-      "2023": 19.6,
-      "2024": 4.0,
-      "2025": 1.3,
-      "2026": -6.1
+      "2017": 1.5,
+      "2018": 1.3,
+      "2019": 5.5,
+      "2020": 5.0,
+      "2021": -2.0,
+      "2022": 3.2,
+      "2023": 20.7,
+      "2024": 3.9,
+      "2025": 0.0,
+      "2026": -1.4
     },
     "H1 momentum-30 replica": {
       "2018": 0.6,
@@ -169,10 +169,10 @@
       "2023": 62.4,
       "2024": 38.3,
       "2025": 9.5,
-      "2026": -3.9
+      "2026": -3.2
     },
     "Equal-weight universe": {
-      "2016": -4.3,
+      "2016": 2.1,
       "2017": 49.1,
       "2018": -2.7,
       "2019": 10.7,
@@ -182,10 +182,10 @@
       "2023": 47.7,
       "2024": 22.2,
       "2025": 6.7,
-      "2026": -0.7
+      "2026": 0.1
     },
     "Nifty 50": {
-      "2016": -3.7,
+      "2016": 1.0,
       "2017": 28.6,
       "2018": 3.2,
       "2019": 12.0,
@@ -195,11 +195,11 @@
       "2023": 20.0,
       "2024": 8.8,
       "2025": 10.5,
-      "2026": -4.2
+      "2026": -3.8
     }
   },
   "momentum_first_rebalance": "2018-04-02",
-  "trades": 5083,
+  "trades": 5073,
   "momentum_holdings_last": [
     "2026-09-30",
     [
