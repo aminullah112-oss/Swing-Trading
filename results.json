@@ -1,8 +1,8 @@
 {
-  "scan_id": "b6a64ef8fb08",
-  "timestamp": "2026-11-16T11:10:47.912577+00:00",
-  "scan_date": "2026-11-16",
-  "scan_time": "16:40:47 IST",
+  "scan_id": "94adb1c962db",
+  "timestamp": "2026-11-16T22:34:09.253188+00:00",
+  "scan_date": "2026-11-17",
+  "scan_time": "04:04:09 IST",
   "data_cutoff": "2026-11-16",
   "expected_session": "2026-11-16",
   "sessions_behind": 0,
@@ -26,18 +26,178 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-16",
-      "retrieved_at": "2026-11-16T11:10:48+00:00",
-      "compared": 159,
-      "filled": [],
+      "retrieved_at": "2026-11-16T22:34:09+00:00",
+      "compared": 0,
+      "filled": [
+        "RELIANCE",
+        "TCS",
+        "HDFCBANK",
+        "INFY",
+        "HINDUNILVR",
+        "ICICIBANK",
+        "SBIN",
+        "BHARTIARTL",
+        "KOTAKBANK",
+        "LT",
+        "AXISBANK",
+        "WIPRO",
+        "MARUTI",
+        "BAJFINANCE",
+        "HCLTECH",
+        "ASIANPAINT",
+        "ULTRACEMCO",
+        "TITAN",
+        "SUNPHARMA",
+        "NESTLEIND",
+        "TECHM",
+        "TMPV",
+        "INDUSINDBK",
+        "POWERGRID",
+        "NTPC",
+        "BAJAJFINSV",
+        "ONGC",
+        "JSWSTEEL",
+        "TATASTEEL",
+        "COALINDIA",
+        "ADANIENT",
+        "ADANIPORTS",
+        "CIPLA",
+        "DRREDDY",
+        "DIVISLAB",
+        "BRITANNIA",
+        "EICHERMOT",
+        "GRASIM",
+        "HEROMOTOCO",
+        "ITC",
+        "M&M",
+        "BPCL",
+        "IOC",
+        "TATACONSUM",
+        "APOLLOHOSP",
+        "BAJAJ-AUTO",
+        "UPL",
+        "SBILIFE",
+        "HDFCLIFE",
+        "HINDALCO",
+        "DMART",
+        "SIEMENS",
+        "HAVELLS",
+        "PIDILITIND",
+        "DABUR",
+        "MARICO",
+        "COLPAL",
+        "BERGEPAINT",
+        "GODREJCP",
+        "MUTHOOTFIN",
+        "LUPIN",
+        "BIOCON",
+        "TORNTPHARM",
+        "ALKEM",
+        "AUROPHARMA",
+        "GLENMARK",
+        "AMBUJACEM",
+        "ACC",
+        "SHREECEM",
+        "INDIGO",
+        "TATAPOWER",
+        "TRENT",
+        "NAUKRI",
+        "IRCTC",
+        "CONCOR",
+        "SAIL",
+        "NMDC",
+        "VEDL",
+        "GAIL",
+        "PETRONET",
+        "IGL",
+        "BANKBARODA",
+        "PNB",
+        "CANBK",
+        "FEDERALBNK",
+        "IDFCFIRSTB",
+        "RBLBANK",
+        "AUBANK",
+        "CHOLAFIN",
+        "LICHSGFIN",
+        "MANAPPURAM",
+        "SUNDARMFIN",
+        "SHRIRAMFIN",
+        "PIIND",
+        "PERSISTENT",
+        "COFORGE",
+        "MPHASIS",
+        "LTTS",
+        "KPITTECH",
+        "TATAELXSI",
+        "CYIENT",
+        "DEEPAKNTR",
+        "NAVINFLUOR",
+        "TATACHEM",
+        "APOLLOTYRE",
+        "BALKRISIND",
+        "CEATLTD",
+        "MRF",
+        "MOTHERSON",
+        "BHARATFORG",
+        "BOSCHLTD",
+        "VOLTAS",
+        "KAJARIACER",
+        "SUPREMEIND",
+        "ASTRAL",
+        "POLYCAB",
+        "KEI",
+        "PAGEIND",
+        "RADICO",
+        "LAURUSLABS",
+        "GRANULES",
+        "AJANTPHARM",
+        "ERIS",
+        "METROPOLIS",
+        "MAXHEALTH",
+        "FORTIS",
+        "NH",
+        "SYNGENE",
+        "BRIGADE",
+        "SOBHA",
+        "PRESTIGE",
+        "GODREJPROP",
+        "PHOENIXLTD",
+        "OBEROIRLTY",
+        "THERMAX",
+        "CUMMINSIND",
+        "EMAMILTD",
+        "BEL",
+        "HAL",
+        "IRFC",
+        "RVNL",
+        "PFC",
+        "RECLTD",
+        "SJVN",
+        "NHPC",
+        "SUZLON",
+        "TRIDENT",
+        "RAYMOND",
+        "COROMANDEL",
+        "CHAMBLFERT",
+        "RALLIS",
+        "DHANUKA",
+        "ATUL",
+        "NOCIL",
+        "APLAPOLLO",
+        "ETERNAL",
+        "AARTIIND",
+        "TVSMOTOR",
+        "PRAJIND"
+      ],
       "cannot_fill": [],
       "not_in_bhavcopy": [],
       "mismatch_share": 0.0,
       "note": null,
       "angelone": null,
       "nifty": {
-        "status": "unavailable",
-        "filled": false,
-        "note": "HTTPError: HTTP Error 404: Not Found"
+        "status": "ok",
+        "filled": true,
+        "note": null
       },
       "close_mismatch": {},
       "adjustment_mismatch": {}
@@ -80,10 +240,10 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-16T11:10:47+00:00",
+    "retrieved_at": "2026-11-16T22:34:09+00:00",
     "frame_last_row": "2026-11-16",
     "rows": 494,
-    "non_null_closes_on_last_row": 160,
+    "non_null_closes_on_last_row": 0,
     "last_bar_counts": {
       "2026-11-16": 159
     }
@@ -171,7 +331,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -407,7 +567,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -430,6 +590,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -513,7 +674,7 @@
       }
     },
     {
-      "avg_value_cr": 228.68,
+      "avg_value_cr": 228.71,
       "close_in_range": 0.166,
       "stop_pct": 6.65,
       "trigger_gap_pct": 3.08,
@@ -551,7 +712,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -787,7 +948,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -810,6 +971,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -931,7 +1093,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -1167,7 +1329,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1190,6 +1352,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -1549,7 +1712,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1696,7 +1859,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -1931,7 +2094,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1954,6 +2117,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -2075,7 +2239,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -2311,7 +2475,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2334,6 +2498,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -2455,7 +2620,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -2691,7 +2856,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2714,6 +2879,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -2835,7 +3001,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -3073,7 +3239,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3096,6 +3262,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -3219,7 +3386,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -3454,7 +3621,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3477,6 +3644,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -3598,7 +3766,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -3834,7 +4002,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3857,6 +4025,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -3978,7 +4147,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -4214,7 +4383,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4237,6 +4406,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -4358,7 +4528,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -4594,7 +4764,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4617,6 +4787,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -4700,7 +4871,7 @@
       }
     },
     {
-      "avg_value_cr": 152.81,
+      "avg_value_cr": 152.82,
       "close_in_range": 0.289,
       "stop_pct": 6.48,
       "trigger_gap_pct": 2.14,
@@ -4738,7 +4909,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -4974,7 +5145,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4997,6 +5168,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -5080,7 +5252,7 @@
       }
     },
     {
-      "avg_value_cr": 326.38,
+      "avg_value_cr": 326.39,
       "close_in_range": 0.537,
       "stop_pct": 5.78,
       "trigger_gap_pct": 1.68,
@@ -5118,7 +5290,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -5354,7 +5526,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5377,6 +5549,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -5498,7 +5671,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -5734,7 +5907,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -5757,6 +5930,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -5878,7 +6052,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -6114,7 +6288,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -6137,6 +6311,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -6258,7 +6433,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -6494,7 +6669,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -6517,6 +6692,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -6600,7 +6776,7 @@
       }
     },
     {
-      "avg_value_cr": 657.39,
+      "avg_value_cr": 657.48,
       "close_in_range": 0.12,
       "stop_pct": 14.89,
       "trigger_gap_pct": 9.86,
@@ -6638,7 +6814,7 @@
         {
           "id": "events",
           "status": "warn",
-          "text": "Event risk unverified: event_calendar.json has not been filled in"
+          "text": "Event risk unverified: results date unknown: check before entry; event_calendar.json has not been filled in"
         }
       ],
       "execution_ok": true,
@@ -6847,8 +7023,8 @@
       "ema_50": 2104.64,
       "ema_200": 1629.36,
       "rsi": 50.08,
-      "vol_ratio": 2.5,
-      "vol_5d_ratio": 2.5,
+      "vol_ratio": 2.51,
+      "vol_5d_ratio": 2.51,
       "ema_dist_pct": -1.86,
       "from_52w_high": -10.77,
       "atr_pct": 4.33,
@@ -6876,7 +7052,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T11:10:47.912577+00:00",
+      "timestamp": "2026-11-16T22:34:09.253188+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6899,6 +7075,7 @@
           "blocked": false,
           "reasons": [],
           "unverified": [
+            "results date unknown: check before entry",
             "event_calendar.json has not been filled in"
           ]
         },
@@ -6987,8 +7164,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-16T11:10:52+00:00",
-    "commit_sha": "45feb3aee101272c1ee27a98662564301aed3972",
+    "generated_at": "2026-11-16T22:34:15+00:00",
+    "commit_sha": "78596207ba07903dba2c563b5dc3535b8674eda6",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
