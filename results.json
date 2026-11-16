@@ -1,8 +1,8 @@
 {
-  "scan_id": "94adb1c962db",
-  "timestamp": "2026-11-16T22:34:09.253188+00:00",
+  "scan_id": "10239d6a58de",
+  "timestamp": "2026-11-16T23:51:31.526370+00:00",
   "scan_date": "2026-11-17",
-  "scan_time": "04:04:09 IST",
+  "scan_time": "05:21:31 IST",
   "data_cutoff": "2026-11-16",
   "expected_session": "2026-11-16",
   "sessions_behind": 0,
@@ -26,7 +26,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-16",
-      "retrieved_at": "2026-11-16T22:34:09+00:00",
+      "retrieved_at": "2026-11-16T23:51:31+00:00",
       "compared": 0,
       "filled": [
         "RELIANCE",
@@ -167,7 +167,6 @@
         "CUMMINSIND",
         "EMAMILTD",
         "BEL",
-        "HAL",
         "IRFC",
         "RVNL",
         "PFC",
@@ -187,7 +186,8 @@
         "ETERNAL",
         "AARTIIND",
         "TVSMOTOR",
-        "PRAJIND"
+        "PRAJIND",
+        "HAL"
       ],
       "cannot_fill": [],
       "not_in_bhavcopy": [],
@@ -205,7 +205,9 @@
   },
   "missing_symbols": [],
   "missing_detail": {},
-  "recovered_on_retry": [],
+  "recovered_on_retry": [
+    "HAL"
+  ],
   "aliases_used": {
     "TATAMOTORS": "TMPV",
     "ZOMATO": "ETERNAL"
@@ -240,7 +242,7 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-16T22:34:09+00:00",
+    "retrieved_at": "2026-11-16T23:51:31+00:00",
     "frame_last_row": "2026-11-16",
     "rows": 494,
     "non_null_closes_on_last_row": 0,
@@ -567,7 +569,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -948,7 +950,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1329,7 +1331,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1712,7 +1714,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2094,7 +2096,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2475,7 +2477,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2856,7 +2858,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3239,7 +3241,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3621,7 +3623,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4002,7 +4004,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4383,7 +4385,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4764,7 +4766,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5145,7 +5147,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5526,7 +5528,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5907,7 +5909,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6288,7 +6290,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -6669,7 +6671,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -7052,7 +7054,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-16T22:34:09.253188+00:00",
+      "timestamp": "2026-11-16T23:51:31.526370+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -7164,8 +7166,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-16T22:34:15+00:00",
-    "commit_sha": "78596207ba07903dba2c563b5dc3535b8674eda6",
+    "generated_at": "2026-11-16T23:51:37+00:00",
+    "commit_sha": "3f674a9683592241cfa1b220a2329affd87f742c",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
