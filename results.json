@@ -1,8 +1,8 @@
 {
-  "scan_id": "1196f642e235",
-  "timestamp": "2026-11-17T11:48:02.229094+00:00",
-  "scan_date": "2026-11-17",
-  "scan_time": "17:18:02 IST",
+  "scan_id": "a94726cb1a03",
+  "timestamp": "2026-11-17T21:23:54.090881+00:00",
+  "scan_date": "2026-11-18",
+  "scan_time": "02:53:54 IST",
   "data_cutoff": "2026-11-17",
   "expected_session": "2026-11-17",
   "sessions_behind": 0,
@@ -11,41 +11,201 @@
     "status": "TRUSTED",
     "reasons": [],
     "symbols": 159,
-    "official_coverage": 1.0,
+    "official_coverage": 0.9937,
     "cutoff_counts": {
-      "2026-11-17": 159
+      "2026-11-17": 158,
+      "2026-11-16": 1
     },
     "quarantined": {
       "VEDL": [
         "suspect_corporate_action"
       ],
       "PFC": [
-        "nse_adjustment_mismatch"
+        "stale_bar"
       ]
     },
-    "critical_issue_share": 0.0126,
+    "critical_issue_share": 0.0063,
     "expected_session": "2026-11-17",
     "crosscheck": {
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-17",
-      "retrieved_at": "2026-11-17T11:48:02+00:00",
-      "compared": 159,
-      "filled": [],
-      "cannot_fill": [],
+      "retrieved_at": "2026-11-17T21:23:54+00:00",
+      "compared": 0,
+      "filled": [
+        "RELIANCE",
+        "TCS",
+        "HDFCBANK",
+        "INFY",
+        "HINDUNILVR",
+        "ICICIBANK",
+        "SBIN",
+        "BHARTIARTL",
+        "KOTAKBANK",
+        "LT",
+        "AXISBANK",
+        "WIPRO",
+        "MARUTI",
+        "BAJFINANCE",
+        "HCLTECH",
+        "ASIANPAINT",
+        "ULTRACEMCO",
+        "TITAN",
+        "SUNPHARMA",
+        "NESTLEIND",
+        "TECHM",
+        "TMPV",
+        "INDUSINDBK",
+        "POWERGRID",
+        "NTPC",
+        "BAJAJFINSV",
+        "ONGC",
+        "JSWSTEEL",
+        "TATASTEEL",
+        "COALINDIA",
+        "ADANIENT",
+        "ADANIPORTS",
+        "CIPLA",
+        "DRREDDY",
+        "DIVISLAB",
+        "BRITANNIA",
+        "EICHERMOT",
+        "GRASIM",
+        "HEROMOTOCO",
+        "ITC",
+        "M&M",
+        "BPCL",
+        "IOC",
+        "TATACONSUM",
+        "APOLLOHOSP",
+        "BAJAJ-AUTO",
+        "UPL",
+        "SBILIFE",
+        "HDFCLIFE",
+        "HINDALCO",
+        "DMART",
+        "SIEMENS",
+        "HAVELLS",
+        "PIDILITIND",
+        "DABUR",
+        "MARICO",
+        "COLPAL",
+        "BERGEPAINT",
+        "GODREJCP",
+        "MUTHOOTFIN",
+        "LUPIN",
+        "BIOCON",
+        "TORNTPHARM",
+        "ALKEM",
+        "AUROPHARMA",
+        "GLENMARK",
+        "AMBUJACEM",
+        "ACC",
+        "SHREECEM",
+        "INDIGO",
+        "TATAPOWER",
+        "TRENT",
+        "NAUKRI",
+        "IRCTC",
+        "CONCOR",
+        "SAIL",
+        "NMDC",
+        "VEDL",
+        "GAIL",
+        "PETRONET",
+        "IGL",
+        "BANKBARODA",
+        "PNB",
+        "CANBK",
+        "FEDERALBNK",
+        "IDFCFIRSTB",
+        "RBLBANK",
+        "AUBANK",
+        "CHOLAFIN",
+        "LICHSGFIN",
+        "MANAPPURAM",
+        "SUNDARMFIN",
+        "SHRIRAMFIN",
+        "PIIND",
+        "PERSISTENT",
+        "COFORGE",
+        "MPHASIS",
+        "LTTS",
+        "KPITTECH",
+        "TATAELXSI",
+        "CYIENT",
+        "DEEPAKNTR",
+        "NAVINFLUOR",
+        "TATACHEM",
+        "APOLLOTYRE",
+        "BALKRISIND",
+        "CEATLTD",
+        "MRF",
+        "MOTHERSON",
+        "BHARATFORG",
+        "BOSCHLTD",
+        "VOLTAS",
+        "KAJARIACER",
+        "SUPREMEIND",
+        "ASTRAL",
+        "POLYCAB",
+        "KEI",
+        "PAGEIND",
+        "RADICO",
+        "LAURUSLABS",
+        "GRANULES",
+        "AJANTPHARM",
+        "ERIS",
+        "METROPOLIS",
+        "MAXHEALTH",
+        "FORTIS",
+        "NH",
+        "SYNGENE",
+        "BRIGADE",
+        "SOBHA",
+        "PRESTIGE",
+        "GODREJPROP",
+        "PHOENIXLTD",
+        "OBEROIRLTY",
+        "THERMAX",
+        "CUMMINSIND",
+        "EMAMILTD",
+        "BEL",
+        "HAL",
+        "IRFC",
+        "RVNL",
+        "RECLTD",
+        "SJVN",
+        "NHPC",
+        "SUZLON",
+        "TRIDENT",
+        "RAYMOND",
+        "COROMANDEL",
+        "CHAMBLFERT",
+        "RALLIS",
+        "DHANUKA",
+        "ATUL",
+        "NOCIL",
+        "APLAPOLLO",
+        "ETERNAL",
+        "AARTIIND",
+        "TVSMOTOR",
+        "PRAJIND"
+      ],
+      "cannot_fill": [
+        "PFC"
+      ],
       "not_in_bhavcopy": [],
-      "mismatch_share": 0.0063,
+      "mismatch_share": 0.0,
       "note": null,
       "angelone": null,
       "nifty": {
-        "status": "unavailable",
-        "filled": false,
-        "note": "HTTPError: HTTP Error 404: Not Found"
+        "status": "ok",
+        "filled": true,
+        "note": null
       },
       "close_mismatch": {},
-      "adjustment_mismatch": {
-        "PFC": -1.23
-      }
+      "adjustment_mismatch": {}
     }
   },
   "missing_symbols": [],
@@ -85,12 +245,13 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-17T11:48:02+00:00",
+    "retrieved_at": "2026-11-17T21:23:54+00:00",
     "frame_last_row": "2026-11-17",
     "rows": 495,
-    "non_null_closes_on_last_row": 160,
+    "non_null_closes_on_last_row": 0,
     "last_bar_counts": {
-      "2026-11-17": 159
+      "2026-11-17": 158,
+      "2026-11-16": 1
     }
   },
   "symbols_processed": 159,
@@ -138,7 +299,7 @@
   },
   "stocks": [
     {
-      "avg_value_cr": 412.43,
+      "avg_value_cr": 412.44,
       "close_in_range": 0.916,
       "stop_pct": 4.35,
       "trigger_gap_pct": 0.26,
@@ -412,7 +573,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -792,7 +953,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1174,7 +1335,7 @@
         ],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1557,7 +1718,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1937,7 +2098,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2316,7 +2477,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2696,7 +2857,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3076,7 +3237,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3455,7 +3616,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3835,7 +3996,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3973,8 +4134,8 @@
         },
         {
           "id": "volume",
-          "status": "warn",
-          "text": "Light volume (0.5x average)"
+          "status": "ok",
+          "text": "Volume 0.5x average"
         },
         {
           "id": "events",
@@ -4215,7 +4376,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4595,7 +4756,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4975,7 +5136,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5355,7 +5516,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5735,7 +5896,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -6115,7 +6276,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -6221,7 +6382,7 @@
       }
     },
     {
-      "avg_value_cr": 698.07,
+      "avg_value_cr": 698.1,
       "close_in_range": 0.919,
       "stop_pct": 6.82,
       "trigger_gap_pct": 0.46,
@@ -6497,7 +6658,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6879,7 +7040,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T11:48:02.229094+00:00",
+      "timestamp": "2026-11-17T21:23:54.090881+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -6988,8 +7149,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-17T11:48:09+00:00",
-    "commit_sha": "b55b1c76d9965c092cb98d69a2cc83f120c1fe55",
+    "generated_at": "2026-11-17T21:24:00+00:00",
+    "commit_sha": "14dbc0d20a9d43727ebe6dd36c3346649dc7aaa5",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
