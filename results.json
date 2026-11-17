@@ -1,8 +1,8 @@
 {
-  "scan_id": "a94726cb1a03",
-  "timestamp": "2026-11-17T21:23:54.090881+00:00",
+  "scan_id": "eaad19c7eb40",
+  "timestamp": "2026-11-17T23:10:35.162835+00:00",
   "scan_date": "2026-11-18",
-  "scan_time": "02:53:54 IST",
+  "scan_time": "04:40:35 IST",
   "data_cutoff": "2026-11-17",
   "expected_session": "2026-11-17",
   "sessions_behind": 0,
@@ -30,7 +30,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-17",
-      "retrieved_at": "2026-11-17T21:23:54+00:00",
+      "retrieved_at": "2026-11-17T23:10:35+00:00",
       "compared": 0,
       "filled": [
         "RELIANCE",
@@ -245,7 +245,7 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-17T21:23:54+00:00",
+    "retrieved_at": "2026-11-17T23:10:35+00:00",
     "frame_last_row": "2026-11-17",
     "rows": 495,
     "non_null_closes_on_last_row": 0,
@@ -573,7 +573,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -953,7 +953,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1335,7 +1335,7 @@
         ],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1718,7 +1718,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2098,7 +2098,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2477,7 +2477,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2857,7 +2857,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3237,7 +3237,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3616,7 +3616,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3996,7 +3996,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4376,7 +4376,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4756,7 +4756,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -5136,7 +5136,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5516,7 +5516,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5896,7 +5896,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -6276,7 +6276,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -6658,7 +6658,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -7040,7 +7040,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-17T21:23:54.090881+00:00",
+      "timestamp": "2026-11-17T23:10:35.162835+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -7149,8 +7149,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-17T21:24:00+00:00",
-    "commit_sha": "14dbc0d20a9d43727ebe6dd36c3346649dc7aaa5",
+    "generated_at": "2026-11-17T23:10:40+00:00",
+    "commit_sha": "90829469eb541aaf65ff1ceaf283b812ddbfdc94",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
