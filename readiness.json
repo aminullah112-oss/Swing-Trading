@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18T22:43:13+00:00",
+  "generated": "2026-11-19T11:35:25+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -70,7 +70,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 9,
+      "value": 11,
       "threshold": 100,
       "detail": "4 legacy closed signal(s) excluded",
       "evidence_state": "pending_time"
@@ -82,7 +82,7 @@
       "critical": false,
       "status": "fail",
       "earned": 0.0,
-      "value": 35,
+      "value": 36,
       "threshold": 182,
       "detail": "",
       "evidence_state": "pending_time"
@@ -96,7 +96,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 9, 35)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 11, 36)",
       "evidence_state": "pending_time"
     },
     {
@@ -108,7 +108,7 @@
       "earned": 0.0,
       "value": null,
       "threshold": null,
-      "detail": "needs 100+ closed signals and 182+ days first (have 9, 35)",
+      "detail": "needs 100+ closed signals and 182+ days first (have 11, 36)",
       "evidence_state": "pending_time"
     },
     {
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "6cd605aba752",
-    "ledger": "c6eb206351bd",
-    "health": "669379737b30",
+    "results": "495996f29db5",
+    "ledger": "28009a93d457",
+    "health": "b1cb079539da",
     "grid": "7f60e20fea44",
     "benchmarks": "7d08f4c92483",
     "universe": "fda0c537f828",
@@ -185,19 +185,19 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-11-18T22:43:13+00:00",
-    "commit_sha": "6b0a90a7b752d0efc6917384f8fd10a8e0d51444",
+    "generated_at": "2026-11-19T11:35:25+00:00",
+    "commit_sha": "6aa0032cc461c2eeb4f725709205b08a9c413db8",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-11-18",
+    "data_cutoff": "2026-11-19",
     "source_ids": {
-      "results": "6cd605aba752",
-      "ledger": "c6eb206351bd",
-      "health": "669379737b30",
+      "results": "495996f29db5",
+      "ledger": "28009a93d457",
+      "health": "b1cb079539da",
       "grid": "7f60e20fea44",
       "benchmarks": "7d08f4c92483",
       "universe": "fda0c537f828",
