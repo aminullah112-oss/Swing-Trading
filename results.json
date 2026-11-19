@@ -1,8 +1,8 @@
 {
-  "scan_id": "f0ba83398015",
-  "timestamp": "2026-11-19T11:35:18.067876+00:00",
-  "scan_date": "2026-11-19",
-  "scan_time": "17:05:18 IST",
+  "scan_id": "df53f48731b0",
+  "timestamp": "2026-11-19T21:01:01.114622+00:00",
+  "scan_date": "2026-11-20",
+  "scan_time": "02:31:01 IST",
   "data_cutoff": "2026-11-19",
   "expected_session": "2026-11-19",
   "sessions_behind": 0,
@@ -26,18 +26,178 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-19",
-      "retrieved_at": "2026-11-19T11:35:18+00:00",
-      "compared": 159,
-      "filled": [],
+      "retrieved_at": "2026-11-19T21:01:01+00:00",
+      "compared": 0,
+      "filled": [
+        "RELIANCE",
+        "TCS",
+        "HDFCBANK",
+        "INFY",
+        "HINDUNILVR",
+        "ICICIBANK",
+        "SBIN",
+        "BHARTIARTL",
+        "KOTAKBANK",
+        "LT",
+        "AXISBANK",
+        "WIPRO",
+        "MARUTI",
+        "BAJFINANCE",
+        "HCLTECH",
+        "ASIANPAINT",
+        "ULTRACEMCO",
+        "TITAN",
+        "SUNPHARMA",
+        "NESTLEIND",
+        "TECHM",
+        "TMPV",
+        "INDUSINDBK",
+        "POWERGRID",
+        "NTPC",
+        "BAJAJFINSV",
+        "ONGC",
+        "JSWSTEEL",
+        "TATASTEEL",
+        "COALINDIA",
+        "ADANIENT",
+        "ADANIPORTS",
+        "CIPLA",
+        "DRREDDY",
+        "DIVISLAB",
+        "EICHERMOT",
+        "GRASIM",
+        "HEROMOTOCO",
+        "ITC",
+        "M&M",
+        "BPCL",
+        "IOC",
+        "TATACONSUM",
+        "APOLLOHOSP",
+        "BAJAJ-AUTO",
+        "UPL",
+        "SBILIFE",
+        "HDFCLIFE",
+        "HINDALCO",
+        "DMART",
+        "SIEMENS",
+        "HAVELLS",
+        "PIDILITIND",
+        "DABUR",
+        "MARICO",
+        "COLPAL",
+        "BERGEPAINT",
+        "GODREJCP",
+        "MUTHOOTFIN",
+        "LUPIN",
+        "BIOCON",
+        "TORNTPHARM",
+        "ALKEM",
+        "AUROPHARMA",
+        "GLENMARK",
+        "AMBUJACEM",
+        "ACC",
+        "SHREECEM",
+        "INDIGO",
+        "TATAPOWER",
+        "TRENT",
+        "NAUKRI",
+        "IRCTC",
+        "CONCOR",
+        "SAIL",
+        "NMDC",
+        "VEDL",
+        "GAIL",
+        "PETRONET",
+        "IGL",
+        "BANKBARODA",
+        "PNB",
+        "CANBK",
+        "FEDERALBNK",
+        "IDFCFIRSTB",
+        "RBLBANK",
+        "AUBANK",
+        "CHOLAFIN",
+        "LICHSGFIN",
+        "MANAPPURAM",
+        "SUNDARMFIN",
+        "SHRIRAMFIN",
+        "PIIND",
+        "PERSISTENT",
+        "COFORGE",
+        "MPHASIS",
+        "LTTS",
+        "KPITTECH",
+        "TATAELXSI",
+        "CYIENT",
+        "DEEPAKNTR",
+        "NAVINFLUOR",
+        "TATACHEM",
+        "APOLLOTYRE",
+        "BALKRISIND",
+        "CEATLTD",
+        "MRF",
+        "MOTHERSON",
+        "BHARATFORG",
+        "BOSCHLTD",
+        "VOLTAS",
+        "KAJARIACER",
+        "SUPREMEIND",
+        "ASTRAL",
+        "POLYCAB",
+        "KEI",
+        "PAGEIND",
+        "RADICO",
+        "LAURUSLABS",
+        "GRANULES",
+        "AJANTPHARM",
+        "ERIS",
+        "METROPOLIS",
+        "MAXHEALTH",
+        "FORTIS",
+        "NH",
+        "SYNGENE",
+        "BRIGADE",
+        "SOBHA",
+        "PRESTIGE",
+        "GODREJPROP",
+        "PHOENIXLTD",
+        "OBEROIRLTY",
+        "THERMAX",
+        "CUMMINSIND",
+        "EMAMILTD",
+        "BEL",
+        "HAL",
+        "IRFC",
+        "RVNL",
+        "PFC",
+        "RECLTD",
+        "SJVN",
+        "NHPC",
+        "SUZLON",
+        "TRIDENT",
+        "RAYMOND",
+        "COROMANDEL",
+        "CHAMBLFERT",
+        "RALLIS",
+        "DHANUKA",
+        "ATUL",
+        "NOCIL",
+        "APLAPOLLO",
+        "ETERNAL",
+        "AARTIIND",
+        "TVSMOTOR",
+        "PRAJIND",
+        "BRITANNIA"
+      ],
       "cannot_fill": [],
       "not_in_bhavcopy": [],
       "mismatch_share": 0.0,
       "note": null,
       "angelone": null,
       "nifty": {
-        "status": "unavailable",
-        "filled": false,
-        "note": "HTTPError: HTTP Error 404: Not Found"
+        "status": "ok",
+        "filled": true,
+        "note": null
       },
       "close_mismatch": {},
       "adjustment_mismatch": {}
@@ -45,7 +205,9 @@
   },
   "missing_symbols": [],
   "missing_detail": {},
-  "recovered_on_retry": [],
+  "recovered_on_retry": [
+    "BRITANNIA"
+  ],
   "aliases_used": {
     "TATAMOTORS": "TMPV",
     "ZOMATO": "ETERNAL"
@@ -80,10 +242,10 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-19T11:35:18+00:00",
+    "retrieved_at": "2026-11-19T21:01:01+00:00",
     "frame_last_row": "2026-11-19",
     "rows": 496,
-    "non_null_closes_on_last_row": 160,
+    "non_null_closes_on_last_row": 0,
     "last_bar_counts": {
       "2026-11-19": 159
     }
@@ -407,7 +569,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -787,7 +949,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1167,7 +1329,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1514,7 +1676,7 @@
       "signal_date": "2026-11-19",
       "price": 4700.0,
       "trigger": 4700.0,
-      "stop_loss": 4491.73,
+      "stop_loss": 4491.72,
       "plan_risk": 208.275,
       "ema_20": 4721.73,
       "ema_50": 4693.83,
@@ -1540,14 +1702,14 @@
       "position": {
         "shares": 13,
         "invested": 61100.0,
-        "stop_loss": 4491.73,
-        "risk_amount": 2707.51,
+        "stop_loss": 4491.72,
+        "risk_amount": 2707.64,
         "risk_pct_of_capital": 0.479,
         "note": null,
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1585,7 +1747,7 @@
         },
         "stop": {
           "basis": "rule",
-          "price": 4491.73,
+          "price": 4491.72,
           "note": "fixed at entry; never moved down. A gap open below it fills at the open"
         },
         "profit_review_levels": {
@@ -1656,7 +1818,7 @@
       "avg_value_cr": 285.88,
       "close_in_range": 1.0,
       "stop_pct": 3.19,
-      "trigger_gap_pct": -0.0,
+      "trigger_gap_pct": 0.0,
       "checks": [
         {
           "id": "liquidity",
@@ -1671,7 +1833,7 @@
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop -0.0% above the close"
+          "text": "Buy-stop 0.0% above the close"
         },
         {
           "id": "close_strength",
@@ -1926,7 +2088,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2306,7 +2468,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2686,7 +2848,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2792,7 +2954,7 @@
       }
     },
     {
-      "avg_value_cr": 1002.41,
+      "avg_value_cr": 1002.42,
       "close_in_range": 0.92,
       "stop_pct": 4.09,
       "trigger_gap_pct": 0.25,
@@ -3065,7 +3227,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3413,7 +3575,7 @@
       "price": 2306.0,
       "trigger": 2328.9,
       "stop_loss": 2161.18,
-      "plan_risk": 144.8229,
+      "plan_risk": 144.823,
       "ema_20": 2277.32,
       "ema_50": 2129.19,
       "ema_200": 1649.87,
@@ -3447,7 +3609,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3829,7 +3991,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4211,7 +4373,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4594,7 +4756,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4973,7 +5135,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -5353,7 +5515,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -5459,10 +5621,10 @@
       }
     },
     {
-      "avg_value_cr": 294.43,
+      "avg_value_cr": 294.44,
       "close_in_range": 1.0,
       "stop_pct": 6.01,
-      "trigger_gap_pct": -0.0,
+      "trigger_gap_pct": 0.0,
       "checks": [
         {
           "id": "liquidity",
@@ -5477,7 +5639,7 @@
         {
           "id": "trigger_gap",
           "status": "ok",
-          "text": "Buy-stop -0.0% above the close"
+          "text": "Buy-stop 0.0% above the close"
         },
         {
           "id": "close_strength",
@@ -5733,7 +5895,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-19T11:35:18.067876+00:00",
+      "timestamp": "2026-11-19T21:01:01.114622+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5842,8 +6004,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-19T11:35:22+00:00",
-    "commit_sha": "6aa0032cc461c2eeb4f725709205b08a9c413db8",
+    "generated_at": "2026-11-19T21:01:06+00:00",
+    "commit_sha": "4522c5c63d1670f47fe04d4d8379ea8c4dcf5850",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
