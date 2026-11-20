@@ -1,8 +1,8 @@
 {
-  "scan_id": "0b051c4f9b66",
-  "timestamp": "2026-11-20T20:46:23.186656+00:00",
+  "scan_id": "b59e80d9904b",
+  "timestamp": "2026-11-20T22:22:25.890626+00:00",
   "scan_date": "2026-11-21",
-  "scan_time": "02:16:23 IST",
+  "scan_time": "03:52:25 IST",
   "data_cutoff": "2026-11-20",
   "expected_session": "2026-11-20",
   "sessions_behind": 0,
@@ -26,7 +26,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-20",
-      "retrieved_at": "2026-11-20T20:46:23+00:00",
+      "retrieved_at": "2026-11-20T22:22:26+00:00",
       "compared": 0,
       "filled": [
         "RELIANCE",
@@ -240,7 +240,7 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-20T20:46:23+00:00",
+    "retrieved_at": "2026-11-20T22:22:25+00:00",
     "frame_last_row": "2026-11-20",
     "rows": 496,
     "non_null_closes_on_last_row": 0,
@@ -567,7 +567,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -947,7 +947,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1327,7 +1327,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1709,7 +1709,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2092,7 +2092,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2471,7 +2471,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2851,7 +2851,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3231,7 +3231,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3611,7 +3611,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3990,7 +3990,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4370,7 +4370,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4750,7 +4750,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5130,7 +5130,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5510,7 +5510,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5890,7 +5890,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6269,7 +6269,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6649,7 +6649,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -7029,7 +7029,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -7409,7 +7409,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -7789,7 +7789,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T20:46:23.186656+00:00",
+      "timestamp": "2026-11-20T22:22:25.890626+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -7898,8 +7898,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-20T20:46:28+00:00",
-    "commit_sha": "5fae8c7b465a121a9fbb5eeba80e30a4f7065b01",
+    "generated_at": "2026-11-20T22:22:30+00:00",
+    "commit_sha": "89f1aa9494e0995bcffabd8eda0e9072b3c116ec",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
