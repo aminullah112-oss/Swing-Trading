@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T11:32:36+00:00",
+  "generated": "2026-11-20T20:46:31+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "affcbb05cc40",
-    "ledger": "ccd6e4530a99",
-    "health": "e6dc4b5d6179",
+    "results": "56bb5bdb5574",
+    "ledger": "ff8645981060",
+    "health": "195146608486",
     "grid": "7f60e20fea44",
     "benchmarks": "7d08f4c92483",
     "universe": "fda0c537f828",
@@ -185,8 +185,8 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-11-20T11:32:36+00:00",
-    "commit_sha": "af36e48896d21f072095fa7ee1dbf4542b1cf51b",
+    "generated_at": "2026-11-20T20:46:31+00:00",
+    "commit_sha": "5fae8c7b465a121a9fbb5eeba80e30a4f7065b01",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -195,9 +195,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-11-20",
     "source_ids": {
-      "results": "affcbb05cc40",
-      "ledger": "ccd6e4530a99",
-      "health": "e6dc4b5d6179",
+      "results": "56bb5bdb5574",
+      "ledger": "ff8645981060",
+      "health": "195146608486",
       "grid": "7f60e20fea44",
       "benchmarks": "7d08f4c92483",
       "universe": "fda0c537f828",

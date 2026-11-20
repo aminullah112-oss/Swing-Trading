@@ -1,8 +1,8 @@
 {
-  "scan_id": "e6ecbd74cb25",
-  "timestamp": "2026-11-20T11:32:28.820919+00:00",
-  "scan_date": "2026-11-20",
-  "scan_time": "17:02:28 IST",
+  "scan_id": "0b051c4f9b66",
+  "timestamp": "2026-11-20T20:46:23.186656+00:00",
+  "scan_date": "2026-11-21",
+  "scan_time": "02:16:23 IST",
   "data_cutoff": "2026-11-20",
   "expected_session": "2026-11-20",
   "sessions_behind": 0,
@@ -26,9 +26,169 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-20",
-      "retrieved_at": "2026-11-20T11:32:28+00:00",
-      "compared": 159,
-      "filled": [],
+      "retrieved_at": "2026-11-20T20:46:23+00:00",
+      "compared": 0,
+      "filled": [
+        "RELIANCE",
+        "TCS",
+        "HDFCBANK",
+        "INFY",
+        "HINDUNILVR",
+        "ICICIBANK",
+        "SBIN",
+        "BHARTIARTL",
+        "KOTAKBANK",
+        "LT",
+        "AXISBANK",
+        "WIPRO",
+        "MARUTI",
+        "BAJFINANCE",
+        "HCLTECH",
+        "ASIANPAINT",
+        "ULTRACEMCO",
+        "TITAN",
+        "SUNPHARMA",
+        "NESTLEIND",
+        "TECHM",
+        "TMPV",
+        "INDUSINDBK",
+        "POWERGRID",
+        "NTPC",
+        "BAJAJFINSV",
+        "ONGC",
+        "JSWSTEEL",
+        "TATASTEEL",
+        "COALINDIA",
+        "ADANIENT",
+        "ADANIPORTS",
+        "CIPLA",
+        "DRREDDY",
+        "DIVISLAB",
+        "BRITANNIA",
+        "EICHERMOT",
+        "GRASIM",
+        "HEROMOTOCO",
+        "ITC",
+        "M&M",
+        "BPCL",
+        "IOC",
+        "TATACONSUM",
+        "APOLLOHOSP",
+        "BAJAJ-AUTO",
+        "UPL",
+        "SBILIFE",
+        "HDFCLIFE",
+        "HINDALCO",
+        "DMART",
+        "SIEMENS",
+        "HAVELLS",
+        "PIDILITIND",
+        "DABUR",
+        "MARICO",
+        "COLPAL",
+        "BERGEPAINT",
+        "GODREJCP",
+        "MUTHOOTFIN",
+        "LUPIN",
+        "BIOCON",
+        "TORNTPHARM",
+        "ALKEM",
+        "AUROPHARMA",
+        "GLENMARK",
+        "AMBUJACEM",
+        "ACC",
+        "SHREECEM",
+        "INDIGO",
+        "TATAPOWER",
+        "TRENT",
+        "NAUKRI",
+        "IRCTC",
+        "CONCOR",
+        "SAIL",
+        "NMDC",
+        "VEDL",
+        "GAIL",
+        "PETRONET",
+        "IGL",
+        "BANKBARODA",
+        "PNB",
+        "CANBK",
+        "FEDERALBNK",
+        "IDFCFIRSTB",
+        "RBLBANK",
+        "AUBANK",
+        "CHOLAFIN",
+        "LICHSGFIN",
+        "MANAPPURAM",
+        "SUNDARMFIN",
+        "SHRIRAMFIN",
+        "PIIND",
+        "PERSISTENT",
+        "COFORGE",
+        "MPHASIS",
+        "LTTS",
+        "KPITTECH",
+        "TATAELXSI",
+        "CYIENT",
+        "DEEPAKNTR",
+        "NAVINFLUOR",
+        "TATACHEM",
+        "APOLLOTYRE",
+        "BALKRISIND",
+        "CEATLTD",
+        "MRF",
+        "MOTHERSON",
+        "BHARATFORG",
+        "BOSCHLTD",
+        "VOLTAS",
+        "KAJARIACER",
+        "SUPREMEIND",
+        "ASTRAL",
+        "POLYCAB",
+        "KEI",
+        "PAGEIND",
+        "RADICO",
+        "LAURUSLABS",
+        "GRANULES",
+        "AJANTPHARM",
+        "ERIS",
+        "METROPOLIS",
+        "MAXHEALTH",
+        "FORTIS",
+        "NH",
+        "SYNGENE",
+        "BRIGADE",
+        "SOBHA",
+        "PRESTIGE",
+        "GODREJPROP",
+        "PHOENIXLTD",
+        "OBEROIRLTY",
+        "THERMAX",
+        "CUMMINSIND",
+        "EMAMILTD",
+        "BEL",
+        "HAL",
+        "IRFC",
+        "RVNL",
+        "PFC",
+        "RECLTD",
+        "SJVN",
+        "NHPC",
+        "SUZLON",
+        "TRIDENT",
+        "RAYMOND",
+        "COROMANDEL",
+        "CHAMBLFERT",
+        "RALLIS",
+        "DHANUKA",
+        "ATUL",
+        "NOCIL",
+        "APLAPOLLO",
+        "ETERNAL",
+        "AARTIIND",
+        "TVSMOTOR",
+        "PRAJIND"
+      ],
       "cannot_fill": [],
       "not_in_bhavcopy": [],
       "mismatch_share": 0.0,
@@ -36,7 +196,7 @@
       "angelone": null,
       "nifty": {
         "status": "ok",
-        "filled": false,
+        "filled": true,
         "note": null
       },
       "close_mismatch": {},
@@ -80,10 +240,10 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-20T11:32:28+00:00",
+    "retrieved_at": "2026-11-20T20:46:23+00:00",
     "frame_last_row": "2026-11-20",
     "rows": 496,
-    "non_null_closes_on_last_row": 160,
+    "non_null_closes_on_last_row": 0,
     "last_bar_counts": {
       "2026-11-20": 159
     }
@@ -133,7 +293,7 @@
   },
   "stocks": [
     {
-      "avg_value_cr": 301.25,
+      "avg_value_cr": 301.26,
       "close_in_range": 0.855,
       "stop_pct": 6.34,
       "trigger_gap_pct": 0.41,
@@ -407,7 +567,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -513,7 +673,7 @@
       }
     },
     {
-      "avg_value_cr": 333.58,
+      "avg_value_cr": 333.59,
       "close_in_range": 0.372,
       "stop_pct": 4.66,
       "trigger_gap_pct": 1.08,
@@ -761,7 +921,7 @@
       "ema_200": 5200.8,
       "rsi": 60.7,
       "vol_ratio": 1.03,
-      "vol_5d_ratio": 0.99,
+      "vol_5d_ratio": 1.0,
       "ema_dist_pct": 3.6,
       "from_52w_high": -10.36,
       "atr_pct": 2.42,
@@ -787,7 +947,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -893,7 +1053,7 @@
       }
     },
     {
-      "avg_value_cr": 161.77,
+      "avg_value_cr": 161.78,
       "close_in_range": 0.456,
       "stop_pct": 4.89,
       "trigger_gap_pct": 0.88,
@@ -1167,7 +1327,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1549,7 +1709,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1932,7 +2092,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2311,7 +2471,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2691,7 +2851,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3071,7 +3231,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3451,7 +3611,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3830,7 +3990,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3936,7 +4096,7 @@
       }
     },
     {
-      "avg_value_cr": 598.32,
+      "avg_value_cr": 598.33,
       "close_in_range": 0.396,
       "stop_pct": 8.81,
       "trigger_gap_pct": 4.37,
@@ -4210,7 +4370,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4316,7 +4476,7 @@
       }
     },
     {
-      "avg_value_cr": 422.53,
+      "avg_value_cr": 422.54,
       "close_in_range": 0.566,
       "stop_pct": 5.22,
       "trigger_gap_pct": 1.72,
@@ -4590,7 +4750,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4696,7 +4856,7 @@
       }
     },
     {
-      "avg_value_cr": 985.61,
+      "avg_value_cr": 985.62,
       "close_in_range": 0.936,
       "stop_pct": 4.63,
       "trigger_gap_pct": 0.27,
@@ -4970,7 +5130,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5350,7 +5510,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5730,7 +5890,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -5836,7 +5996,7 @@
       }
     },
     {
-      "avg_value_cr": 434.01,
+      "avg_value_cr": 434.02,
       "close_in_range": 0.591,
       "stop_pct": 5.33,
       "trigger_gap_pct": 1.38,
@@ -6109,7 +6269,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6215,7 +6375,7 @@
       }
     },
     {
-      "avg_value_cr": 231.63,
+      "avg_value_cr": 231.64,
       "close_in_range": 0.371,
       "stop_pct": 4.51,
       "trigger_gap_pct": 1.03,
@@ -6489,7 +6649,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -6869,7 +7029,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6975,7 +7135,7 @@
       }
     },
     {
-      "avg_value_cr": 708.81,
+      "avg_value_cr": 708.82,
       "close_in_range": 0.235,
       "stop_pct": 6.57,
       "trigger_gap_pct": 1.11,
@@ -7249,7 +7409,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -7629,7 +7789,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-20T11:32:28.820919+00:00",
+      "timestamp": "2026-11-20T20:46:23.186656+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -7738,8 +7898,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-20T11:32:33+00:00",
-    "commit_sha": "af36e48896d21f072095fa7ee1dbf4542b1cf51b",
+    "generated_at": "2026-11-20T20:46:28+00:00",
+    "commit_sha": "5fae8c7b465a121a9fbb5eeba80e30a4f7065b01",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",

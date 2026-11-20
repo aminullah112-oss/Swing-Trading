@@ -1,6 +1,6 @@
 {
   "verdict": "NO-GO",
-  "generated": "2026-11-20T11:32:36+00:00",
+  "generated": "2026-11-20T20:46:32+00:00",
   "checks": [
     {
       "id": "P1",
@@ -30,7 +30,7 @@
       "id": "P5",
       "level": "block",
       "ok": true,
-      "msg": "event log verified (506 events)"
+      "msg": "event log verified (512 events)"
     },
     {
       "id": "P6",
