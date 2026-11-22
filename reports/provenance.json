@@ -1,7 +1,7 @@
 {
   "kind": "backtest",
-  "generated_at": "2026-11-15T08:52:09+00:00",
-  "commit_sha": "dba85c31d78cf2422e9b9bd3b7787646f21115fc",
+  "generated_at": "2026-11-22T09:23:43+00:00",
+  "commit_sha": "59d84985144e0b6466aeafaa0d11d712fa628776",
   "config_hash": "1aedd80e21d2bbbf",
   "evidence_hash": "4ac547ca5af30df9",
   "c0_hash": "5e7924a41b0ee220",
@@ -10,14 +10,14 @@
   "universe_count": 159,
   "data_cutoff": null,
   "source_ids": {
-    "grid": "7f60e20fea44",
-    "benchmarks": "7d08f4c92483",
-    "universe": "fda0c537f828",
-    "regime": "41698edfd330",
-    "baseline": "1fc2ca240946",
-    "trigger": "82e07b37f2eb",
-    "pit": "4471dd970d7c",
+    "grid": "3874c0423ceb",
+    "benchmarks": "750890c14853",
+    "universe": "596bfc9809ea",
+    "regime": "c9a8b1a92081",
+    "baseline": "9f17626dda17",
+    "trigger": "1c32d086e856",
+    "pit": "c0f19700f2d5",
     "experiments": "1b7739c6c4f4",
-    "experiments_v2": "b3587d5d41f9"
+    "experiments_v2": "00b347cbb8b6"
   }
 }
