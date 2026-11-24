@@ -11,7 +11,7 @@
     "stop_rule": "Hard stop = signal close - max(1.5 x ATR, 3% of close), fixed at entry."
   },
   "started": "2026-10-14",
-  "updated": "2026-11-24T02:36:27+00:00",
+  "updated": "2026-11-24T14:15:28+00:00",
   "last_update_ok": true,
   "signals": [
     {
@@ -3194,10 +3194,10 @@
       "taken": false,
       "entry_date": "2026-10-28",
       "entry": 1630.46,
-      "mark_price": 1799.0,
-      "unrealized_r": 2.322,
+      "mark_price": 1796.5,
+      "unrealized_r": 2.286,
       "exit_signal": false,
-      "days_held": 17,
+      "days_held": 18,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -4649,10 +4649,10 @@
       "taken": false,
       "entry_date": "2026-11-03",
       "entry": 2040.34,
-      "mark_price": 2285.3,
-      "unrealized_r": 2.616,
+      "mark_price": 2276.2,
+      "unrealized_r": 2.515,
       "exit_signal": false,
-      "days_held": 13,
+      "days_held": 14,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -6122,10 +6122,10 @@
       "taken": false,
       "entry_date": "2026-11-13",
       "entry": 1696.9,
-      "mark_price": 1680.0,
-      "unrealized_r": -0.262,
+      "mark_price": 1687.0,
+      "unrealized_r": -0.181,
       "exit_signal": false,
-      "days_held": 6,
+      "days_held": 7,
       "not_taken_reason": "aggregate open-risk budget 1.5% of capital would be exceeded"
     },
     {
@@ -10197,12 +10197,12 @@
     "win_rate": 0.0,
     "avg_r": -0.914,
     "total_r": -14.63,
-    "open_unrealized_r": 28.87,
+    "open_unrealized_r": 28.81,
     "taken_closed": 0,
     "taken_pnl_inr": 0,
     "avg_r_ci95": null,
-    "avg_r_incl_open": 0.445,
-    "total_r_incl_open": 14.24,
+    "avg_r_incl_open": 0.443,
+    "total_r_incl_open": 14.18,
     "outcomes": {
       "classes": {
         "won": {
@@ -10223,12 +10223,12 @@
         "open_profit": {
           "label": "Open, in profit (mark-to-market)",
           "n": 10,
-          "avg_r": 2.748
+          "avg_r": 2.734
         },
         "open_loss": {
           "label": "Open, at a loss (mark-to-market)",
           "n": 5,
-          "avg_r": -0.296
+          "avg_r": -0.28
         },
         "never_triggered": {
           "label": "Never triggered (buy-stop not reached)",
@@ -10362,10 +10362,9 @@
   ],
   "last_cutoff": "2026-11-23",
   "last_ingest": {
-    "scan_id": "811c51d09974",
+    "scan_id": "276cb0fd6d19",
     "accepted": 0,
-    "rejected": 0,
-    "blocked": null
+    "blocked": "scan data not trusted (not actionable): only 0% of symbols have an official daily bar for the expected session 2026-11-24 (need 95%); last-bar dates: {'2026-11-23': 159}; the Nifty 50 has no official bar for 2026-11-24 (last: 2026-11-23)"
   },
   "reconciliation": {
     "ok": false,
@@ -10386,12 +10385,12 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-11-24T02:36:27+00:00"
+    "checked": "2026-11-24T14:15:28+00:00"
   },
   "provenance": {
     "kind": "ledger",
-    "generated_at": "2026-11-24T02:36:29+00:00",
-    "commit_sha": "686a6e9152f283696bfcc7abb674b6e87b9881af",
+    "generated_at": "2026-11-24T14:15:30+00:00",
+    "commit_sha": "0007ff1398b86c33a5834f91f1d19f0c3ad2888d",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -10400,9 +10399,9 @@
     "universe_count": 159,
     "data_cutoff": "2026-11-23",
     "source_ids": {
-      "results": "fd87ec907c2d"
+      "results": "26887f848e26"
     },
-    "scan_id": "811c51d09974"
+    "scan_id": "276cb0fd6d19"
   },
   "duplicates_skipped": 566
 }

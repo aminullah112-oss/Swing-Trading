@@ -1,14 +1,14 @@
 # Pre-trade checklist: **NO-GO** (paper only)
 
-Generated 2026-11-24T02:36:31+00:00.
+Generated 2026-11-24T14:15:33+00:00.
 
 | Check | Result | Detail |
 |---|---|---|
-| P1 block | ✅ | scan data cutoff 2026-11-23 vs expected session 2026-11-23 (0 behind) |
+| P1 block | ❌ | scan data cutoff 2026-11-23 vs expected session 2026-11-24 (1 behind) |
 | P2 block | ✅ | scan provenance current |
-| P3 block | ✅ | data quality TRUSTED |
+| P3 block | ❌ | data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-11-24 (need 95%); last-bar dates: {'2026-11-23': 159}; the Nifty 50 has no official bar for 2026-11-24 (last: 2026-11-23) |
 | P4 block | ❌ | health FAIL: new entries NOT allowed |
-| P5 block | ✅ | event log verified (564 events) |
+| P5 block | ✅ | event log verified (565 events) |
 | P6 block | ❌ | ledger reconciliation 3 issue(s): needs_data |
 | P7 block | ✅ | live execution disabled (paper only) |
 | P8 block | ✅ | control C0 and pre-registration intact |
@@ -21,6 +21,6 @@ Generated 2026-11-24T02:36:31+00:00.
 
 ## Rejected
 
-- *: entries blocked: health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data
+- *: entries blocked: scan data cutoff 2026-11-23 vs expected session 2026-11-24 (1 behind); data quality UNTRUSTED: only 0% of symbols have an official daily bar for the expected session 2026-11-24 (need 95%); last-bar dates: {'2026-11-23': 159}; the Nifty 50 has no official bar for 2026-11-24 (last: 2026-11-23); health FAIL: new entries NOT allowed; ledger reconciliation 3 issue(s): needs_data
 
 A GO means the checks passed, not that the trade is wise. Paper only: no order is sent anywhere.
