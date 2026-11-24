@@ -1,6 +1,6 @@
 # Readiness scorecard: 1.0/10 — PAPER ONLY
 
-Generated 2026-11-24T00:25:10+00:00. Live risk allowed: **0.0%** per trade.
+Generated 2026-11-24T02:36:31+00:00. Live risk allowed: **0.0%** per trade.
 
 | Gate | Points | Status | Value / detail |
 |---|---|---|---|

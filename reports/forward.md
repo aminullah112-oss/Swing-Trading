@@ -17,15 +17,15 @@ How the filtered stocks fared:
 - Won: closed in profit: 0
 - Lost: stop hit: 7 (avg -1.33R)
 - Lost: exited at a loss (trend/time exit): 5 (avg -0.49R)
-- Open, in profit (mark-to-market): 11 (avg +2.73R)
-- Open, at a loss (mark-to-market): 4 (avg -0.42R)
+- Open, in profit (mark-to-market): 10 (avg +2.75R)
+- Open, at a loss (mark-to-market): 5 (avg -0.30R)
 - Never triggered (buy-stop not reached): 53
 - Waiting for entry session: 16
 - Not tradable (rejected, cancelled or void): 216
 
 Closed eligible signals: 12 of 100 needed; first eligible signal 2026-10-14; 182 days required.
 
-Average R including open trades: +0.615 over 2 entry months; month-clustered 95% CI [0.245, 1.077]. Rolling expectancy (last closed): needs 30+ closed.
+Average R including open trades: +0.529 over 2 entry months; month-clustered 95% CI [0.067, 1.106]. Rolling expectancy (last closed): needs 30+ closed.
 
 Taken-signal equity drawdown 0.0% of capital (now +0.0%). Gap-through-stop exits: 2. Partial fills: 0.
 
