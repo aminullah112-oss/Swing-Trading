@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-25T00:44:30+00:00",
+  "generated": "2026-11-25T12:48:22+00:00",
   "policy": {
     "score": 1.0,
     "mode": "PAPER ONLY",
@@ -148,8 +148,8 @@
       "status": "fail",
       "earned": 0.0,
       "value": "FAIL",
-      "threshold": "trusted data",
-      "detail": "latest scan data UNTRUSTED (no actionable signals): only 0% of symbols have an official daily bar for the expected session 2026-11-24 (need 95%); last-bar dates: {'2026-11-23': 159}; the Nifty 50 has no official bar for 2026-11-24 (last: 2026-11-23)",
+      "threshold": "OK/WARN",
+      "detail": "health DEGRADED/FAIL earns no operations credit",
       "evidence_state": "failed"
     },
     {
@@ -172,9 +172,9 @@
     }
   ],
   "inputs": {
-    "results": "d35cb296dce3",
-    "ledger": "7810b9b35d27",
-    "health": "1d78f100f06b",
+    "results": "780247ca3f34",
+    "ledger": "e200e349d8f5",
+    "health": "40b136d3179c",
     "grid": "3874c0423ceb",
     "benchmarks": "750890c14853",
     "universe": "596bfc9809ea",
@@ -185,19 +185,19 @@
   "inconsistencies": [],
   "provenance": {
     "kind": "readiness",
-    "generated_at": "2026-11-25T00:44:30+00:00",
-    "commit_sha": "2742955e8e477cdda22e8beea596b1c1ccd6ca8f",
+    "generated_at": "2026-11-25T12:48:22+00:00",
+    "commit_sha": "c0da959b74b13c7dd4d1f2bdecb8977acce5681a",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
     "universe_version": "U159_v2",
     "universe_hash": "d02dc26765b272aa",
     "universe_count": 159,
-    "data_cutoff": "2026-11-23",
+    "data_cutoff": "2026-11-25",
     "source_ids": {
-      "results": "d35cb296dce3",
-      "ledger": "7810b9b35d27",
-      "health": "1d78f100f06b",
+      "results": "780247ca3f34",
+      "ledger": "e200e349d8f5",
+      "health": "40b136d3179c",
       "grid": "3874c0423ceb",
       "benchmarks": "750890c14853",
       "universe": "596bfc9809ea",

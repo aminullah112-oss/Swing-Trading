@@ -1,28 +1,28 @@
 {
   "all_fills_simulated": true,
-  "signals_total": 325,
-  "evidence_eligible": 312,
+  "signals_total": 349,
+  "evidence_eligible": 336,
   "legacy_excluded": 13,
   "by_status": {
     "expired": 53,
     "void": 32,
-    "rejected": 184,
+    "rejected": 204,
     "open": 15,
     "closed": 12,
-    "pending": 16
+    "pending": 20
   },
   "not_taken_reasons": {
     "entry session passed without a trigger": 53,
     "entry was simulated on an unfinished session bar; the official bar decides": 3,
     "aggregate open-risk budget 1.5% of capital would be exceeded": 56,
-    "symbol already has an active signal": 184,
-    "not yet triggered": 16
+    "symbol already has an active signal": 204,
+    "not yet triggered": 20
   },
   "closed": 12,
-  "forward_avg_r_incl_open": 0.5266666666666667,
+  "forward_avg_r_incl_open": 0.7104444444444445,
   "forward_avg_r_ci95_clustered": [
-    0.065,
-    1.103
+    0.227,
+    1.314
   ],
   "effective_independent_months": 2,
   "rolling_expectancy_last_closed": {},
@@ -55,13 +55,13 @@
       },
       "open_profit": {
         "label": "Open, in profit (mark-to-market)",
-        "n": 10,
-        "avg_r": 2.734
+        "n": 12,
+        "avg_r": 2.632
       },
       "open_loss": {
         "label": "Open, at a loss (mark-to-market)",
-        "n": 5,
-        "avg_r": -0.28
+        "n": 3,
+        "avg_r": -0.225
       },
       "never_triggered": {
         "label": "Never triggered (buy-stop not reached)",
@@ -70,19 +70,19 @@
       },
       "waiting": {
         "label": "Waiting for entry session",
-        "n": 16,
+        "n": 20,
         "avg_r": null
       },
       "not_tradable": {
         "label": "Not tradable (rejected, cancelled or void)",
-        "n": 216,
+        "n": 236,
         "avg_r": null
       }
     },
     "entered": 27,
     "closed": 12,
     "closed_win_rate": 0.0,
-    "entered_in_profit_rate": 0.37,
+    "entered_in_profit_rate": 0.444,
     "trigger_rate": 0.338,
     "by_setup": {
       "PULLBACK_EMA20": {
@@ -92,8 +92,8 @@
       },
       "TRENDING": {
         "entered": 8,
-        "good": 2,
-        "hit_rate": 0.25
+        "good": 3,
+        "hit_rate": 0.375
       },
       "PULLBACK_EMA50": {
         "entered": 3,
@@ -102,8 +102,8 @@
       },
       "BREAKOUT_CONT": {
         "entered": 3,
-        "good": 2,
-        "hit_rate": 0.667
+        "good": 3,
+        "hit_rate": 1.0
       }
     },
     "legacy_excluded": 13,
@@ -111,7 +111,7 @@
   },
   "event_log": {
     "verified": true,
-    "events": 567,
+    "events": 591,
     "problem": null
   },
   "reconciliation": {
@@ -131,8 +131,73 @@
         "kind": "needs_data",
         "ref": "ETERNAL|2026-10-19",
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "LT|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "BAJFINANCE|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "HAL|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "IDFCFIRSTB|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "HCLTECH|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "MPHASIS|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "CHOLAFIN|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "KAJARIACER|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "TITAN|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "LICHSGFIN|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "PIDILITIND|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "JSWSTEEL|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
+      },
+      {
+        "kind": "needs_data",
+        "ref": "HEROMOTOCO|2026-11-23",
+        "detail": "pending past its entry session 2026-11-24 but the data does not cover it"
       }
     ],
-    "checked": "2026-11-25T00:44:27+00:00"
+    "checked": "2026-11-25T12:48:18+00:00"
   }
 }
