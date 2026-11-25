@@ -111,7 +111,7 @@
   },
   "event_log": {
     "verified": true,
-    "events": 566,
+    "events": 567,
     "problem": null
   },
   "reconciliation": {
@@ -133,6 +133,6 @@
         "detail": "pending past its entry session 2026-10-20 but the data does not cover it"
       }
     ],
-    "checked": "2026-11-24T23:24:18+00:00"
+    "checked": "2026-11-25T00:44:27+00:00"
   }
 }
