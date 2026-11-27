@@ -1,8 +1,8 @@
 {
-  "scan_id": "2387d99cc7f7",
-  "timestamp": "2026-11-26T21:58:10.048561+00:00",
+  "scan_id": "c9eb98853ac3",
+  "timestamp": "2026-11-27T00:01:54.430999+00:00",
   "scan_date": "2026-11-27",
-  "scan_time": "03:28:10 IST",
+  "scan_time": "05:31:54 IST",
   "data_cutoff": "2026-11-26",
   "expected_session": "2026-11-26",
   "sessions_behind": 0,
@@ -26,7 +26,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-26",
-      "retrieved_at": "2026-11-26T21:58:10+00:00",
+      "retrieved_at": "2026-11-27T00:01:54+00:00",
       "compared": 0,
       "filled": [
         "RELIANCE",
@@ -240,7 +240,7 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-26T21:58:10+00:00",
+    "retrieved_at": "2026-11-27T00:01:54+00:00",
     "frame_last_row": "2026-11-26",
     "rows": 496,
     "non_null_closes_on_last_row": 0,
@@ -567,7 +567,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -947,7 +947,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1327,7 +1327,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -1709,7 +1709,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2091,7 +2091,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2471,7 +2471,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -2851,7 +2851,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3231,7 +3231,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -3611,7 +3611,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3993,7 +3993,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4376,7 +4376,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4756,7 +4756,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5136,7 +5136,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5515,7 +5515,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5895,7 +5895,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6275,7 +6275,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6655,7 +6655,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -7035,7 +7035,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -7415,7 +7415,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -7796,7 +7796,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -8175,7 +8175,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -8555,7 +8555,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -8934,7 +8934,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -9314,7 +9314,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-26T21:58:10.048561+00:00",
+      "timestamp": "2026-11-27T00:01:54.430999+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -9423,8 +9423,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-26T21:58:14+00:00",
-    "commit_sha": "85458bfa841c1a3dbb70812dcbfbe45369368451",
+    "generated_at": "2026-11-27T00:02:01+00:00",
+    "commit_sha": "4a9dd28abf8070f55de8be13166f17f415e059f1",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",

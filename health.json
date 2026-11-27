@@ -5,12 +5,12 @@
     "manage_exits": false,
     "ops_credit": false
   },
-  "generated": "2026-11-26T21:58:17+00:00",
+  "generated": "2026-11-27T00:02:04+00:00",
   "checks": [
     {
       "id": "H1",
       "level": "ok",
-      "msg": "market data through 2026-11-26 (0 days old)"
+      "msg": "market data through 2026-11-26 (1 days old)"
     },
     {
       "id": "H2",
@@ -75,8 +75,8 @@
   ],
   "provenance": {
     "kind": "health",
-    "generated_at": "2026-11-26T21:58:17+00:00",
-    "commit_sha": "85458bfa841c1a3dbb70812dcbfbe45369368451",
+    "generated_at": "2026-11-27T00:02:04+00:00",
+    "commit_sha": "4a9dd28abf8070f55de8be13166f17f415e059f1",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
@@ -85,8 +85,8 @@
     "universe_count": 159,
     "data_cutoff": "2026-11-26",
     "source_ids": {
-      "results": "3187b67079e7",
-      "ledger": "324401a75286",
+      "results": "bc7162088ff0",
+      "ledger": "0ed7a44da287",
       "events": "a91f498f1232"
     }
   }
