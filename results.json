@@ -1,8 +1,8 @@
 {
-  "scan_id": "962b24f328bb",
-  "timestamp": "2026-11-27T21:40:38.613424+00:00",
+  "scan_id": "153305e807c0",
+  "timestamp": "2026-11-27T23:45:07.308645+00:00",
   "scan_date": "2026-11-28",
-  "scan_time": "03:10:38 IST",
+  "scan_time": "05:15:07 IST",
   "data_cutoff": "2026-11-27",
   "expected_session": "2026-11-27",
   "sessions_behind": 0,
@@ -26,7 +26,7 @@
       "status": "ok",
       "source": "nse bhavcopy (udiff)",
       "session": "2026-11-27",
-      "retrieved_at": "2026-11-27T21:40:39+00:00",
+      "retrieved_at": "2026-11-27T23:45:07+00:00",
       "compared": 0,
       "filled": [
         "RELIANCE",
@@ -71,6 +71,7 @@
         "ITC",
         "M&M",
         "BPCL",
+        "IOC",
         "TATACONSUM",
         "APOLLOHOSP",
         "BAJAJ-AUTO",
@@ -186,8 +187,7 @@
         "ETERNAL",
         "AARTIIND",
         "TVSMOTOR",
-        "PRAJIND",
-        "IOC"
+        "PRAJIND"
       ],
       "cannot_fill": [],
       "not_in_bhavcopy": [],
@@ -205,9 +205,7 @@
   },
   "missing_symbols": [],
   "missing_detail": {},
-  "recovered_on_retry": [
-    "IOC"
-  ],
+  "recovered_on_retry": [],
   "aliases_used": {
     "TATAMOTORS": "TMPV",
     "ZOMATO": "ETERNAL"
@@ -242,7 +240,7 @@
     "interval": "1d",
     "period": "2y",
     "auto_adjust": true,
-    "retrieved_at": "2026-11-27T21:40:38+00:00",
+    "retrieved_at": "2026-11-27T23:45:07+00:00",
     "frame_last_row": "2026-11-27",
     "rows": 496,
     "non_null_closes_on_last_row": 0,
@@ -569,7 +567,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -949,7 +947,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1329,7 +1327,7 @@
         "size_notes": [],
         "within_risk_budget": true
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -1709,7 +1707,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2089,7 +2087,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2469,7 +2467,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -2849,7 +2847,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3229,7 +3227,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3609,7 +3607,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -3989,7 +3987,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -4369,7 +4367,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -4749,7 +4747,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -5131,7 +5129,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -5513,7 +5511,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -5895,7 +5893,7 @@
         ],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6278,7 +6276,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -6658,7 +6656,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -7038,7 +7036,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -7418,7 +7416,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -7798,7 +7796,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -8178,7 +8176,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -8558,7 +8556,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -8938,7 +8936,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -9318,7 +9316,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -9697,7 +9695,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -10076,7 +10074,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -10456,7 +10454,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "standard",
@@ -10836,7 +10834,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -11216,7 +11214,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -11596,7 +11594,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -11976,7 +11974,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -12356,7 +12354,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -12736,7 +12734,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -13115,7 +13113,7 @@
         "size_notes": [],
         "within_risk_budget": false
       },
-      "timestamp": "2026-11-27T21:40:38.613424+00:00",
+      "timestamp": "2026-11-27T23:45:07.308645+00:00",
       "actionable": true,
       "selection": {
         "tier": "preferred",
@@ -13224,8 +13222,8 @@
   "preview": [],
   "provenance": {
     "kind": "scan",
-    "generated_at": "2026-11-27T21:40:46+00:00",
-    "commit_sha": "de6b729773359ac09c359cefb2228c12f408dcf9",
+    "generated_at": "2026-11-27T23:45:14+00:00",
+    "commit_sha": "889149c38e18823ab3e847179b403b98efa37bb0",
     "config_hash": "1aedd80e21d2bbbf",
     "evidence_hash": "4ac547ca5af30df9",
     "c0_hash": "5e7924a41b0ee220",
